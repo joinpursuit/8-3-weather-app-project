@@ -1,0 +1,13 @@
+.wow {
+    width: 100px;
+  }
+  header{
+    text-align: center;
+    background: lightpink;
+    padding: 25px;
+    color: beige
+    
+  }
+  header button {
+    color: gold;
+  }
