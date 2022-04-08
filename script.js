@@ -1,4 +1,20 @@
-userInput = "";
-const URL = "https://wttr.in/" + userInput + "?format=j1";
+const form = document.querySelector("form");
 
-console.log("WE DID IT BOYS");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const userInput = event.target.location.value;
+  return weatherSearch(userInput);
+});
+
+const weatherSearch = (location) => {
+  fetch("https://wttr.in/" + location + "?format=j1")
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
