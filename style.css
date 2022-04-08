@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;700&display=swap");
+
+html,
+body {
+  color: #0f0e0e;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfcdc;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rubik", sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+header {
+  /* background: #2a9d8f;
+  border-bottom: 3px solid #4f7d5d; */
+  text-align: center;
+}
+
+header h1 {
+  padding: 25px;
+  font-family: 'Rampart One', cursive;
+  font-size: 5rem;
+  
+  letter-spacing: 1px;
+  color: #e9c46a;
+}
+
+header h1 span {
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  margin-left: 10px;
+}
+.centered {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 25px auto;
+  width: 80%;
+}
+section {
+  margin: 25px auto;
+  width: 75%;
+  background-color: #fdfcdc;
+}
+section form {padding: 0 2rem; margin: auto; display: table;}
+section form label {font-family: 'Open Sans', sans-serif;font-size: 1.2rem;font-weight: 600;color: #006d77;}
+section form input {padding: 1rem; margin: 5px 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem;
+  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;}
+section form select {padding: 1rem; margin: 5px 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem; 
+  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;}
+section form button {
+  padding: 1.4rem 2.4rem;
+  margin: 10px auto;
+  display: block;
+  border: 2px solid #2a9d8f;
+  border-radius: 5px;
+  background: #2a9d8f;
+  color: #fbf5f3;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem; 
+  font-weight: 800;
+}
+section form button:hover {
+  border: 2px solid #4f7d5d;
+  background: #006d77;
+}
+.card {
+  padding: 20px;
+  border: 0px solid #d8f3dc;
+  border-radius: 1px;
+  background-color: #d8f3dc;
+}
+.card h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  color: #006d77;
+}
+.card p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #264653;
+}
+.card button {
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #264653;
+  background-color: #e9c46a;
+  border: none;
+  cursor: pointer;
+}
+.card button:hover {background-color: #ffbe0b;}
+.hidden {
+  display: none;
+}
+.error {
+  padding: 2rem 4rem;
+  margin: 2rem auto;
+  display: table;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #fefefe;
+  background-color: #f4a261;
+  border-radius: 2px;
+}

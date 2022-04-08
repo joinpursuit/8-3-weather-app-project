@@ -73,7 +73,7 @@ In particular, make sure the following is true:
 - [ ] The `main `section of the page contains placeholder text and contain the following elements:
   - [ ] `article` - this will contain the current weather (starts empty)
   - [ ] `aside` - this will contain 3 `article` elements that will have upcoming weather (starts empty)
-- [ ] `aside` (will contain weather history)
+- [ok] `aside` (will contain weather history)
   - [ ] `section`
   - [ ] `h4` with the text `Previous Searches`
 - [ ] The sidebar includes an empty `ul` and a message inside a `p` element that lets the user know no searches have been made yet
