@@ -1,0 +1,22 @@
+header{
+    background-color: blue;
+    width: 500px;
+    height: 150px;
+    text-align: center;
+}
+
+main{
+    background-color: yellow;
+    width: 500px;
+    height: 350px;
+    text-align: center;
+}
+
+.forecast{
+    background-color: purple;
+    height:100px;
+    width:100px;
+    margin:10px;
+}
+
+
