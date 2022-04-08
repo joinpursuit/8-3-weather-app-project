@@ -21,18 +21,18 @@ h6 {
 }
 
 header {
-  /* background: #2a9d8f;
-  border-bottom: 3px solid #4f7d5d; */
+  background: #2a9d8f;
+  border-bottom: 3px solid #4f7d5d;
   text-align: center;
 }
 
 header h1 {
   padding: 25px;
   /* font-family: 'Rampart One', cursive; */
-  font-size: 5rem;
+  font-size: 2rem;
   
   letter-spacing: 1px;
-  color: #e9c46a;
+  color: #FFF;
 }
 
 #container {
