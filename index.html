@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script defer src="index.js"></script>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather App</h1>
+      <form>
+        <label>
+          Pick a Location
+          <input type="text" name="typeLocation" id="typeLocation" />
+          <input
+            type="submit"
+            name="getWeather"
+            id="getWeather"
+            value="Get Weather"
+          />
+        </label>
+      </form>
+    </header>
+
+    <br />
+
+    <main>
+      <!-- <aside id="tempConversion">
+        temp conversion widget
+        temp convert
+      </aside> -->
+
+      <article id="currentLocation">
+        <!-- current weather -->
+        <p id="defaultLocation">Choose a location to view the weather</p>
+      </article>
+
+      <!-- <aside id="upcomingWeather">
+        <article>upcoming weather</article>
+        <article>upcoming weather</article>
+        <article>upcoming weather</article>
+      </aside> -->
+
+      <aside id="weatherHistory">
+        <!-- weather history -->
+        <section>
+          <h4>Previous Searches</h4>
+          <!-- previous search data -->
+          <ul>
+            <p>No previous searches</p>
+          </ul>
+        </section>
+      </aside>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+header {
+  border: 3px solid black;
+  background-color: aquamarine;
+  text-align: center;
+  height: 25vh;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  grid-auto-rows: minmax(100px, auto);
+  text-align: center;
+  justify-content: center;
+}
+
+#tempConversion {
+  border: 3px solid green;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#currentLocation {
+  border: 3px solid cadetblue;
+  background-color: aliceblue;
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  line-height: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#upcomingWeather {
+  border: 5px solid blue;
+  grid-row: 4;
+}
+
+#weatherHistory {
+  grid-column: 3;
+  grid-row: 1;
+}
