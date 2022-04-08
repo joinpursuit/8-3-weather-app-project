@@ -1,0 +1,22 @@
+header {
+    display: grid;
+    background-color: teal;
+    text-align: center;
+    border: 2px solid black;
+    color: white;
+    padding: 40px;
+    width: 60%;
+    margin: 0 auto;
+    grid-gap: 10px;
+}
+
+main {
+    display: inline-block;
+    background-color: rgb(239, 237, 237);
+    border: 2px solid teal;
+    text-align: center;
+    width: 50%;
+}
+.history {
+    display: inline-block;
+}
