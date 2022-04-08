@@ -1,0 +1,31 @@
+body {
+    display: grid;
+    gap: 1.5rem;
+
+}
+
+
+
+.form {
+    color: white;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(10, 128, 118);
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.location{
+    background-color: red;
+    grid-column: span 3;
+}
+
+.forecast{
+    background-color: yellow;
+    grid-column: span 3;
+}
