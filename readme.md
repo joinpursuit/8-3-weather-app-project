@@ -1,6 +1,5 @@
 # Weather App Project
 
-For this assignment, you will build a weather application that will make use of the [wttr.in API](https://github.com/chubin/wttr.in) to show the weather in different locations. Your application will also store previous searches.
 
 There are 7 features that need to be created. Each completed feature (passes all the tests) will be worth 1 point.
 
