@@ -1,10 +1,16 @@
 const base_url = "https://wttr.in/";
 const form = document.querySelector("form");
+const icon = document.createElement("img");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   let location = document.querySelector("#location").value;
   document.querySelector("#location").value = "";
+
+  let article = document.querySelector("article");
+  article.innerHTML = "";
+
+  article.append(icon);
 
   let search_url = `${base_url}${location}?format=j1`;
   fetch(search_url)
@@ -14,8 +20,7 @@ form.addEventListener("submit", (event) => {
     })
     .then((json) => {
       //console.log(json);
-      let article = document.querySelector("article");
-      article.innerHTML = "";
+
       generateWeatherReport(location, article, json);
 
       let articles = document.querySelectorAll(".forecast");
@@ -36,30 +41,77 @@ form.addEventListener("submit", (event) => {
 });
 
 function generateWeatherReport(location, article, weatherData) {
+  let h2 = document.createElement("h2");
+  h2.textContent = location;
+  article.append(h2);
+
   let area = weatherData.nearest_area[0].areaName[0].value;
   let region = weatherData.nearest_area[0].region[0].value;
   let country = weatherData.nearest_area[0].country[0].value;
   let currentFeelsLikeF = weatherData.current_condition[0].FeelsLikeF;
-  console.log(area, region, country, currentFeelsLikeF);
+  // console.log(area, region, country, currentFeelsLikeF);
 
-  let h2 = document.createElement("h2");
-  h2.textContent = location;
+  // let h2 = document.createElement("h2");
+  // h2.textContent = location;
+  // article.append(h2);
 
   let p2 = document.createElement("p");
   location === area
     ? (p2.textContent = `Area: ${area}`)
     : (p2.textContent = ` Nearest Area ${area}`);
+  article.append(p2);
 
   let p3 = document.createElement("p");
   p3.textContent = `Region: ${region}`;
+  article.append(p3);
 
   let p4 = document.createElement("p");
   p4.textContent = `Country: ${country}`;
+  article.append(p4);
 
   let p5 = document.createElement("p");
   p5.textContent = `Currently: ${currentFeelsLikeF}`;
+  article.append(p5);
 
-  article.append(h2, p2, p3, p4, p5);
+  let currentHour = new Date(
+    weatherData.current_condition[0].localObsDateTime
+  ).getHours();
+  // console.log(typeof currentHour);
+  //console.log(weatherData.weather[0].hourly);
+  let chanceOfSunShine =
+    weatherData.weather[0].hourly[currentHour % 3].chanceofsunshine;
+  let chanceOfRain =
+    weatherData.weather[0].hourly[currentHour % 3].chanceofrain;
+  let chanceOfSnow =
+    weatherData.weather[0].hourly[currentHour % 3].chanceofsnow;
+
+  if (chanceOfSunShine > 50) {
+    icon.src = "./assets/icons8-summer.gif";
+    icon.alt = "sun";
+  } else if (chanceOfRain > 50) {
+    icon.src = "./assets/icons8-torrential-rain.gif";
+    icon.alt = "rain";
+  } else if (chanceOfSnow > 50) {
+    icon.alt = "snow";
+    icon.src = "./assets/icons8-light-snow.gif";
+  }
+
+  let sunshine = document.createElement("p");
+  article.append(sunshine);
+  sunshine.textContent = `Chance of Sunshine: ${chanceOfSunShine}`;
+
+  let rain = document.createElement("p");
+  article.append(rain);
+  rain.textContent = `Chance of Rain: ${chanceOfRain}`;
+
+  let snow = document.createElement("p");
+  article.append(snow);
+  snow.textContent = `Chance of Snow: ${chanceOfSnow}`;
+
+  //let icon = document.createElement("img");
+  //article.prepend(icon);
+
+  //console.log(chanceOfSunShine, chanceOfRain, chanceOfSnow);
 }
 
 function generateWeatherForecast(articles, weatherData) {
@@ -87,7 +139,7 @@ function addSearchResult(location, sidebar, weatherData) {
   let a = document.createElement("a");
   a.textContent = location;
   a.href = `${base_url}${location}?format=j1`;
-  console.log(a);
+  //console.log(a);
   li.textContent = `${currentFeelsLikeF}`;
   li.prepend(a);
   a.addEventListener("click", (event) => {
@@ -99,6 +151,6 @@ function addSearchResult(location, sidebar, weatherData) {
     let articles = document.querySelectorAll(".forecast");
     generateWeatherForecast(articles, weatherData);
   });
-  console.log(li);
+  //console.log(li);
   sidebar.append(li);
 }
