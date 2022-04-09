@@ -9,14 +9,14 @@ form.addEventListener("submit", (event) => {
   let search_url = `${base_url}${location}?format=j1`;
   fetch(search_url)
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       return response.json();
     })
     .then((json) => {
-      console.log(json);
+      //console.log(json);
       let article = document.querySelector("article");
       article.innerHTML = "";
-      generateWeatherReport(article, json);
+      generateWeatherReport(location, article, json);
 
       let articles = document.querySelectorAll(".forecast");
       generateWeatherForecast(articles, json);
@@ -35,18 +35,20 @@ form.addEventListener("submit", (event) => {
     });
 });
 
-function generateWeatherReport(article, weatherData) {
+function generateWeatherReport(location, article, weatherData) {
   let area = weatherData.nearest_area[0].areaName[0].value;
   let region = weatherData.nearest_area[0].region[0].value;
   let country = weatherData.nearest_area[0].country[0].value;
   let currentFeelsLikeF = weatherData.current_condition[0].FeelsLikeF;
   console.log(area, region, country, currentFeelsLikeF);
 
-  let p1 = document.createElement("p");
-  p1.textContent = area;
+  let h2 = document.createElement("h2");
+  h2.textContent = location;
 
   let p2 = document.createElement("p");
-  p2.textContent = `Area: ${area}`;
+  location === area
+    ? (p2.textContent = `Area: ${area}`)
+    : (p2.textContent = ` Nearest Area ${area}`);
 
   let p3 = document.createElement("p");
   p3.textContent = `Region: ${region}`;
@@ -57,7 +59,7 @@ function generateWeatherReport(article, weatherData) {
   let p5 = document.createElement("p");
   p5.textContent = `Currently: ${currentFeelsLikeF}`;
 
-  article.append(p1, p2, p3, p4, p5);
+  article.append(h2, p2, p3, p4, p5);
 }
 
 function generateWeatherForecast(articles, weatherData) {
@@ -92,7 +94,7 @@ function addSearchResult(location, sidebar, weatherData) {
     event.preventDefault();
     let article = document.querySelector("article");
     article.innerHTML = "";
-    generateWeatherReport(article, weatherData);
+    generateWeatherReport(location, article, weatherData);
 
     let articles = document.querySelectorAll(".forecast");
     generateWeatherForecast(articles, weatherData);
