@@ -4,6 +4,7 @@ const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   let location = document.querySelector("#location").value;
+  document.querySelector("#location").value = "";
 
   let search_url = `${base_url}${location}?format=j1`;
   fetch(search_url)
@@ -14,11 +15,20 @@ form.addEventListener("submit", (event) => {
     .then((json) => {
       console.log(json);
       let article = document.querySelector("article");
+      article.innerHTML = "";
       generateWeatherReport(article, json);
 
       let articles = document.querySelectorAll(".forecast");
       generateWeatherForecast(articles, json);
       //article.append(weatherReport);
+
+      let section = document.querySelector("section");
+      if (section.querySelector("p") !== null) {
+        section.querySelector("p").remove();
+      }
+      let sidebar = document.querySelector("ul");
+      addSearchResult(location, sidebar, json);
+      section.append(sidebar);
     })
     .catch((error) => {
       console.log(error);
@@ -59,12 +69,34 @@ function generateWeatherForecast(articles, weatherData) {
   for (let i = 0; i < articles.length; i++) {
     articles[i].textContent = date[i];
     let avgTempF = document.createElement("p");
-    avgTempF = weatherData.weather[i].avgtempF;
+    avgTempF.textContent = weatherData.weather[i].avgtempF;
     let maxTempF = document.createElement("p");
-    maxTempF = weatherData.weather[i].maxtempF;
+    maxTempF.textContent = weatherData.weather[i].maxtempF;
     let minTempF = document.createElement("p");
-    minTempF = weatherData.weather[i].mintempF;
+    minTempF.textContent = weatherData.weather[i].mintempF;
 
     articles[i].append(avgTempF, maxTempF, minTempF);
   }
+}
+
+function addSearchResult(location, sidebar, weatherData) {
+  let currentFeelsLikeF = weatherData.current_condition[0].FeelsLikeF;
+  let li = document.createElement("li");
+  let a = document.createElement("a");
+  a.textContent = location;
+  a.href = `${base_url}${location}?format=j1`;
+  console.log(a);
+  li.textContent = `${currentFeelsLikeF}`;
+  li.prepend(a);
+  a.addEventListener("click", (event) => {
+    event.preventDefault();
+    let article = document.querySelector("article");
+    article.innerHTML = "";
+    generateWeatherReport(article, weatherData);
+
+    let articles = document.querySelectorAll(".forecast");
+    generateWeatherForecast(articles, weatherData);
+  });
+  console.log(li);
+  sidebar.append(li);
 }
