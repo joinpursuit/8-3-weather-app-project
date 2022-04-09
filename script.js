@@ -73,11 +73,14 @@ function generateWeatherReport(location, article, weatherData) {
   p5.textContent = `Currently: ${currentFeelsLikeF}`;
   article.append(p5);
 
-  let currentHour = new Date(
-    weatherData.current_condition[0].localObsDateTime
-  ).getHours();
+  // let currentHour = new Date(
+  //   weatherData.current_condition[0].localObsDateTime
+  // ).getHours();
+
+  let currentHour = new Date().getHours();
   // console.log(typeof currentHour);
   //console.log(weatherData.weather[0].hourly);
+  //console.log(currentHour);
   let chanceOfSunShine =
     weatherData.weather[0].hourly[currentHour % 3].chanceofsunshine;
   let chanceOfRain =
