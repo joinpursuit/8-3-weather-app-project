@@ -1,6 +1,30 @@
 const base_url = "https://wttr.in/";
 const form = document.querySelector("form");
 const icon = document.createElement("img");
+const converter = document.querySelector("#converter");
+
+converter.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let temp = Number(document.querySelector("#temp-to-convert").value);
+  let h4 = document.querySelector("h4");
+  console.log(temp);
+  console.log(event.target);
+  //from https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
+  let conversionTypes = document.querySelectorAll(".convert-temp");
+  let conversionType = "";
+  for (let type of conversionTypes) {
+    if (type.checked) {
+      conversionType = type.value;
+      break;
+    }
+  }
+  console.log(conversionType);
+  if (conversionType === "c") {
+    h4.textContent = (((temp - 32) * 5) / 9).toFixed(2);
+  } else {
+    h4.textContent = ((temp * 9) / 5 + 32).toFixed(2);
+  }
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
