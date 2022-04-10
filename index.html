@@ -15,6 +15,7 @@
         <h1>Weather App</h1>
         <form>
             <label>
+                <span>Pick a location:</span>
                 <input type="text" name="location" id="location" />
             </label>
             <input type="submit" value="Get Weather" />
@@ -42,9 +43,9 @@
     </aside>
     <main>
         Choose a location to view the weather
-        <article>
+        <article id="weatherReport">
         </article>
-        <aside>
+        <aside id="threeDayWeatherReports">
             <article id="weatherOfToday" class="forecast"></article>
             <article id="weatherOfTomorrow" class="forecast"></article>
             <article id="weatherOfDayAfterTomorrow" class="forecast"></article>
