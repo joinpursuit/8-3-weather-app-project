@@ -13,7 +13,7 @@
 <body>
     <header>
         <h1>Weather App</h1>
-        <form>
+        <form id="weatherSearch">
             <label>
                 <span>Pick a location:</span>
                 <input type="text" name="location" id="location" />
@@ -23,7 +23,7 @@
     </header>
     <aside id="converter">
         <form>
-            <label>Convert the temperature
+            <label>Convert the temperature:
                 <input type="number" id="temp-to-convert">
             </label>
             <br />
@@ -38,7 +38,7 @@
             </label>
             <br />
             <input type="submit" value="Submit" />
-            <h4></h4>
+            <h4 id="display-converted-temp"></h4>
         </form>
     </aside>
     <main>
@@ -56,10 +56,7 @@
             <p>No previous searches</p>
             <ul></ul>
         </section>
-
     </aside>
-
-
 </body>
 
 </html>
