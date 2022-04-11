@@ -14,19 +14,28 @@
             <h1>Weather App</h1>
             Pick a Location
             <input type="text"/>
-            <input type="submit" value="Get Weather">
+            <input id="myButton" type="submit" value="Get Weather">
         </form>
     </header>
     <main>
         <article class="location">
-            <p>Choose a location to view the weather</p>
+            <p id="placeholder">Choose a location to view the weather</p>
             <!-- current requested city data -->
+            <h3 id="city"></h3>
+            <p><strong id="areaHold"></strong>
+                <span id="area"></span></p>
+            <p><strong id="regionHold"></strong>
+                <span id="region"></span></p>
+            <p><strong id="countryHold"></strong>
+                <span id="country"></span></p>
+            <p><strong id="currentlyHold"></strong>
+                <span id="currently"></span></p>
         </article>
         <aside class="searches">
             <section>
                 <h4>Previous Searches</h4>
-                <ul>
-                    <p>No previous searches</p>
+                <ul id="searchHistory">
+                    <p id="searchPlaceholder">No previous searches</p>
                     <!-- li will be previous searches -->
                 </ul>
             </section>

@@ -1,7 +1,6 @@
 body {
     display: grid;
     gap: 1.5rem;
-
 }
 
 
@@ -21,11 +20,25 @@ main {
 }
 
 .location{
-    background-color: red;
+    background-color: rgb(220, 220, 220);
     grid-column: span 3;
+    margin-left: 20px;
+    margin-right: 10px;
+    border: 2px solid rgb(10, 128, 118);
+    text-align: center;
 }
 
 .forecast{
-    background-color: yellow;
     grid-column: span 3;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.searches {
+
+}
+
+h4,
+ul{
+    margin-top: 0%;
 }
