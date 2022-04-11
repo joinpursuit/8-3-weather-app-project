@@ -1,12 +1,39 @@
 body {
     display: grid;
-    padding: auto;
     background-color: #b89fdfe4;
   }
   header {
+
 text-align: center;
-border: 1px solid rgb(150, 112, 216);
+border: 4px solid rgb(150, 112, 216);
 background-color: #aad3eae4;
 color:purple;
-font-family: fantasy; 
+font-family: fantasy;
+font-size: large; 
+padding: 20px;
+width: 70%;
+margin: 0 auto; 
+}
+main.display {
+  text-align: center;
+  background-color: #9670d8;
+  border: 2px solid #aad3eae4;
+  padding: 20px;
+width: 50%;
+margin-inline: 170px;
+color: #aad3eae4;
+}
+input{ color: #048570;
+font-family: fantasy;
+font-size: large;
+}
+button{
+  font-family: fantasy;
+  font-size: large;
+  color:#3d1269e4;
+text-align: center;
+background-color: #aa87c4e4;
+}
+h4 { 
+top: 20px;
 }

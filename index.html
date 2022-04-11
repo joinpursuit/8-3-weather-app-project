@@ -6,23 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
    <link rel="stylesheet" href="styles.css">
-   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
    <script defer src="main.js"></script>
 </head>
 <body>
 <header>
-<form type="text">
-    <h1>Weather App</h1>  
-   <label for="input-text">Enter A Location</label> 
+ <h1> <strong> Weather App</strong></h1> 
+ <form action="submit" type="text"> 
+   <label for="input-text">Pick a Location</label> 
   <input type="text"
    id="input-text"
    name="input-text" placeholder="Tokyo..."/> 
-   <input type="submit" value="Get Weather"/>
+   <button type="submit" value="Get Weather">Get Weather</button>
 </form>
 </header>
-<main>
-    <section></section>
-</main>    
-<aside></aside>
+   <br>
+<main class="display">
+    <article
+    class="current-weather">   </article>
+        <section id="display-section"><p> <strong> Choose a location to view the weather</strong></p> 
+         <aside class="upcoming-weather"></aside>
+        </section>
+  </main>
+  <aside class="weather-history"></aside>
+  <section></section>
+  <h4>Previous Searches...</h4>
+  <ul></ul>
+  <p class="hidden">No Previous Searches</p>
 </body>
 </html>
