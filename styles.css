@@ -1,4 +1,12 @@
 body {
-    padding: 20px;
-    background-color: #3e27627b;
+    display: grid;
+    padding: auto;
+    background-color: #b89fdfe4;
   }
+  header {
+text-align: center;
+border: 1px solid rgb(150, 112, 216);
+background-color: #aad3eae4;
+color:purple;
+font-family: fantasy; 
+}
