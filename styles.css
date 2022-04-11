@@ -1,0 +1,17 @@
+header {
+    display: grid;
+    background-color: teal;
+    border: 2px solid black;
+    color: white;
+    text-align: center;
+    font-family: Verdana;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat (3, 1fr);
+    gap: 3px;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 9px;
+}
