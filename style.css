@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap');
 
 html,
 body {
@@ -20,21 +20,31 @@ h6 {
   margin: 0;
 }
 
-header {
-  background: #2a9d8f;
-  border-bottom: 3px solid #4f7d5d;
-  text-align: center;
-}
+header {padding: 1rem 0;background: #2a9d8f;border-bottom: 3px solid #4f7d5d;text-align: center;}
 
-header h1 {
-  padding: 25px;
-  /* font-family: 'Rampart One', cursive; */
-  font-size: 2rem;
-  
-  letter-spacing: 1px;
-  color: #FFF;
+header h1 {margin: 1rem 0;font-family: 'Open Sans', sans-serif;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;}
+header form {width: 50%; padding: 0 2rem; margin: auto;}
+header form label {font-family: 'Open Sans', sans-serif;font-size: 1.2rem;line-height: 2.4rem;font-weight: 600;color: #FFF;}
+header form input[type='text'] {width: 100%;padding: 1rem; margin: 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem;
+  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;box-sizing: border-box;}
+  header form input[type='submit'] {
+  padding: 1.4rem 2.4rem;
+  margin: 1rem auto;
+  display: block;
+  /* border: 2px solid #2a9d8f; */
+  border-radius: 5px;
+  background: #006d77;
+  color: #fbf5f3;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem; 
+  font-weight: 800;
 }
-
+header form .button:hover {
+  /* border: 2px solid #4f7d5d; */
+  background: #006d77;
+}
+/* Main: */
 #container {
     width: 80%;
     margin: 25px auto;
@@ -43,59 +53,72 @@ header h1 {
     grid-template-columns: 3fr 1fr;
   
 }
-section {
-  
+/* Current forecst data */
+#container .current-forecast {
+    padding: 1rem;
+    background-color: #e9ecef;
+    border: 1rem solid #adb5bd;
+    text-align: center;
 }
-section form {padding: 0 2rem; margin: auto; display: table;}
-section form label {font-family: 'Open Sans', sans-serif;font-size: 1.2rem;font-weight: 600;color: #006d77;}
-section form input {padding: 1rem; margin: 5px 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem;
-  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;}
-section form select {padding: 1rem; margin: 5px 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem; 
-  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;}
-section form button {
-  padding: 1.4rem 2.4rem;
-  margin: 10px auto;
-  display: block;
-  border: 2px solid #2a9d8f;
-  border-radius: 5px;
-  background: #2a9d8f;
-  color: #fbf5f3;
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.2rem; 
-  font-weight: 800;
+#container .current-forecast  ul {
+    list-style: none;
 }
-section form button:hover {
-  border: 2px solid #4f7d5d;
-  background: #006d77;
+#container .current-forecast ul li h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.8rem; 
+    font-weight: 800;
 }
-.card {
-  padding: 20px;
-  border: 0px solid #d8f3dc;
-  border-radius: 1px;
-  background-color: #d8f3dc;
+#container .current-forecast ul li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
-.card h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 800;
-  color: #006d77;
+#container .current-forecast ul li span {
+    font-weight: 600;
 }
-.card p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  color: #264653;
+/* Daily forecst data */
+#container .daily-forecast {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
-.card button {
-  padding: 10px;
-  font-size: 1rem;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  color: #264653;
-  background-color: #e9c46a;
-  border: none;
-  cursor: pointer;
+#container .daily-forecast ul {
+    padding: 1rem;
+    /* background-color: #e9ecef; */
+    /* border: 1rem solid #adb5bd; */
+    text-align: center;
+    list-style: none;
 }
-.card button:hover {background-color: #ffbe0b;}
+#container .daily-forecast ul li h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem; 
+    font-weight: 800;
+}
+#container .daily-forecast ul li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+#container .daily-forecast ul li span {
+    font-weight: 600;
+}
+/* Aside: */
+#container aside {
+    padding: 1rem;
+}
+#container aside h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.4rem; 
+    font-weight: 600;
+}
+#container aside ul {
+    padding: 1rem;
+    list-style: none;
+}
+#container aside ul li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
 .hidden {
   display: none;
 }

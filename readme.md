@@ -70,14 +70,14 @@ In particular, make sure the following is true:
   - [ok] The application's title
   - [ok] a search form with a label, text input, and submit input
 - [ ] `aside` (will contain a temperature conversion widget), starts empty
-- [ ] The `main `section of the page contains placeholder text and contain the following elements:
-  - [ ] `article` - this will contain the current weather (starts empty)
-  - [ ] `aside` - this will contain 3 `article` elements that will have upcoming weather (starts empty)
+- [ok] The `main `section of the page contains placeholder text and contain the following elements:
+  - [ok] `article` - this will contain the current weather (starts empty)
+  - [ok] `aside` - this will contain 3 `article` elements that will have upcoming weather (starts empty)
 - [ok] `aside` (will contain weather history)
-  - [ ] `section`
-  - [ ] `h4` with the text `Previous Searches`
-- [ ] The sidebar includes an empty `ul` and a message inside a `p` element that lets the user know no searches have been made yet
-- [ ] CSS Grid should be used to structure the page
+  - [ok] `section`
+  - [ok] `h4` with the text `Previous Searches`
+- [ok] The sidebar includes an empty `ul` and a message inside a `p` element that lets the user know no searches have been made yet
+- [ok] CSS Grid should be used to structure the page
 
 #### After Search
 
@@ -101,9 +101,9 @@ After multiple searches, the sidebar will continue to fill up with more searches
 The following features are required for your application. These features detail what is needed to pass the tests.
 
 - When a user arrives at the page, they should:
-  - [ ] See an `h1` with the text "Weather App" in the header.
-  - [ ] See a form in the header that includes both a text and submit input.
-  - [ ] See a `main` element on the left side of the page, that suggests that they make a search.
+  - [ok] See an `h1` with the text "Weather App" in the header.
+  - [ok] See a form in the header that includes both a text and submit input.
+  - [ok] See a `main` element on the left side of the page, that suggests that they make a search.
   - [ ] See an `aside` element on the right side of the page, that includes the text "Previous Searches".
 - When a user enters text into the search form and presses submit, they should:
   - [ ] See the text disappear from the search bar.
