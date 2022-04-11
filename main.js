@@ -11,17 +11,34 @@ const parse_data = (file) => {
 	const currentWeather = document.querySelector("article.current-weather");
 	let city = document.createElement("h3");
 	city.textContent = temp;
+	currentWeather.append(city);
+
+	let area = document.createElement("p");
+	area.innerHTML = `<strong>Area:</strong> ${file.nearest_area[0].areaName[0].value}`;
+	currentWeather.append(area);
+
+	let region = document.createElement("p");
+	region.innerHTML = `<strong>Region:</strong> ${file.nearest_area[0].region[0].value}`;
+	currentWeather.append(region);
+
+	let country = document.createElement("p");
+	country.innerHTML = `<strong>Country:</strong> ${file.nearest_area[0].country[0].value}`;
+	currentWeather.append(country);
+
+	let currently = document.createElement("p");
+	currently.innerHTML = `<strong>Currently:</strong> Feels like ${file.current_condition[0].FeelsLikeF}°F`;
+	currentWeather.append(currently);
 	//See detailed information for the current day and the next two days below the main element.
 	//See the city name and "feels like" temperature show up in the aside element.
-	return undefined;
 };
 
 /** Event listener for "Get Weather" form */
 form.addEventListener("submit", (event) => {
-	let location = event.target.textContent; //"Melbourne"
+	event.preventDefault();
+	let location = event.target.value; //TODO: not passing proper location str
 
-	fetch(`wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
+	fetch(`https://wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
 		.then((response) => response.json())
-		.then(parse_data)
+		.then((json) => parse_data(json))
 		.catch((error) => console.log(error));
 });
