@@ -1,20 +1,15 @@
 const base_url = "https://wttr.in/";
-const weatherSearchForm = document.querySelector("form#weatherSearch");
-const icon = document.createElement("img");
+const weatherSearchForm = document.querySelector("#weatherSearch");
 const tempConverter = document.querySelector("#converter");
-const weatherReport = document.querySelector("main article#weatherReport");
-const weatherSearchInput = document.querySelector("form input#location");
+const weatherReport = document.querySelector("#weatherReport");
 const weatherForecasts = document.querySelectorAll(".forecast");
+const searchHistory = document.querySelector("#searchHistory");
 
 weatherSearchForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  let location = weatherSearchInput.value;
-  weatherSearchInput.value = "";
-
-  weatherReport.innerHTML = "";
-  weatherReport.append(icon);
-
+  let location = event.target.location.value;
+  event.target.location.value = "";
   let search_url = `${base_url}${location}?format=j1`;
 
   fetch(search_url)
@@ -27,19 +22,13 @@ weatherSearchForm.addEventListener("submit", (event) => {
 
       generateWeatherForecast(weatherForecasts, weatherData);
 
-      let section = document.querySelector("section");
-      if (section.querySelector("p") !== null) {
-        section.querySelector("p").remove();
-      }
-      let sidebar = document.querySelector("ul");
-      addSearchResult(
+      addSearchHistory(
         location,
+        searchHistory,
         weatherReport,
         weatherForecasts,
-        sidebar,
         weatherData
       );
-      section.append(sidebar);
     })
     .catch((error) => {
       console.log(error);
@@ -88,6 +77,8 @@ function parseJsonData(json) {
 }
 
 function generateWeatherReport(inputLocation, weatherReport, weatherData) {
+  weatherReport.innerHTML = "";
+
   let location = document.createElement("h2");
   location.textContent = inputLocation;
   weatherReport.append(location);
@@ -107,21 +98,35 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
   weatherReport.append(country);
 
   let currentFeelsLikeF = document.createElement("p");
-  currentFeelsLikeF.textContent = `Currently: ${weatherData.currentFeelsLikeF}`;
+  currentFeelsLikeF.textContent = `Currently: Feels Like ${weatherData.currentFeelsLikeF}°F `;
   weatherReport.append(currentFeelsLikeF);
 
-  let chanceOfSunShine =
+  let chanceOfSunShineAvg =
     weatherData.hourly.reduce((acc, ele) => {
       return (acc += Number(ele.chanceofsunshine));
-    }, 0) / 8;
-  let chanceOfRain =
+    }, 0) / weatherData.hourly.length;
+  let chanceOfRainAvg =
     weatherData.hourly.reduce((acc, ele) => {
       return (acc += Number(ele.chanceofrain));
-    }, 0) / 8;
-  let chanceOfSnow =
+    }, 0) / weatherData.hourly.length;
+  let chanceOfSnowAvg =
     weatherData.hourly.reduce((acc, ele) => {
       return (acc += Number(ele.chanceofsnow));
-    }, 0) / 8;
+    }, 0) / weatherData.hourly.length;
+
+  let chanceOfSunShine = document.createElement("p");
+  chanceOfSunShine.textContent = `Chance of Sunshine: ${chanceOfSunShineAvg.toFixed(
+    2
+  )}`;
+  weatherReport.append(chanceOfSunShine);
+
+  let chanceOfRain = document.createElement("p");
+  chanceOfRain.textContent = `Chance of Rain: ${chanceOfRainAvg.toFixed(2)}`;
+  weatherReport.append(chanceOfRain);
+
+  let chanceOfSnow = document.createElement("p");
+  chanceOfSnow.textContent = `Chance of Snow: ${chanceOfSnowAvg.toFixed(2)}`;
+  weatherReport.append(chanceOfSnow);
 
   let highestChanceOfSunshine = weatherData.hourly.reduce((acc, ele) => {
     return acc > Number(ele.chanceofsunshine)
@@ -141,8 +146,7 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
       : (acc = Number(ele.chanceofsnow));
   }, 0);
 
-  console.log(highestChanceOfSunshine);
-
+  let icon = document.createElement("img");
   if (highestChanceOfSunshine > 50) {
     icon.src = "./assets/icons8-summer.gif";
     icon.alt = "sun";
@@ -154,17 +158,7 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
     icon.src = "./assets/icons8-light-snow.gif";
   }
 
-  let sunshine = document.createElement("p");
-  sunshine.textContent = `Chance of Sunshine: ${chanceOfSunShine}`;
-  weatherReport.append(sunshine);
-
-  let rain = document.createElement("p");
-  rain.textContent = `Chance of Rain: ${chanceOfRain}`;
-  weatherReport.append(rain);
-
-  let snow = document.createElement("p");
-  snow.textContent = `Chance of Snow: ${chanceOfSnow}`;
-  weatherReport.append(snow);
+  weatherReport.prepend(icon);
 }
 
 function generateWeatherForecast(weatherForecasts, weatherData) {
@@ -173,41 +167,43 @@ function generateWeatherForecast(weatherForecasts, weatherData) {
     let date = document.createElement("p");
     date.textContent = weatherData.weatherOfThreeDays[i].date;
     let avgTempF = document.createElement("p");
-    avgTempF.textContent = weatherData.weatherOfThreeDays[i].avgTempF;
+    avgTempF.textContent = `Average Temperature: ${weatherData.weatherOfThreeDays[i].avgTempF}°F `;
     let maxTempF = document.createElement("p");
-    maxTempF.textContent = weatherData.weatherOfThreeDays[i].maxTempF;
+    maxTempF.textContent = `Max Temperature: ${weatherData.weatherOfThreeDays[i].maxTempF}°F `;
     let minTempF = document.createElement("p");
-    minTempF.textContent = weatherData.weatherOfThreeDays[i].minTempF;
+    minTempF.textContent = `Min Temperature: ${weatherData.weatherOfThreeDays[i].minTempF}°F `;
     weatherForecasts[i].append(date, avgTempF, maxTempF, minTempF);
   }
 }
 
-function addSearchResult(
+function addSearchHistory(
   location,
+  searchHistory,
   weatherReport,
   weatherForecasts,
-  sidebar,
   weatherData
 ) {
-  //console.log(weatherData);
   let currentFeelsLikeF = weatherData.currentFeelsLikeF;
+
   let li = document.createElement("li");
   let a = document.createElement("a");
   a.textContent = location;
   a.href = `${base_url}${location}?format=j1`;
 
-  li.textContent = `${currentFeelsLikeF}`;
+  li.textContent = ` ${currentFeelsLikeF}`;
   li.prepend(a);
+
+  let seachHistoryList = searchHistory.querySelector("ul");
+  seachHistoryList.append(li);
+
+  searchHistory.querySelector("p").hidden = true;
 
   a.addEventListener("click", (event) => {
     event.preventDefault();
-    weatherReport.innerHTML = "";
     generateWeatherReport(location, weatherReport, weatherData);
 
     generateWeatherForecast(weatherForecasts, weatherData);
   });
-  //console.log(li);
-  sidebar.append(li);
 }
 
 tempConverter.addEventListener("submit", (event) => {
