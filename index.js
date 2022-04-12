@@ -1,11 +1,16 @@
-let cityName = document.querySelector("#input-text");
+const form = document.querySelector("form");
+const enteredLocation = document.querySelector("#input-text");
 
-function fetchWeather(cityName) {
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const cityName = enteredLocation.value;
   let apiURL = `https://wttr.in/${cityName}?format=j1`;
   fetch(apiURL)
-    .then((res) => res.json())
-    .then((data) => {})
-    .catch((err) => {
-      console.log(err);
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
-}
+});
