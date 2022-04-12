@@ -87,22 +87,18 @@ function getDailyForecast(data){
     const dailyForecast = document.querySelector('.daily-forecast');
           
     data.forEach((element, index) => {
-        const ul = document.createElement('ul');
+        const dataList = document.createElement('ul');
             //   li1 = document.createElement('li'),   
             //   li2 = document.createElement('li'),  
             //   li3 = document.createElement('li');   
         // > Creating list with data      
-        ul.innerHTML = `
+        dataList.innerHTML = `
                         <li><h4>${validateDay(element.date)}</h4></li>
                         <li><span>Average Temperature:</span> ${element.avgtempF}</li>
                         <li><span>Max Temperature:</span> ${element.maxtempF}</li>
                         <li><span>Min Temperature:</span> ${element.mintempF}</li>`;
-        //console.log(index)
-        //console.log(element.avgtempF)
-        //ul.append(li1);
         
-        dailyForecast.append(ul);
-        //console.log(dailyForecast)
+        dailyForecast.append(dataList);
     });
     
     
@@ -137,27 +133,16 @@ function previousSearches(location, temp){
     searchList.querySelectorAll('*').forEach(node => {node.remove()});
     prevSearchMessage.classList.add('hidden');
     
-    
     checkPreviousSearch(location, temp)
     console.log(storedLocations)
-    // >
-    //storedLocations.forEach(e => {
+    
+    // => Looping through the object of searches
     for (const [key, value] of Object.entries(storedLocations)) {
         const searchItem = document.createElement('li');
         searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value}`;
         searchList.append(searchItem)
-    }
-    
+    }    
 
-    // // if(searchList.hasChildNodes){
-    // //     const prevSearchItem = document.querySelector("#prev-searches a");
-    // //     prevSearchItem.addEventListener("click", (event) => {
-    // //         event.preventDefault();
-    // //         getLocationByName(prevSearchItem.rel);
-    // //     });  
-    // // }
-    // console.log(searchList)
-    //console.log(storedLocations.length)
     return searchList;
 }
 
@@ -194,12 +179,3 @@ function createErrorMessage(message) {
   
     return section;
 }
-
-
-// index.js:103 
-// (3) [{…}, {…}, {…}]
-// 0: {astronomy: Array(1), avgtempC: '11', avgtempF: '52', date: '2022-04-11', hourly: Array(8), …}
-// 1: {astronomy: Array(1), avgtempC: '13', avgtempF: '56', date: '2022-04-12', hourly: Array(8), …}
-// 2: {astronomy: Array(1), avgtempC: '14', avgtempF: '58', date: '2022-04-13', hourly: Array(8), …}
-// length: 3
-// [[Prototype]]: Array(0)
