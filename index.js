@@ -7,7 +7,7 @@ const form            = document.querySelector("form"),
       prevSearches    = document.getElementById("prev-searches"),
       inputLocation   = document.getElementById("location"),
       storedLocations = {};
-let    defaultUnit     = '°F';
+let   defaultUnit     = '°F';
 
 inputLocation.focus();     
 form.addEventListener("submit", (event) => {
@@ -18,7 +18,6 @@ form.addEventListener("submit", (event) => {
     form.reset();
      
 });
-
 
 function getLocationByName(location) {
   fetch(`${BASE_URL}/${location}?format=j1`)
@@ -49,12 +48,12 @@ function getLocationByName(location) {
         dataSearch['Currently'] = `Feels like ${result.current_condition[0].FeelsLikeF}°F`;
         
         // > Loading current forecast
-        currForecast.append(getCurrentForecast(dataSearch));
+        getCurrentForecast(dataSearch);
         // > Aside: previous searches
         previousSearches(location, `${result.current_condition[0].FeelsLikeF}°F`);
         reloadLocation();
         // > Loading daily forecast
-        dailyForecast.append(getDailyForecast(result.weather));
+        getDailyForecast(result.weather);
 
     })
     .catch((error) => {
