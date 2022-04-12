@@ -76,17 +76,16 @@ function getCurrentForecast(data){
             dataItem.innerHTML = `<span>${key}:</span> ${value}`;
         }
         
-        dataList.appendChild(dataItem);
-        //console.log(dataList)
+        dataList.append(dataItem);
     }
-    //console.log(dataList)
+    
     return dataList;
 }
 
 function getDailyForecast(data){
     const dailyForecast = document.querySelector('.daily-forecast');
           
-    data.forEach((element, index) => {
+    data.forEach((element) => {
         const dataList = document.createElement('ul');
             //   li1 = document.createElement('li'),   
             //   li2 = document.createElement('li'),  
