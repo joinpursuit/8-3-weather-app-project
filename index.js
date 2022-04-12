@@ -51,7 +51,7 @@ function getLocationByName(location) {
         getCurrentForecast(dataSearch);
         // > Aside: previous searches
         previousSearches(location, `${result.current_condition[0].FeelsLikeF}°F`);
-        reloadLocation();
+        recallPreviousLocation();
         // > Loading daily forecast
         getDailyForecast(result.weather);
 
@@ -110,6 +110,7 @@ function validateDate(date) {
     console.log(currentDate.getDate())
     console.log(date.substring(date.length-2))
     // => Fix issue = Merlbourne time zone 
+    // compare hour?
     if(getCurrentDay === Number(weatherDay)){
         dayForecast = 'Today';
     }
@@ -133,7 +134,7 @@ function previousSearches(location, temp){
     checkPreviousSearch(location, temp)
     console.log(storedLocations)
     
-    // => Looping through the object of searches
+    // => Looping through the object of previous searches
     for (const [key, value] of Object.entries(storedLocations)) {
         const searchItem = document.createElement('li');
         searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value}`;
@@ -144,29 +145,22 @@ function previousSearches(location, temp){
 }
 
 function checkPreviousSearch(location, temp){
-    //console.log(location)
-    //console.log(storedLocations)
-    // if(!storedLocations.includes(location)){
-    //     storedLocations.push(location);
-    // }
-    // console.log(storedLocations.length)
     storedLocations[location] = temp;
 
     return storedLocations;
 }
 
-function reloadLocation(){
+function recallPreviousLocation(){
     // => Getinng all previous searches
     const prevSearchLink = document.querySelectorAll('#prev-searches a');
 
-    // >>
+    // >> Loopinf through the node list
     prevSearchLink.forEach(item => {
         item.addEventListener("click", (event) => {
             event.preventDefault();
             getLocationByName(item.getAttribute('rel'));
         });   
     })
-    
 }
 
 function createErrorMessage(message) {
