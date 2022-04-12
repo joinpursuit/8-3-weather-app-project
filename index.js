@@ -7,11 +7,13 @@ const form            = document.querySelector("form"),
       prevSearches    = document.getElementById("prev-searches"),
       inputLocation   = document.getElementById("location"),
       storedLocations = {};
+let    defaultUnit     = '°F';
 
 inputLocation.focus();     
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const { location } = event.target;
+    // => Getting data
     getLocationByName(location.value);
     form.reset();
      
@@ -68,7 +70,7 @@ function getCurrentForecast(data){
     //console.log(data)
     for (const [key, value] of Object.entries(data)) {
         // >
-        console.log(key)
+        //console.log(key)
         const dataItem = document.createElement('li');
         if(key === 'locationName'){ 
             dataItem.innerHTML = `<h2>${value}</h2>`;
