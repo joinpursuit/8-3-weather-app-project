@@ -10,8 +10,8 @@
 </head>
 <body>
     <header><h1>Weather App</h1>
-        <form>
-        <label>Pick A Location
+        <form id = "location" >
+        <label for = "userLocation">Pick A Location
             <input id="userLocation" type="text" name="location">
             <input type="submit" value="Get Weather">
         </label>
@@ -32,6 +32,15 @@
         <ul id = "search-list"></ul>
     </section>
     </aside>
-    
+    <aside>
+        <form id = "converter">
+            <label for="temp-to-convert" >Convert the temperature </label>
+                <input type="number" id="temp-to-convert" name="temp"><br>
+                <input type ="radio" name="convert-temp" val="c" id="to-c" required> Convert to Celcius
+                <input type ="radio" name="convert-temp" val="f" id="to-f" required> Convert to Fahrenheight <br>
+                <input type = "submit" name="submit" value ="Click To Convert!">
+        </form>
+        <h4 id="result"></h4>
+    </aside >
 </body>
 </html>

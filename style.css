@@ -1,4 +1,16 @@
+*{
+    align-content: center;
+}
 header {
     text-align: center;
-    background-color: green;
+    background-color: seagreen;
+    border: solid 5px blue;
+    height: 300;
+    width: 500;
+    align-content: center;
 }
+
+body {
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+  }

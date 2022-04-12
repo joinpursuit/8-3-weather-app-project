@@ -1,10 +1,12 @@
-const form = document.querySelector("form");
+const form = document.getElementById("location");
+const convertForm = document.getElementById("converter");
 const general = document.getElementById("general");
 const todayArt = document.getElementById("today");
 const tomorrowArt = document.getElementById("tomorrow");
 const dayAfterTomArt = document.getElementById("after-tomorrow");
 const noSearches = document.getElementById("no-searches");
 const searchList = document.getElementById("search-list");
+const conversionResult = document.getElementById("result");
 
 const formatter = (words) => {
   newWord = words
@@ -16,7 +18,7 @@ const formatter = (words) => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const userInput = formatter(event.target.location.value);
+  const userInput = event.target.location.value;
   event.target.reset();
   return weatherSearch(userInput);
 });
@@ -50,11 +52,6 @@ const weatherSearch = (location) => {
 //   return sum / 8;
 // };
 
-// if there is more than a 50% chance of sunshine, show the summer icon with alt text sun
-// if there is more than a 50% chance of rain, show the torrential-rain icon with alt text rain
-// if there is more than a 50% chance of snow, show the light-snow icon with alt text snow
-// Notice: there are more icons available to you, you may use them to extend your app, but they are not required for the main part of the project.
-
 const createMainArticle = (result, location, article) => {
   article.innerHTML = "";
   const { FeelsLikeF } = result.current_condition[0];
@@ -80,7 +77,11 @@ const createMainArticle = (result, location, article) => {
   const searchedTown = document.createElement("h2");
   searchedTown.innerText = location;
   const searchedArea = document.createElement("p");
-  searchedArea.innerHTML = "Nearest Area: " + areaName[0].value;
+  if (areaName[0].value === location) {
+    searchedArea.innerText = "Area: " + areaName[0].value;
+  } else {
+    searchedArea.innerText = "Nearest Area: " + areaName[0].value;
+  }
   const searchedRegion = document.createElement("p");
   searchedRegion.innerHTML = "Region: " + region[0].value;
   const searchedCountry = document.createElement("p");
@@ -105,7 +106,6 @@ const createMainArticle = (result, location, article) => {
   );
 };
 
-const dynamicWeatherGif = (result) => {};
 const fillMiniArticle = (result, article, header) => {
   ({ avgtempF, maxtempF, mintempF } = result);
   article.innerHTML = "";
@@ -119,6 +119,7 @@ const fillMiniArticle = (result, article, header) => {
   minP.innerHTML = `<strong>Min Temperature:</strong> ${mintempF} °F`;
   return article.append(heading, averageP, maxP, minP);
 };
+//incorporate createTextNode as per Myra. refactor tot his at the end!
 
 const searchHistoryMaker = (result, location, list) => {
   const { FeelsLikeF } = result.current_condition[0];
@@ -137,4 +138,23 @@ const searchHistoryMaker = (result, location, list) => {
   }
 };
 
-//incorporate createTextNode as per Myra. refactor tot his at the end!
+convertHelper = (num, type) => {
+  conversionResult.innerText = "";
+  if (type === true) {
+    const farToCel = `${((num - 32) * (5 / 9)).toFixed(2)} °C`;
+    conversionResult.innerText = farToCel;
+  } else if (type === false) {
+    const celToFar = `${(num * 1.8 + 32).toFixed(2)} + °F`;
+    conversionResult.innerText = celToFar;
+  }
+};
+
+convertForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const input = event.target[0].value;
+  const convertToCel = event.target[1].checked;
+  convertToCel === true
+    ? convertHelper(input, true)
+    : convertHelper(input, false);
+  event.target.reset();
+});
