@@ -28,17 +28,30 @@ main {
     text-align: center;
 }
 
-.forecast{
-    grid-column: span 3;
-    margin-left: 20px;
-    margin-right: 10px;
-}
-
-.searches {
-
-}
-
 h4,
 ul{
     margin-top: 0%;
+}
+
+
+
+.forecast{
+    display: grid;
+    grid-column: span 3;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#today {
+    margin-top: 10px;
+}
+
+#tomorrow {
+    margin-top: 10px;
+}
+
+#dayAfterTomorrow {
+    margin-top: 10px;
 }
