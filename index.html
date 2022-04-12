@@ -12,8 +12,8 @@
   <body>
     <header>
       <h1>Weather App</h1>
-      <form>
-        <label>
+      <form id="typeLocationForm">
+        <label for="typeLocation">
           Pick a Location
           <input type="text" name="typeLocation" id="typeLocation" />
           <input
@@ -29,32 +29,64 @@
     <br />
 
     <main>
-      <!-- <aside id="tempConversion">
-        temp conversion widget
-        temp convert
-      </aside> -->
+      <aside id="tempConversion">
+        Convert the temperature:
+        <br />
+        <form>
+          <input type="number" name="convertNumber" id="convertNumber" />
+          <label for="radioCelcius" id="radioCelciusLabel">To Celcius </label>
+          <input type="radio" name="CelciusOrFahrenheit" id="to-c" />
+          <br />
+          <label for="radioFahrenheit" id="radioFahrenheitLabel"
+            >To Fahrenheit
+          </label>
+          <input type="radio" name="CelciusOrFahrenheit" id="to-f" />
+          <br />
+          <input type="submit" id="tempConvertButton" />
+        </form>
+      </aside>
 
       <article id="currentLocation">
         <!-- current weather -->
-        <p id="defaultLocation">Choose a location to view the weather</p>
+        <p>Choose a location to view the weather</p>
       </article>
 
-      <!-- <aside id="upcomingWeather">
-        <article>upcoming weather</article>
-        <article>upcoming weather</article>
-        <article>upcoming weather</article>
-      </aside> -->
+      <aside id="upcomingWeather">
+        <article id="todayWeather">
+          <strong>Today</strong>
+          <br />
+          <p id="avgTemp"></p>
+          <p id="maxTemp"></p>
+          <p id="minTemp"></p>
+        </article>
+        <article id="tomorrowWeather">
+          <strong>Tomorrow</strong>
+          <br />
+          <p id="avgTemp"></p>
+          <p id="maxTemp"></p>
+          <p id="minTemp"></p>
+        </article>
+        <article id="dayAfterWeather">
+          <strong>Day After Tomorrow</strong>
+          <br />
+          <p id="avgTemp"></p>
+          <p id="maxTemp"></p>
+          <p id="minTemp"></p>
+        </article>
+      </aside>
 
       <aside id="weatherHistory">
         <!-- weather history -->
         <section>
           <h4>Previous Searches</h4>
           <!-- previous search data -->
-          <ul>
-            <p>No previous searches</p>
+          <ul id="previousSearches">
+            <p id="noSearches">No previous searches</p>
           </ul>
         </section>
       </aside>
+      <!-- Create dark & light mode later -->
+      <!-- <button id="switchModes">switch modes</button> -->
     </main>
   </body>
 </html>
