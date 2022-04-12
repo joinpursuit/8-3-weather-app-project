@@ -6,7 +6,7 @@ body {
 header {
   background-color: rgb(0, 30, 180);
   color: white;
-  border: 3px solid rgb(0, 255, 102);
+  border: 3px solid rgb(0, 179, 255);
   grid-area: header;
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
