@@ -14,7 +14,7 @@
 			<h1>Weather App</h1>
 			<form class="pick-location">
 				Pick a Location
-				<input type="text" class="search-bar"/>
+				<input type="text" class="search-bar" />
 				<input type="submit" text="Get Weather" />
 				<!-- <button type="submit">Get Weather</button> -->
 			</form>
@@ -23,7 +23,11 @@
 			<main>
 				<p class="hidden">Choose a location to view the weather.</p>
 				<article class="current-weather"></article>
-				<aside class="upcoming-weather"></aside>
+				<aside class="upcoming-weather">
+					<article class="today-weather"></article>
+					<article class="tomorrow-weather"></article>
+					<article class="day-after-tomorrow-weather"></article>
+				</aside>
 			</main>
 			<aside class="weather-history">
 				<section>
