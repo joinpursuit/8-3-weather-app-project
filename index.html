@@ -29,26 +29,46 @@
     <br />
 
     <main>
-      <aside id="tempConversion">
-        Convert the temperature:
-        <br />
-        <form>
-          <input type="number" name="convertNumber" id="convertNumber" />
-          <label for="radioCelcius" id="radioCelciusLabel">To Celcius </label>
-          <input type="radio" name="CelciusOrFahrenheit" id="to-c" />
+      <aside id="tempConversionWidget">
+        <form id="tempConversionForm">
+          <label for="temp-to-convert">Convert the temperature: </label>
           <br />
-          <label for="radioFahrenheit" id="radioFahrenheitLabel"
-            >To Fahrenheit
+          <input
+            type="number"
+            name="convertTheTemperature"
+            id="temp-to-convert"
+          />
+          <br />
+          <br />
+          <label for="to-c" id="to-c-label"
+            >To Celcius
+            <input type="radio" name="convert-temp" id="to-c" value="c" />
           </label>
-          <input type="radio" name="CelciusOrFahrenheit" id="to-f" />
           <br />
-          <input type="submit" id="tempConvertButton" />
+          <br />
+          <label for="to-f"
+            >To Fahrenheit
+            <input type="radio" name="convert-temp" id="to-f" value="f" />
+          </label>
+          <br />
+          <br />
+          <input type="submit" id="convertedTempButton" />
+          <h4 id="convertedTempResult">0.00</h4>
         </form>
       </aside>
 
       <article id="currentLocation">
-        <!-- current weather -->
-        <p>Choose a location to view the weather</p>
+        <p id="chooseALocation">Choose a location to view the weather</p>
+        <section id="currentLocationData">
+          <img id="iconImg" />
+          <p id="Area"></p>
+          <p id="Region"></p>
+          <p id="Country"></p>
+          <p id="Currently"></p>
+          <p id="ChanceOfSunshine"></p>
+          <p id="ChanceOfRain"></p>
+          <p id="ChanceOfSnow"></p>
+        </section>
       </article>
 
       <aside id="upcomingWeather">
@@ -76,10 +96,8 @@
       </aside>
 
       <aside id="weatherHistory">
-        <!-- weather history -->
         <section>
           <h4>Previous Searches</h4>
-          <!-- previous search data -->
           <ul id="previousSearches">
             <p id="noSearches">No previous searches</p>
           </ul>

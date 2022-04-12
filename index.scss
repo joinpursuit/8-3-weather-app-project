@@ -14,56 +14,28 @@ main {
   justify-content: center;
 }
 
-#tempConversion {
-  display: none;
+#tempConversionWidget {
   text-align: left;
-  form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(50px, auto);
-    gap: 3px;
-
-    #convertNumber {
-      grid-column: 1;
-      grid-row: 1;
-      height: 25%;
-    }
-
-    #radioCelciusLabel {
-      grid-column: 1;
-      grid-row: 2;
-    }
-    #to-c {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    #radioFahrenheitLabel {
-      grid-column: 1;
-      grid-row: 3;
-    }
-    #to-f {
-      grid-column: 2;
-      grid-row: 3;
-    }
-
-    #tempConvertButton {
-      grid-column: 1;
-      grid-row: 4;
-      height: 35px;
-    }
-  }
+  grid-column: 1;
+  grid-row: 1;
 }
 
 #currentLocation {
   border: 3px solid cadetblue;
   background-color: aliceblue;
-  grid-column: 1 / 3;
+  grid-column: 2;
   grid-row: 1;
   text-align: center;
   vertical-align: middle;
   p {
     line-height: 100px;
+  }
+}
+
+#currentLocationData {
+  display: none;
+  p {
+    line-height: normal;
   }
 }
 
@@ -83,10 +55,10 @@ main {
 }
 
 #weatherHistory {
-  // display: grid;
-  // grid-template-columns: repeat(2, 1fr);
-  // gap: 3px;
-  // grid-auto-rows: minmax(100px, auto);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  grid-auto-rows: minmax(100px, auto);
   grid-column: 3;
   grid-row: 1;
 }

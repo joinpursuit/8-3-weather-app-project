@@ -2,9 +2,9 @@ const BASE_URL = "https://wttr.in/";
 const JSON_URL = "?format=j1";
 
 const typeLocation = document.querySelector("#typeLocation");
-const getWeather = document.querySelector("#getWeather");
+const typeLocationForm = document.querySelector("#typeLocationForm");
 
-getWeather.addEventListener("click", (e) => {
+typeLocationForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const searchWeather = `${BASE_URL}${typeLocation.value}${JSON_URL}`;
@@ -46,6 +46,7 @@ const loopThroughArrs = (current, area, weather) => {
       maxTempF: weather[0].maxtempF,
       minTempC: weather[0].mintempC,
       minTempF: weather[0].mintempF,
+      hourly: weather[0].hourly,
     },
     Tomorrow: {
       avgTempC: weather[1].avgtempC,
@@ -86,18 +87,12 @@ const loopThroughArrs = (current, area, weather) => {
   return gotLocation(currentObj, areaObj, weatherObj);
 };
 
-const h1 = document.createElement("h1");
+const h2 = document.createElement("h2");
 
-const Area = document.createElement("h3");
-const Region = document.createElement("h3");
-const Country = document.createElement("h3");
-const Currently = document.createElement("h3");
-
-// TODO: FIGURE OUT VALUES LATER \\
-const Sunshine = document.createElement("h3");
-const Rain = document.createElement("h3");
-const Snow = document.createElement("h3");
-// LATER ^^^^ \\
+const Area = document.querySelector("#Area");
+const Region = document.querySelector("#Region");
+const Country = document.querySelector("#Country");
+const Currently = document.querySelector("#Currently");
 
 const todayAvgTemp = document.querySelector("#todayWeather #avgTemp");
 const todayMaxTemp = document.querySelector("#todayWeather #maxTemp");
@@ -112,28 +107,24 @@ const dayAfterMaxTemp = document.querySelector("#dayAfterWeather #maxTemp");
 const dayAfterMinTemp = document.querySelector("#dayAfterWeather #minTemp");
 
 const gotLocation = (current, area, weather) => {
-  const currentLocationP = document.querySelector("#currentLocation p");
-  currentLocationP.textContent = "";
-
-  const tempConversion = document.querySelector("#tempConversion");
-  tempConversion.style.display = "grid";
+  const chooseALocation = document.querySelector("#chooseALocation");
+  chooseALocation.textContent = "";
 
   const upcomingWeather = document.querySelector("#upcomingWeather");
   upcomingWeather.style.display = "grid";
 
-  const caseInsensitive = typeLocation.value.toLowerCase();
-  const areaLocation =
-    caseInsensitive.charAt(0).toUpperCase() + caseInsensitive.slice(1);
-  h1.textContent = areaLocation;
+  h2.textContent = typeLocation.value;
 
   Area.innerHTML = `<strong> Nearest Area: </strong> ${area.Area.value}`;
   Region.innerHTML = `<strong> Region: </strong> ${area.Region.value}`;
   Country.innerHTML = `<strong> Country: </strong> ${area.Country.value}`;
-  Currently.innerHTML = `<strong> Currently: Feels like </strong> ${current.CurrentlyF}\u00B0F`;
+  Currently.innerHTML = `<strong> Currently: </strong> Feels like ${current.CurrentlyF}\u00B0F`;
 
   const currentLocation = document.querySelector("#currentLocation");
   currentLocation.style.gridColumn = "2 / 2";
-  currentLocation.append(h1, Area, Region, Country, Currently);
+  const currentLocationData = document.querySelector("#currentLocationData");
+  currentLocationData.style.display = "block";
+  currentLocationData.append(h2, Area, Region, Country, Currently);
 
   todayAvgTemp.innerHTML = `<strong> Average Temperature: </strong> ${weather.Today.avgTempF}\u00B0F`;
   todayMaxTemp.innerHTML = `<strong> Max Temperature: </strong> ${weather.Today.maxTempF}\u00B0F`;
@@ -147,13 +138,58 @@ const gotLocation = (current, area, weather) => {
   dayAfterMaxTemp.innerHTML = `<strong> Max Temperature: </strong> ${weather.DayAfterTomorrow.maxTempF}\u00B0F`;
   dayAfterMinTemp.innerHTML = `<strong> Min Temperature: </strong> ${weather.DayAfterTomorrow.minTempF}\u00B0F`;
 
-  previousSearchesFunc(area.Area.value, areaLocation, current.CurrentlyF);
+  chancesOfSunshineRainSnow(currentLocationData, weather);
+  previousSearchesFunc(area.Area.value, h2.textContent, current.CurrentlyF);
 
   const typeLocationForm = document.querySelector("#typeLocationForm");
   typeLocationForm.reset();
 };
 
-const newArr = [];
+const chancesOfSunshineRainSnow = (currentLocationData, weather) => {
+  const Sunshine = document.querySelector("#ChanceOfSunshine");
+  const Rain = document.querySelector("#ChanceOfRain");
+  const Snow = document.querySelector("#ChanceOfSnow");
+
+  const iconImg = document.querySelector("#iconImg");
+  const sunIcon = "./assets/icons8-summer.gif";
+  const rainIcon = "./assets/icons8-torrential-rain.gif";
+  const snowIcon = "./assets/icons8-light-snow.gif";
+
+  let sunshineChance = weather.Today.hourly.reduce((previous, next) => {
+    return previous > Number(next.chanceofsunshine)
+      ? previous
+      : (previous = Number(next.chanceofsunshine));
+  });
+
+  let rainChance = weather.Today.hourly.reduce((previous, next) => {
+    return previous > Number(next.chanceofrain)
+      ? previous
+      : (previous = Number(next.chanceofrain));
+  });
+
+  let snowChance = weather.Today.hourly.reduce((previous, next) => {
+    return previous > Number(next.chanceofsnow)
+      ? previous
+      : (previous = Number(next.chanceofsnow));
+  });
+
+  if (sunshineChance > rainChance && sunshineChance > snowChance) {
+    iconImg.src = sunIcon;
+    iconImg.alt = "sun";
+  } else if (rainChance > sunshineChance && rainChance > snowChance) {
+    iconImg.src = rainIcon;
+    iconImg.alt = "rain";
+  } else if (snowChance > sunshineChance && snowChance > rainChance) {
+    iconImg.src = snowIcon;
+    iconImg.alt = "snow";
+  }
+
+  Sunshine.innerHTML = `<strong> Chance of Sunshine: </strong> ${sunshineChance}`;
+  Rain.innerHTML = `<strong> Chance of Rain: </strong> ${rainChance}`;
+  Snow.innerHTML = `<strong> Chance of Snow: </strong> ${snowChance}`;
+  currentLocationData.prepend(iconImg);
+  currentLocationData.append(Sunshine, Rain, Snow);
+};
 
 const previousSearchesFunc = (nearest, typedLocation, currentFeel) => {
   const previousSearches = document.querySelector("#previousSearches");
@@ -165,44 +201,27 @@ const previousSearchesFunc = (nearest, typedLocation, currentFeel) => {
     noSearches.remove();
   }
 
-  // CURRENTLY WORKING ON \\
-  // const newArr = [];
-  // check through that array to see if the name is already in the UL and if so break out of the append loop
-
   if (typedLocation === "") {
     locationLink.textContent = nearest;
-    savePreviousLocation(locationLink, li);
-
+    PreviousLocation(locationLink, li);
     li.append(locationLink, ` - ${currentFeel}\u00B0F`);
-    newArr.push(locationLink.textContent);
-
     previousSearches.append(li);
-    // for (const newA of newArr) {
-    //   if (newA === locationLink.textContent) {
-    //     console.log(newA, locationLink.textContent);
-    //     break;
-    //   } else {
-    //     console.log("inside else");
-    //     previousSearches.append(li);
-    //   }
-    // }
   } else {
     locationLink.textContent = typedLocation;
-    savePreviousLocation(locationLink, li);
-
+    PreviousLocation(locationLink, li);
     li.append(locationLink, ` - ${currentFeel}\u00B0F`);
     previousSearches.append(li);
   }
 };
 
-const savePreviousLocation = (locationLink, li) => {
+const PreviousLocation = (locationLink, li) => {
   let PREVIOUS_URL = `${BASE_URL}${locationLink.textContent}${JSON_URL}`;
   locationLink.href = PREVIOUS_URL;
 
   locationLink.addEventListener("click", (e) => {
     e.preventDefault();
 
-    h1.textContent = locationLink.textContent;
+    h2.textContent = locationLink.textContent;
     li.append(locationLink);
     li.remove();
 
@@ -218,9 +237,40 @@ const savePreviousLocation = (locationLink, li) => {
   });
 };
 
-const tempConvertButton = document.querySelector("#tempConvertButton");
-tempConvertButton.addEventListener("click", (e) => {
+const tempConversionForm = document.querySelector("#tempConversionForm");
+
+const tempToConvert = document.querySelector("#temp-to-convert");
+const toCelcius = document.querySelector("#to-c");
+const toFahrenheit = document.querySelector("#to-f");
+const convertedTempButton = document.querySelector("#convertedTempButton");
+const convertedTempResult = document.querySelector("#convertedTempResult");
+
+let selected = null;
+
+toCelcius.addEventListener("click", (e) => {
+  selected = "celcius";
+});
+
+toFahrenheit.addEventListener("click", (e) => {
+  selected = "fahrenheit";
+});
+
+tempConversionForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  let result = 0;
+
+  if (selected === "celcius") {
+    if (tempToConvert.value) {
+      result = `${((tempToConvert.value - 32) * (5 / 9)).toFixed(2)}\u00B0C`;
+    }
+  } else if (selected === "fahrenheit") {
+    if (tempToConvert.value) {
+      result = `${(tempToConvert.value * (9 / 5) + 32).toFixed(2)}\u00B0F`;
+    }
+  }
+
+  convertedTempResult.textContent = result;
 });
 
 // for dark & light mode later
