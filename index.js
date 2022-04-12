@@ -87,13 +87,10 @@ function getDailyForecast(data){
     const dailyForecast = document.querySelector('.daily-forecast');
           
     data.forEach((element) => {
-        const dataList = document.createElement('ul');
-            //   li1 = document.createElement('li'),   
-            //   li2 = document.createElement('li'),  
-            //   li3 = document.createElement('li');   
+        const dataList = document.createElement('ul'); 
         // > Creating list with data      
         dataList.innerHTML = `
-                        <li><h4>${validateDay(element.date)}</h4></li>
+                        <li><h4>${validateDate(element.date)}</h4></li>
                         <li><span>Average Temperature:</span> ${element.avgtempF}</li>
                         <li><span>Max Temperature:</span> ${element.maxtempF}</li>
                         <li><span>Min Temperature:</span> ${element.mintempF}</li>`;
@@ -105,14 +102,14 @@ function getDailyForecast(data){
     return dailyForecast;
 }
 
-function validateDay(date) {
+function validateDate(date) {
     const currentDate   = new Date(),
           getCurrentDay = currentDate.getDate(),
           weatherDay    = date.substring(date.length-2); 
     let dayForecast;
     console.log(currentDate.getDate())
     console.log(date.substring(date.length-2))
-
+    // => Fix issue = Merlbourne time zone 
     if(getCurrentDay === Number(weatherDay)){
         dayForecast = 'Today';
     }
