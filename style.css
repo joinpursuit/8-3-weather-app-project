@@ -14,5 +14,5 @@ header {
 	border: 10px solid black;
 }
 .hidden {
-	visibility: hidden;
+	text-decoration: hidden;
 }

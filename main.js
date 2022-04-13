@@ -40,15 +40,16 @@ const parse_data = (file) => {
 	today.append(todayText);
 
 	let avgToday = document.createElement("p");
-	avgToday.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[0].avgTempF}°F`; //for tomorrow, index 1; for day after, index 2
+	avgToday.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[0].avgtempF}°F`; //for tomorrow, index 1; for day after, index 2
 	today.append(avgToday);
 
 	let maxToday = document.createElement("p");
-	maxToday.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[0]}°F`; //file.weather[0].what?!?!???! is it heat index?
+	//TODO: in order to find max and min, might need to search through an array of hourly reports located in file.weather[].hourly[].FeelslikeF
+	maxToday.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[0].maxtempF}°F`; //file.weather[0].what?!?!???! is it heat index?
 	today.append(maxToday);
 
 	let minToday = document.createElement("p");
-	minToday.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[0]}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minToday.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[0].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
 	today.append(minToday);
 	//@Today END
 
@@ -59,15 +60,15 @@ const parse_data = (file) => {
 	tomorrow.append(tomorrowText);
 
 	let avgTomorrow = document.createElement("p");
-	avgTomorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[1].avgTempF}°F`;
+	avgTomorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[1].avgtempF}°F`;
 	tomorrow.append(avgTomorrow);
 
 	let maxTomorrow = document.createElement("p");
-	maxTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[1]}°F`; //file.weather[1].what?!?!???! is it heat index?
+	maxTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[1].maxtempF}°F`; //file.weather[1].what?!?!???! is it heat index?
 	tomorrow.append(maxTomorrow);
 
 	let minTomorrow = document.createElement("p");
-	minTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[1]}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[1].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
 	tomorrow.append(minTomorrow);
 	//@Tomorrow END
 
@@ -78,15 +79,15 @@ const parse_data = (file) => {
 	dayAfterTomorrow.append(dayAfterTomorrowText);
 
 	let avgDayAfterTomorrow = document.createElement("p");
-	avgDayAfterTomorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[2].avgTempF}°F`;
+	avgDayAfterTomorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[2].avgtempF}°F`;
 	dayAfterTomorrow.append(avgDayAfterTomorrow);
 
 	let maxDayAfterTomorrow = document.createElement("p");
-	maxDayAfterTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[2]}°F`; //file.weather[1].what?!?!???! is it heat index?
+	maxDayAfterTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[2].maxtempF}°F`; //file.weather[1].what?!?!???! is it heat index?
 	dayAfterTomorrow.append(maxDayAfterTomorrow);
 
 	let minDayAfterTomorrow = document.createElement("p");
-	minDayAfterTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[2]}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minDayAfterTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[2].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
 	dayAfterTomorrow.append(minDayAfterTomorrow);
 	//@Day-after-tomorrow END
 
@@ -94,14 +95,15 @@ const parse_data = (file) => {
 	let previousSearchesList = document.querySelector("aside.weather-history ul");
 	//make list item
 	let listItem = document.createElement("li");
-	listItem.innerHTML = `${searchQuery} - ${file.current_condition[0].FeelsLikeF}°F`;
+	listItem.innerHTML = `${city.textContent} - ${file.current_condition[0].FeelsLikeF}°F`;
 	previousSearchesList.append(listItem); //TODO: make the Cityname a hyperlink
 };
 
 /** Event listener for "Get Weather" form */
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	let location = event.target.text; //TODO: not passing proper location str
+	//let temp =
+	let location = document.querySelector("input.search-bar").value; //this works now. might be a better way to access value using the event object?
 
 	fetch(`https://wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
 		.then((response) => response.json())
