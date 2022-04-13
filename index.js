@@ -23,24 +23,19 @@ form.addEventListener("submit", (event) => {
       console.log(typeof chanceOfSunshine);
 
       // update icon
-      let icon;
-      let altText;
+      let image;
       if (chanceOfSunshine > 50) {
-        icon = "./assets/icons8-summer.gif";
-        altText = "sun";
+        image = `<img alt="sun" src="./assets/icons8-summer.gif">\n`;
       } else if (chanceOfRain > 50) {
-        icon = "./assets/icons8-torrential-rain.gif";
-        altText = "rain";
+        image = `<img alt="rain" src="./assets/icons8-torrential-rain.gif">\n`;
       } else if (chanceOfSnow > 50) {
-        icon = "./assets/icons8-light-snow.gif";
-        altText = "snow";
+        image = `<img alt="snow" src="./assets/icons8-light-snow.gif">\n`;
       } else {
-        icon = "./assets/icons8-summer.gif";
-        altText = "sun";
+        image = "";
       }
 
       // update current conditions with values
-      current.innerHTML = `<img alt="${altText}" src="${icon}">
+      current.innerHTML = `${image}
       <h3>${locationName}</h3>
         <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
