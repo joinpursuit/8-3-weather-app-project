@@ -59,7 +59,7 @@ form.addEventListener("submit", (event) => {
       const li = document.createElement("li");
       const noResults = document.getElementById("no-results");
       noResults.innerHTML = "";
-      li.innerHTML = `<a href="#">${locationName}</a> ${locationFeelsLike}°F`;
+      li.innerHTML = `<a href="#">${locationName}</a> - ${locationFeelsLike}°F`;
       document.querySelector("ul").append(li);
 
       li.addEventListener("click", (event) => {
