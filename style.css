@@ -1,6 +1,5 @@
 body {
-  background-color: rgb(83, 83, 83);
-  background-image: url("./assets/bodybg.png");
+  background-color: rgb(0, 0, 0);
   color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -13,8 +12,8 @@ a {
 }
 
 header {
-  background-color: rgb(0, 30, 180);
-  background-image: url("./assets/headerbg.png");
+background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(1,59,110,1) 48%, rgba(0,109,204,1) 100%);
   color: white;
   border: 3px solid rgb(0, 179, 255);
   text-align: center;
@@ -52,7 +51,6 @@ header {
 }
 
 #input-text {
-    background-color: rgb(0, 153, 255);
-    color: white;
-
+  background-color: rgb(0, 153, 255);
+  color: white;
 }
