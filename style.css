@@ -7,7 +7,6 @@ body {
 
 section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 header {
@@ -40,7 +39,10 @@ header {
 }
 
 .previous {
-  grid-column: 8/11;
+  grid-column: 9/11;
   margin-left: 1rem;
-  color: #000000;
+}
+
+a {
+  color: rgb(0, 162, 255);
 }
