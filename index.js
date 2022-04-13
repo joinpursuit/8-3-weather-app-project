@@ -44,8 +44,7 @@ form.addEventListener("submit", (event) => {
         areaLabel = "Area";
       }
 
-      // update current conditions with values
-      current.innerHTML = `${image}
+      let weatherOutput = `${image}
       <h2>${locationName}</h2>
         <p><b>${areaLabel}:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
@@ -54,6 +53,9 @@ form.addEventListener("submit", (event) => {
         <p><b>Chance of Rain:</b> ${chanceOfRain}%</p>
         <p><b>Chance of Snow:</b> ${chanceOfSnow}%</p>`;
 
+      // update current conditions with values
+      current.innerHTML = weatherOutput;
+
       const li = document.createElement("li");
       const noResults = document.getElementById("no-results");
       noResults.innerHTML = "";
@@ -61,13 +63,7 @@ form.addEventListener("submit", (event) => {
       document.querySelector("ul").append(li);
 
       li.addEventListener("click", (event) => {
-        current.innerHTML = `<h3>${areaName}</h3> 
-            <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
-            <p><b>Country:</b> ${locationCountry}</p> 
-            <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
-            <p><b>Chance of Sunshine:</b> ${chanceOfSunshine}%</p>
-            <p><b>Chance of Rain:</b> ${chanceOfRain}%</p>
-            <p><b>Chance of Snow:</b> ${chanceOfSnow}%</p>`;
+        current.innerHTML = weatherOutput;
 
         const forecastArr = ["Today", "Tomorrow", "Day After-Tomorrow"];
 
