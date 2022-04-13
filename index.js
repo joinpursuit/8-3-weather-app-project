@@ -39,15 +39,15 @@ form.addEventListener("submit", (event) => {
 
       // area or nearest area?
       if (locationName !== areaName) {
-        area = "Nearest Area";
+        areaLabel = "Nearest Area";
       } else {
-        area = "Area";
+        areaLabel = "Area";
       }
 
       // update current conditions with values
       current.innerHTML = `${image}
       <h2>${locationName}</h2>
-        <p><b>${area}:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
+        <p><b>${areaLabel}:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
         <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
         <p><b>Chance of Sunshine:</b> ${chanceOfSunshine}%</p>
