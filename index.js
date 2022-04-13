@@ -14,12 +14,34 @@ form.addEventListener("submit", (event) => {
       const locationRegion = data.nearest_area[0].region[0].value;
       const locationCountry = data.nearest_area[0].country[0].value;
       const locationFeelsLike = data.current_condition[0].FeelsLikeF;
-      const chanceOfSunshine = data.weather[0].hourly[0].chanceofsunshine;
-      const chanceOfRain = data.weather[0].hourly[0].chanceofrain;
-      const chanceOfSnow = data.weather[0].hourly[0].chanceofsnow;
+      const chanceOfSunshine = Number(
+        data.weather[0].hourly[0].chanceofsunshine
+      );
+      const chanceOfRain = Number(data.weather[0].hourly[0].chanceofrain);
+      const chanceOfSnow = Number(data.weather[0].hourly[0].chanceofsnow);
+      console.log(chanceOfSunshine);
+      console.log(typeof chanceOfSunshine);
+
+      // update icon
+      let icon;
+      let altText;
+      if (chanceOfSunshine > 50) {
+        icon = "./assets/icons8-summer.gif";
+        altText = "sun";
+      } else if (chanceOfRain > 50) {
+        icon = "./assets/icons8-torrential-rain.gif";
+        altText = "rain";
+      } else if (chanceOfSnow > 50) {
+        icon = "./assets/icons8-light-snow.gif";
+        altText = "snow";
+      } else {
+        icon = "./assets/icons8-summer.gif";
+        altText = "sun";
+      }
 
       // update current conditions with values
-      current.innerHTML = `<h3>${locationName}</h3> 
+      current.innerHTML = `<img alt="${altText}" src="${icon}">
+      <h3>${locationName}</h3>
         <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
         <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
