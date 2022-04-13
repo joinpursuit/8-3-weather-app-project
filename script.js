@@ -12,6 +12,8 @@ weatherSearchForm.addEventListener("submit", (event) => {
   event.target.location.value = "";
   let search_url = `${base_url}${location}?format=j1`;
 
+  tempConverter.hidden = false;
+
   fetch(search_url)
     .then((response) => {
       return response.json();
@@ -173,6 +175,7 @@ function generateWeatherForecast(weatherForecasts, weatherData) {
     let minTempF = document.createElement("p");
     minTempF.textContent = `Min Temperature: ${weatherData.weatherOfThreeDays[i].minTempF}°F `;
     weatherForecasts[i].append(date, avgTempF, maxTempF, minTempF);
+    weatherForecasts[i].hidden = false;
   }
 }
 

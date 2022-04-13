@@ -21,7 +21,7 @@
             <input type="submit" value="Get Weather" />
         </form>
     </header>
-    <aside id="converter">
+    <aside id="converter" hidden>
         <form>
             <label>Convert the temperature:
                 <input type="number" id="temp-to-convert">
@@ -43,12 +43,12 @@
     </aside>
     <main>
         <article id="weatherReport">
-            <p>Choose a location to view the weather.</p>
+            <p id="placeholder">Choose a location to view the weather.</p>
         </article>
         <aside id="threeDayWeatherReports">
-            <article id="weatherOfToday" class="forecast"></article>
-            <article id="weatherOfTomorrow" class="forecast"></article>
-            <article id="weatherOfDayAfterTomorrow" class="forecast"></article>
+            <article id="weatherOfToday" class="forecast" hidden></article>
+            <article id="weatherOfTomorrow" class="forecast" hidden></article>
+            <article id="weatherOfDayAfterTomorrow" class="forecast" hidden></article>
         </aside>
     </main>
     <aside id="searchHistory">
