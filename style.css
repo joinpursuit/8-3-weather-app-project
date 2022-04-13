@@ -9,14 +9,18 @@ header {
     margin: 0 auto;
     grid-gap: 10px;
 }
+main{
+    display: grid;
+}
 
-main {
-    display: inline-block;
+.current-weather{
     background-color: rgb(239, 237, 237);
     border: 2px solid teal;
     text-align: center;
-    width: 50%;
 }
-.history {
-    display: inline-block;
-}
+
+
+/* .temp-conversion {
+    border: 2px solid black;
+    width: min-content;
+} */
