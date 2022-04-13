@@ -14,12 +14,18 @@ form.addEventListener("submit", (event) => {
       const locationRegion = data.nearest_area[0].region[0].value;
       const locationCountry = data.nearest_area[0].country[0].value;
       const locationFeelsLike = data.current_condition[0].FeelsLikeF;
+      const chanceOfSunshine = data.weather[0].hourly[0].chanceofsunshine;
+      const chanceOfRain = data.weather[0].hourly[0].chanceofrain;
+      const chanceOfSnow = data.weather[0].hourly[0].chanceofsnow;
 
       // update current conditions with values
       current.innerHTML = `<h3>${locationName}</h3> 
         <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
-        <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>`;
+        <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
+        <p><b>Chance of Sunshine:</b> ${chanceOfSunshine}%</p>
+        <p><b>Chance of Rain:</b> ${chanceOfRain}%</p>
+        <p><b>Chance of Snow:</b> ${chanceOfSnow}%</p>`;
 
       const li = document.createElement("li");
       const noResults = document.getElementById("no-results");
@@ -31,7 +37,10 @@ form.addEventListener("submit", (event) => {
         current.innerHTML = `<h3>${areaName}</h3> 
             <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
             <p><b>Country:</b> ${locationCountry}</p> 
-            <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>`;
+            <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
+            <p><b>Chance of Sunshine:</b> ${chanceOfSunshine}%</p>
+            <p><b>Chance of Rain:</b> ${chanceOfRain}%</p>
+            <p><b>Chance of Snow:</b> ${chanceOfSnow}%</p>`;
 
         const forecastArr = ["Today", "Tomorrow", "Day After-Tomorrow"];
 
