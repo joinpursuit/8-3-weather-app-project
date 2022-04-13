@@ -3,7 +3,7 @@ const enteredLocation = document.querySelector("#input-text");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const locationName = enteredLocation.value;
+  let locationName = enteredLocation.value;
   const apiURL = `https://wttr.in/${locationName}?format=j1`;
   fetch(apiURL)
     .then((response) => response.json())
@@ -20,6 +20,11 @@ form.addEventListener("submit", (event) => {
       const chanceOfRain = Number(data.weather[0].hourly[0].chanceofrain);
       const chanceOfSnow = Number(data.weather[0].hourly[0].chanceofsnow);
 
+      // assign area name to location name if blank
+      if (!locationName) {
+        locationName = areaName;
+      }
+
       // update icon
       let image;
       if (chanceOfSunshine > 50) {
@@ -34,7 +39,7 @@ form.addEventListener("submit", (event) => {
 
       // update current conditions with values
       current.innerHTML = `${image}
-      <h3>${locationName}</h3>
+      <h2>${locationName}</h2>
         <p><b>Area:</b> ${areaName}</p> <p>Region: ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
         <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>
