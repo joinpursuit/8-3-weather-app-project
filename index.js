@@ -39,10 +39,10 @@ form.addEventListener("submit", (event) => {
           const maxTempF = data.weather[i].maxtempF;
           const minTempF = data.weather[i].mintempF;
           const div = document.querySelectorAll(".forecast div");
-          div[i].innerHTML = `<h2>${forecastArr[i]}</h2>
-                <p>Average Temperature:${avgTempF}</p>
-                <p>Max Temperature: ${maxTempF}</p>
-                <p>Min Temperature: ${minTempF}</p>`;
+          div[i].innerHTML = `<h3>${forecastArr[i]}</h3>
+                <p><b>Average Temperature:</b> ${avgTempF}&deg;F</p>
+                <p><b>Max Temperature: </b>${maxTempF}&deg;F</p>
+                <p><b>Min Temperature:</b> ${minTempF}&deg;F</p>`;
         }
       });
 
