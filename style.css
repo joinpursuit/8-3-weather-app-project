@@ -17,10 +17,13 @@ main{
     background-color: rgb(239, 237, 237);
     border: 2px solid teal;
     text-align: center;
+    grid-column: 1;
 }
 
 
-/* .temp-conversion {
+#temp-conversion {
     border: 2px solid black;
     width: min-content;
-} */
+    background-color: rgb(180, 244, 244);
+    text-align: center;
+}

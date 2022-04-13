@@ -1,13 +1,16 @@
 const base_url = 'https://wttr.in/';
 let weatherSearch = document.querySelector('.get-weather');
 let place = document.querySelector('#input-text');
+let widget = document.querySelector('#temp-conversion');
 let h2 = document.querySelector('h2');
 let cityName;
 
+//main event listener**
 weatherSearch.addEventListener('submit', (event) => {
   event.preventDefault();
   let cityName = place.value;
   let full_url = `${base_url}${cityName}?format=j1`;
+  widget.hidden = false; // make the widget appear
 
   fetch(full_url)
     .then((response) => response.json())
@@ -58,10 +61,13 @@ weatherSearch.addEventListener('submit', (event) => {
       history.append(previous);
       previous.innerHTML = `<a href="#">${cityName}</a> - ${feeltemp}\u00B0F`;
 
-      let a= document.querySelector('a')
-      a.addEventListener(('click') =>{
-        // fetch url with cityname and populate article .current-weather
-      })
+      // let a = document.querySelector('a');
+      // a.addEventListener('click', (e) => {
+      //   e.preventDefault();
+      
+
+      //   // fetch url with cityname and populate article .current-weather
+      // });
 
       let image = document.querySelector('img');
       if (chanceOfSunshine > 50) {
@@ -81,6 +87,8 @@ weatherSearch.addEventListener('submit', (event) => {
     .catch((error) => console.log(error));
 });
 
+
+
 // function createErrorMessage(message) {
 //   const section = document.createElement('section');
 //   section.classList.add('error');
@@ -89,7 +97,7 @@ weatherSearch.addEventListener('submit', (event) => {
 //   return section;
 // }
 
-// function grabCurrentWeather(json) {
+// function forcaster(json) {
 //   let todaysWeather = {
 //     date: "Today",
 //     avgTempF: json.weather[0].avgtempF,
