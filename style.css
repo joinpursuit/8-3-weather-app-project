@@ -1,5 +1,6 @@
 body {
   background-color: rgb(83, 83, 83);
+  background-image: url("./assets/bodybg.png");
   color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -17,6 +18,7 @@ section {
 
 header {
   background-color: rgb(0, 30, 180);
+  background-image: url("./assets/headerbg.png");
   color: white;
   border: 3px solid rgb(0, 179, 255);
   text-align: center;
