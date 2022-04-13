@@ -22,6 +22,8 @@ form.addEventListener("submit", (event) => {
         <p><b>Currently:</b> Feels Like ${locationFeelsLike}&deg;F</p>`;
 
       const li = document.createElement("li");
+      const noResults = document.getElementById("no-results");
+      noResults.innerHTML = "";
       li.innerHTML = `<a href="#">${locationName}</a> ${locationFeelsLike}°F`;
       document.querySelector("ul").append(li);
 
