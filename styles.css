@@ -1,17 +1,25 @@
+
 header {
     display: grid;
     background-color: teal;
     border: 2px solid black;
     color: white;
     text-align: center;
-    font-family: Verdana;
+    font-family: Trebuchet;
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat (3, 1fr);
-    gap: 3px;
+    display:grid;
+    grid-column: 2;
     text-align: center;
-    font-family: Verdana;
-    font-size: 9px;
+    background-color: rgb(232, 227, 227);
+    border: 2px solid teal;
+    font-family: Trebuchet;
 }
+
+h4 {
+    display: grid;
+    text-align: right;
+    font-family: Trebuchet;
+}
+
