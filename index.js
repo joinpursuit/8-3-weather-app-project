@@ -19,8 +19,6 @@ form.addEventListener("submit", (event) => {
       );
       const chanceOfRain = Number(data.weather[0].hourly[0].chanceofrain);
       const chanceOfSnow = Number(data.weather[0].hourly[0].chanceofsnow);
-      console.log(chanceOfSunshine);
-      console.log(typeof chanceOfSunshine);
 
       // update icon
       let image;
