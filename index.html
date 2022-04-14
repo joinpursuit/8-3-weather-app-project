@@ -10,28 +10,57 @@
    <script defer src="main.js"></script>
 </head>
 <body>
-<header>
- <h1> <strong> Weather App</strong></h1> 
- <form action="submit" type="text"> 
-   <label for="input-text">Pick a Location</label> 
-  <input type="text"
-   id="input-text"
-   name="input-text" placeholder="Tokyo..."/> 
-   <button type="submit" value="Get Weather">Get Weather</button>
-</form>
+    <header>
+        <h1>Weather App</h1>
+    <form>
+        <label>
+        Pick a Location
+        <input type="text" placeholder="Tokyo..."  name="location" id="location" />
+        <input type="submit" name="Get Weather" id="Get Weather" value="Get Weather"
+         />
+         </label>
+    </form>
 </header>
-   <br>
-<main class="display">
-    <article
-    class="current-weather">   </article>
-        <section id="display-section"><p> <strong> Choose a location to view the weather</strong></p> 
-         <aside class="upcoming-weather"></aside>
-        </section>
-  </main>
-  <aside class="weather-history"></aside>
-  <section></section>
-  <h4>Previous Searches...</h4>
-  <ul></ul>
-  <p class="hidden">No Previous Searches</p>
+<aside class="temp">
+    <form>
+        <section>
+        <label>
+            Convert the Temperature
+            <input type = "number" id="temp-to-convert" />
+        </label>
+    </section>
+<section>
+        <label>
+            To Celsius:
+            <input type = "radio" id = "to-c" name = "convert-temp" value = "c" class = "converting-temp"/>
+        </label>
+    </section>
+    <section>
+        <label>
+            To Fahrenheit:
+            <input type = "radio" id = "to-f" name = "convert-temp" value = "f" class = "converting-temp"/>
+        </label>
+    </section>
+        <input type = "submit" />
+       
+        <h4> </h4>
+    </form>
+</aside>
+<main>
+<article class="current-weather" id="display"></article>
+<aside class="forecast" >
+    <article><p></p></article>
+    <article><p></p></article>
+    <article><p></p></article>
+</aside>
+<p class="hide">Choose a location to view the weather.</p>
+</main>
+<aside>
+<section>
+<h4>Previous Searches</h4>
+<ul></ul>
+<p>No previous searches</p>
+</section>
+</aside>
 </body>
 </html>

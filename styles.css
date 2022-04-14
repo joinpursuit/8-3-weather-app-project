@@ -1,27 +1,51 @@
 body {
-    display: grid;
+  padding: 20px;  
+  display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 2fr;
     background-color: #b89fdfe4;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   header {
-
-text-align: center;
-border: 4px solid rgb(150, 112, 216);
-background-color: #aad3eae4;
-color:purple;
-font-family: fantasy;
-font-size: large; 
-padding: 20px;
-width: 70%;
-margin: 0 auto; 
+    grid-column-start: span 3;
+    text-align: center;
+    border: 4px solid rgb(150, 112, 216);
+    background-color: #aad3eae4;
+    color:purple;
+    font-family: fantasy;
+    font-size: large; 
+    width: 72%;
+    margin: auto; 
+    padding-bottom: 40px;
+    box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
 }
-main.display {
+main{
+  grid-column-start: span 1 ;
   text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #9670d8;
   border: 2px solid #aad3eae4;
-  padding: 20px;
-width: 50%;
-margin-inline: 170px;
+margin:  auto;
 color: #aad3eae4;
+box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+aside.search-history { grid-column-start: span 1 ;
+
 }
 input{ color: #048570;
 font-family: fantasy;
@@ -29,11 +53,29 @@ font-size: large;
 }
 button{
   font-family: fantasy;
-  font-size: large;
-  color:#3d1269e4;
+  color:#929094e4;
 text-align: center;
 background-color: #aa87c4e4;
 }
+/* .button:focus {
+  outline-color: transparent;
+  outline-style:solid;
+  box-shadow: 0 0 0 4px #5a01a7;
+  transition: 0.7s;
+} */
+
 h4 { 
 top: 20px;
+color: #293960e7;
+}
+
+aside.temp { display: block;
+  justify-content: center
+}
+aside.forecast {
+  display: flex;  
+}
+
+.hidden {
+  display: none;
 }
