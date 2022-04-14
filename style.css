@@ -27,8 +27,12 @@ main {
 .temp-converter {
     text-align: left;
     padding: 5px;
+    margin-bottom: 10px;
 }
 
+#calculation {
+    margin-top: 10px;
+}
 
 .location{
     background-color: rgb(220, 220, 220);
@@ -39,6 +43,7 @@ main {
     border: 2px solid rgb(10, 128, 118);
     text-align: center;
 }
+
 
 h4,
 ul{
@@ -58,12 +63,9 @@ ul{
     grid-column-end: 5;
 }
 
-#today {
 
-}
 
-#tomorrow {
-}
 
-#dayAfterTomorrow {
+@media (max-width: 990px){
+
 }

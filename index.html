@@ -10,31 +10,29 @@
 </head>
 <body>
     <header class="form">
-        <form type="submit">
+        <form id="fetch-form">
             <h1>Weather App</h1>
             Pick a Location
-            <input type="text">
-            <input class="button" id="fetch-button" type="submit" value="Get Weather">
+            <input id="requested-city" type="text"/>
+            <input class="button" id="fetch-button" type="submit" value="Get Weather"/>
         </form>
     </header>
     <main>
         <aside class="temp-converter">
-            <form type="submit">
+            <form id="convert-form" type="submit">
                 Convert the temperature:
-                <input  type="number" id="temp-to-convert">
-                To Celsius
-                <input type="radio" id="to-c" name="convert-temp" value="c">
+                <input type="number" id="temp-to-convert"/>
                 <br>
-                To Farenheit
-                <input type="radio" id="to-f" name="convert-temp" value="f">
+                To Celsius <input type="radio" id="to-c" name="convert-temp" value="c"/>
                 <br>
-                <input type="submit" value="Submit" id="convert-temp">
-                <h4 id="calculation">0.00</h4>
-
+                To Farenheit <input type="radio" id="to-f" name="convert-temp" value="f"/>
+                <br>
+                <input type="submit" value="Submit" id="convert-temp"/>
             </form>
+            <h4 id="calculation"></h4>
         </aside>
         <article class="location">
-            <img src="" alt="">
+            <img src="#" alt="">
             <p id="placeholder">Choose a location to view the weather</p>
             <!-- current requested city data -->
             <h2 id="city"></h2>
@@ -50,8 +48,8 @@
         <aside class="searches">
             <section>
                 <h4>Previous Searches</h4>
+                <p id="searchPlaceholder">No previous searches</p>
                 <ul id="searchHistory">
-                    <p id="searchPlaceholder">No previous searches</p>
                     <!-- li will be previous searches -->
                 </ul>
             </section>
