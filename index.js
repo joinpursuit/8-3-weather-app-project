@@ -28,13 +28,13 @@ form.addEventListener("submit", (event) => {
       // update icon
       let image;
       if (chanceOfSunshine > 50) {
-        image = `<img alt="sun" src="./assets/icons8-summer.gif">\n`;
+        image = `<img class="icon" alt="sun" src="./assets/icons8-summer.gif">\n`;
       } else if (chanceOfRain > 50) {
-        image = `<img alt="rain" src="./assets/icons8-torrential-rain.gif">\n`;
+        image = `<img class="icon" alt="rain" src="./assets/icons8-torrential-rain.gif">\n`;
       } else if (chanceOfSnow > 50) {
-        image = `<img alt="snow" src="./assets/icons8-light-snow.gif">\n`;
+        image = `<img class="icon" alt="snow" src="./assets/icons8-light-snow.gif">\n`;
       } else {
-        image = `<img alt="night" src="./assets/icons8-night.gif">\n`;
+        image = `<img class="icon" alt="night" src="./assets/icons8-night.gif">\n`;
       }
 
       if (locationName !== areaName) {
