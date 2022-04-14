@@ -1,12 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;700;800&display=swap');
 
+/*
+ *
+ ************************
+ ===> VARIABLE DEFINITIONS <===
+ ************************
+ *
+ */
+:root {
+    --primary: #0076c6;
+    --secondary: #333333;
+    --error: #f4a261;
+    --success: #009070;
+    --btnLocation: #006d77;
+  }
+/*
+ *
+ ************************
+ ===> GENERAL STYLES <===
+ ************************
+ *
+ */
 html,
 body {
-  color: #0f0e0e;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #FFF;
+    height: 100%;margin: 0;padding: 0;background-color: #FFF;font-family: 'Open Sans', sans-serif;
 }
 
 h1,
@@ -15,121 +32,340 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: normal;
-  margin: 0;
+    margin: 0;
 }
-
-header {padding: 1rem 0;background: #2a9d8f;border-bottom: 3px solid #4f7d5d;text-align: center;}
-
-header h1 {margin: 1rem 0;font-family: 'Open Sans', sans-serif;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;}
-header form {width: 50%; padding: 0 2rem; margin: auto;}
-header form label {font-family: 'Open Sans', sans-serif;font-size: 1.2rem;line-height: 2.4rem;font-weight: 600;color: #FFF;}
-header form input[type='text'] {width: 100%;padding: 1rem; margin: 0;font-family: 'Open Sans', sans-serif;font-size: 1.2rem;
-  font-weight: 400;background-color: #e9ecef;color: #006d77; border: none;box-sizing: border-box;}
-  header form input[type='submit'] {
-  padding: 1.4rem 2.4rem;
-  margin: 1rem auto;
-  display: block;
-  /* border: 2px solid #2a9d8f; */
-  border-radius: 5px;
-  background: #006d77;
-  color: #fbf5f3;
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.2rem; 
-  font-weight: 800;
+/*
+ *
+ ************************
+ ===> HEADER <===
+ ************************
+ *
+ */
+header {
+    padding: 2rem 0;display: grid;grid-template-columns: 1fr 2fr 1fr;grid-column-start: 2; background-color: #2a9d8f;border-bottom: 3px solid #4f7d5d;text-align: center;
+}
+header h1 {
+    margin: 0rem 0;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;
+}
+header form {
+    width: auto; padding: 0 0rem; margin: auto;
+}
+header form label {
+    font-size: 1.2rem;line-height: 2.4rem;font-weight: 600;color: #FFF;
+}
+header form .form-control {
+    display: flex;
+}
+header form .form-control::before {
+    content: "\f002";margin: 22px;font-size: 2rem;line-height: 2.5rem;color: var(--btnLocation);
+    position: absolute;display: block;z-index: 1000;
+}
+header form input[type='text'] {
+    width: 100%;padding: 1rem 1rem 1rem 4rem; margin: 0;font-size: 1.2rem;font-weight: 400;background-color: #e9ecef;color: #006d77;
+    border: 10px solid #006466;border-radius: 3px 0 0 3px; box-sizing: border-box;position: relative;
+}
+header form input[type='text']::before {
+    
+  }
+header form input[type='submit'] {
+    padding: 1.2rem 2.2rem;margin: 0;display: block;border-radius: 0 3px 3px 0;background: var(--btnLocation);color: #fbf5f3;cursor: pointer;
+    font-size: 1.2rem;font-weight: 800;border: 10px solid #006466;
 }
 header form .button:hover {
-  /* border: 2px solid #4f7d5d; */
   background: #006d77;
 }
-/* Main: */
+/*
+ *
+ ************************
+ ===> MAIN <===
+ ************************
+ *
+ */
 #container {
-    width: 80%;
-    margin: 25px auto;
-  
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-  
+    width: 80%;margin: 25px auto;min-height: calc(100vh - 70px);display: grid;grid-template-columns: 1fr 2fr 1fr;gap: 10px;
 }
 /* Current forecst data */
 #container .current-forecast {
-    padding: 1rem;
-    background-color: #e9ecef;
-    border: 1rem solid #adb5bd;
-    text-align: center;
+    padding: 1rem;border: 8px solid #bee3db;text-align: center;background-color: #FFF;border-radius: 1px;box-shadow: 0px 1px 4px #2a9d8f;
 }
-#container .current-forecast  ul {
-    list-style: none;
+#container .current-forecast h2 {
+    font-size: 1.8rem; font-weight: 800;color: #006d77;
 }
-#container .current-forecast ul li h2 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.8rem; 
-    font-weight: 800;
+#container .current-forecast p.init-message {
+    font-size: 1.2rem;font-weight: 400;text-align: center;
 }
-#container .current-forecast ul li {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
+#container .current-forecast p {
+    padding: 10px;margin: 0;font-size: 1.4rem;font-weight: 600;text-align: right;
 }
-#container .current-forecast ul li span {
-    font-weight: 600;
+#container .current-forecast p:nth-child(even) {background-color: #e0fbfc;}
+#container .current-forecast p span {
+    width: 50%;float: left; font-weight: 400;text-align: right;
 }
-/* Daily forecst data */
+#container .current-forecast div {
+    margin: 1rem auto;
+}
+/* Daily forecast data */
 #container .daily-forecast {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr 1fr;grid-template-rows: ; gap: 4px;
 }
-#container .daily-forecast ul {
+#container .daily-forecast div {
+    padding: 0.5rem;
+    background-color: #eff6e0; 
+}
+#container .daily-forecast h4 {
+    font-size: 1.2rem;line-height: 2.8rem;font-weight: 800;color: #006d77;
+}
+#container .daily-forecast table {
+    width: 100%;
+}
+#container .daily-forecast td {
+    padding: 4px;font-size: 1.0rem;line-height: 1.8rem;font-weight: 400;color: #006d77;
+}
+#container .daily-forecast tr:nth-child(odd) {
+    background-color: #b7e4c7;
+}
+#container .daily-forecast tr:nth-child(odd) td {
+    
+}
+#container .daily-forecast td span {
+    font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;
+}
+/*
+ *
+ ************************
+ ===> ASIDES <===
+ ************************
+ *
+ */
+/* Aside: Widget temp converter */
+#container .widget-temp-convert {
+    box-sizing: border-box;
+}
+#container .widget-temp-convert form {
+    padding: 2rem;background-color: #70c1b3;box-sizing: border-box;
+}
+#container .widget-temp-convert form label {
+    font-size: 1.2rem;line-height: 2.4rem;font-weight: 600;color: #FFF;text-shadow: 0px 0px 2px #006d77;
+}
+#container .widget-temp-convert form label.heading {font-size: 1.4rem;line-height: 2.8rem;font-weight: 800;}
+#container .widget-temp-convert form input[type='number'] {
+    width:100%;padding: 1rem; margin: 0;font-family: 'Open Sans', sans-serif;font-size: 1.8rem;
+    font-weight: 600;background-color: #e9ecef;color: #006d77; border: none;box-sizing: border-box;
+}
+#container .widget-temp-convert form input[type='radio'] {
+    width: 1.15em;height: 1.15em;margin: 0;
+    appearance: none;font: inherit;
+    background-color: #fff;color: #006d77;
+    border: 0.15em solid currentColor;border-radius: 50%;
+    transform: translateY(-0.075em);display: grid;place-content: center;
+}
+#container .widget-temp-convert form input[type='radio']::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);background-color: #2a9d8f;
+}
+#container .widget-temp-convert input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+#container .widget-temp-convert form input[type='submit'] {
+    padding: 1rem 2rem;margin: 0rem;display: block;border-radius: 5px;background: #006d77;color: #fbf5f3;cursor: pointer;
+    font-size: 1.2rem; font-weight: 800;
+}
+#container .widget-temp-convert form .result {
+    font-size: 2rem;line-height: 4rem;font-weight: 800;color: #006d77;
+}
+/* Aside: Widget prev searches */
+#container aside.widget-prev-searches {
     padding: 1rem;
-    /* background-color: #e9ecef; */
-    /* border: 1rem solid #adb5bd; */
-    text-align: center;
-    list-style: none;
 }
-#container .daily-forecast ul li h4 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.6rem; 
-    font-weight: 800;
+#container aside.widget-prev-searches h4 {
+    font-size: 1.4rem;line-height: 2.0rem;font-weight: 800;color: #006d77;
 }
-#container .daily-forecast ul li {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
+#container aside.widget-prev-searches ul {
+    padding: 0rem;list-style: none;
 }
-#container .daily-forecast ul li span {
-    font-weight: 600;
+#container aside.widget-prev-searches ul li {
+    margin: 5px 0;font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;
 }
-/* Aside: */
-#container aside {
-    padding: 1rem;
+#container aside.widget-prev-searches ul li a {
+    font-size: 1.2rem;line-height: 1.8rem;font-weight: 600;color: #2ec4b6;
 }
-#container aside h4 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.4rem; 
-    font-weight: 600;
+/*
+ *
+ ************************
+ ===> FOOTER <===
+ ************************
+ *
+ */
+footer {
+	height: 50px;margin: 20px 0;
 }
-#container aside ul {
-    padding: 1rem;
-    list-style: none;
+footer section {
+	text-align: center;
 }
-#container aside ul li {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
+footer section .fa-heart {
+	margin: 0 1px;font-size: 2rem;color: #fe4a49;
 }
+footer section .fa-js {
+	margin: 0 1px;font-size: 2rem;color: #1f8d9b;
+}
+/*
+ *
+ ************************
+ ===> HELPERS <===
+ ************************
+ *
+ */
 .hidden {
-  display: none;
+    display: none;
 }
+/*
+ *
+ ************************
+ ===> ERROR <===
+ ************************
+ *
+ */
 .error {
-  padding: 2rem 4rem;
-  margin: 2rem auto;
-  display: table;
-  font-size: 1rem;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  color: #fefefe;
-  background-color: #f4a261;
-  border-radius: 2px;
+    padding: 2rem 4rem;margin: 2rem auto;display: table;font-size: 1rem;font-weight: 600;background: var(--error);color: #fefefe;border-radius: 2px;
 }
+/*
+ *
+ ************************
+ ===> MEDIA QUERIES <===
+ ************************
+ *
+ */
+
+/* Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {
+
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) { */
+    /* ===> MAIN <=== */
+    /* #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr}
+    
+    #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
+} */
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {
+
+} */
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+
+} */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+
+} */
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    /* ===> MAIN <=== */
+    #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    /* Styles */
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+    
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+    header {
+        padding: 0.5rem 0;background-color: #333;
+    }
+}
+/* CSS pseudo-element styling */
+
+/* general reset/setup styling for icons - needed on all */
+.icon::before {
+    /* display: none;   */
+    /* See https://fontawesome.com/docs/web/add-icons/pseudo-elements#css-pseudo-elements-with-our-svg-js-framework */
+  }
+  
+  /* defining the right unicode values for each icon */
+  .icon-award::before {
+    
+  }
+  
+  .icon-figma::before {
+    content: "\f799";
+  }
+  
+  .icon-solid::before {
+    font: var(--fa-font-solid);
+  }
+  
+  .icon-regular::before {
+    font: var(--fa-font-regular);
+  }
+  
+  .icon-light::before {
+    font: var(--fa-font-light);
+  }
+  
+  .icon-duotone::before {
+    font: var(--fa-font-duotone);
+  }
+  
+  .icon-brands::before {
+    font: var(--fa-font-brands);
+  }
+  
+  /* demo styling */
+  * {
+    /* resetting the box model for all elements */
+    box-sizing: border-box;
+  }
+  
+  .demo-frame {
+    /* making a nice frame/layout for examples */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -1rem;
+    padding: 3rem;
+    min-height: 100vh;
+    color: rgb(52, 58, 64);
+  }
+  
+  .demo-example {
+    /* individual demo example styling */
+    margin-bottom: 1rem;
+  }
+  
+  .demo-icon-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .demo-icon {
+    margin: 0;
+    padding: 1.5rem 1rem;
+  }
+  
+  .svg-inline--fa {
+    margin-right: 0.5rem;
+  }
