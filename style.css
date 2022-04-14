@@ -1,0 +1,21 @@
+header {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    background-color: cyan;
+}
+
+.centerElements {
+    margin: auto;
+    width: 30%;
+    border: 3px solid black;
+    background-color: white;
+}
+
+header form {
+    display: grid;
+    grid-template-columns: 1f 1fr 1fr;
+}
+
+.centerText {
+    text-align: center;
+}
