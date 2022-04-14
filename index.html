@@ -22,20 +22,40 @@
 			</form>
 		</header>
 		<section>
+			<aside>
+				<form class="converter">
+					<label>
+						Convert from °F to °C
+						<input type="number" id="temp-to-convert" />
+					</label>
+
+					<label>
+						<input type="radio" id="to-f" name="temp" value="f" />
+						°F
+					</label>
+					<label>
+						<input type="radio" id="to-c" name="temp" value="c" />
+						°C
+					</label>
+					<label>
+						<input type="submit" />
+					</label>
+				</form>
+			</aside>
 			<main>
-				<p class="hidden">Choose a location to view the weather.</p>
-				<article class="current-weather"></article>
+				<p class="defaults">Choose a location to view the weather.</p>
+				<article class="current-weather weather"></article>
 				<aside class="upcoming-weather">
-					<article class="today-weather"></article>
-					<article class="tomorrow-weather"></article>
-					<article class="day-after-tomorrow-weather"></article>
+					<article class="today-weather weather"></article>
+					<article class="tomorrow-weather weather"></article>
+					<article class="day-after-tomorrow-weather weather"></article>
 				</aside>
 			</main>
 			<aside class="weather-history">
 				<section>
 					<h4>Previous Searches</h4>
 					<ul></ul>
-					<p class="hidden">No previous searches.</p>
+					<p class="defaults">No previous searches.</p>
 				</section>
 			</aside>
 		</section>

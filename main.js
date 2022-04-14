@@ -1,23 +1,33 @@
 const header = document.querySelector("header");
 const form = document.querySelector("form");
+const searchBar = document.querySelector("input.search-bar");
+const converter = document.querySelector("form.converter");
+
+const clear_defaults = () => {
+	//toggle hidden parts: "No previous searches" and "Choose a location..."
+	document.querySelectorAll(".defaults").forEach((item) => item.classList.add("hidden"));
+	//clear previous entry from add_weather
+	document.querySelectorAll(".weather").forEach((item) => (item.innerHTML = ""));
+};
 
 /** Adds the weather at given location */
-const parse_data = (file) => {
-	//toggle hidden parts: "No previous searches" and "Choose a location..."
-	document.querySelectorAll("p.hidden").forEach((item) => item.classList.toggle("hidden"));
-
+const add_weather = (file, location) => {
 	//TODO: See the text disappear from the search bar
-	const searchBar = document.querySelector("input.search-bar");
-	let searchQuery = searchBar.textContent;
-	searchBar.textContent = "";
+	//const searchBar = document.querySelector("input.search-bar");
+	//let searchQuery = searchBar.value;
+	searchBar.value = "";
 	//TODO: See the name of the city that was searched as well as the area, region, country, and currently "feels like" temperature for that location.
 	const currentWeather = document.querySelector("article.current-weather");
-	let city = document.createElement("h3");
-	city.textContent = searchQuery;
+	let city = document.createElement("h2");
+	city.textContent = location; //file.nearest_area[0].areaName[0].value;
 	currentWeather.append(city);
 
+	//TODO: area check/nearest area check (input form?!)
 	let area = document.createElement("p");
-	area.innerHTML = `<strong>Area:</strong> ${file.nearest_area[0].areaName[0].value}`;
+	area.innerHTML =
+		file.nearest_area[0].areaName[0].value.toLowerCase() === location
+			? `<strong>Area:</strong> ${file.nearest_area[0].areaName[0].value}`
+			: `<strong>Nearest Area:</strong> ${file.nearest_area[0].areaName[0].value}`;
 	currentWeather.append(area);
 
 	let region = document.createElement("p");
@@ -31,8 +41,8 @@ const parse_data = (file) => {
 	let currently = document.createElement("p");
 	currently.innerHTML = `<strong>Currently:</strong> Feels Like ${file.current_condition[0].FeelsLikeF}°F`;
 	currentWeather.append(currently);
-	//TODO: See detailed information for the current day and the next two days below the main element.
 	//TODO: THIS PROCESS CAN DEFINITELY BE LOOPED SOME WAY
+
 	//@mToday START
 	let today = document.querySelector("article.today-weather");
 	let todayText = document.createElement("h4");
@@ -40,16 +50,15 @@ const parse_data = (file) => {
 	today.append(todayText);
 
 	let avgToday = document.createElement("p");
-	avgToday.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[0].avgtempF}°F`; //for tomorrow, index 1; for day after, index 2
+	avgToday.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[0].avgtempF}°F`;
 	today.append(avgToday);
 
 	let maxToday = document.createElement("p");
-	//TODO: in order to find max and min, might need to search through an array of hourly reports located in file.weather[].hourly[].FeelslikeF
-	maxToday.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[0].maxtempF}°F`; //file.weather[0].what?!?!???! is it heat index?
+	maxToday.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[0].maxtempF}°F`;
 	today.append(maxToday);
 
 	let minToday = document.createElement("p");
-	minToday.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[0].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minToday.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[0].mintempF}°F`;
 	today.append(minToday);
 	//@Today END
 
@@ -64,11 +73,11 @@ const parse_data = (file) => {
 	tomorrow.append(avgTomorrow);
 
 	let maxTomorrow = document.createElement("p");
-	maxTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[1].maxtempF}°F`; //file.weather[1].what?!?!???! is it heat index?
+	maxTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[1].maxtempF}°F`;
 	tomorrow.append(maxTomorrow);
 
 	let minTomorrow = document.createElement("p");
-	minTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[1].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[1].mintempF}°F`;
 	tomorrow.append(minTomorrow);
 	//@Tomorrow END
 
@@ -83,20 +92,68 @@ const parse_data = (file) => {
 	dayAfterTomorrow.append(avgDayAfterTomorrow);
 
 	let maxDayAfterTomorrow = document.createElement("p");
-	maxDayAfterTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[2].maxtempF}°F`; //file.weather[1].what?!?!???! is it heat index?
+	maxDayAfterTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[2].maxtempF}°F`;
 	dayAfterTomorrow.append(maxDayAfterTomorrow);
 
 	let minDayAfterTomorrow = document.createElement("p");
-	minDayAfterTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[2].mintempF}°F`; //file.weather[0].what should point to min weather. dew point?!
+	minDayAfterTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[2].mintempF}°F`;
 	dayAfterTomorrow.append(minDayAfterTomorrow);
 	//@Day-after-tomorrow END
 
-	//TODO:See the city name and "feels like" temperature show up in the aside element.
+	//chance of sun
+	let chanceOfSunshine = document.createElement("p");
+	chanceOfSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
+	currentWeather.append(chanceOfSunshine);
+	//chance of rain
+	let chanceOfRain = document.createElement("p");
+	chanceOfRain.innerHTML = `<strong>Chance of Rain:</strong> ${file.weather[0].hourly[0].chanceofrain}`;
+	currentWeather.append(chanceOfRain);
+	//chance of snow
+	let chanceOfSnow = document.createElement("p");
+	chanceOfSnow.innerHTML = `<strong>Chance of Snow:</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
+	currentWeather.append(chanceOfSnow);
+	//image handling
+	let img = document.createElement("img");
+	if (file.weather[0].hourly[0].chanceofsunshine > 50) {
+		img.setAttribute("alt", "sun");
+		img.setAttribute("src", "./assets/icons8-summer.gif");
+	} else if (file.weather[0].hourly[0].chanceofrain > 50) {
+		img.setAttribute("alt", "rain");
+		img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+	} else if (file.weather[0].hourly[0].chanceofsnow > 50) {
+		img.setAttribute("alt", "snow");
+		img.setAttribute("src", "./assets/icons8-light-snow.gif");
+	}
+	currentWeather.prepend(img);
+};
+
+const add_prev_search = (file, location) => {
 	let previousSearchesList = document.querySelector("aside.weather-history ul");
+	let searchItems = document.querySelectorAll("ul li a");
 	//make list item
 	let listItem = document.createElement("li");
-	listItem.innerHTML = `${city.textContent} - ${file.current_condition[0].FeelsLikeF}°F`;
+	// let link = document.createElement("a");
+	// link.setAttribute("href", "#");
+	// link.textContent = location;
+	// listItem.append(link);
+	listItem.innerHTML = `<a href="#">${location}</a> - ${file.current_condition[0].FeelsLikeF}°F`;
 	previousSearchesList.append(listItem); //TODO: make the Cityname a hyperlink
+
+	// document.querySelectorAll("a").forEach((link) => {
+	listItem.addEventListener("click", (event) => {
+		event.preventDefault();
+		//let endpoint = link.textContent.indexOf("-");
+		//let location = link.textContent.substring(0, endpoint);
+		fetch(`https://wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
+			.then((response) => response.json())
+			.then((json) => {
+				clear_defaults();
+				add_weather(json, location);
+				//add_prev_search(json, location);
+			})
+			.catch((error) => console.log(error));
+	});
+	//});
 };
 
 /** Event listener for "Get Weather" form */
@@ -107,6 +164,16 @@ form.addEventListener("submit", (event) => {
 
 	fetch(`https://wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
 		.then((response) => response.json())
-		.then((json) => parse_data(json))
+		.then((json) => {
+			clear_defaults();
+			add_weather(json, location);
+			add_prev_search(json, location);
+		})
 		.catch((error) => console.log(error));
+});
+
+converter.addEventListener("submit", (event) => {
+	event.preventDefault();
+	let result = document.createElement("h4");
+	
 });
