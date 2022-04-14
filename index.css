@@ -14,7 +14,7 @@ header {
   -ms-grid-column: span 3;
       grid-column-start: span 3;
   background-color: teal;
-  border: 2px solid black;
+  border: 3px solid black;
   color: white;
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
@@ -75,7 +75,6 @@ main #upcomingWeather #tomorrowWeather {
 
 @media (max-width: 500px) {
   body {
-    background-color: aqua;
     max-width: 500px;
     -ms-grid-columns: 2fr, 1fr;
         grid-template-columns: 2fr, 1fr;
@@ -86,8 +85,8 @@ main #upcomingWeather #tomorrowWeather {
   #tempConversionWidget {
     -ms-grid-row: 2;
     grid-row: 2;
-    -ms-grid-column: span 2;
-        grid-column-start: span 2;
+    -ms-grid-column: 1;
+    grid-column: 1;
   }
   main {
     -ms-grid-row: 3;
@@ -96,8 +95,9 @@ main #upcomingWeather #tomorrowWeather {
         grid-column-start: span 3;
   }
   #weatherHistory {
-    -ms-grid-column: 3;
-    grid-column: 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-column: 2 / span 3;
     -ms-grid-row: 2;
     grid-row: 2;
   }

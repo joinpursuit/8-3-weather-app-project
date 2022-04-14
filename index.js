@@ -26,6 +26,33 @@ const errors = (e) => {
   currentLocationError.textContent = e;
 };
 
+const displayContent = () => {
+  const tempConversionWidget = document.querySelector("#tempConversionWidget");
+  tempConversionWidget.style.display = "block";
+
+  const main = document.querySelector("main");
+
+  // checks screen size once in order to display correct media query
+  if ($(window).width() > 500) {
+    main.style.gridColumn = "2";
+  }
+  // persistently checks screen size in order to display correct media query
+  window.onresize = () => {
+    if ($(window).width() > 500) {
+      main.style.gridColumn = "2";
+    } else {
+      main.style.gridRow = "3";
+      main.style.gridColumnStart = "span 3";
+    }
+  };
+
+  const upcomingWeather = document.querySelector("#upcomingWeather");
+  upcomingWeather.style.display = "grid";
+
+  const weatherHistory = document.querySelector("#weatherHistory");
+  weatherHistory.style.height = "40rem";
+};
+
 const loopThroughArrs = (current, area, weather) => {
   const currentObj = {
     CurrentlyC: null,
@@ -107,38 +134,11 @@ const dayAfterAvgTemp = document.querySelector("#dayAfterWeather #avgTemp");
 const dayAfterMaxTemp = document.querySelector("#dayAfterWeather #maxTemp");
 const dayAfterMinTemp = document.querySelector("#dayAfterWeather #minTemp");
 
-const displayContent = () => {
-  const tempConversionWidget = document.querySelector("#tempConversionWidget");
-  tempConversionWidget.style.display = "block";
-
-  const main = document.querySelector("main");
-
-  // constantly checks screen size in order to display correct media query
-  main.style.gridColumn = "2";
-
-  window.onload = window.onresize = () => {
-    if ($(window).width() > 500) {
-      main.style.gridColumn = "2";
-    } else {
-      main.style.gridRow = "3";
-      main.style.gridColumnStart = "span 3";
-    }
-  };
-
-  const upcomingWeather = document.querySelector("#upcomingWeather");
-  upcomingWeather.style.display = "grid";
-
-  const weatherHistory = document.querySelector("#weatherHistory");
-  weatherHistory.style.height = "40rem";
-};
-
 const gotLocation = (current, area, weather) => {
   const chooseALocation = document.querySelector("#chooseALocation");
   if (chooseALocation) {
     chooseALocation.remove();
   }
-
-  // displayContent();
 
   h2.textContent = typeLocation.value;
 
@@ -247,8 +247,8 @@ const PreviousLocation = (locationLink, li) => {
   locationLink.addEventListener("click", (e) => {
     e.preventDefault();
 
-    h2.textContent = locationLink.textContent;
-    li.append(locationLink);
+    typeLocation.value = locationLink.textContent;
+    h2.textContent = typeLocation.value;
     li.remove();
 
     fetch(PREVIOUS_URL)
