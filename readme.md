@@ -167,3 +167,50 @@ The [wttr.in API](https://github.com/chubin/wttr.in) can be used from the comman
 The section below describes specifically how to make a request to the API so that it returns JSON.
 
 - [wttr.in: JSON Output](https://github.com/chubin/wttr.in#json-output)
+
+let anchorTag1 = document.createElement('a');
+anchorTag1.textContent = weatherPlaceInput;
+anchorTag1 = '#';
+let currentFeelsLike = weather.current_condition[0].FeelsLikeF;
+list1.textContent = `${currentFeelsLike} degrees Fahrenheit.`;
+list1.prepend(anchorTag1);
+
+      let nearestArea = weather.nearest_area[0].areaName[0].value;
+      let nearestCountry = weather.nearest_area[0].country[0].value;
+      let nearestRegion = weather.nearest_area[0].region[0].value;
+
+      anchorTag1.addEventListener(`click`, (event) => {
+        event.preventDefault();
+        createForecast(weather, weatherPlaceInput);
+      });
+    });
+
+//console.log(json);
+/\* const currentWeatherArticle = document.querySelector(`#CurrentWeather`);
+
+      let feelsLikeParagraph = document.createElement('p');
+      let currentFeelsLikeTemp = `Currently feels like ${json.current_condition[0].FeelsLikeF}`;
+      feelsLikeParagraph = document.createElement('p');
+      feelsLikeParagraph.textContent = currentFeelsLikeTemp;
+      currentWeatherArticle.append(feelsLikeParagraph); */
+
+});
+
+/_ .catch((error) => {
+console.log(error);
+}); _/
+function createForecast(weather, weatherPlaceInput) {
+const weatherDisplay = document.querySelector(`.threedayforecast`);
+weatherDisplay.innerHTML = '';
+const displayCurrently = weather.current_condition[0].FeelsLikeF;
+const displayArea = weather.nearest_area[0].areaName[0].value;
+const displayCountry = weather.nearest_area[0].country[0].value;
+const displayRegion = weather.nearest_area[0].region[0].value;
+let displayWeatherHeaders = document.createElement('h3');
+displayWeatherHeaders.textContent = weatherPlaceInput;
+weatherDisplay.append(displayWeatherHeaders);
+let areaWeatherDisplay = document.createElement('p');
+if (weatherPlaceInput !== area) {
+areaWeatherDisplay.textContent = `Nearest Area is : ${displayArea}.`;
+}
+}

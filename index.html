@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang = "en">
+
+    <head>
+        <meta charset = "UTF-2">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+        <title>Weather App Project</title>
+        <script defer src = "./main.js"></script>
+        <link href = "./style.css" rel = "stylesheet"/>
+    </head>
+
+    <body>
+
+        <header>
+        <h1>Weather App</h1>
+        <form>
+            <label>Pick a Location<span> <input id = "location-id" type = "text"  name = "location" />
+            <input type = "submit" name = "Weather" id = "Weather" value = "Get Weather"/></span></label>
+        </form>
+        </header>
+        <aside>
+            <form>
+                <label>
+                    Temperature Conversion
+                    <input type = "number" class = "temp-converter "/>
+                </label>
+                <label>
+                    Fahrenheit:
+                    <input type = "radio" name = "fahrenheit-converter" class = "fahrenheit-converter"  value = "fahrenheit"/> 
+                </label>
+                <label>
+                    Celsius:
+                    <input type = "radio" name = "celsius-converter" class = "celsius-converter" value = "celsius" />
+                </label>
+                <input type = "submit" />
+                <h3> 
+
+                </h3>
+            </form>
+        </aside>
+   
+
+     
+            <main class = "display">
+                <article class = "currentweather">
+                 <section>
+                <p>Choose a location to view the weather.</p></section>
+            </article >
+            <article class = "threedayforecast"></article>
+                <aside>
+               
+                    <article>Today</article>
+                    <article>Tomorrow</article>
+                    <article>Day After Tomorrow</article>
+                 
+                </aside>
+                
+
+             
+                <aside class = "searches">
+                    <section>
+                    <h4>Previous Searches</h4>
+                    <ul></ul>
+                   
+           
+                    
+                        <p>No previous searches</p>
+                  </section>
+                </aside>
+            </main>
+           
+    </body>
+
+
+</html>
