@@ -1,11 +1,13 @@
 body{
     display:grid;
     grid-template-rows: 200px 1fr;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 header{
-    width: 700px;
+    width: 800px;
     height: 150px;
     margin: 0 auto;
     margin-top: 20px;
@@ -35,9 +37,14 @@ aside form{
     width: 200px;
 }
 
+aside#converter form input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 main{
     display:grid;
-    grid-template-rows: repeat(2,1fr);
+    grid-template-rows: 1fr 300px;
     text-align: center;
     grid-column: 2/3;
     gap: 30px;
@@ -47,6 +54,15 @@ main article#weatherReport{
     grid-row:1;
     border: 1px solid lightseagreen;
     background-color: lightgray;
+}
+
+main article#weatherReport img{
+    margin-top: 20px;
+}
+
+main article#weatherReport p#placeholder {
+    width: 500px;
+    height: 50px;
 }
 
 main aside#threeDayWeatherReports{
@@ -61,8 +77,22 @@ main aside article.forecast{
 } 
 
 #searchHistory{
+    width: 200px;
+    text-indent: 2rem;
     grid-column: 3/4;
-    justify-self:center;
+    justify-self:start;
+}
+
+#searchHistory span{
+    font-weight: bolder;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+#searchHistory p{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 15px;
 }
 
 

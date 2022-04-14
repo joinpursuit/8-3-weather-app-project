@@ -169,11 +169,11 @@ function generateWeatherForecast(weatherForecasts, weatherData) {
     let date = document.createElement("p");
     date.textContent = weatherData.weatherOfThreeDays[i].date;
     let avgTempF = document.createElement("p");
-    avgTempF.textContent = `Average Temperature: ${weatherData.weatherOfThreeDays[i].avgTempF}°F `;
+    avgTempF.textContent = `Average Temperature: ${weatherData.weatherOfThreeDays[i].avgTempF}°F`;
     let maxTempF = document.createElement("p");
-    maxTempF.textContent = `Max Temperature: ${weatherData.weatherOfThreeDays[i].maxTempF}°F `;
+    maxTempF.textContent = `Max Temperature: ${weatherData.weatherOfThreeDays[i].maxTempF}°F`;
     let minTempF = document.createElement("p");
-    minTempF.textContent = `Min Temperature: ${weatherData.weatherOfThreeDays[i].minTempF}°F `;
+    minTempF.textContent = `Min Temperature: ${weatherData.weatherOfThreeDays[i].minTempF}°F`;
     weatherForecasts[i].append(date, avgTempF, maxTempF, minTempF);
     weatherForecasts[i].hidden = false;
   }
@@ -193,7 +193,7 @@ function addSearchHistory(
   a.textContent = location;
   a.href = `${base_url}${location}?format=j1`;
 
-  li.textContent = ` ${currentFeelsLikeF}`;
+  li.textContent = ` ${currentFeelsLikeF}°F`;
   li.prepend(a);
 
   let seachHistoryList = searchHistory.querySelector("ul");
