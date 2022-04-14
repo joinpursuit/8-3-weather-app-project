@@ -15,15 +15,34 @@
 <body>
     <header>
         <h1>Weather App</h1>
-        <form>
+        <h2>Why go outside when you can use the internet?</h2>
+        <form id="location-search">
             <label for="input-text">Pick a Location</label>
             <input type="text" id="input-text" name="input-text" />
             <input class="button" type="submit" value="Get Weather" />
         </form>
     </header>
-    <aside class="convert">
-    </aside>
+
     <div class="report">
+        <aside class="convert">
+            <form id="convertTemp">
+                <h4><label for="input-text">Convert the temperature:</label></h4>
+                <input type="number" id="temp-to-convert" />
+                <br />
+                <br />
+                <label for="to-c" id="to-c-label">To Celsius
+                    <input type="radio" name="convert-temp" id="to-c" value="c" />
+                </label>
+                <br />
+                <label for="to-f">To Fahrenheit
+                    <input type="radio" name="convert-temp" id="to-f" value="f" />
+                </label>
+                <br />
+                <br />
+                <input type="submit" id="convertedTempButton" class="button" />
+                <h4 id="displayResult"></h4>
+            </form>
+        </aside>
         <main>
             <article class="current">
                 <p>Choose a location to view the weather.</p>
