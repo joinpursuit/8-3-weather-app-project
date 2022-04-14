@@ -25,7 +25,7 @@ const add_weather = (file, location) => {
 	//TODO: area check/nearest area check (input form?!)
 	let area = document.createElement("p");
 	area.innerHTML =
-		file.nearest_area[0].areaName[0].value.toLowerCase() === location
+		file.nearest_area[0].areaName[0].value.toLowerCase() === location.toLowerCase()
 			? `<strong>Area:</strong> ${file.nearest_area[0].areaName[0].value}`
 			: `<strong>Nearest Area:</strong> ${file.nearest_area[0].areaName[0].value}`;
 	currentWeather.append(area);
@@ -161,7 +161,9 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	//let temp =
 	let location = document.querySelector("input.search-bar").value; //this works now. might be a better way to access value using the event object?
-
+	if (!location) {
+		window.reload();
+	}
 	fetch(`https://wttr.in/${location}?format=j1`) //wttr.in/Melbourne?format=j1
 		.then((response) => response.json())
 		.then((json) => {
