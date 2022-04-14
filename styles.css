@@ -1,6 +1,6 @@
 header {
     grid-column-start: span 3;
-    background-color: hotpink;
+    background-color: transparent;
     border: 4px solid black;
     color: white;
     width: 75%;
@@ -14,8 +14,9 @@ header {
 main {
     display: grid;
     grid-template-columns: repeat (3, 1fr);
-    background-color: lightpink;
     gap: 3px;
+    background-color: lightblue;
+    color: rgb(0, 110, 255);
     border: 4px solid black;
     text-align: center;
     font-family: Verdana;
@@ -27,7 +28,9 @@ body {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 2fr;
     background-color: rgb(221, 136, 222);
+    background-image: url("https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701710394.jpg");
     margin: 0 auto;
+    background-size: cover;
     grid-row-gap: 30px;
     grid-column-gap: 20px;
     max-width: 1200px;

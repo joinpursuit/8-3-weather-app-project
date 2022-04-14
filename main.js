@@ -15,7 +15,7 @@ let a = document.createElement("a")
 a.textContent = userInput
 // Hyperlinks that cause you to see the links to the area location; previously searched
 a.href = "#"
-// This is new variables written here so that it can display without the loop happenning
+// This is new variables written here so that it can display with a href link when a user clicks on it
 const newArea = forecast.nearest_area[0].areaName[0].value;
 const newRegion = forecast.nearest_area[0].region[0].value;
 const newCountry = forecast.nearest_area[0].country[0].value;
