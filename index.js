@@ -13,6 +13,7 @@ typeLocationForm.addEventListener("submit", (e) => {
     .then((res) => res.json())
     .then((json) => {
       const { current_condition, nearest_area, weather } = json;
+      displayContent();
       loopThroughArrs(current_condition, nearest_area, weather);
     })
     .catch((e) => {
@@ -106,12 +107,38 @@ const dayAfterAvgTemp = document.querySelector("#dayAfterWeather #avgTemp");
 const dayAfterMaxTemp = document.querySelector("#dayAfterWeather #maxTemp");
 const dayAfterMinTemp = document.querySelector("#dayAfterWeather #minTemp");
 
-const gotLocation = (current, area, weather) => {
-  const chooseALocation = document.querySelector("#chooseALocation");
-  chooseALocation.textContent = "";
+const displayContent = () => {
+  const tempConversionWidget = document.querySelector("#tempConversionWidget");
+  tempConversionWidget.style.display = "block";
+
+  const main = document.querySelector("main");
+
+  // constantly checks screen size in order to display correct media query
+  main.style.gridColumn = "2";
+
+  window.onload = window.onresize = () => {
+    if ($(window).width() > 500) {
+      main.style.gridColumn = "2";
+    } else {
+      main.style.gridRow = "3";
+      main.style.gridColumnStart = "span 3";
+    }
+  };
 
   const upcomingWeather = document.querySelector("#upcomingWeather");
   upcomingWeather.style.display = "grid";
+
+  const weatherHistory = document.querySelector("#weatherHistory");
+  weatherHistory.style.height = "40rem";
+};
+
+const gotLocation = (current, area, weather) => {
+  const chooseALocation = document.querySelector("#chooseALocation");
+  if (chooseALocation) {
+    chooseALocation.remove();
+  }
+
+  // displayContent();
 
   h2.textContent = typeLocation.value;
 
@@ -120,8 +147,6 @@ const gotLocation = (current, area, weather) => {
   Country.innerHTML = `<strong> Country: </strong> ${area.Country.value}`;
   Currently.innerHTML = `<strong> Currently: </strong> Feels like ${current.CurrentlyF}\u00B0F`;
 
-  const currentLocation = document.querySelector("#currentLocation");
-  currentLocation.style.gridColumn = "2 / 2";
   const currentLocationData = document.querySelector("#currentLocationData");
   currentLocationData.style.display = "block";
   currentLocationData.append(h2, Area, Region, Country, Currently);
@@ -151,6 +176,7 @@ const chancesOfSunshineRainSnow = (currentLocationData, weather) => {
   const Snow = document.querySelector("#ChanceOfSnow");
 
   const iconImg = document.querySelector("#iconImg");
+  iconImg.style.paddingTop = "20px";
   const sunIcon = "./assets/icons8-summer.gif";
   const rainIcon = "./assets/icons8-torrential-rain.gif";
   const snowIcon = "./assets/icons8-light-snow.gif";
