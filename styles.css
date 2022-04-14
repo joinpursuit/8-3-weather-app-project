@@ -1,0 +1,64 @@
+html {
+  background: url("https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg")
+    no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: 0 auto;
+}
+
+header {
+  grid-column-start: span 3;
+  background-color: lightseagreen;
+  color: aliceblue;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  border: 3px solid black;
+  padding-bottom: 10px;
+}
+
+article.text {
+  background-color: lightpink;
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+section {
+  background-color: bisque;
+  text-align: center;
+  border: 1px solid grey;
+  width: 50%;
+  margin: 10px;
+}
+
+aside.weather {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: aqua;
+  text-align: center;
+  border: 1px solid black;
+  padding-top: 10px;
+}
+
+#widget {
+  background-color: lightsalmon;
+  padding-top: 10px;
+  margin: 10px;
+  text-align: center;
+  width: 80%;
+  max-height: 160px;
+}
+
+@media (max-width: 300px) {
+  #widget {
+    grid-row-start: 3;
+  }
+  /* section {
+  } */
+}
