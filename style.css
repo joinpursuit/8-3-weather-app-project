@@ -11,3 +11,18 @@
   header button {
     color: gold;
   }
+
+  div{
+    border-style: solid;
+    border-color: gold;
+    padding: 50px;
+    width: 200px;
+    text-align: center;
+    background: light grey;
+  }
+  .container{
+      display: grid;
+      grid-template-columns: repeat(3, 1 fr);
+      height: 200px;
+      
+  }
