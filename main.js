@@ -174,6 +174,14 @@ form.addEventListener("submit", (event) => {
 
 converter.addEventListener("submit", (event) => {
 	event.preventDefault();
-	let result = document.createElement("h4");
-	
+	let result = document.querySelector("h4.converted-temp");
+	let convertC = document.getElementById("to-c");
+	let convertF = document.getElementById("to-f");
+	let originalNumber = document.querySelector("#temp-to-convert");
+	//converter.append(result);
+	if (convertC.checked) {
+		result.textContent = `${((originalNumber.value - 32) / 1.8).toFixed(2)}`;
+	} else if (convertF.checked) {
+		result.textContent = `${(originalNumber.value * 1.8 + 32).toFixed(2)}`;
+	}
 });
