@@ -2,21 +2,76 @@
 //let apiLocation = weatherSearchInput.value;
 let BASE_URL = `https://wttr.in/`;
 let API_FORMAT = `?format=j1`;
+document.querySelector('form');
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  let weatherPlaceInput = event.target.location.value;
+  const weatherPlaceInput = event.target.location.value;
   event.target.location.value = '';
   console.log(`${BASE_URL}${weatherPlaceInput}${API_FORMAT}`);
   fetch(`${BASE_URL}${weatherPlaceInput}${API_FORMAT}`)
     .then((response) => response.json()) /*{
     return response.json();
     }) */
-    .then((weather) => {
-      createForecast(weather, weatherPlaceInput);
+    .then((element) => {
+      createAForcast(element, weatherPlaceInput);
       let unorderedList1 = document.querySelector('ul');
       let list1 = document.createElement('li');
       unorderedList1.append(list1);
+      let anchorTag = document.createElement('a');
+      anchorTag.textContent = weatherPlaceInput;
+      anchorTag.href = '#';
+
+      let areaContainer = element.nearest_area[0].areaName[0].value;
+      let regionContainer = element.nearest_area[0].areaName[0].value;
+      let countryContainer = element.nearest_area[0].country[0].value;
+      let current = element.current_condition[0].FeelsLikeF;
+      list1.textContent = current;
+      list1.prepend(anchorTag);
+
+      anchorTag.addEventListener(`click`, (event) => {
+        event.preventDefault();
+        createAForcast(element, weatherPlaceInput);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
     });
 });
+
+function createAForcast(element, weatherPlaceInput) {
+  const display = document.querySelector(`.display`);
+  display.innerHTML = '';
+  const apiCurrent = element.current_condition[0].FeelsLikeF;
+  const apiRegion = element.nearest_area[0].region[0].value;
+  const apiArea = element.nearest_area[0].areaName[0].value;
+  const apiCountry = element.nearest_area[0].country[0].value;
+  let header2 = document.createElement('h2');
+
+  header2.textContent = weatherPlaceInput;
+  display.append(header2);
+  let displayedArea = document.createElement('p');
+  displayedArea.textContent = apiArea;
+  if (weatherPlaceInput !== apiArea) {
+    displayedArea.textContent = `Nearest Area is: ${apiArea}`;
+  } else {
+    displayedArea.textContent = `Area is ${apiArea}`;
+  }
+  display.append(displayedArea);
+
+  let displayedCountry = document.createElement('p');
+  displayedCountry.textContent = `Country of: ${apiCountry}`;
+  display.append(displayedCountry);
+
+  let displayedRegion = document.createElement('p');
+  displayedRegion.textContent = `Region of ${apiRegion}`;
+  display.append(displayedRegion);
+
+  let displayedCurrentFeels = document.createElement('p');
+  displayedCurrentFeels.textContent = `Currently Feels Like: ${apiCurrent}`;
+  display.append(displayedCurrentFeels);
+
+  let displayedWeather = document.querySelectorAll('#aside-two article');
+}

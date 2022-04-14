@@ -15,60 +15,58 @@
         <header>
         <h1>Weather App</h1>
         <form>
-            <label>Pick a Location<span> <input id = "location-id" type = "text"  name = "location" />
-            <input type = "submit" name = "Weather" id = "Weather" value = "Get Weather"/></span></label>
+            <label>Pick a Location <input id = "location-id" type = "text"  name = "location" />
+            <input type = "submit" name = "Weather" id = "Weather" value = "Get Weather"/></label>
         </form>
         </header>
-        <aside>
-            <form>
+        <aside id = "aside-one">
+            <form id = "conversion">
                 <label>
-                    Temperature Conversion
-                    <input type = "number" class = "temp-converter "/>
+                    Temperature Conversion:
+                    <input type = "number" class = "radio-converter" id = "temp-to-convert"/>
+                </label>
+                <label>
+                   Celsius:
+                    <input type = "radio" name = "celsius-converter" id = "to-c" class = "converter"  value = "celsius"/> 
                 </label>
                 <label>
                     Fahrenheit:
-                    <input type = "radio" name = "fahrenheit-converter" class = "fahrenheit-converter"  value = "fahrenheit"/> 
+                    <input type = "radio" name = "fahrenheit-converter" id = "to-f" class = "converter" value = "fahrenheit" />
                 </label>
                 <label>
-                    Celsius:
-                    <input type = "radio" name = "celsius-converter" class = "celsius-converter" value = "celsius" />
-                </label>
                 <input type = "submit" />
-                <h3> 
+            </label>
+                <h4> 
 
-                </h3>
+                </h4>
             </form>
+            
         </aside>
-   
-
-     
-            <main class = "display">
-                <article class = "currentweather">
-                 <section>
-                <p>Choose a location to view the weather.</p></section>
-            </article >
-            <article class = "threedayforecast"></article>
-                <aside>
-               
-                    <article>Today</article>
-                    <article>Tomorrow</article>
-                    <article>Day After Tomorrow</article>
-                 
-                </aside>
+        
+            <main>
+            <article class = "display" id = "display"></article>
+            <aside id = "aisde-two">
                 
+               
+                    <article><p>Today</p></article>
+                    <article><p>Tomorrow</p></article>
+                    <article><p>Day After Tomorrow</p></article>
+                 
+         
+                </aside>
+                <p>Choose a location to view the weather.</p>
+            </main>
 
              
-                <aside class = "searches">
+                <aside class = "aside-three">
                     <section>
                     <h4>Previous Searches</h4>
                     <ul></ul>
                    
-           
-                    
                         <p>No previous searches</p>
                   </section>
                 </aside>
-            </main>
+     
            
     </body>
 
