@@ -1,38 +1,35 @@
 const fetchForm = document.getElementById('fetch-form');
-const requestedCity = document.getElementById("requested-city");
+const requestedCity = document.getElementById('requested-city');
 const button = document.getElementById('fetch-button');
+const convertForm = document.getElementById('convert-form');
+const headingCity = document.getElementById('city');
 
 button.addEventListener('click', (event) => {
   event.preventDefault();
   const city = requestedCity.value;
+
   getCity(city);
   getWeather(city);
   fetchForm.reset();
 });
 
-const converter = document.getElementById("convert-temp")
-const convertForm = document.getElementById("convert-form")
-
-convertForm.addEventListener("submit", (event) => {
+convertForm.addEventListener('submit', (event) => {
   event.preventDefault();
+  const convertToC = document.getElementById('to-c');
+  const convertToF = document.getElementById('to-f');
+  const numToConvert = document.getElementById('temp-to-convert').value;
+  const result = document.getElementById('calculation');
 
-  const convertToC = document.getElementById("to-c")
-  const convertToF = document.getElementById("to-f")
-  const numToConvert = document.getElementById("temp-to-convert").value
-  const result = document.getElementById("calculation")
-
-  if (convertToC.checked){
-    result.textContent = ((numToConvert - 32) / 1.8).toFixed(2)
-    console.log(result.textContent)
-  } else if (convertToF.checked){
-    result.innerText = ((numToConvert * 1.8) + 32).toFixed(2)
-    console.log(result.innerText)
+  if (convertToC.checked) {
+    result.textContent = ((numToConvert - 32) / 1.8).toFixed(2);
+    console.log(result.textContent);
+  } else if (convertToF.checked) {
+    result.innerText = (numToConvert * 1.8 + 32).toFixed(2);
+    console.log(result.innerText);
   } else {
-    result.innerText = "No unit of temperature was selected."
+    result.innerText = 'No unit of temperature was selected.';
   }
-})
-
-const headingCity = document.getElementById('city');
+});
 
 function getWeather(city) {
   fetch(`https://wttr.in/${city}?format=j1`)
@@ -56,7 +53,6 @@ function getPreviousWeather(city) {
 }
 
 const getCity = (city) => {
-  console.log('city got called', city);
   const placeholderP = document.getElementById('placeholder');
 
   placeholderP.textContent = '';
@@ -64,8 +60,6 @@ const getCity = (city) => {
 };
 
 function getWeatherInfo(response) {
-  console.log('WeatherInfo is called', response);
-
   const forecast = response.weather;
   const area = response.nearest_area[0].areaName[0].value;
   const region = response.nearest_area[0].region[0].value;
@@ -82,7 +76,7 @@ function getWeatherInfo(response) {
     <span>${area}</span>`;
   } else {
     areaP.innerHTML = `<strong>Nearest Area: </strong>
-    <span>${area}</span>`
+    <span>${area}</span>`;
   }
 
   const regionP = document.getElementById('region');
@@ -93,11 +87,9 @@ function getWeatherInfo(response) {
   countryP.innerHTML = `<strong>Country: </strong>
 <span>${country}</span>`;
 
-  const currentlyHeader = document.getElementById('currentlyHold');
-  const currentlySpan = document.getElementById('currently');
-  currentlyHeader.textContent = `Currently: `;
-  currentlySpan.textContent = `Feels Like ${feelsLikeF}°F`;
-
+  const currentlyP = document.getElementById('currently');
+  currentlyP.innerHTML = `<strong>Currently: </strong>
+  <span>Feels Like ${feelsLikeF}°F`;
 
   const chanceOfSunshine = document.getElementById('chanceOfSunshine');
   chanceOfSunshine.innerHTML = `<strong>Chance of Sunshine: </strong>${forecast[0].hourly[0].chanceofsunshine}`;
@@ -109,94 +101,65 @@ function getWeatherInfo(response) {
   chanceOfSnow.innerHTML = `<strong>Chance of Snow: </strong>${forecast[0].hourly[0].chanceofsnow}`;
 
   const weatherIcon = document.querySelector('img');
-  if (forecast[0].hourly[0].chanceofsunshine > 50){
+  if (forecast[0].hourly[0].chanceofsunshine > 50) {
     weatherIcon.setAttribute('src', './assets/icons8-summer.gif');
-    weatherIcon.setAttribute("alt", "sun")
-  } else if (forecast[0].hourly[0].chanceofrain > 50){
+    weatherIcon.setAttribute('alt', 'sun');
+  } else if (forecast[0].hourly[0].chanceofrain > 50) {
     weatherIcon.setAttribute('src', './assets/icons8-torrential-rain.gif');
-    weatherIcon.setAttribute("alt", "rain")
-  } else if (forecast[0].hourly[0].chanceofsnow > 50){
+    weatherIcon.setAttribute('alt', 'rain');
+  } else if (forecast[0].hourly[0].chanceofsnow > 50) {
     weatherIcon.setAttribute('src', './assets/icons8-light-snow.gif');
-    weatherIcon.setAttribute("alt", "snow")
+    weatherIcon.setAttribute('alt', 'snow');
   }
-
-// FORECAST XXXXXXXX
 
   const today = document.getElementById('todayForecast');
   today.textContent = 'Today';
 
-  const avgTempHold = document.getElementById('avgTempHold');
   const avgTemp = document.getElementById('avgTemp');
-  avgTempHold.textContent = `Average Temperature: `;
-  avgTemp.textContent = `${forecast[0].avgtempF}°F`;
+  avgTemp.innerHTML = `<strong>Average Temperature: </strong><span>${forecast[0].avgtempF}°F</span>`;
 
-  const maxTempHold = document.getElementById('maxTempHold');
   const maxTemp = document.getElementById('maxTemp');
-  maxTempHold.textContent = `Max Temperature: `;
-  maxTemp.textContent = `${forecast[0].maxtempF}°F`;
+  maxTemp.innerHTML = `<strong>Max Temperature: </strong><span>${forecast[0].maxtempF}°F</span>`;
 
-  const minTempHold = document.getElementById('minTempHold');
   const minTemp = document.getElementById('minTemp');
-  minTempHold.textContent = `Min Temperature: `;
-  minTemp.textContent = `${forecast[0].mintempF}°F`;
+  minTemp.innerHTML = `<strong>Min Temperature: </strong><span>${forecast[0].mintempF}°F</span>`;
 
   const tomorrow = document.getElementById('tomorrowForecast');
   tomorrow.textContent = 'Tomorrow';
 
-  const avgTempHoldTomorrow = document.getElementById('avgTempHoldTomorrow');
   const avgTempTomorrow = document.getElementById('avgTempTomorrow');
-  avgTempHoldTomorrow.textContent = `Average Temperature: `;
-  avgTempTomorrow.textContent = `${forecast[1].avgtempF}°F`;
+  avgTempTomorrow.innerHTML = `<strong>Average Temperature: </strong><span>${forecast[1].avgtempF}°F</span>`;
 
-  const maxTempHoldTomorrow = document.getElementById('maxTempHoldTomorrow');
   const maxTempTomorrow = document.getElementById('maxTempTomorrow');
-  maxTempHoldTomorrow.textContent = `Max Temperature: `;
-  maxTempTomorrow.textContent = `${forecast[1].maxtempF}°F`;
+  maxTempTomorrow.innerHTML = `<strong>Max Temperature: </strong><span>${forecast[1].maxtempF}°F</span>`;
 
-  const minTempHoldTomorrow = document.getElementById('minTempHoldTomorrow');
   const minTempTomorrow = document.getElementById('minTempTomorrow');
-  minTempHoldTomorrow.textContent = `Min Temperature: `;
-  minTempTomorrow.textContent = `${forecast[1].mintempF}°F`;
+  minTempTomorrow.innerHTML = `<strong>Min Temperature: </strong><span>${forecast[1].mintempF}°F</span>`;
 
   const dayAfterTomorrow = document.getElementById('dayAfterTomorrowForecast');
   dayAfterTomorrow.textContent = 'Day After Tomorrow';
 
-  const avgTempHoldAfterTomorrow = document.getElementById(
-    'avgTempHoldAfterTomorrow'
-  );
   const avgTempAfterTomorrow = document.getElementById('avgTempAfterTomorrow');
-  avgTempHoldAfterTomorrow.textContent = `Average Temperature: `;
-  avgTempAfterTomorrow.textContent = `${forecast[2].avgtempF}°F`;
+  avgTempAfterTomorrow.innerHTML = `<strong>Average Temperature: </strong><span>${forecast[2].avgtempF}°F</span>`;
 
-  const maxTempHoldAfterTomorrow = document.getElementById(
-    'maxTempHoldAfterTomorrow'
-  );
   const maxTempAfterTomorrow = document.getElementById('maxTempAfterTomorrow');
-  maxTempHoldAfterTomorrow.textContent = `Max Temperature: `;
-  maxTempAfterTomorrow.textContent = `${forecast[2].maxtempF}°F`;
+  maxTempAfterTomorrow.innerHTML = `<strong>Max Temperature: </strong><span>${forecast[2].maxtempF}°F</span>`;
 
-  const minTempHoldAfterTomorrow = document.getElementById(
-    'minTempHoldAfterTomorrow'
-  );
   const minTempAfterTomorrow = document.getElementById('minTempAfterTomorrow');
-  minTempHoldAfterTomorrow.textContent = `Min Temperature: `;
-  minTempAfterTomorrow.textContent = `${forecast[2].mintempF}°F`;
-
+  minTempAfterTomorrow.innerHTML = `<strong>Min Temperature: </strong><span>${forecast[2].mintempF}°F</span>`;
 }
 
 const getSearches = () => {
   const ul = document.getElementById('searchHistory');
   const searchP = document.getElementById('searchPlaceholder');
-  const li = document.createElement('li');
-  const currentlySpan = document.getElementById('currently');
-  const currentTemp = currentlySpan.textContent.split(' ')[2];
+  searchP.textContent = '';
+
+  const currently = document.getElementById('currently');
+  const currentTemp = currently.textContent.split(' ').reverse()[0];
   const city = headingCity.textContent;
 
-  searchP.textContent = '';
+  const li = document.createElement('li');
   li.innerHTML = `<a href="#">${city}</a><span>- ${currentTemp}</span>`;
-
-
-
 
   li.addEventListener('click', (event) => {
     event.preventDefault();
