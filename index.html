@@ -20,21 +20,20 @@
     <br>
     <br>
     <aside id="temp-conversion" hidden >
-        Convert the temperature:
+        <strong>Convert The Temperature:</strong> 
         <br />
         <br>
-        <form>
-          <input type="number" id="converter" />
+        <form type="submit">
+          <input type="number" id="temp-to-convert" />
           <label for="radioCelcius" id="celciusLabel">To Celcius </label>
-          <input type="radio" name="CelciusOrFahrenheit" id="to-c" />
+          <input type="radio" name="COrF" id="to-c" />
           <br />
-          <label for="radioFahrenheit" id="FahrenheitLabel"
-            >To Fahrenheit
-          </label>
-          <input type="radio" name="CelciusOrFahrenheit" id="to-f" />
+          <label for="radioFahrenheit" id="FahrenheitLabel">To Fahrenheit</label>
+          <input type="radio" name="COrF" id="to-f" />
           <br />
-          <input type="submit" id="tempConverter" />
-          <p><b>Result:</b></p>
+          <input type="submit"/>
+          <h4>Result:</h4>
+          
         </form>
         <br>    
     </aside>
