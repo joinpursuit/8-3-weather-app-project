@@ -24,10 +24,10 @@ convertForm.addEventListener('submit', (event) => {
     result.textContent = ((numToConvert - 32) / 1.8).toFixed(2);
     console.log(result.textContent);
   } else if (convertToF.checked) {
-    result.innerText = (numToConvert * 1.8 + 32).toFixed(2);
-    console.log(result.innerText);
+    result.textContent = (numToConvert * 1.8 + 32).toFixed(2);
+    console.log(result.textContent);
   } else {
-    result.innerText = 'No unit of temperature was selected.';
+    result.textContent = 'No unit of temperature was selected.';
   }
 });
 
