@@ -1,21 +1,31 @@
 const form = document.querySelector('form');
 const input = document.querySelector('input');
-const button = document.getElementById('myButton');
+const button = document.getElementById('fetch-button');
 const headingCity = document.getElementById('city');
+const converter = document.getElementById("convert-temp")
+
 
 button.addEventListener('click', (event) => {
   event.preventDefault();
   const city = input.value;
+  getCity(city);
   getWeather(city);
   form.reset();
 });
+
+converter.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  
+})
+
+
 
 function getWeather(city) {
   fetch(`https://wttr.in/${city}?format=j1`)
     .then((response) => {
       return response.json();
     })
-    .then(getCity(city))
     .then(getWeatherInfo)
     .then(getSearches)
     .catch((err) => {
@@ -43,32 +53,42 @@ const getCity = (city) => {
 function getWeatherInfo(response) {
   console.log('WeatherInfo is called', response);
 
+  const forecast = response.weather;
   const area = response.nearest_area[0].areaName[0].value;
   const region = response.nearest_area[0].region[0].value;
   const country = response.nearest_area[0].country[0].value;
   const feelsLikeF = response.current_condition[0].FeelsLikeF;
 
-  const areaHeader = document.getElementById('areaHold');
-  const areaSpan = document.getElementById('area');
-  areaHeader.textContent = `Area: `;
-  areaSpan.textContent = area;
+  const weatherIcon = document.querySelector('img');
 
-  const regionHeader = document.getElementById('regionHold');
-  const regionSpan = document.getElementById('region');
-  regionHeader.textContent = `Region: `;
-  regionSpan.textContent = region;
+  weatherIcon.setAttribute('src', './assets/icons8-summer.gif');
 
-  const countryHeader = document.getElementById('countryHold');
-  const countrySpan = document.getElementById('country');
-  countryHeader.textContent = `Country: `;
-  countrySpan.textContent = country;
+  const areaP = document.getElementById('area');
+
+  if (
+    headingCity.textContent[0].toUpperCase() +
+      headingCity.textContent.slice(1).toLowerCase() ===
+    area[0].toUpperCase() + area.slice(1).toLowerCase()
+  ) {
+    areaP.innerHTML = `<strong>Area: </strong>
+    <span>${area}</span>`;
+  } else {
+    areaP.innerHTML = `<strong>Nearest Area: </strong>
+    <span>${area}</span>`
+  }
+
+  const regionP = document.getElementById('region');
+  regionP.innerHTML = `<strong>Region: </strong>
+  <span>${region}</span>`;
+
+  const countryP = document.getElementById('country');
+  countryP.innerHTML = `<strong>Country: </strong>
+<span>${country}</span>`;
 
   const currentlyHeader = document.getElementById('currentlyHold');
   const currentlySpan = document.getElementById('currently');
   currentlyHeader.textContent = `Currently: `;
   currentlySpan.textContent = `Feels Like ${feelsLikeF}°F`;
-
-  const forecast = response.weather;
 
   const today = document.getElementById('todayForecast');
   today.textContent = 'Today';
@@ -130,6 +150,16 @@ function getWeatherInfo(response) {
   minTempHoldAfterTomorrow.textContent = `Min Temperature: `;
   minTempAfterTomorrow.textContent = `${forecast[2].mintempF}°F`;
 
+  // <p id="chanceOfRain"></p>
+  // <p id="chanceOfSnow"></p>
+  const chanceOfSunshine = document.getElementById('chanceOfSunshine');
+  chanceOfSunshine.innerHTML = `<strong>Chance Of Sunshine:</strong> ${forecast[0].hourly[0].chanceofsunshine}`;
+
+  const chanceOfRain = document.getElementById('chanceOfRain');
+  chanceOfRain.innerHTML = `<strong>Chance Of Rain:</strong> ${forecast[0].hourly[0].chanceofrain}`;
+
+  const chanceOfSnow = document.getElementById('chanceOfSnow');
+  chanceOfSnow.innerHTML = `<strong>Chance Of Snow:</strong> ${forecast[0].hourly[0].chanceofsnow}`;
   // for (let forecast of response.weather) {
   //   console.log('These are avgTemps: ', forecast.avgtempF);
   //   console.log('Thes are maxTemps: ', forecast.maxtempF);
@@ -137,8 +167,7 @@ function getWeatherInfo(response) {
   // }
 }
 
-const getSearches = (response) => {
-  console.log(response)
+const getSearches = () => {
   const ul = document.getElementById('searchHistory');
   const searchP = document.getElementById('searchPlaceholder');
   const li = document.createElement('li');
@@ -155,4 +184,4 @@ const getSearches = (response) => {
     getPreviousWeather(city);
   });
   ul.append(li);
-}
+};

@@ -13,23 +13,39 @@
         <form type="submit">
             <h1>Weather App</h1>
             Pick a Location
-            <input type="text"/>
-            <input class="fetch" id="myButton" type="submit" value="Get Weather">
+            <input type="text">
+            <input class="button" id="fetch-button" type="submit" value="Get Weather">
         </form>
     </header>
     <main>
+        <aside class="temp-converter">
+            <form type="submit">
+                Convert the temperature:
+                <input  type="number" id="temp-to-convert">
+                To Celsius
+                <input type="radio" id="to-c" name="convert-temp" value="c">
+                <br>
+                To Farenheit
+                <input type="radio" id="to-f" name="convert-temp" value="f">
+                <br>
+                <input type="submit" value="Submit" id="convert-temp">
+                <h4 id="calculation">0.00</h4>
+
+            </form>
+        </aside>
         <article class="location">
+            <img src="" alt="">
             <p id="placeholder">Choose a location to view the weather</p>
             <!-- current requested city data -->
             <h2 id="city"></h2>
-            <p><strong id="areaHold"></strong>
-                <span id="area"></span></p>
-            <p><strong id="regionHold"></strong>
-                <span id="region"></span></p>
-            <p><strong id="countryHold"></strong>
-                <span id="country"></span></p>
+            <p id="area"></p>
+            <p id="region"></p>
+            <p id="country"></p>
             <p><strong id="currentlyHold"></strong>
                 <span id="currently"></span></p>
+            <p id="chanceOfSunshine"></p>
+            <p id="chanceOfRain"></p>
+            <p id="chanceOfSnow"></p>
         </article>
         <aside class="searches">
             <section>
