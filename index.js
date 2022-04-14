@@ -37,14 +37,13 @@ form.addEventListener("submit", (event) => {
         image = "";
       }
 
-      // area or nearest area?
       if (locationName !== areaName) {
         areaLabel = "Nearest Area";
       } else {
         areaLabel = "Area";
       }
 
-      let weatherOutput = `${image}
+      const weatherOutput = `${image}
       <h2>${locationName}</h2>
         <p><b>${areaLabel}:</b> ${areaName}</p> <p><b>Region:</b> ${locationRegion}</p> 
         <p><b>Country:</b> ${locationCountry}</p> 
@@ -53,7 +52,6 @@ form.addEventListener("submit", (event) => {
         <p><b>Chance of Rain:</b> ${chanceOfRain}%</p>
         <p><b>Chance of Snow:</b> ${chanceOfSnow}%</p>`;
 
-      // update current conditions with values
       current.innerHTML = weatherOutput;
 
       const li = document.createElement("li");
@@ -65,9 +63,8 @@ form.addEventListener("submit", (event) => {
       li.addEventListener("click", (event) => {
         current.innerHTML = weatherOutput;
 
-        const forecastArr = ["Today", "Tomorrow", "Day After-Tomorrow"];
+        const forecastArr = ["Today", "Tomorrow", "Day After Tomorrow"];
 
-        // write data from api to local variables for forecast
         for (let i = 0; i < forecastArr.length; i++) {
           const avgTempF = data.weather[i].avgtempF;
           const maxTempF = data.weather[i].maxtempF;
@@ -87,7 +84,6 @@ form.addEventListener("submit", (event) => {
         const minTempF = data.weather[i].mintempF;
         const div = document.querySelectorAll(".forecast div");
 
-        // update current conditions with values
         div[i].innerHTML = `<h3>${forecastArr[i]}</h3>
                 <p><b>Average Temperature:</b> ${avgTempF}&deg;F</p>
                 <p><b>Max Temperature: </b>${maxTempF}&deg;F</p>
@@ -99,3 +95,60 @@ form.addEventListener("submit", (event) => {
     });
   event.target.reset();
 });
+
+const enteredTemp = document.querySelector("#temp-to-convert");
+const toC = document.querySelector("#to-c");
+const toF = document.querySelector("#to-f");
+const displayResult = document.querySelector("#displayResult");
+let choice = null;
+
+toC.addEventListener("click", (event) => {
+  choice = "celsius";
+});
+
+toF.addEventListener("click", (event) => {
+  choice = "fahrenheit";
+});
+
+convertTemp.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let result = 0;
+
+  if (!enteredTemp.value) {
+    displayResult.innerHTML =
+      "No temperature found. Enter a temperature to convert.";
+    return;
+  }
+  if (choice === "celsius") {
+    result = `${convertToFahrenheit(enteredTemp.value).toFixed(2)}&deg;C`;
+    displayResult.innerHTML = `${enteredTemp.value}&deg;F is ${result}.`;
+    return;
+  }
+  if (choice === "fahrenheit") {
+    result = `${convertToCelsius(enteredTemp.value).toFixed(2)}&deg;F`;
+    displayResult.innerHTML = `${enteredTemp.value}&deg;C is ${result}.`;
+    return;
+  }
+  displayResult.innerHTML = "No choice made. Choose Celsius or Fahrenheit.";
+});
+
+/**
+ * Converts a temperature to fahrenheit from celsius.
+ * @param {number} celsius - The temperature in celsius.
+ * @returns {number} The temperature in fahrenheit.
+ */
+
+function convertToFahrenheit(celsius) {
+  return ((celsius - 32) * 5) / 9;
+}
+
+/**
+ * Converts a temperature to celsius from fahrenheit.
+ * @param {number} fahrenheit - The temperature in fahrenheit.
+ * @returns {number} The temperature in celsius.
+ */
+
+function convertToCelsius(fahrenheit) {
+  return (fahrenheit * 9) / 5 + 32;
+}
