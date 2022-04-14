@@ -34,7 +34,7 @@ form.addEventListener("submit", (event) => {
       } else if (chanceOfSnow > 50) {
         image = `<img alt="snow" src="./assets/icons8-light-snow.gif">\n`;
       } else {
-        image = "";
+        image = `<img alt="night" src="./assets/icons8-night.gif">\n`;
       }
 
       if (locationName !== areaName) {
