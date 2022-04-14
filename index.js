@@ -139,7 +139,7 @@ convertTemp.addEventListener("submit", (event) => {
  * @returns {number} The temperature in fahrenheit.
  */
 
-convertToFahrenheit = celsius => ((celsius - 32) * 5) / 9;
+const convertToFahrenheit = (celsius) => ((celsius - 32) * 5) / 9;
 
 /**
  * Converts a temperature to celsius from fahrenheit.
@@ -147,4 +147,4 @@ convertToFahrenheit = celsius => ((celsius - 32) * 5) / 9;
  * @returns {number} The temperature in celsius.
  */
 
-convertToCelsius = fahrenheit => (fahrenheit * 9) / 5 + 32;
+const convertToCelsius = (fahrenheit) => (fahrenheit * 9) / 5 + 32;
