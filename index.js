@@ -148,3 +148,19 @@ const convertToFahrenheit = (celsius) => ((celsius - 32) * 5) / 9;
  */
 
 const convertToCelsius = (fahrenheit) => (fahrenheit * 9) / 5 + 32;
+
+const taglines = [
+  "Why go outside when you can use the internet?",
+  "Because going outside is overrated.",
+  "Because you don't want to forget your umbrella.",
+  "Because you haven't left the house in two years.",
+  "Because you don't want to get sunburnt again.",
+  "You weren't going out anyway.",
+  "All the weather without the man.",
+  "Rainy days and Mondays always get me down.",
+  "You can't have a rainbow without the rain.",
+];
+
+const tagline = document.getElementById("tagline");
+const randomTagline = Math.floor(Math.random() * taglines.length);
+tagline.textContent = taglines[randomTagline];
