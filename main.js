@@ -16,6 +16,8 @@ form.addEventListener('submit', (event) => {
     }) */
     .then((element) => {
       createAForcast(element, weatherPlaceInput);
+      //makeThreeDayForcast(element, weatherPlaceInput);
+
       let unorderedList1 = document.querySelector('ul');
       let list1 = document.createElement('li');
       unorderedList1.append(list1);
@@ -72,6 +74,87 @@ function createAForcast(element, weatherPlaceInput) {
   let displayedCurrentFeels = document.createElement('p');
   displayedCurrentFeels.textContent = `Currently Feels Like: ${apiCurrent}`;
   display.append(displayedCurrentFeels);
+  let chanceOfSnow = 0;
+  let chanceOfSunshine = 0;
+  let chanceOfRain = 0;
 
-  let displayedWeather = document.querySelectorAll('#aside-two article');
+  //function addingPictures(element, weatherPlaceInput) {
+  for (let i = 0; i < element.weather[0].hourly; i++) {
+    chanceOfRain =
+      chanceOfRain + Number(element.weather[0].hourly[i].chanceOfRain);
+    chanceOfSnow =
+      chanceOfSnow + Number(element.weather[0].hourly[i].chanceOfSnow);
+    chanceOfSunshine =
+      chanceOfSunshine + Number(element.weather[0].hourly[i].chanceOfSunshine);
+  }
+  let snowChanceAvg = document.createElement('p');
+  snowChanceAvg.textContent = `Chance of Snow: ${
+    chanceOfSnow / element.weather[0].hourly.length
+  }`;
+
+  let sunshineChanceAvg = document.createElement('p');
+  sunshineChanceAvg.textContent = `Chance of Sunshine: ${
+    chanceOfSunshine / element.weather[0].hourly.length
+  }`;
+
+  let rainChanceAvg = document.createElement('p');
+  rainChanceAvg.textContent = `Chance of Rain: ${
+    chanceOfRain / element.weather[0].hourly.length
+  }`;
+
+  display.append(sunshineChanceAvg, rainChanceAvg, snowChanceAvg);
+
+  let sunshineState = false;
+  let rainState = false;
+  let snowState = false;
+
+  for (let state of element.weather[0].hourly) {
+    if (Number(state.chanceofrain) > 50) {
+      rainState = true;
+    } else if (Number(state.chanceofsunshine) > 50) {
+      sunshineState = true;
+    } else if (Number(state.chanceofsnow) > 50) {
+      snowState = true;
+    }
+  }
+  if (sunshineState !== false) {
+    let icon = document.createElement('img');
+    icon.src = './assets/icons8-summer.gif';
+    icon.alt = 'sun';
+    display.prepend(icon);
+  } else if (rainState !== false) {
+    let icon = document.createElement('img');
+    icon.src = './assets/icons8-torrential-rain.gif';
+    icon.alt = 'rain';
+    display.prepend(icon);
+  } else if (snowState !== false) {
+    let icon = document.createElement('img');
+    icon.src = './assets/icons8-light-snow.gif';
+    icon.alt = 'snow';
+    display.prepend(icon);
+  }
+
+  //}
+  //function makeThreeDayForcast(element, weatherPlaceInput) {
+  ///Doesn't Completely pass the test, needs more work.
+  let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+  let displayedWeather = document.querySelectorAll('aside article');
+  for (let i = 0; i < displayedWeather.length; i++) {
+    displayedWeather[i].innerHTML = '';
+    let displayedWeather = document.createElement('p');
+    displayedWeather.textContent = threeDaysForcast[i];
+
+    const todayTempAverage = element.weather[i].avgtempF;
+    const todayTempMax = element.weather[i].maxtempF;
+    const todayTempMin = element.weather[i].mintempF;
+
+    let minTempF = document.createElement('p');
+    let avgTempF = document.createElement('p');
+    let maxTempF = document.createElement('p');
+
+    maxTempF.textContent = todayTempMax;
+    avgTempF.textContent = todayTempAverage;
+    minTempF.textContent = todayTempMin;
+    displayedWeather[i].append(displayedWeather, avgTempF, maxTempF, minTempF);
+  }
 }
