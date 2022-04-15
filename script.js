@@ -8,13 +8,13 @@ const noSearches = document.getElementById("no-searches");
 const searchList = document.getElementById("search-list");
 const conversionResult = document.getElementById("result");
 
-const formatter = (words) => {
-  newWord = words
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-  return newWord;
-};
+// const formatter = (words) => {
+//   newWord = words
+//     .split(" ")
+//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+//     .join(" ");
+//   return newWord;
+// };
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -36,7 +36,7 @@ const weatherSearch = (location) => {
       fillMiniArticle(result.weather[0], todayArt, "Today");
       fillMiniArticle(result.weather[1], tomorrowArt, "Tomorrow");
       fillMiniArticle(result.weather[2], dayAfterTomArt, "Day After Tomorrow");
-      searchHistoryMaker(result, location, searchList);
+      searchHistoryMaker(result, location);
     })
     .catch((error) => {
       console.log(error);
@@ -77,7 +77,7 @@ const createMainArticle = (result, location, article) => {
   const searchedTown = document.createElement("h2");
   searchedTown.innerText = location;
   const searchedArea = document.createElement("p");
-  if (areaName[0].value === location) {
+  if (areaName[0].value.toLowerCase() === location.toLowerCase()) {
     searchedArea.innerText = "Area: " + areaName[0].value;
   } else {
     searchedArea.innerText = "Nearest Area: " + areaName[0].value;
@@ -121,16 +121,16 @@ const fillMiniArticle = (result, article, header) => {
 };
 //incorporate createTextNode as per Myra. refactor tot his at the end!
 
-const searchHistoryMaker = (result, location, list) => {
+const searchHistoryMaker = (result, location) => {
   const { FeelsLikeF } = result.current_condition[0];
-  if (!list.innerHTML.includes(location)) {
+  if (!searchList.innerHTML.includes(location)) {
     noSearches.innerText = "";
     const newLine = document.createElement("li");
     const anchor = document.createElement("a");
     anchor.setAttribute("href", "#");
     anchor.textContent = `${location} ${FeelsLikeF}°F`;
     newLine.append(anchor);
-    list.append(newLine);
+    searchList.append(newLine);
     newLine.addEventListener("click", (e) => {
       e.preventDefault();
       weatherSearch(location);
