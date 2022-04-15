@@ -1,7 +1,7 @@
 header {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    background-color: cyan;
+    background-color: rgba(13, 148, 148, 0.603);
 }
 
 .centerElements {
@@ -22,7 +22,7 @@ header form {
 
 .grid-three-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 .grid-two-rows {
@@ -31,8 +31,8 @@ header form {
 }
 
 .border {
-    border: 3px solid blue;
-    padding: 10px
+    border: 1px solid rgb(6, 34, 113);
+    padding: 5px
 }
 
 .hidden {
