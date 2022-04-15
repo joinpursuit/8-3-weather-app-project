@@ -4,7 +4,7 @@ body {
   padding: 20px;  
   display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 2fr;
+    grid-template-rows: 3fr;
     row-gap: 20px;
     background-color: #b89fdfe4;
     max-width: 1200px;
@@ -78,7 +78,7 @@ color: #293960e7;
 
 aside.temp { display: block;
   justify-content: center;
-  
+  grid-column: 1; 
 
 }
 aside.forecast {
@@ -90,8 +90,12 @@ place-self: center;
   display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   body {
-  background-image: https://wallpaperaccess.com/full/5202061.jpg;
-  
+    max-width: 768px;
+    grid-template-columns: 2fr, 1fr;
+    grid-template-rows: 3;
+    margin: auto;
+    align-items: center;
   }
+}

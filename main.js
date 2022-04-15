@@ -17,12 +17,8 @@ form.addEventListener('submit', (event) => {
       a.href = '#';
       // const hide = document.querySelector('hide');
       // hide.classList.add("hidden");
-      //TODO: Creates new variables that will display without the loop
-      let newArea = forecast.nearest_area[0].areaName[0].value;
-      let newRegion = forecast.nearest_area[0].region[0].value;
-      let newCountry = forecast.nearest_area[0].country[0].value;
-      const newCurrently = forecast.current_condition[0].FeelsLikeF;
-      li.textContent = newCurrently;
+      const currentCondition = forecast.current_condition[0].FeelsLikeF;
+      li.textContent = currentCondition;
       li.prepend(a);
       a.addEventListener('click', (event) => {
         event.preventDefault();
@@ -39,7 +35,7 @@ function generateWeather(forecast, enteredlocation) {
   const area = forecast.nearest_area[0].areaName[0].value;
   const region = forecast.nearest_area[0].region[0].value;
   const country = forecast.nearest_area[0].country[0].value;
-  const currently = forecast.current_condition[0].FeelsLikeF;
+  const current = forecast.current_condition[0].FeelsLikeF;
   let h2 = document.createElement('h2');
   h2.textContent = enteredlocation;
   display.append(h2);
@@ -56,9 +52,9 @@ function generateWeather(forecast, enteredlocation) {
   let countryDisplay = document.createElement('p');
   countryDisplay.textContent = `Country: ${country}`;
   display.append(countryDisplay);
-  let currentlyDisplay = document.createElement('p');
-  currentlyDisplay.textContent = `Currently: ${currently}`;
-  display.append(currentlyDisplay);
+  let currentDisplay = document.createElement('p');
+  currentDisplay.textContent = `Currently: ${current}`;
+  display.append(currentDisplay);
   let forcastDate = document.querySelectorAll('aside article');
 
   //TODO: Icon will appear with the chance one of three: Rain, Snow, and Sunshine
@@ -73,9 +69,9 @@ function generateWeather(forecast, enteredlocation) {
     chanceOfSnowSum += Number(forecast.weather[0].hourly[i].chanceofsnow);
   }
   //TODO: chances
-  let chanceOfSunshineAvg = document.createElement('p');
-  let chanceOfRainAvg = document.createElement('p');
-  let chanceOfSnowAvg = document.createElement('p');
+  const chanceOfSunshineAvg = document.createElement('p');
+  const chanceOfRainAvg = document.createElement('p');
+  const chanceOfSnowAvg = document.createElement('p');
   chanceOfSunshineAvg.textContent = `Chance of Sunshine: ${
     chanceOfSunshineSum / forecast.weather[0].hourly.length
   }`;
@@ -104,6 +100,7 @@ function generateWeather(forecast, enteredlocation) {
       forcastDate[i].innerHTML = '';
       let dateDisplay = document.createElement('p');
       dateDisplay.textContent = date[i];
+     
       // TODO: getting the display for avg, min, max for thw weather that's from the API
       const todayAvgTemp = forecast.weather[i].avgtempF;
       const todayMaxTemp = forecast.weather[i].maxtempF;
@@ -136,27 +133,27 @@ function generateWeather(forecast, enteredlocation) {
   }
 }
 // TODO: section is for the conversion from f to c and c to f
-let convertingTemp = document.querySelector('aside form');
-convertingTemp.addEventListener('submit', (event) => {
+const convertingTemperature = document.querySelector('aside form');
+convertingTemperature.addEventListener('submit', (event) => {
   event.preventDefault();
-  let userInputTemp = parseInt(event.target.querySelector('input').value);
-  let tempTypes = event.target.querySelectorAll('.converting-temp');
+  const userResults = parseInt(event.target.querySelector('input').value);
+  let convertTemps = event.target.querySelectorAll('.converting-temp');
   //TODO: This link is the conversion formula, https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
   let type = '';
-  for (let tempType of tempTypes) {
+  for (let tempType of convertTemps) {
     if (tempType.checked) {
       type = tempType.value;
       break;
     }
   }
-  if (type === 'c') {
+  if (type === 'celsius') {
     event.target.querySelector('h4').textContent = (
-      ((userInputTemp - 32) * 5) /
+      ((userResults - 32) * 5) /
       9
     ).toFixed(2);
-  } else if (type === 'f') {
+  } else if (type === 'fahrenheit') {
     event.target.querySelector('h4').textContent = (
-      (userInputTemp * 9) / 5 +
+      (userResults * 9) / 5 +
       32
     ).toFixed();
   }
