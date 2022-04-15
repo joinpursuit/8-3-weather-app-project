@@ -64,33 +64,38 @@ grid-column-start: span 1;
 }
 
 
-@media (min-width: 768px) and (max-width: 1080px) {
+@media (min-width: 720px) and (max-width: 980px) {
   main{
     width: 50%;
-    background: navy;
+    background: pink;
+    color: black;
     border: grey;
   }
   header{
     width: 60%;
-    background: navy;
+    background: pink;
+    color: black;
     border: grey;
   }
   .conversion{
     width: 50%;
-    background: navy;
+    background: pink;
+    color: black;
     border: grey;
   }
   .aside-three{
     width: 50%;
-    background: navy;
+    background: pink;
+   color:  black;
     border: grey;
   }
 
 }
-@media (max-width: 767px) {
+@media (max-width: 719px) {
 main {
   width: 30%;
   background: orange;
+  
   border: black;
 }
 header{
