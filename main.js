@@ -6,6 +6,7 @@ const converter = document.querySelector("form.converter");
 const clear_defaults = () => {
 	//toggle hidden parts: "No previous searches" and "Choose a location..."
 	document.querySelectorAll(".defaults").forEach((item) => item.classList.add("hidden"));
+
 	//clear previous entry from add_weather
 	document.querySelectorAll(".weather").forEach((item) => (item.innerHTML = ""));
 };
