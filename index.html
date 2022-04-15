@@ -5,37 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <script src="./index.js"></script>
+    <script defer src="./index.js"></script>
     <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <header>
+    <header class="border">
         <h1 class="centerText">Weather App</h1>
         <form class="centerElements">
             <label for="search" class="centerText">Pick a Location</label>
-            <input name="search" type="text">
+            <input type="text" id="search" name="search">
             <input type="submit" value="Get Weather" />
         </form>
     </header>
-    <aside>Temp Conversion Widget</aside>
-    <main>
-        <article>Current Weather</article>
-        <aside>
-            <article>Upcoming Weather 1</article>
-            <article>Upcoming Weather 2</article>
-            <article>Upcoming Weather 3</article>
-        </aside>
+    <aside class="grid-three-columns">
+      <aside class="border">Temp Conversion Widget</aside>
+      <main>
         <form type="request">
             <label for="search">Choose a location to view the weather</label>
         </form>
-    </main>
-    <aside>
+        <article class="border">Current Weather</article>
+        <aside class="grid-three-columns border">
+            <article class="border">Upcoming Weather 1</article>
+            <article class="border">Upcoming Weather 2</article>
+            <article class="border">Upcoming Weather 3</article>
+        </aside>
+      </main>
+      <aside class="border">
         <section>Previous Searches</section>
         <h4>Weather History</h4>
-        
         <p>No previous searches</p>
         <ul></ul>
-        
+      </aside>
     </aside>
 </body>
 </html>
