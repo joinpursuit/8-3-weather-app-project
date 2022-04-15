@@ -1,0 +1,31 @@
+.header {
+    background: rgb(4, 129, 135);
+    display: grid;
+    border: 2px solid black;
+    text-align: center;
+}
+.h1 {
+    color: white;
+    font-family: sans-serif;
+}
+#locationPicker {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#displayBox {
+    border: 1px solid;
+    border-color: rgb(4, 129, 135);
+    display: grid;
+    background: rgb(239, 238, 238)
+}
+#history {
+    display: grid;
+}
+.main {
+    display: grid;
+}
+body {
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: 1fr repeat(3fr);
+}
