@@ -148,7 +148,6 @@ const gotLocation = (current, area, weather) => {
   Currently.innerHTML = `<strong> Currently: </strong> Feels like ${current.CurrentlyF}\u00B0F`;
 
   const currentLocationData = document.querySelector("#currentLocationData");
-  currentLocationData.style.display = "block";
   currentLocationData.append(h2, Area, Region, Country, Currently);
 
   todayAvgTemp.innerHTML = `<strong> Average Temperature: </strong> ${weather.Today.avgTempF}\u00B0F`;

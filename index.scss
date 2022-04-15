@@ -12,6 +12,7 @@ header {
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  border-radius: 5em;
 
   // dark&light mode slider button \\
   #switchModes {
@@ -77,20 +78,21 @@ header {
 }
 
 #tempConversionWidget {
-  display: none;
   grid-column: 1;
 }
 
 main {
   display: grid;
-  grid-column: 1 / span 2;
+  grid-column: 2;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2;
+  border-radius: 3em;
 
   #currentLocation {
     border: 3px solid cadetblue;
     grid-column-start: span 3;
     text-align: center;
+    border-radius: 3em;
     #chooseALocation {
       padding-top: 25px;
     }
@@ -100,6 +102,7 @@ main {
     border-left: 3px solid cadetblue;
     border-right: 3px solid cadetblue;
     border-bottom: 3px solid cadetblue;
+    border-radius: 3em;
     display: none;
     grid-template-columns: repeat(3, 1fr);
     grid-column-start: span 3;

@@ -15,6 +15,7 @@ header {
       grid-column-start: span 3;
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  border-radius: 5em;
 }
 
 header #switchModes {
@@ -84,7 +85,6 @@ header .slider.round:before {
 }
 
 #tempConversionWidget {
-  display: none;
   -ms-grid-column: 1;
   grid-column: 1;
 }
@@ -92,13 +92,13 @@ header .slider.round:before {
 main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1 / span 2;
+  -ms-grid-column: 2;
+  grid-column: 2;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: 2;
       grid-template-rows: 2;
+  border-radius: 3em;
 }
 
 main #currentLocation {
@@ -106,6 +106,7 @@ main #currentLocation {
   -ms-grid-column: span 3;
       grid-column-start: span 3;
   text-align: center;
+  border-radius: 3em;
 }
 
 main #currentLocation #chooseALocation {
@@ -116,6 +117,7 @@ main #upcomingWeather {
   border-left: 3px solid cadetblue;
   border-right: 3px solid cadetblue;
   border-bottom: 3px solid cadetblue;
+  border-radius: 3em;
   display: none;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
