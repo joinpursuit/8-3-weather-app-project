@@ -62,3 +62,50 @@ grid-column-start: span 1;
 #searchList li{
   text-align: left;
 }
+
+
+@media (min-width: 768px) and (max-width: 1080px) {
+  main{
+    width: 50%;
+    background: navy;
+    border: grey;
+  }
+  header{
+    width: 60%;
+    background: navy;
+    border: grey;
+  }
+  .conversion{
+    width: 50%;
+    background: navy;
+    border: grey;
+  }
+  .aside-three{
+    width: 50%;
+    background: navy;
+    border: grey;
+  }
+
+}
+@media (max-width: 767px) {
+main {
+  width: 30%;
+  background: orange;
+  border: black;
+}
+header{
+  width: 40%;
+  background: orange;
+  border: black;
+}
+.conversion{
+  width: 30%;
+  background: orange;
+  border: black;
+}
+.aside-three{
+  width: 30%;
+  background: orange;
+  border: black;
+}
+}
