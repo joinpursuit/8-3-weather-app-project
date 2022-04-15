@@ -159,7 +159,8 @@ const taglines = [
   "All the weather without the man.",
   "Rainy days and Mondays always get me down.",
   "You can't have a rainbow without the rain.",
-  "I'd rather be dry, but at least I'm alive. Rain on me."
+  "I'd rather be dry, but at least I'm alive. Rain on me.",
+  "It's hard to hold a candle in the cold November rain."
 ];
 
 const tagline = document.getElementById("tagline");
