@@ -1,6 +1,17 @@
 
-header {
+body {
+    
+    max-width: 1300 px;
     display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 3;
+    margin: 0 auto;
+}
+
+
+header {
+    padding-bottom: 25px;
+    grid-column-start: span 3;
     background-color: teal;
     border: 2px solid black;
     color: white;
@@ -17,9 +28,13 @@ main {
     font-family: Trebuchet;
 }
 
+
 h4 {
     display: grid;
-    text-align: right;
+    text-align: left;
     font-family: Trebuchet;
 }
 
+span {
+    font-weight: bold;
+}
