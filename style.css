@@ -25,7 +25,16 @@ header form {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-two-rows {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
 .border {
     border: 3px solid blue;
     padding: 10px
+}
+
+.hidden {
+    display: none;
 }
