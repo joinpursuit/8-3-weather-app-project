@@ -23,11 +23,19 @@ getWeatherForm.addEventListener("submit", (event) => {
   console.log(url);
   // Creates a final URL to fetch with considering whether the user has inputted a value for the location form
 
+  let tempUnit = "C";
+
   fetch(url)
-    .then((response) => response.json())
     .then((response) => {
       console.log(response);
-      displayCurrentLocWeatherInfo(response);
+      return response.json();
+    })
+    .then((response) => {
+      console.log(response);
+      return displayCurrentLocWeatherInfo(response);
+    })
+    .then((response) => {
+      return displayThreeDayForecast(response);
     })
     .catch((error) => {
       console.log(error);
@@ -54,6 +62,9 @@ function displayCurrentLocWeatherInfo(response) {
   mainAside.classList.remove("hidden");
   // Hides Location Request form and shows Information Relevant to Input Location
 
+  mainArticle.innerHTML = "Current Weather";
+  // Resets appended information
+
   const weatherIcon = document.createElement("img");
   weatherIcon.setAttribute("style", "display: block;");
   weatherIcon.classList.add("centerElements");
@@ -61,28 +72,65 @@ function displayCurrentLocWeatherInfo(response) {
   weatherIcon.setAttribute("alt", "Weather Icon!");
   weatherIcon.setAttribute("width", "100");
   mainArticle.append(weatherIcon);
+  // Appends Weather Icon
 
   const nearestArea = document.createElement("p");
   nearestArea.innerText = `Nearest Area: ${response.nearest_area[0].areaName[0].value}`;
   mainArticle.append(nearestArea);
+  // Appends Nearest Area
 
   const region = document.createElement("p");
   region.innerText = `Region: ${response.nearest_area[0].region[0].value}`;
   mainArticle.append(region);
+  // Appends Region
 
   const country = document.createElement("p");
   country.innerText = `Country: ${response.nearest_area[0].country[0].value}`;
   mainArticle.append(country);
+  // Appends Country
 
   const currentWeather = document.createElement("p");
-  let tempUnitKey = "FeelsLikeC";
   let tempUnit = "C";
+  let tempUnitKey = `FeelsLike${tempUnit}`;
   currentWeather.innerText = `Currently: Feels like ${response.current_condition[0][tempUnitKey]}°${tempUnit}`;
   mainArticle.append(currentWeather);
+  // Appends Current Weather
 
   const chanceOfSunshine = document.createElement("p");
   chanceOfSunshine.innerText = `Chance of Sunshine: ${response.weather[0].hourly[0].chanceofsunshine}`;
   mainArticle.append(chanceOfSunshine);
+  // Appends Chance of Sunshine
 
-  // Outputs Location Info to the Page
+  const chanceOfRain = document.createElement("p");
+  chanceOfRain.innerText = `Chance of Rain: ${response.weather[0].hourly[0].chanceofrain}`;
+  mainArticle.append(chanceOfRain);
+  // Append Chance of Rain
+
+  const chanceOfSnow = document.createElement("p");
+  chanceOfSnow.innerText = `Chance of Snow: ${response.weather[0].hourly[0].chanceofsnow}`;
+  mainArticle.append(chanceOfSnow);
+  // Appends Chance of Snow
+}
+
+function displayThreeDayForecast(response) {
+  const forecastCards = document.querySelectorAll("main section aside article");
+
+  let tempUnit = "C";
+  const avgWeatherInfoToday = document.createElement("p");
+  let avgTempKey = `avgtemp${tempUnit}`;
+  avgWeatherInfoToday.innerText = `Average Temperature: ${response.weather[0][avgTempKey]}°${tempUnit}`;
+  forecastCards[0].append(avgWeatherInfoToday);
+  const maxWeatherInfoToday = document.createElement("p");
+  let maxTempKey = `maxtemp${tempUnit}`;
+  maxWeatherInfoToday.innerText = `Max Temperature: ${response.weather[0][maxTempKey]}°${tempUnit}`;
+  forecastCards[0].append(maxWeatherInfoToday);
+  const minWeatherInfoToday = document.createElement("p");
+  let minTempKey = `mintemp${tempUnit}`;
+  minWeatherInfoToday.innerText = `Min Temperature: ${response.weather[0][minTempKey]}°${tempUnit}`;
+  forecastCards[0].append(minWeatherInfoToday);
+  // Appends Info for Today
+
+  // Appends Info for Tomorrow
+
+  // Appends Info for Day After Tomorrow
 }
