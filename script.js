@@ -4,16 +4,18 @@ const results = document.querySelector(".results");
 const article1 = document.getElementById("article1");
 const article2 = document.getElementById("article2");
 const article3 = document.getElementById("article3");
-const sectionContent = document.getElementById("#choose-location");
+const sectionContent = document.getElementById("choose-location");
 const newParagraph = document.createElement("p");
 const sideBarList = document.querySelector(".search-list");
 const temperatureUnitF = "°F";
 const hidden = document.querySelectorAll(".hidden");
+const locationSearch = document.getElementById("location");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const { location } = event.target;
   getlocation(location.value);
+  locationSearch.value = "";
   hidden.forEach((item) => item.remove());
 });
 
@@ -106,11 +108,20 @@ function weatherForecast(data) {
 
 function previousSearches(data) {
   let listItem = document.createElement("li");
+  let anchorTag = document.createElement("a");
   let inputLocation = data.nearest_area[0].areaName[0].value;
   let currentTemperatureF = data.current_condition[0].FeelsLikeF;
 
-  listItem.innerHTML = `<a href="">${inputLocation}</a>`;
+  anchorTag.href = "";
+  anchorTag.textContent = `${inputLocation}`;
+  listItem.append(anchorTag);
   `${sideBarList.append(listItem)} ${sideBarList.append(
     currentTemperatureF
   )} ${sideBarList.append(temperatureUnitF)}`;
+
+  anchorTag.addEventListener("click", (event) => {
+    event.preventDefault();
+    currentWeather(data);
+    weatherForecast(data);
+  });
 }
