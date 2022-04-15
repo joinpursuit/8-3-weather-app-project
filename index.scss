@@ -121,6 +121,11 @@ main {
 
 #weatherHistory {
   overflow: scroll;
+  scroll-snap-type: y proximity;
+
+  #previousSearches:last-child {
+    scroll-snap-align: end;
+  }
 }
 
 // controls colors for dark&light modes \\

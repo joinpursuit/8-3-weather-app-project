@@ -138,6 +138,12 @@ main #upcomingWeather #tomorrowWeather {
 
 #weatherHistory {
   overflow: scroll;
+  -ms-scroll-snap-type: y proximity;
+      scroll-snap-type: y proximity;
+}
+
+#weatherHistory #previousSearches:last-child {
+  scroll-snap-align: end;
 }
 
 .body-lightMode {
