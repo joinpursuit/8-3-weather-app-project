@@ -12,8 +12,8 @@ form.addEventListener('submit', (event) => {
       let li = document.createElement('li');
       ul.append(li);
       let a = document.createElement('a');
-      a.textContent = `${enteredlocation} - `;
-      // Hyperlink for previously searched
+      a.textContent = `${enteredlocation}`;
+      //TODO: Hyperlink for previously searched
       a.href = '#';
       // const hide = document.querySelector('hide');
       // hide.classList.add("hidden");
@@ -53,7 +53,7 @@ function generateWeather(forecast, enteredlocation) {
   countryDisplay.textContent = `Country: ${country}`;
   display.append(countryDisplay);
   let currentDisplay = document.createElement('p');
-  currentDisplay.textContent = `Currently: ${current}`;
+  currentDisplay.textContent = `Current Condition: ${current}`;
   display.append(currentDisplay);
   let forcastDate = document.querySelectorAll('aside article');
 
@@ -68,7 +68,7 @@ function generateWeather(forecast, enteredlocation) {
     chanceOfRainSum += Number(forecast.weather[0].hourly[i].chanceofrain);
     chanceOfSnowSum += Number(forecast.weather[0].hourly[i].chanceofsnow);
   }
-  //TODO: chances
+  //TODO: chances created
   const chanceOfSunshineAvg = document.createElement('p');
   const chanceOfRainAvg = document.createElement('p');
   const chanceOfSnowAvg = document.createElement('p');

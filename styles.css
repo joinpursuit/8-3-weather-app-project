@@ -76,26 +76,27 @@ top: 20px;
 color: #293960e7;
 }
 
-aside.temp { display: block;
+aside.temp { 
+  display: block;
   justify-content: center;
-  grid-column: 1; 
-
+  grid-column: 1;
 }
 aside.forecast {
-place-self: center;
+  place-self: center;
   display: flex;  
+
 }
 
-.hidden {
-  display: none;
-}
 
-@media (max-width: 768px) {
+
+@media (max-width: 680px), screen and (orientation: portrait) {
   body {
-    max-width: 768px;
+    display: grid;
+    background-color: #aad3eae4;
     grid-template-columns: 2fr, 1fr;
     grid-template-rows: 3;
-    margin: auto;
-    align-items: center;
-  }
+    margin:  auto;
+    max-width: 680px;
+    transition: left 0.5s; 
+    }
 }
