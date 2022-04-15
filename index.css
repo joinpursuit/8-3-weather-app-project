@@ -13,11 +13,74 @@ header {
   padding-bottom: 25px;
   -ms-grid-column: span 3;
       grid-column-start: span 3;
-  background-color: teal;
-  border: 3px solid black;
-  color: white;
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+header #switchModes {
+  display: inline-block;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: 1;
+      grid-template-rows: 1;
+  position: absolute;
+  width: 60px;
+  height: 34px;
+  right: 0;
+  top: 0;
+}
+
+header .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+header .slider {
+  position: absolute;
+  opacity: 50%;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+header .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+header input:checked + .slider {
+  background-color: #2196f3;
+}
+
+header input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #2196f3;
+          box-shadow: 0 0 1px #2196f3;
+}
+
+header input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+header .slider.round {
+  border-radius: 34px;
+}
+
+header .slider.round:before {
+  border-radius: 50%;
 }
 
 #tempConversionWidget {
@@ -36,7 +99,6 @@ main {
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: 2;
       grid-template-rows: 2;
-  background-color: aliceblue;
 }
 
 main #currentLocation {
@@ -59,6 +121,7 @@ main #upcomingWeather {
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-column: span 3;
       grid-column-start: span 3;
+  text-align: center;
 }
 
 main #upcomingWeather #todayWeather {
@@ -69,8 +132,103 @@ main #upcomingWeather #tomorrowWeather {
   border-right: 3px solid cadetblue;
 }
 
+.dayName {
+  border-bottom: 3px solid cadetblue;
+}
+
 #weatherHistory {
   overflow: scroll;
+}
+
+.body-lightMode {
+  background-color: white;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.body-darkMode {
+  background-color: black;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.header-lightMode {
+  background-color: aquamarine;
+  border: 3px solid black;
+  color: black;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.header-darkMode {
+  background-color: teal;
+  border: 3px solid white;
+  color: white;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.tempConversionWidget-lightMode {
+  color: black;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.tempConversionWidget-darkMode {
+  color: white;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.main-lightMode {
+  color: black;
+  background-color: aliceblue;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.main-darkMode {
+  color: white;
+  background-color: gray;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.weatherHistory-lightMode {
+  color: black;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.weatherHistory-darkMode {
+  color: white;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+@media (max-width: 700px) {
+  main {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  main #upcomingWeather {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    -ms-grid-column: span 2;
+        grid-column-start: span 2;
+    -ms-grid-rows: 2;
+        grid-template-rows: 2;
+  }
+  main #upcomingWeather #tomorrowWeather {
+    border-right: none;
+  }
+  main #upcomingWeather #dayAfterWeather {
+    border-top: 3px solid cadetblue;
+    -ms-grid-column: span 2;
+        grid-column-start: span 2;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
 }
 
 @media (max-width: 500px) {

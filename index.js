@@ -170,6 +170,15 @@ const gotLocation = (current, area, weather) => {
   typeLocationForm.reset();
 };
 
+const sunIcon = "./assets/icons8-summer.gif";
+const rainIcon = "./assets/icons8-torrential-rain.gif";
+const snowIcon = "./assets/icons8-light-snow.gif";
+const darkSunIcon = "./assets/icons8-summer-dark.gif";
+const darkRainIcon = "./assets/icons8-torrential-rain-dark.gif";
+const darkSnowIcon = "./assets/icons8-light-snow-dark.gif";
+let fullLightMode = true;
+let fullDarkMode = false;
+
 const chancesOfSunshineRainSnow = (currentLocationData, weather) => {
   const Sunshine = document.querySelector("#ChanceOfSunshine");
   const Rain = document.querySelector("#ChanceOfRain");
@@ -177,9 +186,6 @@ const chancesOfSunshineRainSnow = (currentLocationData, weather) => {
 
   const iconImg = document.querySelector("#iconImg");
   iconImg.style.paddingTop = "20px";
-  const sunIcon = "./assets/icons8-summer.gif";
-  const rainIcon = "./assets/icons8-torrential-rain.gif";
-  const snowIcon = "./assets/icons8-light-snow.gif";
 
   let sunshineChance = weather.Today.hourly.reduce((previous, next) => {
     return previous > Number(next.chanceofsunshine)
@@ -200,14 +206,29 @@ const chancesOfSunshineRainSnow = (currentLocationData, weather) => {
   });
 
   if (sunshineChance > rainChance && sunshineChance > snowChance) {
-    iconImg.src = sunIcon;
-    iconImg.alt = "sun";
+    if (fullLightMode) {
+      iconImg.src = sunIcon;
+      iconImg.alt = "sun";
+    } else if (fullDarkMode) {
+      iconImg.src = darkSunIcon;
+      iconImg.alt = "darkSun";
+    }
   } else if (rainChance > sunshineChance && rainChance > snowChance) {
-    iconImg.src = rainIcon;
-    iconImg.alt = "rain";
+    if (fullLightMode) {
+      iconImg.src = rainIcon;
+      iconImg.alt = "rain";
+    } else if (fullDarkMode) {
+      iconImg.src = darkRainIcon;
+      iconImg.alt = "darkRain";
+    }
   } else if (snowChance > sunshineChance && snowChance > rainChance) {
-    iconImg.src = snowIcon;
-    iconImg.alt = "snow";
+    if (fullLightMode) {
+      iconImg.src = snowIcon;
+      iconImg.alt = "snow";
+    } else if (fullDarkMode) {
+      iconImg.src = darkSnowIcon;
+      iconImg.alt = "darkSnow";
+    }
   }
 
   Sunshine.innerHTML = `<strong> Chance of Sunshine: </strong> ${sunshineChance}`;
@@ -299,5 +320,75 @@ tempConversionForm.addEventListener("submit", (e) => {
   convertedTempResult.textContent = result;
 });
 
-// for dark & light mode later
-// const switchModes = document.querySelector("#switchModes");
+// Switches between dark & light modes
+const darkLightMode = () => {
+  const modeSwticher = document.querySelector("#modeSwticher");
+  const modeName = document.querySelector("#modeName");
+  const body = document.querySelector("#body");
+  const header = document.querySelector("#header");
+  const tempConversionWidget = document.querySelector("#tempConversionWidget");
+  const main = document.querySelector("main");
+  const weatherHistory = document.querySelector("#weatherHistory");
+
+  const iconImg = document.querySelector("#iconImg");
+
+  modeSwticher.addEventListener("click", () => {
+    if (modeName.textContent === "LIGHT") {
+      modeName.textContent = "DARK";
+
+      if (iconImg.alt === "sun") {
+        iconImg.src = darkSunIcon;
+        iconImg.alt = "darkSun";
+      } else if (iconImg.alt === "rain") {
+        iconImg.src = darkRainIcon;
+        iconImg.alt = "darkRain";
+      } else if (iconImg.alt === "snow") {
+        iconImg.src = darkSnowIcon;
+        iconImg.alt = "darkSnow";
+      }
+      fullDarkMode = true;
+      fullLightMode = false;
+
+      body.classList.remove("body-lightMode");
+      header.classList.remove("header-lightMode");
+      tempConversionWidget.classList.remove("tempConversionWidget-lightMode");
+      main.classList.remove("main-lightMode");
+      weatherHistory.classList.remove("weatherHistory-lightMode");
+
+      body.classList.add("body-darkMode");
+      header.classList.add("header-darkMode");
+      tempConversionWidget.classList.add("tempConversionWidget-darkMode");
+      main.classList.add("main-darkMode");
+      weatherHistory.classList.add("weatherHistory-darkMode");
+    } else if (modeName.textContent === "DARK") {
+      modeName.textContent = "LIGHT";
+
+      if (iconImg.alt === "darkSun") {
+        iconImg.src = sunIcon;
+        iconImg.alt = "sun";
+      } else if (iconImg.alt === "darkRain") {
+        iconImg.src = rainIcon;
+        iconImg.alt = "rain";
+      } else if (iconImg.alt === "darkSnow") {
+        iconImg.src = snowIcon;
+        iconImg.alt = "snow";
+      }
+      fullLightMode = true;
+      fullDarkMode = false;
+
+      body.classList.remove("body-darkMode");
+      header.classList.remove("header-darkMode");
+      tempConversionWidget.classList.remove("tempConversionWidget-darkMode");
+      main.classList.remove("main-darkMode");
+      weatherHistory.classList.remove("weatherHistory-darkMode");
+
+      body.classList.add("body-lightMode");
+      header.classList.add("header-lightMode");
+      tempConversionWidget.classList.add("tempConversionWidget-lightMode");
+      main.classList.add("main-lightMode");
+      weatherHistory.classList.add("weatherHistory-lightMode");
+    }
+  });
+};
+
+darkLightMode();

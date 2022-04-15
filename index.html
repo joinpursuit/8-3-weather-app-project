@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- BOOTSTRAP CSS -->
+    <!-- BOOTSTRAP STYLESHEET -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -16,8 +16,8 @@
     <script defer src="index.js"></script>
     <title>Weather App</title>
   </head>
-  <body>
-    <header>
+  <body id="body" class="body-lightMode">
+    <header id="header" class="header-lightMode">
       <h1>Weather App</h1>
       <form id="typeLocationForm">
         <label for="typeLocation">
@@ -32,11 +32,19 @@
           />
         </label>
       </form>
+      <!-- dark & light mode button -->
+      <section id="switchModes">
+        <p id="modeName">LIGHT</p>
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round" id="modeSwticher"></span>
+        </label>
+      </section>
     </header>
 
     <br />
 
-    <aside id="tempConversionWidget">
+    <aside id="tempConversionWidget" class="tempConversionWidget-lightMode">
       <form id="tempConversionForm">
         <label for="temp-to-convert">Convert the temperature: </label>
         <br />
@@ -64,7 +72,7 @@
       </form>
     </aside>
 
-    <main>
+    <main id="main" class="main-lightMode">
       <article id="currentLocation">
         <p id="chooseALocation">Choose a location to view the weather</p>
         <section id="currentLocationData">
@@ -81,21 +89,21 @@
 
       <aside id="upcomingWeather">
         <article id="todayWeather">
-          <strong>Today</strong>
+          <strong class="dayName">Today</strong>
           <br />
           <p id="avgTemp"></p>
           <p id="maxTemp"></p>
           <p id="minTemp"></p>
         </article>
         <article id="tomorrowWeather">
-          <strong>Tomorrow</strong>
+          <strong class="dayName">Tomorrow</strong>
           <br />
           <p id="avgTemp"></p>
           <p id="maxTemp"></p>
           <p id="minTemp"></p>
         </article>
         <article id="dayAfterWeather">
-          <strong>Day After Tomorrow</strong>
+          <strong class="dayName">Day After Tomorrow</strong>
           <br />
           <p id="avgTemp"></p>
           <p id="maxTemp"></p>
@@ -104,7 +112,7 @@
       </aside>
     </main>
 
-    <aside id="weatherHistory">
+    <aside id="weatherHistory" class="weatherHistory-lightMode">
       <section>
         <h4>Previous Searches</h4>
         <ul id="previousSearches">
@@ -112,8 +120,6 @@
         </ul>
       </section>
     </aside>
-    <!-- Create dark & light mode later -->
-    <!-- <button id="switchModes">switch modes</button> -->
 
     <!-- BOOTSTRAP SCRIPTS -->
     <script
