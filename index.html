@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
+    <body>
 <header>
+
 <h1>Weather App</h1>
    <link href="./style.css" rel="stylesheet" />
-  <script>src= "script.js"</script>
-  <form>
+  <script defer src= "main.js"></script>
+  <form id="locationForm">
+    
     <label>Pick a Location:</label>
-    <input id="searches" type = "text" placeholder="Enter your zip code..."/>
+    <input id="location" type = "text" placeholder="Enter your location..."/>
     <br>
-    <input id="getWeatherButton" type="submit">Get Weather</button>
+    <input id="getWeatherButton" type="submit" value= 'Get Weather' />
+    
   </form>
   </header>
   <main>
-    <label>
+</aside>
+  <form>
+  <aside id="asideOne">
+    <label id="temp-to-convert">
       Convert the temperature:
       <select id="convertTemp" > </select>
     </label>
@@ -21,7 +28,39 @@
       To Celcius
       <input id="toCelius" name="to-celsius" type="radio" value ="To Celsius">
     </label>
+    <br>
+    <br>
+    <label>
+      
+        To Fahrenheit
+        <input id="toFahrenheit" name="to-fahrenheit" type="radio" value ="To Fahrenheit">
+      </label>
+    <br>
+    <button id="switchFromCToF" type="submit">Submit</button>
+    </form>
+</aside>
+    <article>
+        <div>
+        <article id="searchSection"></article>
+        <p id="initMessage">Enter your location above to make a search.</p>
+      </div>
+      <br>
+      <div> class= "container" </div>
+
+    </article>
+
+
+    <!-- <aside>
+        
+    </aside> -->
+
+<aside id="previous-search-section" >
+  <section>
+    <h4>Previous Searches</h4>
+          <ul id = "search-history"> </ul>
+          <p>No previous searches</p>
+      </section>
+  </aside>
 </main>
-  <aside></aside>
-  
+</body>
 </html>

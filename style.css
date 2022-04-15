@@ -1,28 +1,30 @@
 .wow {
-    width: 100px;
-  }
-  header{
-    text-align: center;
-    background: lightpink;
-    padding: 25px;
-    color: beige
-    
-  }
-  header button {
-    color: gold;
-  }
+  width: 100px;
+}
+header {
+  text-align: center;
+  background: lightpink;
+  padding: 25px;
+  color: beige;
+}
+header button {
+  color: gold;
+}
 
-  div{
-    border-style: solid;
-    border-color: gold;
-    padding: 50px;
-    width: 200px;
-    text-align: center;
-    background: light grey;
-  }
-  .container{
-      display: grid;
-      grid-template-columns: repeat(3, 1 fr);
-      height: 200px;
-      
-  }
+div {
+  border-style: solid;
+  border-color: gold;
+  padding: 50px;
+  width: 200px;
+  text-align: center;
+  background: light grey;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1 fr);
+  height: 200px;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
