@@ -19,3 +19,13 @@ header form {
 .centerText {
     text-align: center;
 }
+
+.grid-three-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.border {
+    border: 3px solid blue;
+    padding: 10px
+}
