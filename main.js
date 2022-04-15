@@ -21,21 +21,25 @@ form.addEventListener('submit', (event) => {
       let unorderedList1 = document.querySelector('ul');
       let list1 = document.createElement('li');
       unorderedList1.append(list1);
-      let anchorTag = document.createElement('a');
-      anchorTag.textContent = weatherPlaceInput;
-      anchorTag.href = '#';
+      //let anchorTag = document.createElement('a');
+      //checkWeatherConditions(element, weatherPlaceInput);
+      //anchorTag.textContent = weatherPlaceInput;
+      //anchorTag.href = '#';
+      let current = element.current_condition[0].FeelsLikeF;
+      //list1.textContent = current;
+      list1.innerHTML = `<a href ="javascript:void(0)" rel="${weatherPlaceInput}">  ${weatherPlaceInput}</a> ${current} &deg;F`;
+
+      // list1.prepend(anchorTag);
 
       let areaContainer = element.nearest_area[0].areaName[0].value;
       let regionContainer = element.nearest_area[0].areaName[0].value;
       let countryContainer = element.nearest_area[0].country[0].value;
-      let current = element.current_condition[0].FeelsLikeF;
-      list1.textContent = current;
-      list1.prepend(anchorTag);
-
-      anchorTag.addEventListener(`click`, (event) => {
+      retrieveCityInfo();
+      /*list1.addEventListener(`click`, (event) => {
         event.preventDefault();
+        retrieveCityInfo();
         createAForcast(element, weatherPlaceInput);
-      });
+      }); */
     })
     .catch((error) => {
       console.log(error);
@@ -78,7 +82,6 @@ function createAForcast(element, weatherPlaceInput) {
   let chanceOfSunshine = 0;
   let chanceOfRain = 0;
 
-  //function addingPictures(element, weatherPlaceInput) {
   for (let i = 0; i < element.weather[0].hourly; i++) {
     chanceOfRain =
       chanceOfRain + Number(element.weather[0].hourly[i].chanceOfRain);
@@ -121,25 +124,49 @@ function createAForcast(element, weatherPlaceInput) {
     let icon = document.createElement('img');
     icon.src = './assets/icons8-summer.gif';
     icon.alt = 'sun';
+
     display.prepend(icon);
   } else if (rainState !== false) {
     let icon = document.createElement('img');
     icon.src = './assets/icons8-torrential-rain.gif';
     icon.alt = 'rain';
+
     display.prepend(icon);
   } else if (snowState !== false) {
     let icon = document.createElement('img');
     icon.src = './assets/icons8-light-snow.gif';
     icon.alt = 'snow';
+
     display.prepend(icon);
   }
 
-  //}
-  //function makeThreeDayForcast(element, weatherPlaceInput) {
+  let tempConverter = document.querySelector('aside form');
+  tempConverter.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let input = Number(event.target.querySelector('input').value);
+    let measurements = event.target.querySelectorAll('.converter');
+    let type = '';
+    for (let tempType of measurements) {
+      if (tempType.checked) {
+        type = tempType.value;
+        break;
+      }
+    }
+    if (type === 'celsius') {
+      document.getElementById('result').innerHtml =
+        (input - 32) / (1.8).toFixed(2);
+    } else if (type === 'fahrenheit') {
+      document.getElementById('result').innerHtml = (input * 1.8 + 32).toFixed(
+        2,
+      );
+    }
+  });
+
   ///Doesn't Completely pass the test, needs more work.
-  let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
-  let displayedWeather = document.querySelectorAll('aside article');
-  for (let i = 0; i < displayedWeather.length; i++) {
+
+  let displayedWeather = document.querySelectorAll('.aside-two');
+  /* for (let i = 0; i < displayedWeather.length; i++) {
+    
     displayedWeather[i].innerHTML = '';
     let displayedWeather = document.createElement('p');
     displayedWeather.textContent = threeDaysForcast[i];
@@ -157,4 +184,37 @@ function createAForcast(element, weatherPlaceInput) {
     minTempF.textContent = todayTempMin;
     displayedWeather[i].append(displayedWeather, avgTempF, maxTempF, minTempF);
   }
+} */
+  displayedWeather.forEach((ele) => {
+    console.log(element);
+    ele.innerHTML = '';
+    //let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+    let displayedWeather = document.createElement('p');
+    const todayTempAverage = element.weather.avgtempF;
+    const todayTempMax = element.weather.maxtempF;
+    const todayTempMin = element.weather.mintempF;
+    ele.textContent = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+
+    let minTempF = document.createElement('p');
+    let avgTempF = document.createElement('p');
+    let maxTempF = document.createElement('p');
+
+    maxTempF.textContent = todayTempMax;
+    avgTempF.textContent = todayTempAverage;
+    minTempF.textContent = todayTempMin;
+    ele.append(displayedWeather, avgTempF, maxTempF, minTempF);
+  });
+}
+function retrieveCityInfo() {
+  const allChildren = document.querySelectorAll(`#searchList a`);
+  //console.log(allChildren);
+  allChildren.forEach((link) => {
+    link.addEventListener(`click`, (event) => {
+      event.preventDefault();
+      console.log(link.getAttribute('rel'));
+
+      createAForcast(link.getAttribute('rel'));
+      //createAForcast(element, weatherPlaceInput);
+    });
+  });
 }

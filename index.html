@@ -15,12 +15,12 @@
         <header>
         <h1>Weather App</h1>
         <form>
-            <label>Pick a Location <input id = "location-id" type = "text"  name = "location" />
+            <label>Pick a Location <input  id = "location-id" type = "text"  name = "location" />
             <input type = "submit" name = "Weather" id = "Weather" value = "Get Weather"/></label>
         </form>
         </header>
         <aside id = "aside-one">
-            <form id = "conversion">
+            <form id = "conversion" class = "conversion">
                 <label>
                     Temperature Conversion:
                     <input type = "number" class = "radio-converter" id = "temp-to-convert"/>
@@ -34,9 +34,9 @@
                     <input type = "radio" name = "fahrenheit-converter" id = "to-f" class = "converter" value = "fahrenheit" />
                 </label>
                 <label>
-                <input type = "submit" />
+                <input type = "submit"  id = "convert"/>
             </label>
-                <h4> 
+                <h4 id = "result"> 
 
                 </h4>
             </form>
@@ -45,12 +45,12 @@
         
             <main>
             <article class = "display" id = "display"></article>
-            <aside id = "aisde-two">
+            <aside id = "aside-two" class = "aside-two">
                 
                
-                    <article><p>Today</p></article>
-                    <article><p>Tomorrow</p></article>
-                    <article><p>Day After Tomorrow</p></article>
+                    <article class = "threeDays" id = "day1"><p>Today</p></article>
+                    <article class = "threeDays" id = "day2"><p>Tomorrow</p></article>
+                    <article class = "threeDays" id = "day3"><p>Day After Tomorrow</p></article>
                  
          
                 </aside>
@@ -61,7 +61,7 @@
                 <aside class = "aside-three">
                     <section>
                     <h4>Previous Searches</h4>
-                    <ul></ul>
+                    <ul id ="searchList"></ul>
                    
                         <p>No previous searches</p>
                   </section>
