@@ -124,16 +124,22 @@ function displayThreeDayForecast(response) {
   forecastCards[2].innerHTML = "<strong>Day After Tomorrow</strong>";
 
   for (let i = 0; i < 3; i++) {
+    forecastCards[i].setAttribute("class", "centerText");
+
     const avgWeatherInfo = document.createElement("p");
     avgWeatherInfo.innerText = `Average Temperature: ${response.weather[i][avgTempKey]}°${tempUnit}`;
+    avgWeatherInfo.setAttribute("class", "centerText");
     forecastCards[i].append(avgWeatherInfo);
+    forecastCards[i].setAttribute("class", "centerText");
 
     const maxWeatherInfo = document.createElement("p");
     maxWeatherInfo.innerText = `Max Temperature: ${response.weather[i][maxTempKey]}°${tempUnit}`;
+    maxWeatherInfo.setAttribute("class", "centerText");
     forecastCards[i].append(maxWeatherInfo);
 
     const minWeatherInfo = document.createElement("p");
     minWeatherInfo.innerText = `Min Temperature: ${response.weather[i][minTempKey]}°${tempUnit}`;
+    minWeatherInfo.setAttribute("class", "centerText");
     forecastCards[i].append(minWeatherInfo);
   }
 }
