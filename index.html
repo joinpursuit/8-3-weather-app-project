@@ -16,49 +16,61 @@
 				<!-- <label> -->
 				Pick a Location
 				<input type="text" type="submit" class="search-bar" />
-				<input type="submit" value="Get Weather" />
+				<input type="submit" class="button" value="Get Weather" />
 				<!-- </label> -->
 				<!-- <button type="submit">Get Weather</button> -->
 			</form>
 		</header>
-		<section>
-			<aside>
-				<form class="converter">
-					<label>
-						Convert from °F to °C
-						<input type="number" id="temp-to-convert" />
-					</label>
+		<section class="main">
+			<div>
+				<aside>
+					<form class="converter">
+						<label>
+							Convert from °F to °C
+							<input type="number" id="temp-to-convert" />
+						</label>
 
-					<label>
-						<input type="radio" id="to-f" name="temp" value="f" />
-						°F
-					</label>
-					<label>
-						<input type="radio" id="to-c" name="temp" value="c" />
-						°C
-					</label>
-					<label>
-						<input type="submit" value="Convert" />
-					</label>
-					<h4 class="converted-temp"></h4>
-				</form>
-			</aside>
-			<main>
-				<p class="defaults">Choose a location to view the weather.</p>
-				<article class="current-weather weather"></article>
-				<aside class="upcoming-weather">
-					<article class="today-weather weather"></article>
-					<article class="tomorrow-weather weather"></article>
-					<article class="day-after-tomorrow-weather weather"></article>
+						<label>
+							<input type="radio" id="to-f" name="temp" value="f" />
+							°F
+						</label>
+						<label>
+							<input type="radio" id="to-c" name="temp" value="c" />
+							°C
+						</label>
+						<label>
+							<input type="submit" class="button" value="Convert" />
+						</label>
+						<h4 class="converted-temp"></h4>
+					</form>
 				</aside>
-			</main>
-			<aside class="weather-history">
-				<section>
-					<h4>Previous Searches</h4>
-					<ul></ul>
-					<p class="defaults">No previous searches.</p>
-				</section>
-			</aside>
+			</div>
+			<div>
+				<main>
+					<p class="defaults">Choose a location to view the weather.</p>
+					<article class="current-weather weather"></article>
+					<aside class="upcoming-weather">
+						<div>
+							<article class="today-weather weather"></article>
+						</div>
+						<div>
+							<article class="tomorrow-weather weather"></article>
+						</div>
+						<div>
+							<article class="day-after-tomorrow-weather weather"></article>
+						</div>
+					</aside>
+				</main>
+			</div>
+			<div>
+				<aside class="weather-history">
+					<section>
+						<h4>Previous Searches</h4>
+						<ul></ul>
+						<p class="defaults">No previous searches.</p>
+					</section>
+				</aside>
+			</div>
 		</section>
 	</body>
 </html>
