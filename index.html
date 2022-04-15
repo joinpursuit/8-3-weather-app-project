@@ -13,7 +13,7 @@
         <h1>Weather App</h1>
         <form>
             <label>Pick a Location</label>
-            <input type="text" id="location">
+            <input type="text" id="location" autocomplete="off">
             <input type="submit" value="Get Weather">
         </form>
     </header>
@@ -31,22 +31,22 @@
             </form>
         </section>
         <section id="choose-location">
-            <article class="results">
-            </article>
+            <p class="hidden">Choose a location to view the weather</p>
+            <article class="results"></article>
         </section>
         <aside id="sidebar">
             <section>
             <h4>Previous Searches</h4>
-            <ul>
-                <li><p>No previous searches</p></li>
+            <ul class="search-list">
+                <li class="hidden"><p>No previous searches</p></li>
             </ul>
             </section>
         </aside>
         <br>
         <aside id="upcoming-weather" class="forecast-columns">
-            <article id="article1">Today</article>
-            <article id="article2">Tomorrow</article>
-            <article id="article3">Day After Tomorrow</article>
+            <article id="article1"><h2>Today</h2></article>
+            <article id="article2"><h2>Tomorrow</h2></article>
+            <article id="article3"><h2>Day After Tomorrow</h2></article>
         </aside>
     </main>
 </body>

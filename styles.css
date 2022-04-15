@@ -20,7 +20,6 @@
     background-color: rgb(221, 217, 217);
 }
 
-
 aside#sidebar {
     background-color: white;
     padding-left: 1em;
@@ -33,4 +32,14 @@ aside.forecast-columns {
     grid-template-columns: 33% 33% 33%;
     padding: 1em;
     margin-top: 1em;
+    text-align: center;
+    grid-column: 1px solid black;
+}
+
+#article1 {
+    border-right: 2px solid lightseagreen;
+}
+
+#article2 {
+    border-right: 2px solid lightseagreen;
 }
