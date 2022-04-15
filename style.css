@@ -7,8 +7,8 @@ body {
 	padding: 10px;
 	/* display: grid; */
 	text-align: center;
-	background-color: rgb(40, 40, 40);
-	color: aliceblue;
+	background-color: rgb(39, 44, 80);
+	color: rgb(194, 194, 194);
 	/* grid-auto-columns: 30% 50% 20%; */
 }
 section {
@@ -25,12 +25,13 @@ div.converter {
 	border: 1px solid black;
 	left: 50%;
 	top: 40%;
+	padding: 5px;
 }
 header {
 	background-color: inherit;
 	width: 50%;
 	grid-template-columns: 1fr;
-	color: white;
+	color: inherit;
 	font-family: Arial, Helvetica, sans-serif;
 	border: 1px solid black;
 	margin-left: auto;
@@ -54,7 +55,7 @@ div {
 
 aside.upcoming-weather {
 	display: grid;
-	/* background-color: rgb(123, 38, 19); */
+	background-color: rgb(39, 44, 80);
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 1fr;
 	grid-gap: 5px;
@@ -64,7 +65,8 @@ aside.upcoming-weather {
 aside.weather-history {
 	/* background-color: darkcyan; */
 	/* border: 2px solid red; */
-	color: rgb(128, 84, 175);
+	/* background-color: aliceblue; */
+	color: inherit;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	padding: 5px;
 	border: 1px solid black;
@@ -72,9 +74,19 @@ aside.weather-history {
 article.current-weather {
 	border-radius: 3px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: rgb(39, 44, 80);
 }
 a:hover {
 	text-shadow: crimson;
+}
+a:visited {
+	color: rgb(162, 175, 139);
+}
+a:link {
+	color: darkgreen;
+}
+a:active {
+	color: red;
 }
 .weather-history h4 {
 	text-decoration: rgb(255, 255, 255);
@@ -112,5 +124,19 @@ main h2 {
 }
 
 img {
+	box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+}
+
+input#temp-to-convert {
+	background-color: inherit;
+	border-radius: 7px;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input.search-bar {
+	background-color: inherit;
+	border-radius: 7px;
+	color: white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
