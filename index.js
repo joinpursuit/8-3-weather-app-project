@@ -20,10 +20,7 @@ getWeatherForm.addEventListener("submit", (event) => {
   } else if (city !== undefined) {
     url = `${BASE_URL}/${city}?${queryParam}=${queryParamValue}`;
   }
-  console.log(url);
   // Creates a final URL to fetch with considering whether the user has inputted a value for the location form
-
-  let tempUnit = "C";
 
   fetch(url)
     .then((response) => {
@@ -32,15 +29,17 @@ getWeatherForm.addEventListener("submit", (event) => {
     })
     .then((response) => {
       console.log(response);
-      return displayCurrentLocWeatherInfo(response);
-    })
-    .then((response) => {
-      return displayThreeDayForecast(response);
+      return displayAllInfo(response);
     })
     .catch((error) => {
       console.log(error);
     });
   // Calling Weather API with Fetch
+
+  if (city !== "undefined") {
+    event.target.search.value = "";
+    event.target.search.placeholder = "";
+  }
 });
 
 // Helper Functions
@@ -116,21 +115,47 @@ function displayThreeDayForecast(response) {
   const forecastCards = document.querySelectorAll("main section aside article");
 
   let tempUnit = "C";
-  const avgWeatherInfoToday = document.createElement("p");
   let avgTempKey = `avgtemp${tempUnit}`;
-  avgWeatherInfoToday.innerText = `Average Temperature: ${response.weather[0][avgTempKey]}°${tempUnit}`;
-  forecastCards[0].append(avgWeatherInfoToday);
-  const maxWeatherInfoToday = document.createElement("p");
   let maxTempKey = `maxtemp${tempUnit}`;
-  maxWeatherInfoToday.innerText = `Max Temperature: ${response.weather[0][maxTempKey]}°${tempUnit}`;
-  forecastCards[0].append(maxWeatherInfoToday);
-  const minWeatherInfoToday = document.createElement("p");
   let minTempKey = `mintemp${tempUnit}`;
-  minWeatherInfoToday.innerText = `Min Temperature: ${response.weather[0][minTempKey]}°${tempUnit}`;
-  forecastCards[0].append(minWeatherInfoToday);
-  // Appends Info for Today
 
-  // Appends Info for Tomorrow
+  forecastCards[0].innerHTML = "<strong>Today</strong>";
+  forecastCards[1].innerHTML = "<strong>Tomorrow</strong>";
+  forecastCards[2].innerHTML = "<strong>Day After Tomorrow</strong>";
 
-  // Appends Info for Day After Tomorrow
+  for (let i = 0; i < 3; i++) {
+    const avgWeatherInfo = document.createElement("p");
+    avgWeatherInfo.innerText = `Average Temperature: ${response.weather[i][avgTempKey]}°${tempUnit}`;
+    forecastCards[i].append(avgWeatherInfo);
+
+    const maxWeatherInfo = document.createElement("p");
+    maxWeatherInfo.innerText = `Max Temperature: ${response.weather[i][maxTempKey]}°${tempUnit}`;
+    forecastCards[i].append(maxWeatherInfo);
+
+    const minWeatherInfo = document.createElement("p");
+    minWeatherInfo.innerText = `Min Temperature: ${response.weather[i][minTempKey]}°${tempUnit}`;
+    forecastCards[i].append(minWeatherInfo);
+  }
+}
+
+function createWeatherIcons(response) {
+  const chanceOfSunshine = response.weather[0].hourly[0].chanceofsunshine;
+  const chanceOfRain = response.weather[0].hourly[0].chanceofrain;
+  const chanceOfSnow = response.weather[0].hourly[0].chanceofsnow;
+  const img = document.querySelector("img");
+
+  if (chanceOfSunshine > 50) {
+    img.setAttribute("src", "./assets/icons8-summer.gif");
+  } else if (chanceOfRain > 50) {
+    img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+  } else if (chanceOfSnow > 50) {
+    img.setAttribute("src", "./assets/icons8-light-snow.gif");
+  }
+  console.log(img);
+}
+
+function displayAllInfo(response) {
+  displayCurrentLocWeatherInfo(response);
+  displayThreeDayForecast(response);
+  createWeatherIcons(response);
 }
