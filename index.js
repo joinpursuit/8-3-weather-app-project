@@ -157,7 +157,6 @@ function createWeatherIcons(response) {
   } else if (chanceOfSnow > 50) {
     img.setAttribute("src", "./assets/icons8-light-snow.gif");
   }
-  console.log(img);
 }
 
 function displayAllInfo(response) {
