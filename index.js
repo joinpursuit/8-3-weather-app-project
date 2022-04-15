@@ -320,7 +320,7 @@ tempConversionForm.addEventListener("submit", (e) => {
   convertedTempResult.textContent = result;
 });
 
-// Switches between dark & light modes
+// function to switch between dark & light modes
 const darkLightMode = () => {
   const modeSwticher = document.querySelector("#modeSwticher");
   const modeName = document.querySelector("#modeName");
