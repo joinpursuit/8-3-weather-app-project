@@ -87,3 +87,8 @@ input[type='number']{
 .icon {
   filter: invert(1);
 }
+
+#title a {
+  color: white;
+  text-decoration: none;
+}
