@@ -1,0 +1,22 @@
+.card,
+h1,
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: lightgoldenrodyellow;
+    max-width: 420px;
+}
+
+.previous-history {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 30px;
+    background-color: lightgoldenrodyellow;
+    max-width: 420px;
+}
