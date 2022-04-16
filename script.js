@@ -15,7 +15,6 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const { location } = event.target;
   getlocation(location.value);
-  locationSearch.value = "";
   hidden.forEach((item) => item.remove());
 });
 
@@ -27,6 +26,7 @@ function getlocation(input) {
       currentWeather(data);
       weatherForecast(data);
       previousSearches(data);
+      locationSearch.value = "";
     })
     .catch((error) => {
       console.log(error);
@@ -41,7 +41,8 @@ function currentWeather(data) {
 
   let areaName = document.createElement("h2");
   areaName.setAttribute("class", "firstHeading");
-  areaName.innerHTML = `<strong>${data.nearest_area[0].areaName[0].value}</strong>`;
+  //   areaName.innerHTML = `<strong>${data.nearest_area[0].areaName[0].value}</strong>`;
+  areaName.innerHTML = `<strong>${locationSearch.value}</strong>`;
   results.append(areaName);
 
   let regionName = document.createElement("p");
@@ -58,6 +59,16 @@ function currentWeather(data) {
   currentTemperatureF.setAttribute("class", "firstHeading");
   currentTemperatureF.innerHTML = `<strong>Currently Feels Like:</strong> ${data.current_condition[0].FeelsLikeF} ${temperatureUnitF}`;
   results.append(currentTemperatureF);
+
+  let area = document.createElement("p");
+  area.setAttribute("class", "firstHeading");
+  area.innerHTML = `<strong>Area:</strong>${locationSearch.value}`;
+  results.append(area);
+
+  let nearestArea = document.createElement("p");
+  nearestArea.setAttribute("class", "firstHeading");
+  nearestArea.innerHTML = `<strong>Nearest Area:</strong>${data.nearest_area[0].areaName[0].value}`;
+  results.append(nearestArea);
 }
 
 function weatherForecast(data) {
@@ -79,9 +90,9 @@ function weatherForecast(data) {
     "Min Temp": `${data.weather[2].mintempF}`,
   };
 
-  document.querySelector("#article1").innerHTML = "<h2>Today</h2>";
-  document.querySelector("#article2").innerHTML = "<h2>Tomorrow</h2>";
-  document.querySelector("#article3").innerHTML = "<h2>Day After Tomorrow</h2>";
+  document.querySelector("#article1").innerHTML = "<h3>Today</h3>";
+  document.querySelector("#article2").innerHTML = "<h3>Tomorrow</h3>";
+  document.querySelector("#article3").innerHTML = "<h3>Day After Tomorrow</h3>";
 
   for (const property in todaysWeather) {
     article1.append(
@@ -109,11 +120,11 @@ function weatherForecast(data) {
 function previousSearches(data) {
   let listItem = document.createElement("li");
   let anchorTag = document.createElement("a");
-  let inputLocation = data.nearest_area[0].areaName[0].value;
+  //   let inputLocation = data.nearest_area[0].areaName[0].value;
   let currentTemperatureF = data.current_condition[0].FeelsLikeF;
 
   anchorTag.href = "";
-  anchorTag.textContent = `${inputLocation}`;
+  anchorTag.textContent = `${locationSearch.value}`;
   listItem.append(anchorTag);
   `${sideBarList.append(listItem)} ${sideBarList.append(
     currentTemperatureF
@@ -124,4 +135,8 @@ function previousSearches(data) {
     currentWeather(data);
     weatherForecast(data);
   });
+}
+
+function weatherConditions(data) {
+    
 }
