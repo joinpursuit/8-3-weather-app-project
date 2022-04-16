@@ -1,0 +1,93 @@
+body {
+  display: grid;
+  max-width: 1200px;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: 0 auto 0;
+  background: url('https://img3.wallspic.com/previews/0/1/0/7/4/147010/147010-aesthetics-pastel-pink-cumulus-cloud-x750.jpg');
+  /* background: linear-gradient(-90deg, #f7aef8, #ffc8dd, #fface4,#e5c2ff ); */
+  min-width: auto;
+ background-attachment: fixed;
+  color: white;
+}
+/* #e5c2ff */
+header {
+  grid-column-start: span 3;
+  text-align: center;
+  border: 4px solid #ff796e;
+  background-color: #ff5d8f;
+  background: url('https://64.media.tumblr.com/53c150a227ddcde4594fe65c54c009d7/fd75870c69147eae-67/s500x750/c07ce984bce9fec7428fe70ad9f589762a5eeda1.gifv');
+  color: white;
+  padding-bottom: 30px;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header form {
+  font-size: 20px;
+  font-weight: bold;
+}
+main {
+  text-align: center;
+}
+
+article.current-weather {
+  background-color: #ff97b7;
+  border: 4px solid #ffc6ff;
+}
+
+aside.weather {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1em;
+  border: 4px solid #ffc6ff;
+}
+
+article.tomorrow-weather {
+  background-color: #f7a5c5;
+}
+
+article.today {
+  background-color: #ffbdde;
+}
+
+article.day-after-tomorrow {
+  background-color: #f7b3cc;
+}
+
+aside.sidebar {
+  background-color: #ffa6c1;
+  border: 4px solid #ffc6ff;
+  padding: 10%;
+}
+
+aside.widget {
+  background-color: #ff97b7;
+  border: 4px solid #ffc6ff;
+  max-height: 100px;
+  padding: 10%;
+}
+
+
+/* iphone 12 pro */
+@media (max-width: 844px) {
+  body {
+    max-height: 1300px;
+    font-size: larger;
+    background-attachment: fixed;
+    grid-template-columns: 1fr;
+  }
+  main {
+    grid-column: 1/4;
+  }
+  img {
+    height: auto;
+    width: auto;
+  }
+  aside.widget {
+    max-height: 180px;
+    padding: 2%;
+  }
+}
+
+
+
