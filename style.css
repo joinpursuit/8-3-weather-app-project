@@ -10,6 +10,10 @@ header {
     grid-gap: 10px;
     font-weight: bolder;
     grid-column: 1/4;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5StLWFLAw9qAo7OkNORdcOkiibv9YOB9nVw&usqp=CAU');
+    
+    background-size: contain; */
     
 }
 body{
@@ -21,40 +25,44 @@ body{
 	background-attachment: fixed;
     background-size:cover;
     padding-top: 10px;
+    font-family: sans-serif;
     
 }
 main {
-    display: grid;
-    
+    grid-template-columns: 1fr 2fr 1fr;
+   
     padding: 10px;
 }
 
 .current-weather{
-    background-color: rgb(239, 237, 237);
+    /* background-color: rgb(239, 237, 237); */
     border: 2px solid lightblue;
     text-align: center;
-    
 }
 
 
 #temp-conversion {
-    
     border: 2px solid lightskyblue;
     width: min-content;
-    /* background-color: rgb(204, 244, 244); */
+    background-color: rgb(204, 244, 244);
     text-align: center;
     height: min-content;
-
     padding: 20px;
     
 }
 .history{
     color: black;
+   text-align: left;
 }
 
 .forecasts {
-    background-color: rgb(239, 237, 237);
-    border: 2px solid teal;
+    /* background-color: rgb(239, 237, 237); */
+    border: 2px solid lightblue;
     text-align: center;
     padding: 10px;
+}
+
+.previous img{
+    height: 50px;
+    width: 50px;
 }
