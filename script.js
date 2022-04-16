@@ -26,6 +26,7 @@ function getlocation(input) {
       currentWeather(data);
       weatherForecast(data);
       previousSearches(data);
+      weatherConditions(data);
       locationSearch.value = "";
     })
     .catch((error) => {
@@ -41,9 +42,13 @@ function currentWeather(data) {
 
   let areaName = document.createElement("h2");
   areaName.setAttribute("class", "firstHeading");
-  //   areaName.innerHTML = `<strong>${data.nearest_area[0].areaName[0].value}</strong>`;
   areaName.innerHTML = `<strong>${locationSearch.value}</strong>`;
   results.append(areaName);
+
+  //   let headingName = document.createElement("h2");
+  //   headingName.setAttribute("class", "firstHeading");
+  //   headingName.innerHTML = `<strong>${data.nearest_area[0].areaName[0].value}</strong>`;
+  //   results.append(headingName);
 
   let regionName = document.createElement("p");
   regionName.setAttribute("class", "firstHeading");
@@ -134,9 +139,49 @@ function previousSearches(data) {
     event.preventDefault();
     currentWeather(data);
     weatherForecast(data);
+    weatherConditions(data);
   });
 }
 
 function weatherConditions(data) {
-    
+  document
+    .querySelectorAll(".secondHeading")
+    .forEach((item) => (item.textContent = ""));
+
+   let iconElement = document.getElementById("weatherIcon");
+
+  let chanceOfSunshine = data.weather[0].hourly[0].chanceofsunshine;
+  let chanceOfSunshineParagraph = document.createElement("p");
+
+  chanceOfSunshineParagraph.setAttribute("class", "secondHeading");
+  chanceOfSunshineParagraph.innerHTML = `<strong>Chance of Sunshine:</strong>${chanceOfSunshine}`;
+  results.append(chanceOfSunshineParagraph);
+
+  let chanceOfRain = data.weather[0].hourly[0].chanceofrain;
+  let chanceOfRainParagraph = document.createElement("p");
+
+  chanceOfRainParagraph.setAttribute("class", "secondHeading");
+  chanceOfRainParagraph.innerHTML = `<strong>Chance of Rain:</strong>${chanceOfRain}`;
+  results.append(chanceOfRainParagraph);
+
+  let chanceOfSnow = data.weather[0].hourly[0].chanceofsnow;
+  let chanceOfSnowParagraph = document.createElement("p");
+
+  chanceOfSnowParagraph.setAttribute("class", "secondHeading");
+  chanceOfSnowParagraph.innerHTML = `<strong>Chance of Snow:</strong>${chanceOfSnow}`;
+  results.append(chanceOfSnowParagraph);
+
+  let icon = document.createElement("img");
+  icon.id = "weatherIcon";
+  if (chanceOfSunshine > 50) {
+    icon.setAttribute("alt", "sun");
+    icon.src = "./assets/icons8-summer.gif";
+  } else if (chanceOfRain > 50) {
+    icon.setAttribute("alt", "rain");
+    icon.src = "./assets/icons8-torrential-rain.gif";
+  } else if (chanceOfSnow > 50) {
+    icon.setAttribute("alt", "snow");
+    icon.src = "./assets/icons8-light-snow.gif";
+  }
+  results.prepend(icon);
 }
