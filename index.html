@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main2.js"></script>
+    <title>The weather app</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather App</h1>
+      <form>
+        <label>
+          Pick a Location
+          <input type="text" id="location" name="location" />
+          <input type="submit" value="Get Weather" />
+        </label>
+      </form>
+    </header>
+    <aside class="widget">
+      <form>
+        <label for="convert-temp">Convert the temperature: </label>
+        <input type="number" name="temp-to-convert" id="temp-to-convert" />
+        <br />
+        <label for="change-c">To Celcius</label>
+        <input type="radio" name="convert-temp" id="to-c" value="c" />
+        <label for="fahrenheit">To Fahrenheit</label>
+        <input
+          type="radio"
+          name="convert-temp"
+          id="to-f"
+          name="convert-temp"
+          value="f"
+        />
+        <input type="submit" />
+      </form>
+      <h4>0.00</h4>
+    </aside>
+    <main>
+      <article class="current-weather">
+        <p class="text">Choose a location to view the weather</p>
+        <img />
+        <h2></h2>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </article>
+      <aside class="weather">
+        <article class="today">
+          <strong>Today</strong>
+          <p></p>
+          <p></p>
+          <p></p>
+        </article>
+        <article class="tomorrow-weather">
+          <strong>Tomorrow</strong>
+          <p></p>
+          <p></p>
+          <p></p>
+        </article>
+        <article class="day-after-tomorrow">
+          <strong>Day After Tomorrow </strong>
+          <p></p>
+          <p></p>
+          <p></p>
+        </article>
+      </aside>
+    </main>
+    <aside class="sidebar">
+      <section>
+        <h4>Previous Searches</h4>
+        <ul>
+          <p>No previous searches</p>
+        </ul>
+      </section>
+    </aside>
+  </body>
+</html>
