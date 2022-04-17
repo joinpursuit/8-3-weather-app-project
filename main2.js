@@ -26,7 +26,7 @@ let submitTemp = document.querySelector('aside.widget form')
 
 let freh = document.getElementById('to-f')
 
-//this is convert temp to celcius to Fahrenheit
+//this is convert temp to celcius to Fahrenheit widget
 submitTemp.addEventListener('submit', (event) => {
   event.preventDefault()
 
@@ -44,7 +44,7 @@ submitTemp.addEventListener('submit', (event) => {
   submitTemp.reset()
 }) 
   /**
-   * @description  function Weather is getting weather data from the api for current weather, three day forcast, and weather icons.
+   * @description  function Weather is helper funciton of getting weather data from the api for current weather, three day forcast, and weather icons.
    * @param {object} - object destructing from api information
    * @param {string} place - string of user input information
    *
@@ -99,7 +99,7 @@ ${weather[0].hourly[0].chanceofsnow}`
   }
 
 /**
- * @description - higher order function helper function of getting the user search history on the sidebar as list.
+ * @description - SearchPervious is higher order helper function of getting the user search history on the sidebar as list to go back just by clicking the link without typing in the search bar again.
  * @param {object}  - object destructing from api information.
  * @param {string} place - string of user input information.
  */
@@ -129,7 +129,7 @@ const searchPrevious = ({ current_condition }, place) => {
   })
 }
 
-//search bar for user to input location
+//search bar for user to input location and to fetch api information 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
 
@@ -139,6 +139,7 @@ form.addEventListener('submit', (event) => {
 
   noPreviousSearch.remove()
 
+  //delete default info
   if (text.value === '') {
     window.reload()
   }
