@@ -1,0 +1,55 @@
+/*media query*/
+@media only screen and (max-width: 500px) {
+    body{
+        grid-template-rows: 250px 200px 1fr 1fr 1fr ;
+        grid-template-columns: 1fr;
+    }
+
+    header{
+        height: 200px;
+        grid-column:1/2;
+    }
+
+    header h1{
+        margin-bottom: 10px;
+    }
+
+    header span,
+    header input{
+        display: inline-block;
+        width: 60%;
+        margin: 10px;
+    }
+
+    aside#converter{
+        margin-top: 10px;
+        width: 80%;
+        height: 300px;
+    }
+
+    aside#converter form input{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    main{
+        grid-column: 1/2;
+        gap: 20px;
+    }
+    
+    main article#weatherReport{
+        margin-top: 10px;
+    }
+    
+    main article#weatherReport p#placeholder {
+        margin: 0 auto;
+        margin-top: 10px;
+        width: 80%;
+        height: 50px;
+    }
+    
+    #searchHistory{
+        grid-column: 1/2;
+        margin-top: 10px;
+    }
+} 

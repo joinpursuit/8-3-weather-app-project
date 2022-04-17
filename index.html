@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./mobile-style.css" />
     <script defer src="./script.js"></script>
     <title>Weather App</title>
 </head>
@@ -23,21 +24,26 @@
     </header>
     <aside id="converter" hidden>
         <form>
-            <label>Convert the temperature:
-                <input type="number" id="temp-to-convert">
-            </label>
-            <br />
-            <label>
-                To Celsius
-                <input type="radio" id="to-c" name="convert-temp" value="c" class="convert-temp">
-            </label>
-            <br />
-            <label>
-                To Fahrenheit
-                <input type="radio" id="to-f" name="convert-temp" value="f" class="convert-temp">
-            </label>
-            <br />
-            <input type="submit" value="Submit" />
+            <section>
+                <label>Convert the temperature:
+                    <input type="number" id="temp-to-convert" class="input" required>
+                </label>
+            </section>
+            <section>
+                <label>
+                    To Celsius
+                    <input type="radio" id="to-c" name="convert-temp" value="c" class="convert-temp input">
+                </label>
+            </section>
+            <section>
+                <label>
+                    To Fahrenheit
+                    <input type="radio" id="to-f" name="convert-temp" value="f" class="convert-temp input">
+                </label>
+            </section>
+            <section>
+                <input type="submit" value="Submit" class="input" />
+            </section>
             <h4 id="display-converted-temp"></h4>
         </form>
     </aside>

@@ -4,6 +4,7 @@ const tempConverter = document.querySelector("#converter");
 const weatherReport = document.querySelector("#weatherReport");
 const weatherForecasts = document.querySelectorAll(".forecast");
 const searchHistory = document.querySelector("#searchHistory");
+const background_img = document.querySelector("html");
 
 weatherSearchForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -29,7 +30,8 @@ weatherSearchForm.addEventListener("submit", (event) => {
         searchHistory,
         weatherReport,
         weatherForecasts,
-        weatherData
+        weatherData,
+        search_url
       );
     })
     .catch((error) => {
@@ -86,21 +88,21 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
   weatherReport.append(location);
 
   let area = document.createElement("p");
-  location === weatherData.area
-    ? (area.textContent = `Area: ${weatherData.area}`)
-    : (area.textContent = ` Nearest Area: ${weatherData.area}`);
+  inputLocation.toLowerCase() === weatherData.area.toLowerCase()
+    ? (area.innerHTML = `<strong>Area:</strong> ${weatherData.area}`)
+    : (area.innerHTML = `<strong>Nearest Area:</strong> ${weatherData.area}`);
   weatherReport.append(area);
 
   let region = document.createElement("p");
-  region.textContent = `Region: ${weatherData.region}`;
+  region.innerHTML = `<strong>Region:</strong> ${weatherData.region}`;
   weatherReport.append(region);
 
   let country = document.createElement("p");
-  country.textContent = `Country: ${weatherData.country}`;
+  country.innerHTML = `<strong>Country:</strong> ${weatherData.country}`;
   weatherReport.append(country);
 
   let currentFeelsLikeF = document.createElement("p");
-  currentFeelsLikeF.textContent = `Currently: Feels Like ${weatherData.currentFeelsLikeF}°F `;
+  currentFeelsLikeF.innerHTML = `<strong>Currently:</strong> Feels Like ${weatherData.currentFeelsLikeF}°F `;
   weatherReport.append(currentFeelsLikeF);
 
   let chanceOfSunShineAvg =
@@ -117,17 +119,21 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
     }, 0) / weatherData.hourly.length;
 
   let chanceOfSunShine = document.createElement("p");
-  chanceOfSunShine.textContent = `Chance of Sunshine: ${chanceOfSunShineAvg.toFixed(
+  chanceOfSunShine.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceOfSunShineAvg.toFixed(
     2
   )}`;
   weatherReport.append(chanceOfSunShine);
 
   let chanceOfRain = document.createElement("p");
-  chanceOfRain.textContent = `Chance of Rain: ${chanceOfRainAvg.toFixed(2)}`;
+  chanceOfRain.innerHTML = `<strong>Chance of Rain:</strong> ${chanceOfRainAvg.toFixed(
+    2
+  )}`;
   weatherReport.append(chanceOfRain);
 
   let chanceOfSnow = document.createElement("p");
-  chanceOfSnow.textContent = `Chance of Snow: ${chanceOfSnowAvg.toFixed(2)}`;
+  chanceOfSnow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceOfSnowAvg.toFixed(
+    2
+  )}`;
   weatherReport.append(chanceOfSnow);
 
   let highestChanceOfSunshine = weatherData.hourly.reduce((acc, ele) => {
@@ -152,12 +158,19 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
   if (highestChanceOfSunshine > 50) {
     icon.src = "./assets/icons8-summer.gif";
     icon.alt = "sun";
-  } else if (highestChanceOfRain > 50) {
+    background_img.style.backgroundImage = "url('./assets/sunny.jpeg')";
+  }
+  if (highestChanceOfRain > 50) {
     icon.src = "./assets/icons8-torrential-rain.gif";
     icon.alt = "rain";
-  } else if (highestChanceOfSnow > 50) {
+    background_img.style.backgroundImage = "url('./assets/rainy.png')";
+  }
+  if (highestChanceOfSnow > 50) {
     icon.alt = "snow";
     icon.src = "./assets/icons8-light-snow.gif";
+    background_img.style.backgroundImage = "url('./assets/snowy.jpg')";
+  } else {
+    background_img.backgroundImage = 'url("./assets/mountain.jpg")';
   }
 
   weatherReport.prepend(icon);
@@ -169,11 +182,11 @@ function generateWeatherForecast(weatherForecasts, weatherData) {
     let date = document.createElement("p");
     date.textContent = weatherData.weatherOfThreeDays[i].date;
     let avgTempF = document.createElement("p");
-    avgTempF.textContent = `Average Temperature: ${weatherData.weatherOfThreeDays[i].avgTempF}°F`;
+    avgTempF.innerHTML = `<strong>Average Temperature:</strong> ${weatherData.weatherOfThreeDays[i].avgTempF}°F`;
     let maxTempF = document.createElement("p");
-    maxTempF.textContent = `Max Temperature: ${weatherData.weatherOfThreeDays[i].maxTempF}°F`;
+    maxTempF.innerHTML = `<strong>Max Temperature:</strong> ${weatherData.weatherOfThreeDays[i].maxTempF}°F`;
     let minTempF = document.createElement("p");
-    minTempF.textContent = `Min Temperature: ${weatherData.weatherOfThreeDays[i].minTempF}°F`;
+    minTempF.innerHTML = `<strong>Min Temperature:</strong> ${weatherData.weatherOfThreeDays[i].minTempF}°F`;
     weatherForecasts[i].append(date, avgTempF, maxTempF, minTempF);
     weatherForecasts[i].hidden = false;
   }
@@ -184,7 +197,8 @@ function addSearchHistory(
   searchHistory,
   weatherReport,
   weatherForecasts,
-  weatherData
+  weatherData,
+  search_url
 ) {
   let currentFeelsLikeF = weatherData.currentFeelsLikeF;
 
@@ -193,7 +207,7 @@ function addSearchHistory(
   a.textContent = location;
   a.href = `${base_url}${location}?format=j1`;
 
-  li.textContent = ` ${currentFeelsLikeF}°F`;
+  li.textContent = ` - ${currentFeelsLikeF}°F `;
   li.prepend(a);
 
   let seachHistoryList = searchHistory.querySelector("ul");
@@ -203,9 +217,27 @@ function addSearchHistory(
 
   a.addEventListener("click", (event) => {
     event.preventDefault();
-    generateWeatherReport(location, weatherReport, weatherData);
+    fetch(search_url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        let weatherData = parseJsonData(json);
+        generateWeatherReport(location, weatherReport, weatherData);
 
-    generateWeatherForecast(weatherForecasts, weatherData);
+        generateWeatherForecast(weatherForecasts, weatherData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
+  let removeBtn = document.createElement("button");
+  removeBtn.innerText = "Remove";
+  li.append(removeBtn);
+
+  removeBtn.addEventListener("click", (event) => {
+    li.remove();
   });
 }
 
@@ -224,10 +256,13 @@ tempConverter.addEventListener("submit", (event) => {
   }
 
   if (conversionType === "c") {
-    displayConvertedTemp.textContent = (((temperature - 32) * 5) / 9).toFixed(
-      2
-    );
+    displayConvertedTemp.textContent = `${(
+      ((temperature - 32) * 5) /
+      9
+    ).toFixed(2)} °C`;
   } else {
-    displayConvertedTemp.textContent = ((temperature * 9) / 5 + 32).toFixed(2);
+    displayConvertedTemp.textContent = `${((temperature * 9) / 5 + 32).toFixed(
+      2
+    )} °F`;
   }
 });
