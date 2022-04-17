@@ -8,6 +8,7 @@ const weatherAsideElement = document.getElementById("weatherForecast");
 const weatherAsideArticles = document.querySelectorAll(
   "#weatherForecast article"
 );
+const img = document.querySelector("img");
 const listOfSearches = document.getElementById("locationWeather");
 
 form.addEventListener("submit", (event) => {
@@ -37,7 +38,7 @@ form.addEventListener("submit", (event) => {
 });
 
 //takes in input value and area
-function messageHandling(inputValue, area) {
+function errorHandling(inputValue, area) {
   if (inputValue != area) {
     return false;
   }
@@ -48,6 +49,7 @@ function paragraphBuilder(object, heading) {
   const newParagraph = document.createElement("p");
   const nearestArea = object.nearest_area[0];
   const currentWeather = object.current_condition[0];
+  const weatherDetails = object.weather[0].hourly[0];
   if (heading === "Area") {
     const city = nearestArea.areaName[0].value;
     newParagraph.textContent = `${heading}: ${city}`;
@@ -59,10 +61,39 @@ function paragraphBuilder(object, heading) {
     newParagraph.textContent = `${heading}: ${city}`;
   } else if (heading === "Currently") {
     newParagraph.textContent = `Currently: Feels like ${currentWeather.FeelsLikeF}°F`;
+  } else if (heading === "Chance of Sun") {
+    newParagraph.textContent = `Chance of Sunshine: ${weatherDetails.chanceofsunshine}%`;
+  } else if (heading === "Chance of Rain") {
+    newParagraph.textContent = `Chance of Rain: ${weatherDetails.chanceofrain}%`;
+  } else {
+    newParagraph.textContent = `Chance of Snow: ${weatherDetails.chanceofsnow}%`;
   }
   newParagraph.style.fontWeight = "bold";
   newParagraph.style.fontSize = "large";
   return newParagraph;
+}
+
+function createWeatherImage(object) {
+  const weatherDetails = object.weather[0].hourly[0];
+  const sunshine = weatherDetails.chanceofsunshine;
+  const rain = weatherDetails.chanceofrain;
+  const snow = weatherDetails.chanceofsnow;
+  if (sunshine > 50) {
+    const image = document.createElement("img");
+    image.setAttribute("src", "./assets/icons8-summer.gif");
+    image.setAttribute("alt", "sun");
+    return image;
+  } else if (rain > 50) {
+    const image = document.createElement("img");
+    image.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+    image.setAttribute("alt", "rain");
+    return image;
+  } else if (snow > 50) {
+    const image = document.createElement("img");
+    image.setAttribute("src", "./assets/icons8-light-snow.gif");
+    image.setAttribute("alt", "snow");
+    return image;
+  }
 }
 
 //Takes in object and string to create weather location block in Main
@@ -78,22 +109,32 @@ function createWeatherBlock(object, titleOfSection) {
   const nearestArea = object.nearest_area[0];
   const areaName = nearestArea.areaName[0].value; //ex: Melbourne, retrieved from API
 
-  //use messageHandling to create Nearest Area heading if the inputted area is not retrieved from API
+  //use errorHandling to create Nearest Area heading if the inputted area is not retrieved from API
   areaHeading = paragraphBuilder(object, "Area");
-  areaHeading.textContent = messageHandling(heading.innerHTML, areaName)
+  areaHeading.textContent = errorHandling(heading.innerHTML, areaName)
     ? `Area: ${areaName}`
     : `Nearest Area: ${areaName}`;
 
   const regionHeading = paragraphBuilder(object, "Region");
   const countryHeading = paragraphBuilder(object, "Country");
   const currentWeatherInF = paragraphBuilder(object, "Currently");
+  const chanceOfSun = paragraphBuilder(object, "Chance of Sun");
+  const chanceOfRain = paragraphBuilder(object, "Chance of Rain");
+  const chanceOfSnow = paragraphBuilder(object, "Chance of Snow");
 
+  const imageGif = createWeatherImage(object);
+  if (imageGif) {
+    newSection.append(imageGif);
+  }
   newSection.append(
     heading,
     areaHeading,
     regionHeading,
     countryHeading,
-    currentWeatherInF
+    currentWeatherInF,
+    chanceOfSun,
+    chanceOfRain,
+    chanceOfSnow
   );
   //TODO: Move to CSS
   newSection.classList.add("fadein");
