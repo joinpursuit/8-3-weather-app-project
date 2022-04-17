@@ -6,6 +6,7 @@ const weatherForecasts = document.querySelectorAll(".forecast");
 const searchHistory = document.querySelector("#searchHistory");
 const background_img = document.querySelector("html");
 
+//after user input location and submit, webpage will display weather data of given location
 weatherSearchForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -39,6 +40,11 @@ weatherSearchForm.addEventListener("submit", (event) => {
     });
 });
 
+/**
+ * Parse json object into weatherData with the data needed
+ * @param {Object} json - A json object that contains all the info of user input location
+ * @returns {Object} weatherData - An object contains all the needed weather data
+ */
 function parseJsonData(json) {
   let area = json.nearest_area[0].areaName[0].value;
   let region = json.nearest_area[0].region[0].value;
@@ -80,6 +86,12 @@ function parseJsonData(json) {
   return weatherData;
 }
 
+/**
+ * display the input location's weather information on the webpage
+ * @param {string} inputLocation -The user input location
+ * @param {DOM object} weatherReport -the place in the webpage where display our weather data
+ * @param {Object} weatherData - the weather data of given location
+ */
 function generateWeatherReport(inputLocation, weatherReport, weatherData) {
   weatherReport.innerHTML = "";
 
@@ -176,6 +188,11 @@ function generateWeatherReport(inputLocation, weatherReport, weatherData) {
   weatherReport.prepend(icon);
 }
 
+/**
+ * Display 3 days weather forecasts on the webpage
+ * @param {DOM object} weatherForecasts -the place in the webpage where display our 3 days weather forecasts
+ * @param {object} weatherData - the weather data of given location
+ */
 function generateWeatherForecast(weatherForecasts, weatherData) {
   for (let i = 0; i < weatherForecasts.length; i++) {
     weatherForecasts[i].innerHTML = "";
@@ -192,6 +209,17 @@ function generateWeatherForecast(weatherForecasts, weatherData) {
   }
 }
 
+/**
+ * After user search a location, add that location into the search history, if the user click on the search
+ * history link, display the informations of that location on the webpage again.
+ *
+ * @param {string} location -the user input location
+ * @param {DOM object} searchHistory - place to store the search history
+ * @param {DOM object} weatherReport -the place in the webpage where display our weather data
+ * @param {DOM object} weatherForecasts -the place in the webpage where display our 3 days weather forecasts
+ * @param {object} weatherData -the weather data of given location
+ * @param {string} search_url -the url fetch for weather informations
+ */
 function addSearchHistory(
   location,
   searchHistory,
@@ -241,6 +269,7 @@ function addSearchHistory(
   });
 }
 
+//allows user to convert temp from F to C, or C to F
 tempConverter.addEventListener("submit", (event) => {
   event.preventDefault();
   let temperature = Number(document.querySelector("#temp-to-convert").value);
