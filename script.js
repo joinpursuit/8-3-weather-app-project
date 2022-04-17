@@ -29,6 +29,7 @@ form.addEventListener("submit", (event) => {
     .then((json) => {
       mainArticleParagraph.remove();
       mainArticle.append(createWeatherBlock(json, location));
+      formatArticles(json);
     })
     .catch((error) => {});
   document.getElementById("location").value = ""; //reset input field text value
@@ -82,4 +83,59 @@ function createWeatherBlock(object, titleOfSection) {
   newSection.classList.add("fadein");
 
   return newSection;
+}
+
+//Takes in json object to create 3 weather blocks for forecast for the next three days
+function createForecastBlock(object, num) {
+  const newDiv = document.createElement("div");
+  const weather = object.weather; //weather array detailing weather forecast for next three days
+  const maxTempInF = weather[num].maxtempF;
+  const minTempInF = weather[num].mintempF;
+  const avgTempInF = weather[num].avgtempF;
+
+  if (num === 0) {
+    const todayHeading = document.createElement("h2");
+    todayHeading.innerHTML = "Today";
+    newDiv.append(todayHeading);
+  } else if (num === 1) {
+    const tomorrowHeading = document.createElement("h2");
+    tomorrowHeading.innerHTML = "Tomorrow";
+    newDiv.append(tomorrowHeading);
+  } else {
+    const twoTomorrowHeading = document.createElement("h2");
+    twoTomorrowHeading.innerHTML = "Day After Tomorrow";
+    newDiv.append(twoTomorrowHeading);
+  }
+  //TODO: Make function to build h3 and paragraph elements
+  const avgTempHeading = document.createElement("h3");
+  avgTempHeading.innerHTML = "Average Temperature: ";
+  const avgTempText = document.createElement("p");
+  avgTempText.innerHTML = `${avgTempInF}°F`;
+  newDiv.append(avgTempHeading);
+  newDiv.append(avgTempText);
+
+  const maxTempHeading = document.createElement("h3");
+  maxTempHeading.innerHTML = "Max Temperature: ";
+  const maxTempText = document.createElement("p");
+  maxTempText.innerHTML = `${maxTempInF}°F`;
+  newDiv.append(maxTempHeading);
+  newDiv.append(maxTempText);
+
+  const minTempHeading = document.createElement("h3");
+  minTempHeading.innerHTML = "Min Temperature: ";
+  const minTempText = document.createElement("p");
+  minTempText.innerHTML = `${minTempInF}°F`;
+  newDiv.append(minTempHeading);
+  newDiv.append(minTempText);
+
+  return newDiv;
+}
+
+function formatArticles(object) {
+  weatherAsideElement.style.visibility = "visible";
+  let day = 0;
+  weatherAsideArticles.forEach((article) => {
+    article.append(createForecastBlock(object, day));
+    day++;
+  });
 }
