@@ -36,6 +36,14 @@ form.addEventListener("submit", (event) => {
   document.getElementById("location").value = ""; //reset input field text value
 });
 
+//takes in input value and area
+function messageHandling(inputValue, area) {
+  if (inputValue != area) {
+    return false;
+  }
+  return true;
+}
+
 function paragraphBuilder(object, heading) {
   const newParagraph = document.createElement("p");
   const nearestArea = object.nearest_area[0];
@@ -67,8 +75,15 @@ function createWeatherBlock(object, titleOfSection) {
   heading.innerHTML = titleOfSection;
   heading.style.color = "#54416d";
 
-  //use errorHandling to create Nearest Area heading if the inputted area is not retrieved from API
-  const areaHeading = paragraphBuilder(object, "Area");
+  const nearestArea = object.nearest_area[0];
+  const areaName = nearestArea.areaName[0].value; //ex: Melbourne, retrieved from API
+
+  //use messageHandling to create Nearest Area heading if the inputted area is not retrieved from API
+  areaHeading = paragraphBuilder(object, "Area");
+  areaHeading.textContent = messageHandling(heading.innerHTML, areaName)
+    ? `Area: ${areaName}`
+    : `Nearest Area: ${areaName}`;
+
   const regionHeading = paragraphBuilder(object, "Region");
   const countryHeading = paragraphBuilder(object, "Country");
   const currentWeatherInF = paragraphBuilder(object, "Currently");
@@ -80,6 +95,8 @@ function createWeatherBlock(object, titleOfSection) {
     countryHeading,
     currentWeatherInF
   );
+  //TODO: Move to CSS
+  newSection.classList.add("fadein");
 
   return newSection;
 }
