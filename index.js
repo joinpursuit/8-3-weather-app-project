@@ -8,7 +8,6 @@ form.addEventListener("submit", (event) => {
   fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
-      // write data from api to local variables for current conditions
       const current = document.querySelector(".current");
       const areaName = data.nearest_area[0].areaName[0].value;
       const locationRegion = data.nearest_area[0].region[0].value;
@@ -20,12 +19,10 @@ form.addEventListener("submit", (event) => {
       const chanceOfRain = Number(data.weather[0].hourly[0].chanceofrain);
       const chanceOfSnow = Number(data.weather[0].hourly[0].chanceofsnow);
 
-      // assign area name to location name if blank
       if (!locationName) {
         locationName = areaName;
       }
 
-      // update icon
       let image;
       if (chanceOfSunshine > 50) {
         image = `<img class="icon" alt="sun" src="./assets/icons8-summer.gif">\n`;
