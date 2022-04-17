@@ -30,6 +30,7 @@ form.addEventListener("submit", (event) => {
       mainArticleParagraph.remove();
       mainArticle.append(createWeatherBlock(json, location));
       formatArticles(json);
+      addPreviousSearches(json, noSearchDefaultText, location);
     })
     .catch((error) => {});
   document.getElementById("location").value = ""; //reset input field text value
@@ -66,8 +67,8 @@ function createWeatherBlock(object, titleOfSection) {
   heading.innerHTML = titleOfSection;
   heading.style.color = "#54416d";
 
-  areaHeading = paragraphBuilder(object, "Area");
-
+  //use errorHandling to create Nearest Area heading if the inputted area is not retrieved from API
+  const areaHeading = paragraphBuilder(object, "Area");
   const regionHeading = paragraphBuilder(object, "Region");
   const countryHeading = paragraphBuilder(object, "Country");
   const currentWeatherInF = paragraphBuilder(object, "Currently");
@@ -79,8 +80,6 @@ function createWeatherBlock(object, titleOfSection) {
     countryHeading,
     currentWeatherInF
   );
-  //TODO: Move to CSS
-  newSection.classList.add("fadein");
 
   return newSection;
 }
@@ -137,5 +136,38 @@ function formatArticles(object) {
   weatherAsideArticles.forEach((article) => {
     article.append(createForecastBlock(object, day));
     day++;
+  });
+}
+
+function addPreviousSearches(object, paragraph, locationName) {
+  paragraph.remove(); //remove text that states "No preivous searches"
+  const newListItem = document.createElement("li");
+  const previousSearch = document.createElement("a");
+  const nearestArea = object.nearest_area[0];
+  const areaName = nearestArea.areaName[0].value;
+  const currentWeather = ` - ${object.current_condition[0].FeelsLikeF}°F`;
+  const searchTitle = document.createTextNode(areaName);
+  previousSearch.append(searchTitle);
+  previousSearch.setAttribute("href", "#");
+  newListItem.append(previousSearch, currentWeather);
+  unorderedList.append(newListItem);
+
+  newListItem.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.querySelectorAll("main article section").forEach((obj) => {
+      obj.remove();
+    });
+    document.querySelectorAll("main #weatherForecast div").forEach((obj) => {
+      obj.remove();
+    });
+
+    fetch(`http://wttr.in/${locationName}?format=j1`)
+      .then((response) => response.json())
+      .then((json) => {
+        mainArticleParagraph.remove();
+        mainArticle.append(createWeatherBlock(json, locationName));
+        formatArticles(json);
+      })
+      .catch((error) => {});
   });
 }
