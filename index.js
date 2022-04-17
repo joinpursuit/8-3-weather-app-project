@@ -11,15 +11,15 @@ const getWeatherForm = document.querySelector("form");
 getWeatherForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  let city = event.target.search.value;
-  city = format(city);
+  let inputtedCity = event.target.search.value;
+  let formattedCity = formatForAPI(inputtedCity);
   // Formats location input to inlcuded in API Calls for unique locations, otherwise uses nearest location if city is an empty string
 
   let url;
-  if (city === "undefined") {
+  if (formattedCity === "undefined") {
     url = `${BASE_URL}/?${queryParam}=${queryParamValue}`;
   } else {
-    url = `${BASE_URL}/${city}?${queryParam}=${queryParamValue}`;
+    url = `${BASE_URL}/${formattedCity}?${queryParam}=${queryParamValue}`;
   }
   // Creates a final URL to fetch with considering whether the user has inputted a value for the location form
 
@@ -30,22 +30,32 @@ getWeatherForm.addEventListener("submit", (event) => {
     })
     .then((response) => {
       console.log(response);
-      return displayAllInfo(response, city);
+      return displayAllInfo(response, formattedCity);
     })
     .catch((error) => {
       console.log(error);
     });
   // Calling Weather API with Fetch
 
-  if (city !== "undefined") {
+  if (formattedCity !== "undefined") {
     event.target.search.value = "";
   }
   // Blanks out search input when location form is submitted
 });
 
+const tempCoverterForm = document.getElementById("temp-convert-form");
+const formInputs = tempCoverterForm.querySelectorAll("input");
+const formButton = formInputs[3];
+
+formButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  console.log("clicked");
+});
+
 // Helper Functions
 
-function format(str) {
+function formatForAPI(str) {
   str = str.split(" ");
   return str
     .map((element) => {
@@ -55,16 +65,18 @@ function format(str) {
 }
 // Formats input location to be used by API call
 
-function handleSearchLocation(response, city) {
+function handleSearchLocation(response, formattedCity) {
   const mainArticle = document.querySelector("main article");
   const currentWeatherHeading = document.createElement("h2");
-  if (city === "undefined") {
-    city = response.nearest_area[0].region[0].value;
+  if (formattedCity === "undefined") {
+    formattedCity = response.nearest_area[0].areaName[0].value;
+    currentWeatherHeading.innerText = `Current Weather in ${formattedCity}`;
+  } else {
+    currentWeatherHeading.innerText = `Current Weather in ${formattedCity.replaceAll(
+      "&",
+      " "
+    )}`;
   }
-  currentWeatherHeading.innerText = `Current Weather in ${city.replaceAll(
-    "&",
-    " "
-  )}`;
   mainArticle.prepend(currentWeatherHeading);
 }
 // Creates main heading for Current Weather section
@@ -179,7 +191,7 @@ function createWeatherIcons(response) {
   }
 }
 
-function createsPreviousSearches(response, city) {
+function createsPreviousSearches(response, formattedCity) {
   let tempUnit = "F";
   let tempUnitKey = `FeelsLike${tempUnit}`;
 
@@ -191,29 +203,39 @@ function createsPreviousSearches(response, city) {
   const previousSearchesList = document.querySelector("aside ul");
   const searchedLocation = document.createElement("li");
 
-  if (city === "undefined") {
-    city = response.nearest_area[0].areaName[0].value;
+  if (formattedCity === "undefined") {
+    formattedCity = response.nearest_area[0].areaName[0].value;
   } else {
-    city = city.replaceAll("&", " ");
+    formattedCity = formattedCity.replaceAll("&", " ");
   }
 
-  searchedLocation.innerHTML = `<a href="">${city} - ${response.current_condition[0][tempUnitKey]}°${tempUnit}</a>`;
+  searchedLocation.innerHTML = `<a href="">${formattedCity} - ${response.current_condition[0][tempUnitKey]}°${tempUnit}</a>`;
 
   searchedLocation.addEventListener("click", (event) => {
     event.preventDefault();
-    handleSearchLocation(response, city);
-    displayThreeDayForecast(response);
     displayCurrentLocWeatherInfo(response);
+    displayThreeDayForecast(response);
+    handleSearchLocation(response, formattedCity);
     createWeatherIcons(response);
   });
   previousSearchesList.append(searchedLocation);
   // Event listener for previously searched locations
 }
 
+function tempConverterCelToFar(celcius) {
+  const farenheit = celcius * (9 / 5) + 32;
+  return farenheit;
+}
+
+function tempConverterFarToCel(farenheit) {
+  const celcius = (farenheit - 32) * (5 / 9);
+  return celcius;
+}
+
 function displayAllInfo(response, city) {
-  createsPreviousSearches(response, city);
   displayCurrentLocWeatherInfo(response);
   displayThreeDayForecast(response);
-  createWeatherIcons(response);
+  createsPreviousSearches(response, city);
   handleSearchLocation(response, city);
+  createWeatherIcons(response);
 }
