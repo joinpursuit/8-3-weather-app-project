@@ -1,20 +1,22 @@
 const base_url = 'https://wttr.in/';
 let weatherSearch = document.querySelector('.get-weather');
 let searchBar = document.querySelector('#input-text');
-let widget = document.querySelector('#temp-conversion');
 let forecasts = document.querySelector('.forecasts');
 let h2 = document.querySelector('h2');
-let sadFace = document.querySelector('.previous img');
+// let widget = document.querySelector('#temp-conversion');
 
+// ^^ I am choosing to keep the temp converter widget visibile with startup page instead of making it hidden
+
+// main function to get weather
 function getWeather(result, userInput) {
+
   // clear away placeholders
   let chooseP = document.getElementById('choose');
   chooseP.textContent = '';
   let historyP = document.getElementById('previous');
   historyP.textContent = '';
-  widget.hidden = false;
   forecasts.hidden = false;
-  sadFace.hidden = true;
+  // widget.hidden = false;
 
   let area = document.querySelector('#Area');
   let region = document.querySelector('#Region');
@@ -89,6 +91,8 @@ function getWeather(result, userInput) {
   dayAFterTom[2].textContent = `Min temperature: ${temps[2].mintempF}\u00B0F`;
 }
 
+// ^^ credit to lawrence for showing me I can use index of my day variables to access a specific p tag
+
 // create and link previous searches
 
 const linkPrevSearches = (result, userInput) => {
@@ -103,7 +107,7 @@ const linkPrevSearches = (result, userInput) => {
 
   li.addEventListener('click', (event) => {
     event.preventDefault();
-    fetch(`https://wttr.in/${userInput}?format=j1`)
+    fetch(`${base_url}${userInput}?format=j1`)
       .then((response) => response.json())
       .then((result) => {
         getWeather(result, userInput);
@@ -123,7 +127,9 @@ weatherSearch.addEventListener('submit', (event) => {
       linkPrevSearches(result, userInput);
       event.target.reset();
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      console.log(e);
+    });
 });
 
 // temp converter widget
@@ -134,9 +140,6 @@ convertForm.addEventListener('submit', (e) => {
   const convertToC = document.getElementById('to-c');
   const convertToF = document.getElementById('to-f');
   const answer = document.querySelector('#temp-conversion h4');
-
-  console.log(inputtedNum);
-  console.log(answer);
 
   if (convertToC.checked) {
     answer.textContent = `Result: ${((inputtedNum - 32) / 1.8).toFixed(

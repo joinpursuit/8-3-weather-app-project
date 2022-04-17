@@ -1,68 +1,61 @@
 header {
-    display: grid;
     /* background-color: lightblue; */
+    /* border: 2px solid lightblue; */
     text-align: center;
-    border: 2px solid lightblue;
     color: black;
-    padding: 40px;
-    width: 60%;
+    /* padding: 10px; */
+    width: 55%;
     margin: 0 auto;
-    grid-gap: 10px;
     font-weight: bolder;
-    grid-column: 1/4;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5StLWFLAw9qAo7OkNORdcOkiibv9YOB9nVw&usqp=CAU');
-    
-    background-size: contain; */
+    font-family: sans-serif;
+    background-image: url('https://media4.giphy.com/media/QRhtqYeEywJI4/giphy.gif?cid=ecf05e47q9p1e0rimv9ji4vkq4shmioi9lf1cb6h83byycsc&rid=giphy.gif&ct=g');
+    background-size: contain;
     
 }
 body{
-    display: grid;
-    grid-template-rows: 2fr;
-    grid-template-columns: 1fr 2fr 1fr;
-    background-color: lightseagreen;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1AYjQbgi0QiAMY27IOT1_B8RPYI7d-tLjxw&usqp=CAU');
 	background-attachment: fixed;
     background-size:cover;
-    padding-top: 10px;
     font-family: sans-serif;
     
 }
-main {
-    grid-template-columns: 1fr 2fr 1fr;
-   
-    padding: 10px;
+.main {
+    display: grid;
+	grid-template-columns: 1fr 2.5fr 1fr;
+	justify-content: center;
 }
 
 .current-weather{
-    /* background-color: rgb(239, 237, 237); */
-    border: 2px solid lightblue;
+    border: 3px solid lightblue;
     text-align: center;
 }
 
 
 #temp-conversion {
-    border: 2px solid lightskyblue;
     width: min-content;
-    background-color: rgb(204, 244, 244);
     text-align: center;
     height: min-content;
-    padding: 20px;
+    padding: 10px;
+    left: 50%;
+	top: 40%;
     
 }
-.history{
+.history h4,p {
     color: black;
-   text-align: left;
+   text-align: center;
+   
 }
 
 .forecasts {
-    /* background-color: rgb(239, 237, 237); */
-    border: 2px solid lightblue;
+    /* display: grid; */
+    /* border: 2px solid lightblue; */
     text-align: center;
     padding: 10px;
+    /* grid-template-columns: repeat(3, 1fr); */
+	/* grid-template-rows: 1fr; */
 }
+.forecasts article{
+    border-radius: 1px;
+	border: 3px solid lightblue;
 
-.previous img{
-    height: 50px;
-    width: 50px;
 }
