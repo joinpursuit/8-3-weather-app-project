@@ -37,7 +37,30 @@ header h3 {
     font-size: 200;
     font-weight: 400;
 }
-
+#getWeather {
+    background-color: #F7E7E2;
+    border-color: white;
+    border-radius: 25px;
+    width: 100px;
+}
+#widgetTitle {
+    font-size: x-large;
+}
+#widget {
+    margin-top: 30px;
+    color: #191970;
+    text-align: center;
+}
+#tempConversion h4 {
+    font-size: x-large;
+}
+#tempConversion #submitTemp {
+    color: #4c2882;
+    background-color: #FEF7E5;
+    border: thin solid #ffa6c9;
+    border-radius: 25px;
+    width: 200px;
+}
 main {
     text-align: center;
 }
@@ -59,11 +82,11 @@ main section {
     border-radius: 25px;
 }
 #firstP {
+    background-image: linear-gradient(#E6EBFD, #F8ECE9); 
     border:1px solid #E5E8F7;
     border-radius: 25px;
     padding-top: 50px;
     padding-bottom: 50px;
-    background-image: linear-gradient(#E6EBFD, #F8ECE9); 
 }
 img {
     border: 1px dotted black;
@@ -79,7 +102,7 @@ img {
 section h4 {
     font-size: x-large;
 }
-a {
+a{
     color: #54416d;
 }
 #weatherForecast {
@@ -95,4 +118,40 @@ a {
     color: #54416d;
     margin-top: 20px;
     text-align: center;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  /* Internet Explorer */
+  @-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  /* Opera < 12.1 */
+  @-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+.fadein {
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+   -ms-animation: fadein 3s; /* Internet Explorer */
+    -o-animation: fadein 3s; /* Opera < 12.1 */
+       animation: fadein 3s;
 }
