@@ -42,57 +42,67 @@ submitTemp.addEventListener('submit', (event) => {
     convertTemp.textContent = `${result.toFixed(2)}°C`
   }
   submitTemp.reset()
-})
+}) /
+  /**
+   * function weather is getting data from the api for current weather, three day forcast, and weather icons.
+   * @param {object} - object destructing from api information
+   * @param {string} place - string of user input information
+   *
+   */
+  function weather({ nearest_area, current_condition, weather }, place) {
+    h2.innerHTML = place
 
-// weather data for current weather, three day weather, and icons
-function weather({ nearest_area, current_condition, weather }, place) {
-  h2.innerHTML = place
+    if (text.value === nearest_area[0].areaName[0].value) {
+      currentWeather[1].innerHTML = `<b>Area:</b> ${nearest_area[0].areaName[0].value}`
+    } else {
+      currentWeather[1].innerHTML = `<b>Nearest Area:</b> ${nearest_area[0].areaName[0].value}`
+    }
 
-  if (text.value === nearest_area[0].areaName[0].value) {
-    currentWeather[1].innerHTML = `<b>Area:</b> ${nearest_area[0].areaName[0].value}`
-  } else {
-    currentWeather[1].innerHTML = `<b>Nearest Area:</b> ${nearest_area[0].areaName[0].value}`
-  }
+    // current weather info
+    currentWeather[2].innerHTML = `<b>Region:</b> ${nearest_area[0].region[0].value}`
+    currentWeather[3].innerHTML = `<b>Country:</b> ${nearest_area[0].country[0].value}`
+    currentWeather[4].innerHTML = `<b>Currently:</b> Feels Like ${current_condition[0].FeelsLikeF}°F`
 
-  currentWeather[2].innerHTML = `<b>Region:</b> ${nearest_area[0].region[0].value}`
-  currentWeather[3].innerHTML = `<b>Country:</b> ${nearest_area[0].country[0].value}`
+    //three day forcast info
+    articleToday[0].innerHTML = `<b>Average Temperature:</b> ${weather[0].avgtempF}°F`
+    articleTomrrow[0].innerHTML = `<b>Average Temperature:</b> ${weather[1].avgtempF}°F`
+    articleDayAfterTom[0].innerHTML = `<b>Average Temperature:</b> ${weather[2].avgtempF}°F`
 
-  currentWeather[4].innerHTML = `<b>Currently:</b> Feels Like ${current_condition[0].FeelsLikeF}°F`
+    articleToday[1].innerHTML = `<b>Max Temperature:</b> ${weather[0].maxtempF}°F`
+    articleTomrrow[1].innerHTML = `<b>Max Temperature:</b> ${weather[1].maxtempF}°F`
+    articleDayAfterTom[1].innerHTML = `<b>Max Temperature:</b> ${weather[2].maxtempF}°F`
 
-  articleToday[0].innerHTML = `<b>Average Temperature:</b> ${weather[0].avgtempF}°F`
-  articleTomrrow[0].innerHTML = `<b>Average Temperature:</b> ${weather[1].avgtempF}°F`
-  articleDayAfterTom[0].innerHTML = `<b>Average Temperature:</b> ${weather[2].avgtempF}°F`
+    articleToday[2].innerHTML = `<b>Min Temperature:</b> ${weather[0].mintempF}°F`
+    articleTomrrow[2].innerHTML = `<b>Min Temperature:</b> ${weather[1].mintempF}°F`
+    articleDayAfterTom[2].innerHTML = `<b>Min Temperature:</b> ${weather[2].mintempF}°F`
 
-  articleToday[1].innerHTML = `<b>Max Temperature:</b> ${weather[0].maxtempF}°F`
-  articleTomrrow[1].innerHTML = `<b>Max Temperature:</b> ${weather[1].maxtempF}°F`
-  articleDayAfterTom[1].innerHTML = `<b>Max Temperature:</b> ${weather[2].maxtempF}°F`
-
-  articleToday[2].innerHTML = `<b>Min Temperature:</b> ${weather[0].mintempF}°F`
-  articleTomrrow[2].innerHTML = `<b>Min Temperature:</b> ${weather[1].mintempF}°F`
-  articleDayAfterTom[2].innerHTML = `<b>Min Temperature:</b> ${weather[2].mintempF}°F`
-
-  let sun = weather[0].hourly[0].chanceofsunshine
-  let rain = weather[0].hourly[0].chanceofrain
-  let snow = weather[0].hourly[0].chanceofsnow
-  currentWeather[5].innerHTML = `<b>Chance of Sunshine:</b>
+    //icons
+    let sun = weather[0].hourly[0].chanceofsunshine
+    let rain = weather[0].hourly[0].chanceofrain
+    let snow = weather[0].hourly[0].chanceofsnow
+    currentWeather[5].innerHTML = `<b>Chance of Sunshine:</b>
 ${weather[0].hourly[0].chanceofsunshine}`
-  currentWeather[6].innerHTML = `<b>Chance of Rain:</b> ${weather[0].hourly[0].chanceofrain} `
-  currentWeather[7].innerHTML = `<b>Chance of Snow:</b>
+    currentWeather[6].innerHTML = `<b>Chance of Rain:</b> ${weather[0].hourly[0].chanceofrain} `
+    currentWeather[7].innerHTML = `<b>Chance of Snow:</b>
 ${weather[0].hourly[0].chanceofsnow}`
 
-  if (sun > 50) {
-    image.setAttribute('src', './assets/icons8-summer.gif')
-    image.setAttribute('alt', 'sun')
-  } else if (rain > 50) {
-    image.setAttribute('src', './assets/icons8-torrential-rain.gif')
-    image.setAttribute('alt', 'rain')
-  } else if (snow > 50) {
-    image.setAttribute('src', './assets/icons8-light-snow.gif')
-    image.setAttribute('alt', 'snow')
+    if (sun > 50) {
+      image.setAttribute('src', './assets/icons8-summer.gif')
+      image.setAttribute('alt', 'sun')
+    } else if (rain > 50) {
+      image.setAttribute('src', './assets/icons8-torrential-rain.gif')
+      image.setAttribute('alt', 'rain')
+    } else if (snow > 50) {
+      image.setAttribute('src', './assets/icons8-light-snow.gif')
+      image.setAttribute('alt', 'snow')
+    }
   }
-}
 
-//list history sidebar
+/**
+ * searchPrevious funciton is getting the user search history on the sidebar as list.
+ * @param {object}  - object destructing from api information.
+ * @param {string} place - string of user input information.
+ */
 const searchPrevious = ({ current_condition }, place) => {
   let li = document.createElement('li')
 
@@ -119,7 +129,7 @@ const searchPrevious = ({ current_condition }, place) => {
   })
 }
 
-//search bar for location text input
+//search bar for user to input location
 form.addEventListener('submit', (event) => {
   event.preventDefault()
 
