@@ -31,10 +31,19 @@ main article {
     text-align: center;  
     margin-bottom: 10px;
 }
+main p, main h1 {
+    color: #003399;
+}
 main section {    
     margin-top: 10px;
     padding-bottom: 30px;
     border-radius: 25px;
+}
+#firstP {
+    border:1px solid #E5E8F7;
+    border-radius: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 .sidebar {
     margin-left: 20px;
