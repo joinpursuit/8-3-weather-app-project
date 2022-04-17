@@ -3,7 +3,8 @@ const BASE_URL = "https://wttr.in";
 
 const queryParam = "format";
 const queryParamValue = "j1";
-// Query Parameters that create JSON Output Formats for Weather API (href = "https://github.com/chubin/wttr.in#different-output-formats")
+// Query Parameters that create JSON Output Formats for Weather API
+// (href = "https://github.com/chubin/wttr.in#different-output-formats")
 
 // Event Listener for Location Submission Form
 const getWeatherForm = document.querySelector("form");
@@ -39,9 +40,11 @@ getWeatherForm.addEventListener("submit", (event) => {
   if (city !== "undefined") {
     event.target.search.value = "";
   }
+  // Blanks out search input when location form is submitted
 });
 
 // Helper Functions
+
 function format(str) {
   str = str.split(" ");
   return str
@@ -50,6 +53,21 @@ function format(str) {
     })
     .join("&");
 }
+// Formats input location to be used by API call
+
+function handleSearchLocation(response, city) {
+  const mainArticle = document.querySelector("main article");
+  const currentWeatherHeading = document.createElement("h2");
+  if (city === "undefined") {
+    city = response.nearest_area[0].region[0].value;
+  }
+  currentWeatherHeading.innerText = `Current Weather in ${city.replaceAll(
+    "&",
+    " "
+  )}`;
+  mainArticle.prepend(currentWeatherHeading);
+}
+// Creates main heading for Current Weather section
 
 function displayCurrentLocWeatherInfo(response) {
   const mainArticle = document.querySelector("main article");
@@ -62,10 +80,6 @@ function displayCurrentLocWeatherInfo(response) {
 
   mainArticle.innerHTML = "";
   // Resets appended information for new location selection
-
-  const currentWeatherHeading = document.createElement("h3");
-  currentWeatherHeading.innerText = "Current Weather";
-  mainArticle.append(currentWeatherHeading);
 
   const weatherIcon = document.createElement("img");
   weatherIcon.setAttribute("style", "display: block;");
@@ -155,16 +169,24 @@ function createWeatherIcons(response) {
 
   if (chanceOfSunshine > 50) {
     img.setAttribute("src", "./assets/icons8-summer.gif");
+    img.setAttribute("alt", "sun");
   } else if (chanceOfRain > 50) {
     img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+    img.setAttribute("alt", "rain");
   } else if (chanceOfSnow > 50) {
     img.setAttribute("src", "./assets/icons8-light-snow.gif");
+    img.setAttribute("alt", "snow");
   }
 }
 
 function createsPreviousSearches(response, city) {
+  let tempUnit = "F";
+  let tempUnitKey = `FeelsLike${tempUnit}`;
+
   const tempPreviousSearchesFiller = document.querySelector("aside section p");
-  tempPreviousSearchesFiller.setAttribute("class", "hidden");
+  if (tempPreviousSearchesFiller) {
+    tempPreviousSearchesFiller.remove();
+  }
 
   const previousSearchesList = document.querySelector("aside ul");
   const searchedLocation = document.createElement("li");
@@ -174,10 +196,18 @@ function createsPreviousSearches(response, city) {
   } else {
     city = city.replaceAll("&", " ");
   }
-  console.log(response.nearest_area[0].areaName[0].value);
-  console.log(city);
-  searchedLocation.innerText = city;
+
+  searchedLocation.innerHTML = `<a href="">${city} - ${response.current_condition[0][tempUnitKey]}°${tempUnit}</a>`;
+
+  searchedLocation.addEventListener("click", (event) => {
+    event.preventDefault();
+    handleSearchLocation(response, city);
+    displayThreeDayForecast(response);
+    displayCurrentLocWeatherInfo(response);
+    createWeatherIcons(response);
+  });
   previousSearchesList.append(searchedLocation);
+  // Event listener for previously searched locations
 }
 
 function displayAllInfo(response, city) {
@@ -185,4 +215,5 @@ function displayAllInfo(response, city) {
   displayCurrentLocWeatherInfo(response);
   displayThreeDayForecast(response);
   createWeatherIcons(response);
+  handleSearchLocation(response, city);
 }
