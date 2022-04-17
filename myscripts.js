@@ -30,7 +30,7 @@ const weather = ({ nearest_area, current_condition, weather }, text) => {
     let [val] = element.areaName;
     let { value } = val;
 
-    if (text === value) {
+    if (text.toLowerCase() === value.toLowerCase()) {
       p1.textContent = `Area: ${value}`;
     } else {
       p1.textContent = `Nearest Area: ${value}`;
@@ -136,13 +136,13 @@ function convertTemp(form) {
       let product = (5 / 9) * (num.value - 32);
       product = product.toFixed(2);
 
-      result.innerHTML = product;
+      result.innerHTML = `${product} °C`;
     } else if (convertF.checked) {
       let product = (9 / 5) * num.value + 32;
 
       product = product.toFixed(2);
 
-      result.innerHTML = product;
+      result.innerHTML = `${product} °F`;
     }
     console.log(num.value);
     num.value = "";
