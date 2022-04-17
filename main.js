@@ -7,9 +7,14 @@ let h2 = document.querySelector('h2');
 
 // ^^ I am choosing to keep the temp converter widget visibile with startup page instead of making it hidden
 
-// main function to get weather
+/**
+ * getWeather()
+ * main function to populate the webpage with current weather data. Populates the 3 day forecast section as well.
+ * @param {*} result - The Object with all weather date from the API.
+ * @param {*} userInput -a string inputted by the user in the input box.
+ * effects- populates various elements in the HTML with weather data
+ */
 function getWeather(result, userInput) {
-
   // clear away placeholders
   let chooseP = document.getElementById('choose');
   chooseP.textContent = '';
@@ -91,9 +96,15 @@ function getWeather(result, userInput) {
   dayAFterTom[2].textContent = `Min temperature: ${temps[2].mintempF}\u00B0F`;
 }
 
-// ^^ credit to lawrence for showing me I can use index of my day variables to access a specific p tag
+// ^^ credit to lawrence for showing me I can use index of my day variables to access a specific p tag. another way i planned  this was to create p tags in JS and populate them with content and append each.
 
-// create and link previous searches
+/**
+ * linkPrevSearches()
+ * create and link previous searches.
+ * @param {*} result -The Object with all weather date from the API
+ * @param {*} userInput - a string inputted by the user in the input box.
+ * populates various elements in the HTML with weather data
+ */
 
 const linkPrevSearches = (result, userInput) => {
   let ul = document.querySelector('ul');
@@ -116,7 +127,9 @@ const linkPrevSearches = (result, userInput) => {
   });
 };
 
-//main event listener**
+/**
+ * main event listener. user Inputs a city name and the page will load with that citys weather
+ */
 weatherSearch.addEventListener('submit', (event) => {
   event.preventDefault();
   const userInput = searchBar.value;
@@ -133,6 +146,7 @@ weatherSearch.addEventListener('submit', (event) => {
 });
 
 // temp converter widget
+
 const convertForm = document.querySelector('#temp-conversion form');
 convertForm.addEventListener('submit', (e) => {
   e.preventDefault();
