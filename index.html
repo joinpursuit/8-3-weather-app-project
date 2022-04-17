@@ -9,43 +9,44 @@
     <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <header class="border">
-        <h1 class="centerText">Weather App</h1>
+    <header>
+        <h1>Weather App</h1>
         <form class="centerElements">
-            <label for="search" class="centerText">Pick a Location</label>
-            <input class="centerText" type="text" id="search" name="search" placeholder="Ex: Los Angeles">
-            <input type="submit" value="Get Weather"/>
+            <label for="search">Pick a Location</label>
+            <input type="text" name="search" id="search" placeholder="Ex: Los Angeles"/>
+            <input type="submit"/>
         </form>
     </header>
-    <aside class="grid-three-columns">
-      <aside class="border centerText">Temp Conversion Widget
+    <div class="grid-three-columns">
+      <aside class="border">
+        <h3>Temp Conversion Widget</h3>
       </aside>
       <main>
-        <form type="request" class="border centerText">
-            <label for="search" >Choose a location to view the weather</label>
-        </form>
+        <p>Choose a location to view the weather</p>
         <section class="grid-two-rows">
-          <article class="border hidden centerText">Current Weather</article>
-          <aside class="grid-three-columns border hidden">
+          <article class="border hidden centerText">
+            <h5>Current Weather</h5>
+          </article>
+          <aside class="grid-three-columns-even border hidden">
             <article class="border">
-              <p><strong>Today</strong></p>
+              <h5>Today</h5>
             </article>
             <article class="border">
-              <p><strong>Tomorrow</strong></p>
+              <h5>Tomorrow</h5>
             </article>
             <article class="border">
-              <p><strong>Day After Tomorrow</strong></p>
+              <h5>Day After Tomorrow</h5>
             </article>
           </aside>
         </section>
       </main>
       <aside class="border">
         <section>
-          <h4 class="centerText">Previous Searches</h4>
-          <p class="centerText">No previous searches</p>
+          <h3>Previous Searches</h3>
+          <p>No previous searches</p>
         </section>
         <ul></ul>
       </aside>
-    </aside>
+    </div>
 </body>
 </html>
