@@ -40,45 +40,44 @@ submitTemp.addEventListener('submit', (event) => {
   } else {
     result = ((number.value - 32) * 5) / 9
     convertTemp.textContent = `${result.toFixed(2)}°C`
-    
   }
   submitTemp.reset()
 })
 
-// weather data for current weather, three day weather, and icons 
+// weather data for current weather, three day weather, and icons
 function weather({ nearest_area, current_condition, weather }, place) {
   h2.innerHTML = place
 
   if (text.value === nearest_area[0].areaName[0].value) {
-    currentWeather[1].textContent = `Area: ${nearest_area[0].areaName[0].value}`
+    currentWeather[1].innerHTML = `<b>Area:</b> ${nearest_area[0].areaName[0].value}`
   } else {
-    currentWeather[1].textContent = `Nearest Area: ${nearest_area[0].areaName[0].value}`
+    currentWeather[1].innerHTML = `<b>Nearest Area:</b> ${nearest_area[0].areaName[0].value}`
   }
 
-  currentWeather[2].textContent = `Region: ${nearest_area[0].region[0].value}`
-  currentWeather[3].textContent = `Country: ${nearest_area[0].country[0].value}`
+  currentWeather[2].innerHTML = `<b>Region:</b> ${nearest_area[0].region[0].value}`
+  currentWeather[3].innerHTML = `<b>Country:</b> ${nearest_area[0].country[0].value}`
 
-  currentWeather[4].textContent = `Currently: Feels Like ${current_condition[0].FeelsLikeF}°F`
+  currentWeather[4].innerHTML = `<b>Currently:</b> Feels Like ${current_condition[0].FeelsLikeF}°F`
 
-  articleToday[0].textContent = `Average Temperature: ${weather[0].avgtempF}°F`
-  articleTomrrow[0].textContent = `Average Temperature: ${weather[1].avgtempF}°F`
-  articleDayAfterTom[0].textContent = `Average Temperature: ${weather[2].avgtempF}°F`
+  articleToday[0].innerHTML = `<b>Average Temperature:</b> ${weather[0].avgtempF}°F`
+  articleTomrrow[0].innerHTML = `<b>Average Temperature:</b> ${weather[1].avgtempF}°F`
+  articleDayAfterTom[0].innerHTML = `<b>Average Temperature:</b> ${weather[2].avgtempF}°F`
 
-  articleToday[1].textContent = `Max Temperature: ${weather[0].maxtempF}°F`
-  articleTomrrow[1].textContent = `Max Temperature: ${weather[1].maxtempF}°F`
-  articleDayAfterTom[1].textContent = `Max Temperature: ${weather[2].maxtempF}°F`
+  articleToday[1].innerHTML = `<b>Max Temperature:</b> ${weather[0].maxtempF}°F`
+  articleTomrrow[1].innerHTML = `<b>Max Temperature:</b> ${weather[1].maxtempF}°F`
+  articleDayAfterTom[1].innerHTML = `<b>Max Temperature:</b> ${weather[2].maxtempF}°F`
 
-  articleToday[2].textContent = `Min Temperature: ${weather[0].mintempF}°F`
-  articleTomrrow[2].textContent = `Min Temperature: ${weather[1].mintempF}°F`
-  articleDayAfterTom[2].textContent = `Min Temperature: ${weather[2].mintempF}°F`
+  articleToday[2].innerHTML = `<b>Min Temperature:</b> ${weather[0].mintempF}°F`
+  articleTomrrow[2].innerHTML = `<b>Min Temperature:</b> ${weather[1].mintempF}°F`
+  articleDayAfterTom[2].innerHTML = `<b>Min Temperature:</b> ${weather[2].mintempF}°F`
 
   let sun = weather[0].hourly[0].chanceofsunshine
   let rain = weather[0].hourly[0].chanceofrain
   let snow = weather[0].hourly[0].chanceofsnow
-  currentWeather[5].textContent = ` Chance of Sunshine:
+  currentWeather[5].innerHTML = `<b>Chance of Sunshine:</b>
 ${weather[0].hourly[0].chanceofsunshine}`
-  currentWeather[6].textContent = `Chance of Rain: ${weather[0].hourly[0].chanceofrain} `
-  currentWeather[7].textContent = `Chance of Snow:
+  currentWeather[6].innerHTML = `<b>Chance of Rain:</b> ${weather[0].hourly[0].chanceofrain} `
+  currentWeather[7].innerHTML = `<b>Chance of Snow:</b>
 ${weather[0].hourly[0].chanceofsnow}`
 
   if (sun > 50) {

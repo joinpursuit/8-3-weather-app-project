@@ -62,8 +62,8 @@ aside.sidebar {
 aside.widget {
   background-color: #ff97b7;
   border: 4px solid #ffc6ff;
-  max-height: 100px;
-  padding: 10%;
+  max-height: 200px;
+  padding: 9%;
 }
 
 /* iphone 12 pro */
@@ -82,7 +82,7 @@ aside.widget {
     width: auto;
   }
   aside.widget {
-    max-height: 180px;
+    max-height: 200px;
     padding: 2%;
   }
 
