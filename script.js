@@ -10,6 +10,7 @@ const sideBarList = document.querySelector(".search-list");
 const temperatureUnitF = "°F";
 const hidden = document.querySelectorAll(".hidden");
 const locationSearch = document.getElementById("location");
+const conversionForm = document.querySelector(".conversion");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -148,7 +149,7 @@ function weatherConditions(data) {
     .querySelectorAll(".secondHeading")
     .forEach((item) => (item.textContent = ""));
 
-   let iconElement = document.getElementById("weatherIcon");
+  let iconElement = document.getElementById("weatherIcon");
 
   let chanceOfSunshine = data.weather[0].hourly[0].chanceofsunshine;
   let chanceOfSunshineParagraph = document.createElement("p");
@@ -185,3 +186,19 @@ function weatherConditions(data) {
   }
   results.prepend(icon);
 }
+
+conversionForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let result = document.querySelector("#result");
+  let convertC = document.getElementById("to-c");
+  let convertF = document.getElementById("to-f");
+  let inputNumber = document.querySelector("#temp-to-convert");
+
+  if (convertC.checked) {
+    let number = ((5 / 9) * (inputNumber.value - 32)).toFixed(2);
+    result.textContent = number;
+  } else if (convertF.checked) {
+    let number = ((9 / 5) * inputNumber.value + 32).toFixed(2);
+    result.textContent = number;
+  }
+});

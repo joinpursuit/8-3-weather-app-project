@@ -19,17 +19,18 @@
     </header>
 
     <main class="grid">
-        <section id="temp-conversion">
-            <form>
+        <aside>
+            <form class="conversion">
                 <label>Convert the temperature</label>
-                <input type="number">
+                <input type="number" id="temp-to-convert">
                 <p>
-                    <label><input type="radio" name="options">To Celsius</label>
-                    <label><input type="radio" name="options">To Fahrenheit</label>
+                    <label><input id="to-c" type="radio" name="options">To Celsius</label>
+                    <label><input id="to-f" type="radio" name="options">To Fahrenheit</label>
                 </p>
                 <input type="submit" value="Convert">
+                <h4 id="result"></h4>
             </form>
-        </section>
+        </aside>
         <section id="choose-location">
             <p class="hidden">Choose a location to view the weather</p>
             <article class="results"></article>
