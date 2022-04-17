@@ -3,10 +3,10 @@ body {
   max-width: 1200px;
   grid-template-columns: 1fr 2fr 1fr;
   margin: 0 auto 0;
-  background: url('https://img3.wallspic.com/previews/0/1/0/7/4/147010/147010-aesthetics-pastel-pink-cumulus-cloud-x750.jpg');
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ddfea465-dc99-445a-9b1a-892e858cc40b/de64v9j-3c629594-b385-4603-b621-b10da28fde5f.png/v1/fill/w_1192,h_670,q_70,strp/anime___sunset_clouds_at_the_galaxy_by_mily14p_de64v9j-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcL2RkZmVhNDY1LWRjOTktNDQ1YS05YjFhLTg5MmU4NThjYzQwYlwvZGU2NHY5ai0zYzYyOTU5NC1iMzg1LTQ2MDMtYjYyMS1iMTBkYTI4ZmRlNWYucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.WEkYD1VXYTJCkbOtCUXXNw0zujvmAcC_TKIJSRbB2w8');
   min-width: auto;
   background-attachment: fixed;
-  background-size: cover;
+  background-size:cover ;
   color: white;
 }
 
@@ -14,7 +14,6 @@ header {
   grid-column-start: span 3;
   text-align: center;
   border: 4px solid #ff796e;
-  background-color: #ff5d8f;
   background: url('https://64.media.tumblr.com/53c150a227ddcde4594fe65c54c009d7/fd75870c69147eae-67/s500x750/c07ce984bce9fec7428fe70ad9f589762a5eeda1.gifv');
   color: white;
   padding-bottom: 30px;
@@ -86,4 +85,6 @@ aside.widget {
     max-height: 180px;
     padding: 2%;
   }
+
+
 }
