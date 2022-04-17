@@ -44,7 +44,7 @@ submitTemp.addEventListener('submit', (event) => {
   submitTemp.reset()
 }) /
   /**
-   * function weather is getting data from the api for current weather, three day forcast, and weather icons.
+   * @description  getting weather data from the api for current weather, three day forcast, and weather icons.
    * @param {object} - object destructing from api information
    * @param {string} place - string of user input information
    *
@@ -99,7 +99,7 @@ ${weather[0].hourly[0].chanceofsnow}`
   }
 
 /**
- * searchPrevious funciton is getting the user search history on the sidebar as list.
+ * @description - higher order function of getting the user search history on the sidebar as list.
  * @param {object}  - object destructing from api information.
  * @param {string} place - string of user input information.
  */
