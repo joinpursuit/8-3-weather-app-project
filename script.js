@@ -10,6 +10,10 @@ const weatherAsideArticles = document.querySelectorAll(
 );
 const img = document.querySelector("img");
 const listOfSearches = document.getElementById("locationWeather");
+const conversionForm = document.getElementById("widget");
+
+//creates conversion widget using conversionForm html element
+convertTemperature(conversionForm);
 
 form.addEventListener("submit", (event) => {
   //prevent page reload
@@ -38,7 +42,7 @@ form.addEventListener("submit", (event) => {
 });
 
 //takes in input value and area
-function errorHandling(inputValue, area) {
+function messageHandling(inputValue, area) {
   if (inputValue != area) {
     return false;
   }
@@ -98,9 +102,11 @@ function createWeatherImage(object) {
 
 //Takes in object and string to create weather location block in Main
 function createWeatherBlock(object, titleOfSection) {
+  //first element in weather array, hourly array, first element in hourly array, depicts details of weather
+
   const newSection = document.createElement("section"); //creates a section that will later be added to main article
 
-  //create heading
+  //create heading, area, region, country, and current weather in Farenheit forecast
   const heading = document.createElement("h2");
   heading.style.fontSize = "x-large";
   heading.innerHTML = titleOfSection;
@@ -109,19 +115,21 @@ function createWeatherBlock(object, titleOfSection) {
   const nearestArea = object.nearest_area[0];
   const areaName = nearestArea.areaName[0].value; //ex: Melbourne, retrieved from API
 
-  //use errorHandling to create Nearest Area heading if the inputted area is not retrieved from API
+  //use messageHandling to create Nearest Area heading if the inputted area is not retrieved from API
   areaHeading = paragraphBuilder(object, "Area");
-  areaHeading.textContent = errorHandling(heading.innerHTML, areaName)
+  areaHeading.textContent = messageHandling(heading.innerHTML, areaName)
     ? `Area: ${areaName}`
     : `Nearest Area: ${areaName}`;
 
   const regionHeading = paragraphBuilder(object, "Region");
   const countryHeading = paragraphBuilder(object, "Country");
   const currentWeatherInF = paragraphBuilder(object, "Currently");
+
   const chanceOfSun = paragraphBuilder(object, "Chance of Sun");
   const chanceOfRain = paragraphBuilder(object, "Chance of Rain");
   const chanceOfSnow = paragraphBuilder(object, "Chance of Snow");
 
+  //TODO: Make Switch Case?
   const imageGif = createWeatherImage(object);
   if (imageGif) {
     newSection.append(imageGif);
@@ -136,7 +144,7 @@ function createWeatherBlock(object, titleOfSection) {
     chanceOfRain,
     chanceOfSnow
   );
-  //TODO: Move to CSS
+
   newSection.classList.add("fadein");
 
   return newSection;
@@ -194,6 +202,28 @@ function formatArticles(object) {
   weatherAsideArticles.forEach((article) => {
     article.append(createForecastBlock(object, day));
     day++;
+  });
+}
+
+function convertTemperature(form) {
+  const temperature = document.getElementById("temp-to-convert");
+  const cConversion = document.getElementById("to-c");
+  const fConversion = document.getElementById("to-f");
+  const convertedTemp = document.querySelector("#widget #result");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    //checks for which radio has been checked, convertes appropriately
+    if (cConversion.checked) {
+      let convertedResult = (5 / 9) * (temperature.value - 32);
+      convertedResult = convertedResult.toFixed(2);
+      convertedTemp.innerHTML = `${convertedResult}° Celsius`;
+    } else if (fConversion.checked) {
+      let convertedResult = (9 / 5) * temperature.value + 32;
+      convertedResult = convertedResult.toFixed(2);
+      convertedTemp.innerHTML = `${convertedResult}° Fahrenheit`;
+    }
+    temperature.value = "";
   });
 }
 
