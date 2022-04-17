@@ -4,12 +4,12 @@ body {
   grid-template-columns: 1fr 2fr 1fr;
   margin: 0 auto 0;
   background: url('https://img3.wallspic.com/previews/0/1/0/7/4/147010/147010-aesthetics-pastel-pink-cumulus-cloud-x750.jpg');
-  /* background: linear-gradient(-90deg, #f7aef8, #ffc8dd, #fface4,#e5c2ff ); */
   min-width: auto;
- background-attachment: fixed;
+  background-attachment: fixed;
+  background-size: cover;
   color: white;
 }
-/* #e5c2ff */
+
 header {
   grid-column-start: span 3;
   text-align: center;
@@ -67,7 +67,6 @@ aside.widget {
   padding: 10%;
 }
 
-
 /* iphone 12 pro */
 @media (max-width: 844px) {
   body {
@@ -88,6 +87,3 @@ aside.widget {
     padding: 2%;
   }
 }
-
-
-
