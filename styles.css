@@ -1,3 +1,10 @@
+html {
+    background: url("https://i.pinimg.com/736x/16/71/6c/16716c73b174dd817e2749d33abffc2f.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 body {
     display: grid;
     grid-template-columns: 25% 50% 25%;
@@ -11,6 +18,10 @@ header {
     margin-bottom: 20px;
     border: 1px solid #FAF6F6;
     border-radius: 25px;
+    background-image: url("https://data.whicdn.com/images/276276325/original.gif"); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     text-align: center;
 }
@@ -18,12 +29,15 @@ header h1, header h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
 header h1 {
+    color: #003399;
     font-weight: 900;
 }
 header h3 {
+    color: #6495ed;
     font-size: 200;
     font-weight: 400;
 }
+
 main {
     text-align: center;
 }
@@ -35,6 +49,11 @@ main p, main h1 {
     color: #003399;
 }
 main section {    
+    background-image: url("https://media.istockphoto.com/vectors/vector-illustration-of-fantasy-sky-background-and-pastel-color-vector-id1153229515?k=20&m=1153229515&s=170667a&w=0&h=0teGAdXH5EtGUX8TRHBLL3pJ9lpDM6UFC8tuwNwXy-g="); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     margin-top: 10px;
     padding-bottom: 30px;
     border-radius: 25px;
@@ -44,21 +63,36 @@ main section {
     border-radius: 25px;
     padding-top: 50px;
     padding-bottom: 50px;
+    background-image: linear-gradient(#E6EBFD, #F8ECE9); 
+}
+img {
+    border: 1px dotted black;
+    border-radius: 25px;
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;;
 }
 .sidebar {
+    color: #191970;
     margin-left: 20px;
 }
 section h4 {
     font-size: x-large;
 }
+a {
+    color: #54416d;
+}
 #weatherForecast {
     display: grid;
     visibility: hidden;
     grid-template-columns: 33% 33% 34%;
+    color: #6495ed;
 }
 #weatherForecast article {
     border: 1px solid white;
     border-radius: 25px;
+    background-color: #F8ECE9;
+    color: #54416d;
     margin-top: 20px;
     text-align: center;
 }
