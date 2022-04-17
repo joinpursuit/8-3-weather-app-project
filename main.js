@@ -3,25 +3,25 @@ let weatherSearch = document.querySelector('.get-weather');
 let searchBar = document.querySelector('#input-text');
 let forecasts = document.querySelector('.forecasts');
 let h2 = document.querySelector('h2');
-// let widget = document.querySelector('#temp-conversion');
 
-// ^^ I am choosing to keep the temp converter widget visibile with startup page instead of making it hidden
+// let widget = document.querySelector('#temp-conversion');
+// ^^ I am choosing to keep the temp converter widget visibile with startup page instead of making it hidden.
 
 /**
  * getWeather()
- * main function to populate the webpage with current weather data. Populates the 3 day forecast section as well.
- * @param {*} result - The Object with all weather date from the API.
- * @param {*} userInput -a string inputted by the user in the input box.
+ * main function to display current weather. Adds weather image based on conditions for the location inputted. Clears away placeholders to allow for populating the page with current weather and the 3 day forecast section. Errors if any will be displayed to the console.
+ * @param {object[]} result - The Object with all weather data from the API.
+ * @param {string} userInput -a string inputted by the user in the input box.
  * effects- populates various elements in the HTML with weather data
  */
 function getWeather(result, userInput) {
-  // clear away placeholders
+  
   let chooseP = document.getElementById('choose');
   chooseP.textContent = '';
   let historyP = document.getElementById('previous');
   historyP.textContent = '';
   forecasts.hidden = false;
-  // widget.hidden = false;
+  
 
   let area = document.querySelector('#Area');
   let region = document.querySelector('#Region');
@@ -38,11 +38,11 @@ function getWeather(result, userInput) {
   let chanceOfSnow = Number(result.weather[0].hourly[0].chanceofsnow);
   let areaName = result.nearest_area[0].areaName[0].value;
 
-  // if nothing is inputted, use nearest area.
+  
   if (!userInput) {
     userInput = areaName;
   }
-  // if user input doesnt match areaName, gives 'nearest area:' instead of 'Area:'
+  
   if (userInput !== areaName) {
     area.innerHTML = `<strong> Nearest Area: </strong> ${areaName}`;
     h2.textContent = userInput;
@@ -58,7 +58,7 @@ function getWeather(result, userInput) {
   rainChance.innerHTML = `<strong>Chance of Rain:</strong> ${chanceOfRain}`;
   snowChance.innerHTML = `<strong>Chance of Snow:</strong> ${chanceOfSnow}`;
 
-  //add image above current weather info
+  
 
   let image = document.querySelector('img');
   if (chanceOfSunshine > 50) {
@@ -101,8 +101,8 @@ function getWeather(result, userInput) {
 /**
  * linkPrevSearches()
  * create and link previous searches.
- * @param {*} result -The Object with all weather date from the API
- * @param {*} userInput - a string inputted by the user in the input box.
+ * @param {object[]} result -The Object with all weather date from the API
+ * @param {string} userInput - a string inputted by the user in the input box. 
  * populates various elements in the HTML with weather data
  */
 
@@ -128,7 +128,7 @@ const linkPrevSearches = (result, userInput) => {
 };
 
 /**
- * main event listener. user Inputs a city name and the page will load with that citys weather
+ * main event listener. user inputs a city name and the page will load with that citys weather
  */
 weatherSearch.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -145,7 +145,7 @@ weatherSearch.addEventListener('submit', (event) => {
     });
 });
 
-// temp converter widget
+// temp. converter widget
 
 const convertForm = document.querySelector('#temp-conversion form');
 convertForm.addEventListener('submit', (e) => {
