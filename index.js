@@ -1,5 +1,5 @@
 const BASE_URL = "https://wttr.in";
-// Base URL for weather API
+// Base URL for Weather API
 
 const queryParam = "format";
 const queryParamValue = "j1";
@@ -13,7 +13,7 @@ getWeatherForm.addEventListener("submit", (event) => {
 
   let inputtedCity = event.target.search.value;
   let formattedCity = formatForAPI(inputtedCity);
-  // Formats location input to inlcuded in API Calls for unique locations, otherwise uses nearest location if city is an empty string
+  // Formats Location Input in API Calls for unique locations, otherwise uses nearest location if city is an empty string
 
   let url;
   if (formattedCity === "undefined") {
@@ -21,15 +21,13 @@ getWeatherForm.addEventListener("submit", (event) => {
   } else {
     url = `${BASE_URL}/${formattedCity}?${queryParam}=${queryParamValue}`;
   }
-  // Creates a final URL to fetch with considering whether the user has inputted a value for the location form
+  // Creates a final URL to fetch Weather API
 
   fetch(url)
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .then((response) => {
-      console.log(response);
       return displayAllInfo(response, formattedCity);
     })
     .catch((error) => {
@@ -40,13 +38,13 @@ getWeatherForm.addEventListener("submit", (event) => {
   if (formattedCity !== "undefined") {
     event.target.search.value = "";
   }
-  // Blanks out search input when location form is submitted
+  // Blanks out Search Input Field when Location Form is submitted
 });
 
+// Event listener for Temp Conversion Form
 const tempCoverterForm = document.getElementById("temp-convert-form");
 const formInputs = tempCoverterForm.querySelectorAll("input");
 const formButton = formInputs[3];
-
 formButton.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -54,19 +52,22 @@ formButton.addEventListener("click", (event) => {
   if (previousTempHeading) {
     previousTempHeading.remove();
   }
+  // Removes previous temp conversion results
 
   const tempToConvert = formInputs[0].value;
   if (tempToConvert === "") {
     alert("Temp to Convert must not be empty");
     return;
   }
-  let convertedTemp;
+  // Alerts user when temp conversion Input Field is left blank
 
+  let convertedTemp;
   if (formInputs[1].checked) {
     convertedTemp = tempConverterFarToCel(tempToConvert);
   } else if (formInputs[2].checked) {
     convertedTemp = tempConverterCelToFar(tempToConvert);
   }
+  // Applies conversion depending on wheather Celcius or Farenheit radio button is checked
 
   const convertedTempHeading = document.createElement("h4");
   convertedTempHeading.innerText = convertedTemp;
@@ -75,6 +76,11 @@ formButton.addEventListener("click", (event) => {
 
 // Helper Functions
 
+/**
+ * formatForAPI(str)
+ * @param {string} str accepts any string indicating a location name
+ * @returns {string} returns a formatted string to be used by API call with Fetch
+ */
 function formatForAPI(str) {
   str = str.split(" ");
   return str
@@ -83,8 +89,13 @@ function formatForAPI(str) {
     })
     .join("&");
 }
-// Formats input location to be used by API call
 
+/**
+ * handleSearchLocation(response, formattedCity)
+ * @param {Object} response
+ * @param {string} formattedCity
+ * @returns {} Uses side effects to append a new element to the page
+ */
 function handleSearchLocation(response, formattedCity) {
   const mainArticle = document.querySelector("main article");
   const currentWeatherHeading = document.createElement("h2");
@@ -99,8 +110,12 @@ function handleSearchLocation(response, formattedCity) {
   }
   mainArticle.prepend(currentWeatherHeading);
 }
-// Creates main heading for Current Weather section
 
+/**
+ * displayCurrentLocWeatherInfo(response)
+ * @param {Object} response
+ * @returns {} Uses side effects to append elements to page regarding weather for searched location
+ */
 function displayCurrentLocWeatherInfo(response) {
   const mainArticle = document.querySelector("main article");
   mainArticle.classList.remove("hidden");
@@ -160,6 +175,11 @@ function displayCurrentLocWeatherInfo(response) {
   // Appends Chance of Snow
 }
 
+/**
+ * displayThreeDayForecast(response)
+ * @param {Object} response
+ * @returns {} Uses side effects to append 3 day forecast elements to page
+ */
 function displayThreeDayForecast(response) {
   const forecastCards = document.querySelectorAll("main section aside article");
 
@@ -193,6 +213,11 @@ function displayThreeDayForecast(response) {
   }
 }
 
+/**
+ * createWeatherIcons(response)
+ * @param {Object} response
+ * @returns {} Uses side effects to add weather icon elements to page
+ */
 function createWeatherIcons(response) {
   const chanceOfSunshine = response.weather[0].hourly[0].chanceofsunshine;
   const chanceOfRain = response.weather[0].hourly[0].chanceofrain;
@@ -211,6 +236,12 @@ function createWeatherIcons(response) {
   }
 }
 
+/**
+ *createsPreviousSearches(response, formattedCity)
+ * @param {Object} response
+ * @param {String} formattedCity
+ * @returns {} Uses side effects to create Previous Search elements on page
+ */
 function createsPreviousSearches(response, formattedCity) {
   let tempUnit = "F";
   let tempUnitKey = `FeelsLike${tempUnit}`;
@@ -228,9 +259,9 @@ function createsPreviousSearches(response, formattedCity) {
   } else {
     formattedCity = formattedCity.replaceAll("&", " ");
   }
-
   searchedLocation.innerHTML = `<a href="">${formattedCity} - ${response.current_condition[0][tempUnitKey]}°${tempUnit}</a>`;
 
+  // Event listener for previously searched locations
   searchedLocation.addEventListener("click", (event) => {
     event.preventDefault();
     displayCurrentLocWeatherInfo(response);
@@ -239,21 +270,36 @@ function createsPreviousSearches(response, formattedCity) {
     createWeatherIcons(response);
   });
   previousSearchesList.append(searchedLocation);
-  // Event listener for previously searched locations
 }
 
+/**
+ * tempConverterCelToFar(celcius)
+ * @param {number} celcius
+ * @returns {number} Returns converted temperature
+ */
 function tempConverterCelToFar(celcius) {
   let farenheit = celcius * (9 / 5) + 32;
   farenheit = farenheit.toFixed(2);
   return `${celcius}°C = ${farenheit}°F`;
 }
 
+/**
+ * tempConverterFarToCel(farenheit)
+ * @param {number} farenheit
+ * @returns {number} Returns converted temperature
+ */
 function tempConverterFarToCel(farenheit) {
   let celcius = (farenheit - 32) * (5 / 9);
   celcius = celcius.toFixed(2);
   return `${farenheit}°F = ${celcius}°C`;
 }
 
+/**
+ * displayAllInfo(response, city)
+ * @param {Object} response
+ * @param {String} city
+ * @returns Calls all functions to be grouped into one call when used with Fetch to call the Weather API
+ */
 function displayAllInfo(response, city) {
   displayCurrentLocWeatherInfo(response);
   displayThreeDayForecast(response);
