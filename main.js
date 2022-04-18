@@ -4,7 +4,9 @@ const searchBar = document.querySelector("input.search-bar");
 const converter = document.querySelector("form.converter");
 
 /** Clears any previous entries as well as initial html for empty search. */
-const clear_defaults = () => {
+const clearDefaults = () => {
+	searchBar.value = "";
+
 	document.querySelectorAll(".defaults").forEach((item) => item.classList.add("hidden"));
 	document.querySelectorAll(".weather").forEach((item) => (item.innerHTML = ""));
 };
@@ -13,8 +15,7 @@ const clear_defaults = () => {
  * @param {object} file - Contains weather API object with all relevant information
  * @param {string} location - location string passed by the user
  */
-const add_weather = (file, location) => {
-	searchBar.value = "";
+const addWeather = (file, location) => {
 	const currentWeather = document.querySelector("article.current-weather");
 	let city = document.createElement("h2");
 	city.textContent = location;
@@ -121,7 +122,7 @@ const add_weather = (file, location) => {
  * @param {object} file - Contains weather API object with all relevant information
  * @param {string} location - location string passed by the user
  */
-const add_prev_search = (file, location) => {
+const addPrevSearch = (file, location) => {
 	let previousSearchesList = document.querySelector("aside.weather-history ul");
 	let listItem = document.createElement("li");
 
@@ -133,8 +134,8 @@ const add_prev_search = (file, location) => {
 		fetch(`https://wttr.in/${location}?format=j1`)
 			.then((response) => response.json())
 			.then((json) => {
-				clear_defaults();
-				add_weather(json, location);
+				clearDefaults();
+				addWeather(json, location);
 			})
 			.catch((error) => console.log(error));
 	});
@@ -142,17 +143,14 @@ const add_prev_search = (file, location) => {
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	//let temp =
 	let location = document.querySelector("input.search-bar").value;
-	if (!location) {
-		window.reload();
-	}
+
 	fetch(`https://wttr.in/${location}?format=j1`)
 		.then((response) => response.json())
 		.then((json) => {
-			clear_defaults();
-			add_weather(json, location);
-			add_prev_search(json, location);
+			clearDefaults();
+			addWeather(json, location);
+			addPrevSearch(json, location);
 		})
 		.catch((error) => console.log(error));
 });
