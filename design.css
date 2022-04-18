@@ -1,22 +1,156 @@
-.card,
-h1,
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    margin: 0 auto;
-    padding: 15px;
-    border-radius: 30px;
-    background-color: lightgoldenrodyellow;
-    max-width: 420px;
-}
-
-.previous-history {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    border-radius: 30px;
-    background-color: lightgoldenrodyellow;
-    max-width: 420px;
-}
+        @font-face {
+            font-family: VT323-Regular;
+            src: url('VT323-Regular.ttf')
+        }
+        
+        #icon {
+            align-items: center;
+            padding-top: 20px;
+            height: 200px;
+            max-width: 200px;
+            outline: none;
+            border-radius: 25px;
+            opacity: 1.0;
+        }
+        
+        .card {
+            display: grid;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            background: purple;
+            background-image: url('https://tinyurl.com/47a5mh5j');
+            padding: 15px;
+            margin: 0%;
+            max-height: 100vh;
+            border-radius: 15px;
+            opacity: 0.8;
+        }
+        
+        body {
+            display: grid;
+            font-family: VT323-Regular;
+            font: 20px;
+            text-align: center;
+            justify-content: center;
+            background: #2222;
+            background-image: url('https://wallpapercave.com/uwp/uwp769019.gif');
+            background-size: cover;
+            margin: 10%;
+            max-height: 100vh;
+            min-width: 396px;
+        }
+        
+        #widget,
+        .previous-history {
+            align-content: center;
+            justify-content: center;
+            background: purple;
+            border-radius: 20px;
+            padding: 2px;
+            margin: 4pt;
+            max-width: 350px;
+            max-height: 100vh;
+            font-size: 20px;
+            opacity: 0.8;
+        }
+        
+        input#searchbar,
+        input#temp-to-convert.temperature {
+            outline: none;
+            border-radius: 50px;
+            font-family: VT323-Regular;
+            font-weight: bolder;
+            background-color: #FC5C73;
+        }
+        
+        .submit {
+            outline: none;
+            border-radius: 50px;
+            font-family: VT323-Regular;
+            font-weight: bolder;
+            background-color: #FE5E53;
+        }
+        
+        #to-f,
+        #to-c {
+            accent-color: #FE5E53;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: lighter;
+            color: rgb(45, 15, 96);
+            background-color: #FC49F9;
+            border-radius: 15px;
+            animation: fadeIn ease 10s;
+            -webkit-animation: fadeIn ease 10s;
+            -moz-animation: fadeIn ease 10s;
+            -o-animation: fadeIn ease 10s;
+            -ms-animation: fadeIn ease 10s;
+        }
+        /*
+        //
+        //following is from https: //medium.com/cloud-native-the-gathering/how-to-use-css-to-fade-in-and-fade-out-html-text-and-pictures-f45c11364f08
+        //
+        */
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @-moz-keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @-webkit-keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @-o-keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @-ms-keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        h4 span,
+        h4#previous span {
+            background-color: #FC49F9;
+            border-radius: 15px;
+            text-align: center;
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        p,
+        label {
+            font-size: medium;
+        }

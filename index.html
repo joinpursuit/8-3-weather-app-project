@@ -7,69 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="design.css">
-    <script defer src="./main.js">
-    </script>
 </head>
 
 <body>
-
     <div class="card">
         <header>
             <h1>Weather App</h1>
             <form class="weatherinput">
-                <label for='searchbar'>Enter Your City</label>
-                <input type='text' id="searchbar"/>
-                <input type='submit' id="submit" value="submit"/>
+                <label for='searchbar'>Enter Your City: </label>
+                <input type='text' id="searchbar" autocomplete="off" />
+                <input class='submit' type='submit' id="submit" value="submit" /><br />
         </header>
         </form>
-    </div>
-    <main>
-        <section class="main">
-            <p id="chosenLocale">Choose a location to view the weather</p>
+        <main>
             <article class="currentData">
-                <img id="icon">
-                <p id="city"></p>
-                <p id="currentTemp"></p>
-                <p id="ChanceOfSunshine"></p>
-                <p id="ChanceOfRain"></p>
-                <p id="ChanceOfSnow"></p>
-                <p id="desc"></p>
+                <img id="icon" img src="assets/waiting.gif" img sizes="50%">
+                <p>Choose a location to view the weather</p>
             </article>
-            <aside class="forecast">
-                <article id="todayCast"><strong>Today</strong></article>
-                <p id="avg"></p>
-                <p id="max"></p>
-                <p id="min"></p>
-                <article id="tomCast"><strong>Tomorrow</strong></article>
-                <p id="avg"></p>
-                <p id="max"></p>
-                <p id="min"></p>
-                <article id="soonCast">Upcoming</article>
-                <p id="avg"></p>
-                <p id="max"></p>
-                <p id="min"></p>
-            </aside>
-        </section>
+    </div>
+    <aside class="forecast">
+        <article></article>
+        <article></article>
+        <article></article>
+    </aside>
     </main>
     </div>
     <aside>
         <section class="previous-history">
-            <h4 id= previous>Previous Searches</h4>
+            <h4 id=previous><span>Previous Searches</span></h4>
             <p class="no-history" , hidden> No previous searches</p>
             <ul></ul>
         </section>
     </aside>
     <aside>
         <form id='widget'>
-            <h4>Temperature Conversion</h4>
+            <h4><span>Temperature Conversion</span></h4>
             <input type='number' id='temp-to-convert' class='temperature' /><br />
-            <input type="radio" name="convert-to" id="to-f" value="fahrenheit" checked/>
+            <input type="radio" name="convert-to" id="to-f" value="fahrenheit" checked />
             <label for="to-f">F°</label>
-            <input type="radio" name="convert-to" id="to-c" value="celsius"/>
+            <input type="radio" name="convert-to" id="to-c" value="celsius" />
             <label for="to-c">C°</label><br />
-            <input type='submit' value="submit" id="convert" />
+            <input class="submit" type='submit' value="submit" id="convert" />
             <h4 id='result'>Result</h4>
         </form>
     </aside>
 </body>
+<script defer src="./main.js">
+</script>
+
 </html>
