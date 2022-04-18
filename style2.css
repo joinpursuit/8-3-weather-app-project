@@ -1,0 +1,103 @@
+body {
+  background-color: #FFFDD0;
+  color: rgb(0, 0, 0);
+  font-family: "Courier New";
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+a {
+  color: rgb(0, 162, 255);
+}
+
+header {
+  background: linear-gradient(
+    180deg,
+    rgb(100, 100, 226) 0%,
+    rgb(140, 185, 199) 50%,
+    rgba(255, 255, 255, 0.934) 100%
+  );
+  color: white;
+  border: 3px solid rgb(225, 192, 10);
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+header h1 {
+  text-align: center;
+  display: inline;
+  padding-right: 10%;
+}
+
+header h2 {
+  text-align: center;
+  font-size: 18px;
+  display: inline;
+}
+
+.current {
+  text-align: center;
+  padding: 20px;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: 0.4fr 0.4fr 0.4fr;
+  text-align: center;
+  border-top-style: groove;
+  border-bottom: 3px solid rgb(225, 192, 10);
+  border-top: 3px solid rgb(225, 192, 10);
+  padding: 3px;
+
+}
+
+.button {
+  background-color: rgb(124, 121, 121);
+  color: white;
+}
+
+.report {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1.5fr;
+}
+
+#input-text,
+#temp-to-convert {
+  background-color: rgb(255, 255, 255);
+  color: rgb(2, 2, 2);
+}
+
+#location-search {
+    padding-top: 40px;
+}
+
+.convert,
+.previous {
+  border: 3px solid rgb(225, 192, 10);
+  border-top: none;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+input[type='number']{
+    width: 60px;
+} 
+
+.icon {
+  border-style: inset double;
+  border-color: #42F6D4;
+}
+
+#title a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.tomorrow {
+  border-left: line;
+  border-right: line;
+}
