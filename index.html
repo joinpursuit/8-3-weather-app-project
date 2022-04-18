@@ -21,26 +21,22 @@
       <aside class="border">
         <h2>Temp Conversion<br>Widget</h2>
         <form action="submit" id="temp-convert-form" class="grid-five-rows">
-          <label for="temp">Enter Temp:
-            <input type="number" name="temp">
+          <label for="temp">Enter Temp to Convert:
+            <input type="number" id="temp-to-convert" name="temp">
           </label>
-          <div>
-            <label for="c">Celcius
-              <input type="radio" id="c" name="tempToConvertTo" value="celcius" checked>
-            </label>
-            <label for="f">Farenheit
-              <input type="radio" id="f" name="tempToConvertTo" value="farenheit">
-            </label>
-          </div>
+          <label for="to-c">Convert to Celcius
+            <input type="radio" id="to-c" name="tempToConvertTo" value="celcius" checked>
+          </label>
+          <label for="to-f">Convert to Farenheit
+            <input type="radio" id="to-f" name="tempToConvertTo" value="farenheit">
+          </label>
           <input type="submit" value="Convert">
         </form>
       </aside>
       <main class="border">
         <p>Choose a location to view the weather</p>
         <section class="grid-two-rows">
-          <article class="border hidden centerText">
-            <h5>Current Weather</h5>
-          </article>
+          <article class="border hidden centerText"></article>
           <aside class="grid-three-columns-even border hidden">
             <article class="border">
               <h5>Today</h5>

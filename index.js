@@ -50,7 +50,27 @@ const formButton = formInputs[3];
 formButton.addEventListener("click", (event) => {
   event.preventDefault();
 
-  console.log("clicked");
+  const previousTempHeading = document.querySelector("aside h4");
+  if (previousTempHeading) {
+    previousTempHeading.remove();
+  }
+
+  const tempToConvert = formInputs[0].value;
+  if (tempToConvert === "") {
+    alert("Temp to Convert must not be empty");
+    return;
+  }
+  let convertedTemp;
+
+  if (formInputs[1].checked) {
+    convertedTemp = tempConverterFarToCel(tempToConvert);
+  } else if (formInputs[2].checked) {
+    convertedTemp = tempConverterCelToFar(tempToConvert);
+  }
+
+  const convertedTempHeading = document.createElement("h4");
+  convertedTempHeading.innerText = convertedTemp;
+  tempCoverterForm.after(convertedTempHeading);
 });
 
 // Helper Functions
@@ -223,13 +243,15 @@ function createsPreviousSearches(response, formattedCity) {
 }
 
 function tempConverterCelToFar(celcius) {
-  const farenheit = celcius * (9 / 5) + 32;
-  return farenheit;
+  let farenheit = celcius * (9 / 5) + 32;
+  farenheit = farenheit.toFixed(2);
+  return `${celcius}°C = ${farenheit}°F`;
 }
 
 function tempConverterFarToCel(farenheit) {
-  const celcius = (farenheit - 32) * (5 / 9);
-  return celcius;
+  let celcius = (farenheit - 32) * (5 / 9);
+  celcius = celcius.toFixed(2);
+  return `${farenheit}°F = ${celcius}°C`;
 }
 
 function displayAllInfo(response, city) {
