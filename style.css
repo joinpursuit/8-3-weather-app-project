@@ -1,62 +1,74 @@
 *  {
     box-sizing: border-box;
-    font-family: Copperplate;
-    margin: 15px;
-
+    font-family: Helvetica;
+    margin: 10px
 }
+
 body {
-    display: grid;
+    /* display: grid;
     max-width: 1200px;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 2fr;
     margin: 0 auto;
-    text-align: center;
-    background-color: rgb(234, 229, 205);
+    text-align: center; */ 
+    background-color: rgb(220, 207, 189);
 }
 
 header {
     grid-column-start: span 3;
     text-align: center;
     border: 3px solid DarkSlateGrey;
-    background-color: rgb(114, 139, 215);
+    /* background-color: rgb(114, 139, 215); */
     color: whitesmoke;
-    width: 70%;
+    width: 60%;
     height: 80%;
     margin: auto;
+    background-image: url(https://i.giphy.com/media/bXhiABcqQGT3W/giphy.gif);
+    background-size: 100% 100%;
 }
 
 main {
-    grid-column-start: span 1;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
     margin: auto;
-    border: 3px solid DarkSlateGrey;
+    gap: 5px;
 }
 
 #conversion-widget {
+
+}
+
+#conversion-widget form{
+    padding-top: 10px;
     border: 3px solid DarkSlateGrey;
     text-align: center;
 }
 
+
 .days article {
-    grid-template-columns: 1fr 1fr 1fr;
+    display: inline-block;
+    vertical-align: middle;
     border: 3px solid DarkSlateGrey;
+    background-color: #FFF;
 }
 
-#history {
+#history section {
     border: 3px solid DarkSlateGrey;
 }
 
 #search-list a {
-    background: rgb(29, 12, 218);
-    border: 1px solid rgb(64, 95, 210);
+    background: rgb(79, 67, 219);
     border-radius: 3px;
     color: white;
     display: inline-block;
-    padding: 10px;
+    padding: 5px;
     text-decoration: none;
     margin: 10px;
+    text-align: left;
 }
 
 #search-list a:hover {
@@ -67,18 +79,24 @@ main {
   
 .button {
     border-radius: 4px;
-    color: #05A8AA;
+    color: #2e3f02;
     display: block;
     font-weight: 700;
     width: 200px;
     padding: 20px;
     margin: 40px auto;
-    border: 1px solid blue;
+    border: 1px solid rgb(8, 69, 45);
   }
 
 .button:hover {
-    background-color: #05A8AA;
+    background-color: #0c6c6d;
     border: 1px solid #05A8AA;
     color: #FFF;
   }
   
+
+/* @media (max-width: 680px), screen and (orientation: portrait) {
+    display: grid;
+    align: center;
+    
+} */

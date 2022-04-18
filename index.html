@@ -10,13 +10,14 @@
 </head>
 <body>
     <header><h1>Weather App</h1>
-        <form id = "location" >
+        <form id = "weatherform" >
         <label for = "userLocation">Pick A Location
             <input id="userLocation" type="text" name="location"><br>
             <input type="submit" value="Get Weather" class = 'button'>
         </label>
         </form>
     </header>
+    <main>
     <aside id="conversion-widget">
         <form id = "converter">
             <label for="temp-to-convert" >Convert the temperature </label>
@@ -24,23 +25,24 @@
                 <input type ="radio" name="convert-temp" val="c" id="to-c" required> Convert to °C<br>
                 <input type ="radio" name="convert-temp" val="f" id="to-f" required> Convert to °F <br>
                 <input type = "submit" name="submit" value ="Click To Convert!" class ='button'>
+                <h4 id="result"></h4>
         </form>
-        <h4 id="result"></h4>
     </aside >
-    <main class="main">
+    <article>
         <article id="general">Choose a location to view the weather.</article>
         <aside class = days id="three-day-forecast">
-        <article id = 'today'></article>
-        <article id = 'tomorrow'></article>
-        <article id = 'after-tomorrow'></article>
+            <article id = 'today'></article>
+            <article id = 'tomorrow'></article>
+            <article id = 'after-tomorrow'></article>
         </aside>
-    </main>
+    </article>
     <aside id="history">
         <section>
         <h4>Previous Searches</h4>
          <p id = "no-searches">No previous searches</p>
-        <ul id = "search-list"></ul>
+        <ul id = "search-list" style="list-style:none"></ul>
     </section>
     </aside>
+</main>
 </body>
 </html>

@@ -1,20 +1,8 @@
-const form = document.getElementById("location");
-const convertForm = document.getElementById("converter");
-const general = document.getElementById("general");
+const form = document.getElementById("weatherform");
 const todayArt = document.getElementById("today");
 const tomorrowArt = document.getElementById("tomorrow");
 const dayAfterTomArt = document.getElementById("after-tomorrow");
-const noSearches = document.getElementById("no-searches");
-const searchList = document.getElementById("search-list");
-const conversionResult = document.getElementById("result");
-
-// const formatter = (words) => {
-//   newWord = words
-//     .split(" ")
-//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-//     .join(" ");
-//   return newWord;
-// };
+const convertForm = document.getElementById("converter");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -22,6 +10,13 @@ form.addEventListener("submit", (event) => {
   event.target.reset();
   return weatherSearch(userInput);
 });
+
+/**
+ * weatherSearch()
+ * Populates an html file making use of a resolved fetch API call's data and various helper functions.
+ * -----------------------------
+ * @param {string} location - A string param, specifically the name of a city (i.e. london, rego park), that is part of a URL in a fetch call.
+ * @return a populated html file with data from a resolved response object. */
 
 const weatherSearch = (location) => {
   if (!location) {
@@ -31,69 +26,73 @@ const weatherSearch = (location) => {
     .then((response) => {
       return response.json();
     })
-    .then((result) => {
-      createMainArticle(result, location, general);
-      fillMiniArticle(result.weather[0], todayArt, "Today");
-      fillMiniArticle(result.weather[1], tomorrowArt, "Tomorrow");
-      fillMiniArticle(result.weather[2], dayAfterTomArt, "Day After Tomorrow");
-      searchHistoryMaker(result, location);
+    .then((data) => {
+      createMainArticle(data, location);
+      fillMiniArticle(data.weather[0], todayArt, "Today");
+      fillMiniArticle(data.weather[1], tomorrowArt, "Tomorrow");
+      fillMiniArticle(data.weather[2], dayAfterTomArt, "Next Day");
+      searchHistoryMaker(data, location);
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-// averageSunChance = (result) => {
-//   let sum = 0;
-//   for (let i = 0; i < 8; i++) {
-//     console.log(result.weather[0].hourly[i].chanceofsunshine);
-//     sum += Number(result.weather[0].hourly[i].chanceofsunshine);
-//   }
-//   return sum / 8;
-// };
+/**
+ * iconMaker()
+ * side effects: creates a DOM img element with unique img file and description and appends it to the DOM.
+ * -----------------------------
+ * @param {string} url -  A string that is a path to a local .gif file.
+ * @param {string} altString -  A string that describes the gif file.
+ */
 
-const createMainArticle = (result, location, article) => {
-  article.innerHTML = "";
-  const { FeelsLikeF } = result.current_condition[0];
-  const { areaName, country, region } = result.nearest_area[0];
+const iconMaker = (url, altString) => {
+  const img = document.createElement("img");
+  img.setAttribute("src", url);
+  img.setAttribute("alt", altString);
+  general.append(img);
+};
+
+/**
+ * createMainArticle()
+ * side effects: creates various dom elements and populates a main article with data extracted from a resolved fetch call.
+ * -----------------------------
+ * @param {obj} data -  a weather object returned from a resolved fetch call with weather data unique to a particular town or city.
+ * @param {string} location - A string, specifically the name of a city (i.e. london, rego park),
+ */
+
+const createMainArticle = (data, location) => {
+  const general = document.getElementById("general");
+  general.innerHTML = "";
+  const { FeelsLikeF } = data.current_condition[0];
+  const { areaName, country, region } = data.nearest_area[0];
   const { chanceofrain, chanceofsunshine, chanceofsnow } =
-    result.weather[0].hourly[0];
+    data.weather[0].hourly[0];
   if (chanceofsunshine > 50) {
-    const sunImg = document.createElement("img");
-    sunImg.setAttribute("src", "./assets/icons8-summer.gif");
-    sunImg.setAttribute("alt", "sun");
-    article.append(sunImg);
+    iconMaker("./assets/icons8-summer.gif", "sun");
   } else if (chanceofrain > 50) {
-    const rainImg = document.createElement("img");
-    rainImg.setAttribute("src", "./assets/icons8-torrential-rain.gif");
-    rainImg.setAttribute("alt", "rain");
-    article.append(rainImg);
+    iconMaker("./assets/icons8-torrential-rain.gif", "rain");
   } else if (chanceofsnow > 50) {
-    const snowImg = document.createElement("img");
-    snowImg.setAttribute("src", "./assets/icons8-light-snow.gif");
-    snowImg.setAttribute("alt", "snow");
-    article.append(snowImg);
+    iconMaker("./assets/icons8-light-snow.gif", "snow");
   }
   const searchedTown = document.createElement("h2");
   searchedTown.innerText = location;
   const searchedArea = document.createElement("p");
-  if (areaName[0].value.toLowerCase() === location.toLowerCase()) {
-    searchedArea.innerText = "Area: " + areaName[0].value;
-  } else {
-    searchedArea.innerText = "Nearest Area: " + areaName[0].value;
-  }
+  areaName[0].value.toLowerCase() === location.toLowerCase()
+    ? (searchedArea.innerText = "Area: " + areaName[0].value)
+    : (searchedArea.innerText = "Nearest Area: " + areaName[0].value);
   const searchedRegion = document.createElement("p");
-  searchedRegion.innerHTML = "Region: " + region[0].value;
+  searchedRegion.innerText = "Region: " + region[0].value;
   const searchedCountry = document.createElement("p");
-  searchedCountry.innerHTML = "Country: " + country[0].value;
+  searchedCountry.innerText = "Country: " + country[0].value;
   const currentTemp = document.createElement("p");
-  currentTemp.innerHTML = "Currently: Feels Like " + FeelsLikeF + " °F";
+  currentTemp.innerText = "Currently: Feels Like " + FeelsLikeF + " °F";
   const sunshine = document.createElement("p");
-  sunshine.innerHTML = "Chance of Sunshine: " + chanceofsunshine;
+  sunshine.innerText = "Chance of Sunshine: " + chanceofsunshine;
   const rain = document.createElement("p");
-  rain.innerHTML = "Chance of Rain: " + chanceofrain;
+  rain.innerText = "Chance of Rain: " + chanceofrain;
   const snow = document.createElement("p");
-  snow.innerHTML = "Chance of Snow: " + chanceofsnow;
+  snow.innerText = "Chance of Snow: " + chanceofsnow;
   general.append(
     searchedTown,
     searchedArea,
@@ -106,31 +105,55 @@ const createMainArticle = (result, location, article) => {
   );
 };
 
-const fillMiniArticle = (result, article, header) => {
-  ({ avgtempF, maxtempF, mintempF } = result);
+/**
+ * fillMiniArticle()
+ * side effects: populates an existing article node in the DOM with data from a weather object.
+ * -----------------------------
+ * @param {obj} data -  a weather object returned from a resolved fetch call with weather data unique to a particular town or city. 
+ * @param {obj} data.weather[i] -  a node in a weather object unique to a specific day of weather.
+ * @param {arr} article - An HTML <article> node.
+ * @param {string} header - A string descriptive of and appended to this article.
+
+ */
+
+const fillMiniArticle = (data, article, header) => {
+  ({ avgtempF, maxtempF, mintempF } = data);
   article.innerHTML = "";
   const heading = document.createElement("h3");
   heading.innerText = header;
   const averageP = document.createElement("p");
-  averageP.innerHTML = `<strong>Average Temperature:</strong> ${avgtempF} °F`;
+  averageP.innerHTML = `<strong>Avg Temp:</strong> ${avgtempF}°F`;
   const maxP = document.createElement("p");
-  maxP.innerHTML = `<strong>Max Temperature:</strong> ${maxtempF} °F`;
+  maxP.innerHTML = `<strong>Max Temp:</strong> ${maxtempF}°F`;
   const minP = document.createElement("p");
-  minP.innerHTML = `<strong>Min Temperature:</strong> ${mintempF} °F`;
+  minP.innerHTML = `<strong>Min Temp:</strong> ${mintempF}°F`;
   return article.append(heading, averageP, maxP, minP);
 };
 //incorporate createTextNode as per Myra. refactor tot his at the end!
 
-const searchHistoryMaker = (result, location) => {
-  const { FeelsLikeF } = result.current_condition[0];
-  if (!searchList.innerHTML.includes(location)) {
+/**
+ * searchHistoryMaker()
+ * Side effects: Populates an existing <ul> node in the DOM with a location that successfully fetched weather data from an API .  
+ * Does not append if the location already exists!
+ * 
+ * -----------------------------
+ * @param {obj} data -  a weather object returned from a resolved fetch call with weather data unique to a particular town or city. 
+ * @param {string} location - A string, specifically the name of a city (i.e. london, rego park).
+
+ */
+
+const searchHistoryMaker = (data, location) => {
+  const history = document.getElementById("search-list");
+  const noSearches = document.getElementById("no-searches");
+  const { FeelsLikeF } = data.current_condition[0];
+  if (!history.innerText.includes(location)) {
     noSearches.innerText = "";
     const newLine = document.createElement("li");
     const anchor = document.createElement("a");
     anchor.setAttribute("href", "#");
     anchor.textContent = `${location} ${FeelsLikeF}°F`;
     newLine.append(anchor);
-    searchList.append(newLine);
+    history.append(newLine);
     newLine.addEventListener("click", (e) => {
       e.preventDefault();
       weatherSearch(location);
@@ -138,13 +161,23 @@ const searchHistoryMaker = (result, location) => {
   }
 };
 
-convertHelper = (num, type) => {
+/**
+ * convertHelper()
+ * side effects: converts a number retrieved from an input form into Celsius if true (Farenheight input value type is assumed), or Farenheight if false (Celsius input value type assumed)
+ * -----------------------------
+ * @param {number} number -  a number retrieved from an input form.
+ * @param {type} boolean - A boolean returned from an event with two radio button options, true first is checked (F->C), false if second is checked (C->F).
+
+ */
+
+const convertHelper = (num, type) => {
+  const conversionResult = document.getElementById("result");
   conversionResult.innerText = "";
   if (type === true) {
-    const farToCel = `${((num - 32) * (5 / 9)).toFixed(2)} °C`;
+    const farToCel = `${((num - 32) * (5 / 9)).toFixed(2)}°C`;
     conversionResult.innerText = farToCel;
   } else if (type === false) {
-    const celToFar = `${(num * 1.8 + 32).toFixed(2)} + °F`;
+    const celToFar = `${(num * 1.8 + 32).toFixed(2)}°F`;
     conversionResult.innerText = celToFar;
   }
 };
