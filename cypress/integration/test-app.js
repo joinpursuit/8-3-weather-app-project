@@ -226,7 +226,7 @@ describe("Add icon based on chance data", () => {
       .should("eq", "./assets/icons8-torrential-rain.gif");
   });
 
-  it("Will have a light-snow icon if there is more than a 50% chance of sunshine", () => {
+  it("Will have a light-snow icon if there is more than a 50% chance of snow", () => {
     cy.intercept("GET", "https://wttr.in/Kenai*", {
       fixture: "kenai.json",
     }).as("fetchKenai");

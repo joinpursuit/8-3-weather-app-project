@@ -32,24 +32,25 @@
                     <div>
                         <label class="heading" for="temp">Convert the temperature:</label>
                         <input type="number" id="temp-to-convert" name="convert-temp" value="" required>
+                        <input type="submit" value="Submit">
                     </div>
-                    <div>
+                    <div class="form-control">
                         <label for="celsius">To Celsius</label>
                         <input type="radio" id="to-c" name="convertOp" value="c" checked>
                     </div>
-                    <div>
+                    <div class="form-control">
                         <label for="farenheit">To Farenheit</label>
                         <input type="radio" id="to-f" name="convertOp" value="f" >
                     </div>
-                    <br>
-                    <input type="submit" value="Submit">
+                    
+                    
                     <h4 class="result">00.00</h4>
                 </form>
             </section>
         </aside>
         <article>
             <section class="current-forecast">
-                <p class="init-message">Choose a location to view the weather.</p>
+                <p class="init-message"> Choose a location to view the weather. </p>
                 <div id="curr-search"></div>
             </section>
             <section class="daily-forecast"></section>
@@ -57,7 +58,7 @@
         <aside class="widget-prev-searches">
             <section>
                 <h4>Previous Searches</h4>
-                <p>No previous searches</p>
+                <p>No previous searches <i class="fa fa-solid fa-ban"></i></p>
                 <ul id="prev-searches"></ul>
             </section>
         </aside>

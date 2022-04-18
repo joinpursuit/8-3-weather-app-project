@@ -1,5 +1,6 @@
 'use strict';
 
+
 // > API's base url
 const BASE_URL = "https://wttr.in"
 
@@ -14,7 +15,7 @@ let   defaultUnit     = '°F';
 inputLocation.focus(); 
 /**
  * ==================================
- * Form: locationForm
+ * Form: locationForm - Event listener
  * ==================================
  */   
 locationForm.addEventListener("submit", (event) => {
@@ -28,7 +29,7 @@ locationForm.addEventListener("submit", (event) => {
 
 /**
  * ==================================
- * Form: convertForm
+ * Form: convertForm - Event listener
  * ==================================
  */
 convertForm.addEventListener("submit", (event) => {
@@ -63,7 +64,7 @@ function getLocationByName(location) {
     .then((response) => response.json())
     .then(result => {
         const currentList   = document.getElementById('curr-search'),
-              prevSearches  = document.getElementById('prev-searches'),
+              prevSearchMessage  = document.querySelector('.widget-prev-searches p'),
               initMessage   = document.querySelector('.current-forecast p'),
               currForecast  = document.querySelector('.current-forecast'),
               dailyForecast = document.querySelector('.daily-forecast'),
@@ -71,6 +72,7 @@ function getLocationByName(location) {
 
         // > Hidding initial message
         initMessage.classList.add('hidden');
+        prevSearchMessage.classList.add('hidden');
         // > Refresh data
         currentList.querySelectorAll('*').forEach(node => {node.remove()});
         dailyForecast.querySelectorAll('*').forEach(node => {node.remove()});
@@ -79,14 +81,15 @@ function getLocationByName(location) {
         dataSearch['img'] = validateWeatherCondition(result.weather[0].hourly[0].chanceofsunshine, 
                                                      result.weather[0].hourly[0].chanceofrain, 
                                                      result.weather[0].hourly[0].chanceofsnow);
-        dataSearch['location'] = location;
+        dataSearch['location'] = `${location}`;
         dataSearch[validateArea(location, result.nearest_area[0].areaName[0].value)] = result.nearest_area[0].areaName[0].value;
         dataSearch['Region'] = result.nearest_area[0].region[0].value;
         dataSearch['Country'] = result.nearest_area[0].country[0].value;
-        dataSearch['Currently'] = `Feels like ${result.current_condition[0].FeelsLikeF}°F`;
-        dataSearch['Chance of Sunshine'] = result.weather[0].hourly[0].chanceofsunshine;
-        dataSearch['Chance of Rain'] = result.weather[0].hourly[0].chanceofrain;
-        dataSearch['Chance of Snow'] = result.weather[0].hourly[0].chanceofsnow;
+        dataSearch['Local time'] = `${(result.current_condition[0].localObsDateTime).substring(10)} <i class="fa fa-solid fa-clock"></i>`;
+        dataSearch['Currently'] = `<small>Feels like</small> ${result.current_condition[0].FeelsLikeF}°F <i class="fa fa-solid fa-temperature-full"></i>`;
+        dataSearch['Chance of Sunshine'] = `${result.weather[0].hourly[0].chanceofsunshine} <i class="fa fa-solid fa-sun"></i>`;
+        dataSearch['Chance of Rain'] = `${result.weather[0].hourly[0].chanceofrain} <i class="fa fa-solid fa-cloud-rain"></i>`;
+        dataSearch['Chance of Snow'] = `${result.weather[0].hourly[0].chanceofsnow} <i class="fa fa-thin fa-snowflake"></i>`;
         
         // => Loading current forecast
         getCurrentForecast(dataSearch);
@@ -132,7 +135,8 @@ function getCurrentForecast(data){
             dataItem.textContent = value;
         }else{
             dataItem = document.createElement('p');
-            dataItem.innerHTML = `<span>${key}:</span> ${value}`;
+            dataItem.classList.add('item');
+            dataItem.innerHTML = `<span class='data-header'>${key} <i class="fa fa-solid fa-ellipsis"></i></span> <span class='data-value'>${value}</span>`;
         }
         
         dataList.append(dataItem);
@@ -234,7 +238,7 @@ function previousSearches(location, temp){
     // => Looping through the object of previous searches
     for (const [key, value] of Object.entries(storedLocations)) {
         const searchItem = document.createElement('li');
-        searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value}`;
+        searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value} <i class="fa fa-solid fa-temperature-full"></i>`;
         searchList.append(searchItem)
     }    
 
@@ -368,11 +372,11 @@ function convertTemp(temp, convertOp) {
 
     if (convertOp === 'f') {
         result = celsiusToFahrenheit(temp);
-        document.querySelector('.result').innerHTML = `= ${result} °Fahrenheit`;
+        document.querySelector('.result').innerHTML = ` = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
     } 
     else if (convertOp === 'c') {
         result = fahrenheitToCelsius(temp);
-        document.querySelector('.result').innerHTML = `= ${result} °Celsius`;
+        document.querySelector('.result').innerHTML = ` = ${result} <span>°C <i class="fa fa-solid fa-temperature-full"></i></span>`;
     }
 }
 
