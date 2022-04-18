@@ -12,7 +12,7 @@ const img = document.querySelector("img");
 const listOfSearches = document.getElementById("locationWeather");
 const conversionForm = document.getElementById("widget");
 
-//creates conversion widget using conversionForm html element
+//Provides conversionForm widget its functionality independently from the main form
 convertTemperature(conversionForm);
 
 form.addEventListener("submit", (event) => {
@@ -28,7 +28,6 @@ form.addEventListener("submit", (event) => {
 
   const location = document.getElementById("location").value;
 
-  //TODO: Create catch error message
   fetch(`http://wttr.in/${location}?format=j1`)
     .then((response) => response.json())
     .then((json) => {
@@ -37,11 +36,15 @@ form.addEventListener("submit", (event) => {
       formatArticles(json);
       addPreviousSearches(json, noSearchDefaultText, location);
     })
-    .catch((error) => {});
+    .catch(() => {});
   document.getElementById("location").value = ""; //reset input field text value
 });
 
-//takes in input value and area
+/**
+ * Returns a boolean to check if inputted location and area are the same, will later be used to make Area heading dynamic.
+ * @param {string} inputValue - The user-inputted location.
+ * @param {string} area - The location retrieved by the API.
+ */
 function messageHandling(inputValue, area) {
   if (inputValue != area) {
     return false;
@@ -49,6 +52,12 @@ function messageHandling(inputValue, area) {
   return true;
 }
 
+/**
+ * Creates a paragraph using API information.
+ * @param {object} object - The JSON Object fetched from API.
+ * @param {string} heading - String heading representing some aspect of location or weather in the Main article.
+ * @returns {object} newParagraph - A new HTML Paragraph Element.
+ */
 function paragraphBuilder(object, heading) {
   const newParagraph = document.createElement("p");
   const nearestArea = object.nearest_area[0];
@@ -76,7 +85,11 @@ function paragraphBuilder(object, heading) {
   newParagraph.style.fontSize = "large";
   return newParagraph;
 }
-
+/**
+ * Creates an Image using Assess Image Gifs depending on the intensity of the weather forecast.
+ * @param {object} object - The JSON Object fetched from API.
+ * @returns {object} image - A new HTML Image Element.
+ */
 function createWeatherImage(object) {
   const weatherDetails = object.weather[0].hourly[0];
   const sunshine = weatherDetails.chanceofsunshine;
@@ -100,10 +113,13 @@ function createWeatherImage(object) {
   }
 }
 
-//Takes in object and string to create weather location block in Main
+/**
+ * Creates the block of weather information being fecthed from the API displaying location and weather information.
+ * @param {object} object - The JSON Object fetched from API.
+ * @param {string} titleOfSection - The location inputted by the User.
+ * @returns {object} newSection - A new HTML Section Element.
+ */
 function createWeatherBlock(object, titleOfSection) {
-  //first element in weather array, hourly array, first element in hourly array, depicts details of weather
-
   const newSection = document.createElement("section"); //creates a section that will later be added to main article
 
   //create heading, area, region, country, and current weather in Farenheit forecast
@@ -115,7 +131,7 @@ function createWeatherBlock(object, titleOfSection) {
   const nearestArea = object.nearest_area[0];
   const areaName = nearestArea.areaName[0].value; //ex: Melbourne, retrieved from API
 
-  //use messageHandling to create Nearest Area heading if the inputted area is not retrieved from API
+  //messageHandling to create Nearest Area heading if the inputted area is not retrieved from API
   areaHeading = paragraphBuilder(object, "Area");
   areaHeading.textContent = messageHandling(heading.innerHTML, areaName)
     ? `Area: ${areaName}`
@@ -150,7 +166,12 @@ function createWeatherBlock(object, titleOfSection) {
   return newSection;
 }
 
-//Takes in json object to create 3 weather blocks for forecast for the next three days
+/**
+ * Creates the future forecast articles.
+ * @param {object} object - The JSON Object fetched from API.
+ * @param {number} num - A Number representing the day (today, tomorrow, or the day after tomorrow).
+ * @returns {object} newDiv - A new HTML Div Element.
+ */
 function createForecastBlock(object, num) {
   const newDiv = document.createElement("div");
   const weather = object.weather; //weather array detailing weather forecast for next three days
@@ -160,42 +181,46 @@ function createForecastBlock(object, num) {
 
   if (num === 0) {
     const todayHeading = document.createElement("h2");
-    todayHeading.innerHTML = "Today";
+    todayHeading.textContent = "Today";
     newDiv.append(todayHeading);
   } else if (num === 1) {
     const tomorrowHeading = document.createElement("h2");
-    tomorrowHeading.innerHTML = "Tomorrow";
+    tomorrowHeading.textContent = "Tomorrow";
     newDiv.append(tomorrowHeading);
   } else {
     const twoTomorrowHeading = document.createElement("h2");
-    twoTomorrowHeading.innerHTML = "Day After Tomorrow";
+    twoTomorrowHeading.textContent = "Day After Tomorrow";
     newDiv.append(twoTomorrowHeading);
   }
-  //TODO: Make function to build h3 and paragraph elements
+
   const avgTempHeading = document.createElement("h3");
-  avgTempHeading.innerHTML = "Average Temperature: ";
+  avgTempHeading.textContent = "Average Temperature: ";
   const avgTempText = document.createElement("p");
-  avgTempText.innerHTML = `${avgTempInF}°F`;
+  avgTempText.textContent = `${avgTempInF}°F`;
   newDiv.append(avgTempHeading);
   newDiv.append(avgTempText);
 
   const maxTempHeading = document.createElement("h3");
-  maxTempHeading.innerHTML = "Max Temperature: ";
+  maxTempHeading.textContent = "Max Temperature: ";
   const maxTempText = document.createElement("p");
-  maxTempText.innerHTML = `${maxTempInF}°F`;
+  maxTempText.textContent = `${maxTempInF}°F`;
   newDiv.append(maxTempHeading);
   newDiv.append(maxTempText);
 
   const minTempHeading = document.createElement("h3");
-  minTempHeading.innerHTML = "Min Temperature: ";
+  minTempHeading.textContent = "Min Temperature: ";
   const minTempText = document.createElement("p");
-  minTempText.innerHTML = `${minTempInF}°F`;
+  minTempText.textContent = `${minTempInF}°F`;
   newDiv.append(minTempHeading);
   newDiv.append(minTempText);
 
   return newDiv;
 }
 
+/**
+ * Formats articles by looping through each article, each day (starting from 0) and appending a Div respective to the day to each article.
+ * @param {object} object - The JSON Object fetched from API.
+ */
 function formatArticles(object) {
   weatherAsideElement.style.visibility = "visible";
   let day = 0;
@@ -205,6 +230,10 @@ function formatArticles(object) {
   });
 }
 
+/**
+ * Creates the functionality of the conversion widget by applying the appropriate degree formula to the user-inputted temperature.
+ * @param {object} form - An HTML Form Element.
+ */
 function convertTemperature(form) {
   const temperature = document.getElementById("temp-to-convert");
   const cConversion = document.getElementById("to-c");
@@ -227,8 +256,14 @@ function convertTemperature(form) {
   });
 }
 
+/**
+ * Generates a list of the user's previous locations searched on the website and allows for the user to click location links to re-create past searches.
+ * @param {object} object - The JSON Object fetched from API.
+ * @param {object} paragraph - An HTML Paragraph Element.
+ * @param {string} locationName - The Location being inputted.
+ */
 function addPreviousSearches(object, paragraph, locationName) {
-  paragraph.remove(); //remove text that states "No preivous searches"
+  paragraph.remove(); //remove text that states "No previous searches"
   const newListItem = document.createElement("li");
   const previousSearch = document.createElement("a");
   const nearestArea = object.nearest_area[0];
@@ -256,6 +291,6 @@ function addPreviousSearches(object, paragraph, locationName) {
         mainArticle.append(createWeatherBlock(json, locationName));
         formatArticles(json);
       })
-      .catch((error) => {});
+      .catch(() => {});
   });
 }
