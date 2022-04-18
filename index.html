@@ -29,15 +29,17 @@
         Convert the temperature:
         <input type="number" id="temp-to-convert"/>
     </label>
+    <br>
     <label>
     <input type="radio" name="temp-to-convert" id="to-c" value="C" class="temperature" checked="yes"/>
         Celcius
     </label>
-
+    <br>
     <label>
         <input type="radio" name="temp-to-convert" id="to-f" value="F" class="temperature"/> 
         Farenheit
     </label>
+    <br>
     <label>
        <input type="Submit" value="Submit" />
     </label>
@@ -51,7 +53,7 @@
     <p class="choose a location">Choose a location to view the weather.</p>
 
 <article id="current-weather"></article>
-<aside>
+<aside class="three-forecast">
     <article id="today"></article>
     <article id="tomorrow"></article>
     <article id="day-after-tomorrow"></article>
@@ -60,9 +62,12 @@
 <aside>
 <section class="previous">
  
-<h4>Previous Searches
+<h4>
+    <i>Previous Searches</i>
     <ul></ul>
-    <p>No previous searches</p>
+    <p>
+    <i> No previous searches</i>
+    </p>
 </h4>
 </section>
 </aside>

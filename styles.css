@@ -1,40 +1,59 @@
 
 body {
-    
     max-width: 1300 px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 3;
     margin: 0 auto;
+    background-color: rgb(229, 212, 236);
 }
 
 
 header {
     padding-bottom: 25px;
     grid-column-start: span 3;
-    background-color: teal;
-    border: 2px solid black;
-    color: white;
+    background-color: rgb(189, 161, 189);
+    border-radius: 20px;
+    border: 3px solid rgb(233, 150, 233);
+    color: rgb(74, 38, 74);
     text-align: center;
-    font-family: Trebuchet;
+    font-family: Verdana;
 }
 
 main {
     display:grid;
     grid-column: 2;
     text-align: center;
-    background-color: rgb(232, 227, 227);
-    border: 2px solid teal;
-    font-family: Trebuchet;
+    color: rgb(74, 38, 74);
+    background-color: rgb(189, 161, 189);
+    border-radius: 20px;
+    border: 3px solid rgb(233, 150, 233);
+
+    font-family: Verdana;
+}
+
+.convert {
+    font-family: Verdana;
+    padding-top: 20px;
+    color: rgb(74, 38, 74);
+   
+}
+.three-forecast{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 
 h4 {
     display: grid;
     text-align: left;
-    font-family: Trebuchet;
+    font-family: Verdana;
+    color: rgb(74, 38, 74);
+   
 }
 
-span {
-    font-weight: bold;
+@media (max-width: 975px) {
+    body {
+        background-color: rgb(141, 107, 141);
+    }
 }

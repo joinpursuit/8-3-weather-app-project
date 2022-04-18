@@ -25,7 +25,7 @@ form.addEventListener('submit', (event) => {
 			let a = document.createElement('a');
 			a.textContent = userInput;
 			a.href = `${base_url}${userInput}?format=j1`;
-			searchHistory.textContent = feelsTemp;
+			searchHistory.innerHTML = `<br>${feelsTemp}</br>`;
 			searchHistory.prepend(a);
 			ul.append(searchHistory);
 			a.addEventListener('click', (event) => {
@@ -50,24 +50,24 @@ function weatherReport(currentWeather, json, userInput) {
 
 	nearestArea = json.nearest_area[0].areaName[0].value;
 	if (nearestArea.toLowerCase() === userInput.toLowerCase()) {
-		areaData.textContent = `Area: ${area}`;
+		areaData.innerHTML = `<strong>Area</strong>: ${area}`;
 	} else {
-		areaData.textContent = `Nearest Area: ${area}`;
+		areaData.innerHTML = `<strong>Nearest Area</strong>: ${area}`;
 	}
 
 	let region = `${json.nearest_area[0].region[0].value}`;
 	regionData = document.createElement('p');
-	regionData.textContent = region;
+	regionData.innerHTML = `<strong>Region:</strong> ${region}`;
 	currentWeather.append(regionData);
 
 	let country = `${json.nearest_area[0].country[0].value}`;
 	countryData = document.createElement('p');
-	countryData.textContent = country;
+	countryData.innerHTML = `<strong>Country:</strong> ${country} `;
 	currentWeather.append(countryData);
 
-	let feelsTemp = `Currently feels like ${json.current_condition[0].FeelsLikeF}`;
+	let feelsTemp = `<strong>Currently:</strong> Feels like ${json.current_condition[0].FeelsLikeF}°F`;
 	tempData = document.createElement('p');
-	tempData.textContent = feelsTemp;
+	tempData.innerHTML = feelsTemp;
 	currentWeather.append(tempData);
 
 	const chanceOfSunshine = json.weather[0].hourly[0].chanceofsunshine;
@@ -76,17 +76,17 @@ function weatherReport(currentWeather, json, userInput) {
 
 	//chance of sunshine
 	const sunny = document.createElement('p');
-	sunny.textContent = `Chance of Sunshine ${chanceOfSunshine}`;
+	sunny.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceOfSunshine}%`;
 	currentWeather.append(sunny);
 
 	//chance of rain
 	const rainy = document.createElement('p');
-	rainy.textContent = `Chance of Rain ${chanceOfRain}`;
+	rainy.innerHTML = `<strong>Chance of Rain:</strong> ${chanceOfRain}%`;
 	currentWeather.append(rainy);
 
 	//chance of snow
 	const snow = document.createElement('p');
-	snow.textContent = `Chance of Snow ${chanceOfSnow}`;
+	snow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceOfSnow}%`;
 	currentWeather.append(snow);
 
 	// displaying the sunny icon
@@ -109,22 +109,26 @@ function weatherReport(currentWeather, json, userInput) {
 	currentWeather.prepend(icon);
 
 	const articles = document.querySelectorAll('aside article');
-	const dates = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+	const dates = [
+		'<strong>Today</strong>',
+		'<strong>Tomorrow</strong>',
+		'<strong>Day After Tomorrow</strong>',
+	];
 
 	for (let i = 0; i < articles.length; i++) {
 		articles[i].innerHTML = '';
 
 		let days = document.createElement('p');
-		days.textContent = dates[i];
+		days.innerHTML = dates[i];
 
 		const avgTemp = document.createElement('p');
-		avgTemp.textContent = `Average Temperature: ${json.weather[i].avgtempF}`;
+		avgTemp.innerHTML = `<strong>Average Temperature:</strong> <br>${json.weather[i].avgtempF}°F`;
 
 		const maxTemp = document.createElement('p');
-		maxTemp.textContent = `Max Temperature: ${json.weather[i].maxtempF}`;
+		maxTemp.innerHTML = `<strong>Max Temperature:</strong> <br>${json.weather[i].maxtempF}°F`;
 
 		const minTemp = document.createElement('p');
-		minTemp.textContent = `Min Temperature: ${json.weather[i].mintempF}`;
+		minTemp.innerHTML = `<strong>Min Temperature:</strong> <br>${json.weather[i].mintempF}°F`;
 
 		articles[i].append(days, avgTemp, maxTemp, minTemp);
 	}
