@@ -158,3 +158,37 @@ a{
     -o-animation: fadein 3s; /* Opera < 12.1 */
        animation: fadein 3s;
 }
+
+@media (max-width: 1070px) {
+    body {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+@media (max-width: 896px) {
+    body {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        margin-left: 50;
+        margin-right: 50;
+    }
+    header {
+        grid-column: 1 / span 2;
+    }
+}
+@media (max-width: 687px) {
+    body {
+        display: grid;
+        grid-template-columns: 45% 45%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    header {
+        grid-column: 1 / span 2;
+    }
+    main {
+        grid-column:  1 / span 2;
+        grid-row: 2 / span 4;
+    }
+
+}
