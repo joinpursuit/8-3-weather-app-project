@@ -1,7 +1,7 @@
 header {
     grid-column-start: span 3;
     background-color: #556B2F;
-    border: 4px solid black;
+    border: 6px solid black;
     color: white;
     width: 75%;
     gap: 2px;
@@ -16,7 +16,7 @@ main {
     grid-template-columns: repeat (3, 1fr);
     background-color:BurlyWood;
     gap: 3px;
-    border: 4px solid black;
+    border: 2px solid black;
     text-align: center;
     font-family: Verdana;
     font-size: 14px;
