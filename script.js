@@ -14,20 +14,23 @@ const conversionForm = document.querySelector(".conversion");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  document.querySelectorAll(".results img").forEach((item) => {
+    item.remove();
+  });
   const { location } = event.target;
   getlocation(location.value);
   hidden.forEach((item) => item.remove());
 });
 
-//created a helper function for my form to make a dynamic URL
+//created a helper function for my form to have a dynamic URL
 function getlocation(input) {
   fetch(`${BASE_URL}${input}?format=j1`)
     .then((Response) => Response.json())
     .then((data) => {
       currentWeather(data);
       weatherForecast(data);
-      previousSearches(data);
       weatherConditions(data);
+      previousSearches(data, input);
       locationSearch.value = "";
     })
     .catch((error) => {
@@ -35,21 +38,20 @@ function getlocation(input) {
     });
 }
 
-//creating HTML elements for the API data to be displayed on the webpage. These are the main weather results for the location input
+//Creating HTML elements from the API data to be displayed on the webpage. These are the main weather results for the location input
+/**
+ * This function populates the webpage with current weather information.
+ * @param {object} data - represents the weather API data 
+ */
+
 function currentWeather(data) {
-  document
-    .querySelectorAll(".firstHeading")
-    .forEach((item) => (item.textContent = ""));
+  document.querySelectorAll(".firstHeading").forEach((item) => item.remove());
+  results.append(weatherConditions(data));
 
   let areaName = document.createElement("h2");
   areaName.setAttribute("class", "firstHeading");
   areaName.innerHTML = `<strong>${locationSearch.value}</strong>`;
   results.append(areaName);
-
-  //   let headingName = document.createElement("h2");
-  //   headingName.setAttribute("class", "firstHeading");
-  //   headingName.innerHTML = `<strong>${data.nearest_area[0].areaName[0].value}</strong>`;
-  //   results.append(headingName);
 
   let regionName = document.createElement("p");
   regionName.setAttribute("class", "firstHeading");
@@ -68,16 +70,24 @@ function currentWeather(data) {
 
   let area = document.createElement("p");
   area.setAttribute("class", "firstHeading");
-  area.innerHTML = `<strong>Area:</strong>${locationSearch.value}`;
-  results.append(area);
-
-  let nearestArea = document.createElement("p");
-  nearestArea.setAttribute("class", "firstHeading");
-  nearestArea.innerHTML = `<strong>Nearest Area:</strong>${data.nearest_area[0].areaName[0].value}`;
-  results.append(nearestArea);
+  if (locationSearch.value === data.nearest_area[0].areaName[0].value) {
+    area.innerHTML = `<strong>Area:</strong>${locationSearch.value}`;
+    results.append(area);
+  } else {
+    let nearestArea = document.createElement("p");
+    nearestArea.setAttribute("class", "firstHeading");
+    nearestArea.innerHTML = `<strong>Nearest Area:</strong>${data.nearest_area[0].areaName[0].value}`;
+    results.append(nearestArea);
+  }
 }
 
+//Creating HTML elements from the API data to be displayed on the webpage. These are the 3 day forcast results based off the users location input
+/**
+ * This function populates the webpage with todays, tomorrows, and day after tomorrows weather information.
+ * @param {object} data - represents the weather API data 
+ */
 function weatherForecast(data) {
+  //defined 3 separate objects that represent average, max, and min temparature for each day on the forecast.
   const todaysWeather = {
     "Average Temp": `${data.weather[0].avgtempF}`,
     "Max Temp": `${data.weather[0].maxtempF}`,
@@ -100,6 +110,7 @@ function weatherForecast(data) {
   document.querySelector("#article2").innerHTML = "<h3>Tomorrow</h3>";
   document.querySelector("#article3").innerHTML = "<h3>Day After Tomorrow</h3>";
 
+  //loop through each object and append each (key:value) pair inside its own article. 
   for (const property in todaysWeather) {
     article1.append(
       `${property}: ${todaysWeather[property]} ${temperatureUnitF} `
@@ -123,49 +134,69 @@ function weatherForecast(data) {
   }
 }
 
-function previousSearches(data) {
+//Creating previous searches list to be displayed on right side of the webpage. 
+//This section holds each previously searched location in a list.
+/**
+ * This function populates the webpage with previously searched locations.
+ * @param {object} data - represents the weather API data 
+ * @param {string} input - location name
+ */
+
+function previousSearches(data, input) {
   let listItem = document.createElement("li");
   let anchorTag = document.createElement("a");
-  //   let inputLocation = data.nearest_area[0].areaName[0].value;
-  let currentTemperatureF = data.current_condition[0].FeelsLikeF;
+  let currentTemperatureF = ` - ${data.current_condition[0].FeelsLikeF} ${temperatureUnitF}`;
 
   anchorTag.href = "";
-  anchorTag.textContent = `${locationSearch.value}`;
-  listItem.append(anchorTag);
-  `${sideBarList.append(listItem)} ${sideBarList.append(
-    currentTemperatureF
-  )} ${sideBarList.append(temperatureUnitF)}`;
+  anchorTag.textContent = `${input}`;
+  listItem.append(anchorTag, currentTemperatureF);
+  sideBarList.append(listItem);
 
   anchorTag.addEventListener("click", (event) => {
     event.preventDefault();
-    currentWeather(data);
-    weatherForecast(data);
-    weatherConditions(data);
+    document.querySelectorAll(".results img").forEach((item) => {
+      item.remove();
+    });
+    fetch(`${BASE_URL}${input}?format=j1`)
+      .then((Response) => Response.json())
+      .then((data) => {
+        currentWeather(data);
+        weatherForecast(data);
+        weatherConditions(data);
+        input = "";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 }
 
-function weatherConditions(data) {
+/**
+ * This function populates the webpage with a specific weather icon. 
+ * The specific weather icon that is chosen is determined from the current weather conditions provided by the API.
+ * @param {object} data - represents the weather API data 
+ * @returns {string} icon - The image source URL.
+ */
+function weatherConditions(object) {
   document
     .querySelectorAll(".secondHeading")
     .forEach((item) => (item.textContent = ""));
 
-  let iconElement = document.getElementById("weatherIcon");
-
-  let chanceOfSunshine = data.weather[0].hourly[0].chanceofsunshine;
+  let chanceOfSunshine = object.weather[0].hourly[0].chanceofsunshine;
   let chanceOfSunshineParagraph = document.createElement("p");
 
   chanceOfSunshineParagraph.setAttribute("class", "secondHeading");
   chanceOfSunshineParagraph.innerHTML = `<strong>Chance of Sunshine:</strong>${chanceOfSunshine}`;
   results.append(chanceOfSunshineParagraph);
 
-  let chanceOfRain = data.weather[0].hourly[0].chanceofrain;
+  let chanceOfRain = object.weather[0].hourly[0].chanceofrain;
   let chanceOfRainParagraph = document.createElement("p");
 
   chanceOfRainParagraph.setAttribute("class", "secondHeading");
   chanceOfRainParagraph.innerHTML = `<strong>Chance of Rain:</strong>${chanceOfRain}`;
   results.append(chanceOfRainParagraph);
 
-  let chanceOfSnow = data.weather[0].hourly[0].chanceofsnow;
+  let chanceOfSnow = object.weather[0].hourly[0].chanceofsnow;
   let chanceOfSnowParagraph = document.createElement("p");
 
   chanceOfSnowParagraph.setAttribute("class", "secondHeading");
@@ -184,9 +215,11 @@ function weatherConditions(data) {
     icon.setAttribute("alt", "snow");
     icon.src = "./assets/icons8-light-snow.gif";
   }
-  results.prepend(icon);
+  return icon;
 }
 
+// This event listener represents the conversion form on the left side of the webpage.
+// It converts a number from Celcius to Farenheit and vice versa once the convert button is submitted. 
 conversionForm.addEventListener("submit", (event) => {
   event.preventDefault();
   let result = document.querySelector("#result");
@@ -196,9 +229,9 @@ conversionForm.addEventListener("submit", (event) => {
 
   if (convertC.checked) {
     let number = ((5 / 9) * (inputNumber.value - 32)).toFixed(2);
-    result.textContent = number;
+    result.textContent = number + "°C";
   } else if (convertF.checked) {
     let number = ((9 / 5) * inputNumber.value + 32).toFixed(2);
-    result.textContent = number;
+    result.textContent = number + "°F";
   }
 });
