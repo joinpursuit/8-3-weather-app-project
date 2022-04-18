@@ -19,16 +19,16 @@ form.addEventListener('submit', (event) => {
     .then((element) => {
       createAForcast(element, weatherPlaceInput);
 
-      let unorderedList1 = document.querySelector('ul');
-      let searcheslist1 = document.createElement('li');
-      unorderedList1.append(searcheslist1);
+      let ulSearchesList = document.querySelector('ul');
+      let searcheslist = document.createElement('li');
+      ulSearchesList.append(searcheslist);
       let anchorTag = document.createElement('a');
 
       anchorTag.textContent = weatherPlaceInput;
       anchorTag.href = '# ';
       let current = element.current_condition[0].FeelsLikeF;
-      searcheslist1.textContent = `${current}` + `\u00B0F`;
-      searcheslist1.prepend(anchorTag);
+      searcheslist.textContent = `${current}` + `\u00B0F`;
+      searcheslist.prepend(anchorTag);
 
       anchorTag.addEventListener(`click`, (event) => {
         event.preventDefault();
@@ -166,26 +166,26 @@ function createAForcast(element, weatherPlaceInput) {
     display.prepend(icon);
   }
 
-  let displayedWeather = document.querySelectorAll('aside article');
+  let displayedTemp = document.querySelectorAll('aside article');
 
-  for (let i = 0; i < displayedWeather.length; i++) {
-    displayedWeather[i].innerHTML = '';
+  for (let i = 0; i < displayedTemp.length; i++) {
+    displayedTemp[i].innerHTML = '';
     let entry = document.createElement('p');
     let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
     entry.textContent = threeDaysForcast[i];
 
-    const todayTempAverage = element.weather[i].avgtempF;
+    const daysTempAverage = element.weather[i].avgtempF;
     let avgTempF = document.createElement('p');
-    avgTempF.textContent = todayTempAverage;
+    avgTempF.textContent = daysTempAverage;
 
-    const todayTempMax = element.weather[i].maxtempF;
+    const daysTempMax = element.weather[i].maxtempF;
     let maxTempF = document.createElement('p');
-    maxTempF.textContent = todayTempMax;
+    maxTempF.textContent = daysTempMax;
 
-    const todayTempMin = element.weather[i].mintempF;
+    const daysTempMin = element.weather[i].mintempF;
     let minTempF = document.createElement('p');
-    minTempF.textContent = todayTempMin;
+    minTempF.textContent = daysTempMin;
 
-    displayedWeather[i].append(entry, avgTempF, maxTempF, minTempF);
+    displayedTemp[i].append(entry, avgTempF, maxTempF, minTempF);
   }
 }
