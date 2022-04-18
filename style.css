@@ -1,8 +1,9 @@
 .header {
     background: rgb(4, 129, 135);
-    display: grid;
     border: 2px solid black;
     text-align: center;
+    grid-row-start: span 3;
+    padding: 10px;
 }
 .h1 {
     color: white;
@@ -14,18 +15,24 @@
 }
 #displayBox {
     border: 1px solid;
+    display: grid;
+    justify-content: center;
+    grid-gap: 7px;
+    padding: 5px;
     border-color: rgb(4, 129, 135);
-    display: grid;
     background: rgb(239, 238, 238)
-}
-#history {
-    display: grid;
-}
-.main {
-    display: grid;
 }
 body {
     display: grid;
+    padding: 10px;
     max-width: 1200px;
-    grid-template-columns: 1fr repeat(3fr);
+}
+.mainSec {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+}
+.threeDays {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }

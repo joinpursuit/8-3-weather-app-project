@@ -20,27 +20,58 @@
 
 <br>
 
+<section class="mainSec">
+
+<div class="convert">
+    <aside>
+        <form class="convert">
+            <label>
+                Converting °F to °C
+                <input type="number" id="temp-to-convert"/>
+            </label>
+            <label>
+                <input type="radio" id="to-f" name="con" value="f" />
+                °F
+            </label>
+            <label>
+                <input type="radio" id="to-c" name="con" value="c" />
+                °C
+            </label>
+            <label>
+                <input type="submit" class="button" value="convert" />
+            </label>
+            <h4 class="converted-temperature"></h4>
+        </form>
+    </aside>
+</div>
+
+
+
 <!-- Location + Weather-->
+<div>
 <main>
     <article id="displayBox"> <p>Choose a location to view the weather.</p></article>
 
-<aside class="history">
+    <!-- Three Day Forcast-->
+    <aside id="threeAside">
+        <section class="threeDays"></section>
+    </aside>
+</aside>
+</div>
 <!-- History-->
+<div>
+    <aside class="history">
     <section class="previous-searches">
         <h4>Previous Searches</h4>
         <p>No previous searches</p>
-        <ul></ul>
+        <ul class="uOrderList"></ul>
   </section>
 
 </aside>
+</div>
 
-<!-- Three Day Forcast-->
-<aside id="threeAside">
-    <section class="threeDays">
-    </section>
-</aside>
 </main>
 <!---->
-
+</section>
 </body>
 </html>
