@@ -3,6 +3,12 @@ let API_FORMAT = `?format=j1`;
 document.querySelector('form');
 const form = document.querySelector('form');
 
+/** Code used to manipulate the Html form and append the previous searches aside bar,
+ * complete with a entries that can redirect the user to a previously searched entity
+ * upon click. Contains API fetch protocols and catch error handling.
+ *
+ */
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const weatherPlaceInput = event.target.location.value;
@@ -29,9 +35,18 @@ form.addEventListener('submit', (event) => {
 
         createAForcast(element, weatherPlaceInput);
       });
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
     });
 });
 
+/**
+ * Standalone code used for the Celsius and Fahrenheit buttons. Taking in user defined number input
+ * to return a h4 element containing a converted cesius or fahrenheit measurement
+ * based on the entered number.
+ */
 let tempConverter = document.querySelector('.conversion');
 tempConverter.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -48,6 +63,15 @@ tempConverter.addEventListener('submit', (event) => {
     result.textContent = (userInput * 1.8 + 32).toFixed(2) + `\u00B0F`;
   }
 });
+
+/**
+ *  * Following function: createAforecast() uses user input and API information to retrieve and populate
+ * the form with appropriately formatted information from the API.
+ * @param  {iterator} element - Used to iterate API information.
+ * @param  {User Input} weatherPlaceInput - User defined string that dictates what information the
+ *  the createAForecast function retrieves and uses to populate the app's form.
+ * @return  {HTML} A completed weather app form with additional elements compared to the base HTML template.
+ */
 
 function createAForcast(element, weatherPlaceInput) {
   const display = document.querySelector(`.display`);
