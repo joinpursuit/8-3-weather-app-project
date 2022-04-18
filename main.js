@@ -11,39 +11,32 @@ form.addEventListener('submit', (event) => {
   event.target.location.value = '';
   console.log(`${BASE_URL}${weatherPlaceInput}${API_FORMAT}`);
   fetch(`${BASE_URL}${weatherPlaceInput}${API_FORMAT}`)
-    .then((response) => response.json()) /*{
-    return response.json();
-    }) */
+    .then((response) => response.json())
     .then((element) => {
       createAForcast(element, weatherPlaceInput);
-      //makeThreeDayForcast(element, weatherPlaceInput);
 
       let unorderedList1 = document.querySelector('ul');
-      let list1 = document.createElement('li');
-      unorderedList1.append(list1);
-      //let anchorTag = document.createElement('a');
-      //checkWeatherConditions(element, weatherPlaceInput);
-      //anchorTag.textContent = weatherPlaceInput;
-      //anchorTag.href = '#';
-      let current = element.current_condition[0].FeelsLikeF;
-      //list1.textContent = current;
-      list1.innerHTML = `<a href ="javascript:void(0)" rel="${weatherPlaceInput}">  ${weatherPlaceInput}</a> ${current} &deg;F`;
+      let searcheslist1 = document.createElement('li');
+      unorderedList1.append(searcheslist1);
+      let anchorTag = document.createElement('a');
 
-      // list1.prepend(anchorTag);
+      anchorTag.textContent = weatherPlaceInput;
+      anchorTag.href = '# ';
+      let current = element.current_condition[0].FeelsLikeF;
+      searcheslist1.textContent = `${current}` + `\u00B0F`;
+      // searcheslist1.innerHTML = `<a href ="javascript:void(0)" rel="${weatherPlaceInput}">  ${weatherPlaceInput}</a> ${current} &deg;F`;
+
+      searcheslist1.prepend(anchorTag);
 
       let areaContainer = element.nearest_area[0].areaName[0].value;
       let regionContainer = element.nearest_area[0].areaName[0].value;
       let countryContainer = element.nearest_area[0].country[0].value;
-      retrieveCityInfo();
-      /*list1.addEventListener(`click`, (event) => {
+
+      anchorTag.addEventListener(`click`, (event) => {
         event.preventDefault();
-        retrieveCityInfo();
+        //retrieveCityInfo()
         createAForcast(element, weatherPlaceInput);
-      }); */
-    })
-    .catch((error) => {
-      console.log(error);
-      return error;
+      });
     });
 });
 
@@ -140,52 +133,54 @@ function createAForcast(element, weatherPlaceInput) {
     display.prepend(icon);
   }
 
-  let tempConverter = document.querySelector('aside form');
+  /* let userInput = document.getElementById('temp-to-convert').value;
+  let tempConverter = document.querySelector('conversion');
   tempConverter.addEventListener('submit', (event) => {
     event.preventDefault();
     let input = Number(event.target.querySelector('input').value);
+    let userInput = document.getElementById('temp-to-convert').value;
     let measurements = event.target.querySelectorAll('.converter');
-    let type = '';
-    for (let tempType of measurements) {
-      if (tempType.checked) {
-        type = tempType.value;
-        break;
-      }
-    }
-    if (type === 'celsius') {
-      document.getElementById('result').innerHtml =
-        (input - 32) / (1.8).toFixed(2);
-    } else if (type === 'fahrenheit') {
-      document.getElementById('result').innerHtml = (input * 1.8 + 32).toFixed(
-        2,
-      );
-    }
-  });
+    const celConvert = document.getElementById('to-c');
+    const fahConvert = document.getElementById('to-f');
+    const result = document.getElementById('result');
+    //let type = '';
 
-  ///Doesn't Completely pass the test, needs more work.
+    if (celConvert.checked) {
+      result.textContent = ((userInput - 32) / 1.8).toFixed(2);
+      console.log(result);
+      //return result;
+    } else if (fahConvert.checked) {
+      result.innerText = (userInput * 1.8 + 32).toFixed(2);
+      console.log(result);
+      //return result;
+    }
+  }); */
 
-  let displayedWeather = document.querySelectorAll('.aside-two');
-  /* for (let i = 0; i < displayedWeather.length; i++) {
-    
+  let displayedWeather = document.querySelectorAll('aside article');
+
+  for (let i = 0; i < displayedWeather.length; i++) {
     displayedWeather[i].innerHTML = '';
-    let displayedWeather = document.createElement('p');
-    displayedWeather.textContent = threeDaysForcast[i];
+    let entry = document.createElement('p');
+    let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+    entry.textContent = threeDaysForcast[i];
 
     const todayTempAverage = element.weather[i].avgtempF;
-    const todayTempMax = element.weather[i].maxtempF;
-    const todayTempMin = element.weather[i].mintempF;
-
-    let minTempF = document.createElement('p');
     let avgTempF = document.createElement('p');
-    let maxTempF = document.createElement('p');
-
-    maxTempF.textContent = todayTempMax;
     avgTempF.textContent = todayTempAverage;
+
+    const todayTempMax = element.weather[i].maxtempF;
+    let maxTempF = document.createElement('p');
+    maxTempF.textContent = todayTempMax;
+
+    const todayTempMin = element.weather[i].mintempF;
+    let minTempF = document.createElement('p');
     minTempF.textContent = todayTempMin;
-    displayedWeather[i].append(displayedWeather, avgTempF, maxTempF, minTempF);
+
+    displayedWeather[i].append(entry, avgTempF, maxTempF, minTempF);
   }
-} */
-  displayedWeather.forEach((ele) => {
+}
+
+/* displayedWeather.forEach((ele) => {
     console.log(element);
     ele.innerHTML = '';
     //let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
@@ -203,18 +198,18 @@ function createAForcast(element, weatherPlaceInput) {
     avgTempF.textContent = todayTempAverage;
     minTempF.textContent = todayTempMin;
     ele.append(displayedWeather, avgTempF, maxTempF, minTempF);
-  });
-}
-function retrieveCityInfo() {
+  });  */
+//}
+/*function retrieveCityInfo() {
   const allChildren = document.querySelectorAll(`#searchList a`);
   //console.log(allChildren);
   allChildren.forEach((link) => {
     link.addEventListener(`click`, (event) => {
       event.preventDefault();
       console.log(link.getAttribute('rel'));
-
-      createAForcast(link.getAttribute('rel'));
+      document.getElementById('searchlist').textContent = createAForcast(
+        link.getAttribute('rel'),
+      );
       //createAForcast(element, weatherPlaceInput);
     });
-  });
-}
+  }); */
