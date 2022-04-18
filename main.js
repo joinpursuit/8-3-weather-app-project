@@ -1,4 +1,4 @@
-document.querySelector('form');
+
 form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -15,7 +15,6 @@ form.addEventListener('submit', (event) => {
       a.textContent = `${enteredlocation}`+ " " ;
       //TODO: Hyperlink for previously searched
       a.href = '#';
-      
       const currentCondition = forecast.current_condition[0].FeelsLikeF;
       li.textContent = currentCondition;
       li.prepend(a);
