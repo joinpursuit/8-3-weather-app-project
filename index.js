@@ -3,11 +3,11 @@
 
 // > Global definitions
 const BASE_URL = "https://wttr.in",
+      JSON_FORMAT     = 'format=j1',
       locationForm    = document.getElementById("location-search"),
       convertForm     = document.getElementById("temp-convert"),
       prevSearches    = document.getElementById("prev-searches"),
       inputLocation   = document.getElementById("location"),
-      formatJSON      = 'format=j1',
       storedLocations = {},
       farenheitUnit   = '°F';
 
@@ -52,27 +52,28 @@ convertForm.addEventListener("submit", (event) => {
  * ==================================
  * Gets an inputted location throught the form to search the current weather, besides the forecast for the next days
  * @param {string} location - A string that represents the name of a city/town
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
+ * @returns {} No specific return. Fetch the data from the API, and creates a series of properties to the global data object.
+ *             Then, it executes the respective functions 
  */
 function getLocationByName(location) {
-  fetch(`${BASE_URL}/${location}?${formatJSON}`)
+  fetch(`${BASE_URL}/${location}?${JSON_FORMAT}`)
     .then((response) => response.json())
     .then(result => {
-        const currentList   = document.getElementById('curr-search'),
-              prevSearchMessage  = document.querySelector('.widget-prev-searches p'),
-              initMessage   = document.querySelector('.current-forecast p'),
-              currForecast  = document.querySelector('.current-forecast'),
-              dailyForecast = document.querySelector('.daily-forecast'),
-              dataSearch    = {};
+        const currentData       = document.getElementById('current-data'),
+              prevSearchMessage = document.querySelector('.widget-prev-searches p'),
+              initMessage       = document.querySelector('.current-forecast p'),
+              currForecast      = document.querySelector('.current-forecast'),
+              dailyForecast     = document.querySelector('.daily-forecast'),
+              dataSearch        = {};
 
         // > Removing initial message-s
         initMessage.classList.add('hidden');
         prevSearchMessage.classList.add('hidden');
-        // > Refresh data
-        currentList.querySelectorAll('*').forEach(node => {node.remove()});
+        // > Refreshing data containers
+        currentData.querySelectorAll('*').forEach(node => {node.remove()});
         dailyForecast.querySelectorAll('*').forEach(node => {node.remove()});
 
-        // > Creating object with data 
+        // > Assigning properties to the object with the data retrieved from the API
         dataSearch['img'] = validateWeatherCondition(result.weather[0].hourly[0].chanceofsunshine, 
                                                      result.weather[0].hourly[0].chanceofrain, 
                                                      result.weather[0].hourly[0].chanceofsnow);
@@ -96,7 +97,6 @@ function getLocationByName(location) {
 
     })
     .catch((error) => {
-        //console.log(error)
         const message = createErrorMessage(error);
         document.querySelector("main").append(message);
     });
@@ -106,17 +106,14 @@ function getLocationByName(location) {
  * ==================================
  * getCurrentForecast()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} data - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
+ * Gets an object with the data to generate a container displaying the information
+ * @param {Object} data - An object with al the required information
+ * @returns {dataList} A HTML structure with the formated data
  *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
  */
 function getCurrentForecast(data){
     const currForecast = document.querySelector('.current-forecast'),
-          dataList     = document.getElementById('curr-search');
+          dataList     = document.getElementById('current-data');
     //
     for (const [key, value] of Object.entries(data)) {
         // >
@@ -133,7 +130,6 @@ function getCurrentForecast(data){
             dataItem.classList.add('item');
             dataItem.innerHTML = `<span class='data-header'>${key} <i class="fa fa-solid fa-ellipsis"></i></span> <span class='data-value'>${value}</span>`;
         }
-        
         dataList.append(dataItem);
     }
     
@@ -244,17 +240,13 @@ function previousSearches(location, temp){
  * ==================================
  * checkPreviousSearch()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} location - A string that represents the name of a city
- * @param {string} temp - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
+ * Gets a pair of data that represents a location with their correspondent current weather
+ * @param {string} location - A string that represents the name of a city.
+ * @param {string} temp - A string that represents the curret temperature.
+ * @returns {Object} Return the object tput.
  */
 function checkPreviousSearch(location, temp){
-    // => Adding prevous searches to the obj
+    // => Adding new properties that represent the previous searches
     storedLocations[location] = temp;
 
     return storedLocations;
@@ -262,15 +254,11 @@ function checkPreviousSearch(location, temp){
 
 /**
  * ==================================
- * getLocationByName()
+ * recallPreviousLocation()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} location - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
+ * Listen for the click event of each item in the list of previous searches. Then, recall the getLocationByName() function
+ * @param {}  - No parameters
+ * @returns {} No returns.
  */
 function recallPreviousLocation(){
     // => Getinng all previous searches
@@ -289,17 +277,15 @@ function recallPreviousLocation(){
  * ==================================
  * validateWeatherCondition()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} location - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
+ * Gets the probabilities of weather conditions
+ * @param {number} sunchine - A number that represents the probability of sunchine condition
+ * @param {number} rain - A number that represents the probability of rain condition
+ * @param {number} snow - A number that represents the probability of snow condition
+ * @returns {HTML element} Returns the respective icon which represents the weather condition.
  */
 function validateWeatherCondition(sunchine, rain, snow){
     let fileName = '';
-    // => Validating all the possible conditions
+    // => Validating all the probabilities
     if(sunchine > 50){
         fileName = '<img src="./assets/icons8-summer.gif" alt="sun" >';   
     }
@@ -319,10 +305,10 @@ function validateWeatherCondition(sunchine, rain, snow){
  * ==================================
  * validateArea()
  * ==================================
- * Gets an inputted location by the user to search the weather
+ * Gets the inputted location and the name of the area retrieved for the API
  * @param {string} location - A string that represents the name of a city
  * @param {string} areaName - A string that represents the name of an area
- * @returns {} Fetch the data from the API, then creates an object to manage the proper output.
+ * @returns {string} Returns the respective name for the key.
  *
  * EXAMPLE:
  *  validateArea(location, areaName);
@@ -344,10 +330,10 @@ function validateArea(location, areaName) {
  * ==================================
  * convertTemp()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} temp - A string that represents a temperature
- * @param {string} convertOp - A string that represents the unit to covert
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
+ * Gets a temperature inputted through the temperature coversions form
+ * @param {number} temp - A number that represents a temperature.
+ * @param {string} convertOp - A string that represents the unit to covert.
+ * @returns {} No specific return.
  *
  * EXAMPLE:
  *  convertTemp(100, c)
@@ -379,10 +365,9 @@ function convertTemp(temp, convertOp) {
  * ==================================
  * createErrorMessage()
  * ==================================
- * Gets a specific error generated by the catch method
- * @param {string} message - A string that represents the error 
- * @returns {section html element} Retuns a HTML section
- *
+ * Gets a specific error generated by the catch method after fetching the data.
+ * @param {string} message - A string that represents the error.
+ * @returns {html element} Returns a HTML element with an error message.
  */
 function createErrorMessage(message) {
     const section = document.createElement("section");

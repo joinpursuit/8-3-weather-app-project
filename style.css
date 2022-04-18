@@ -126,7 +126,7 @@ header form .button:hover {
 }
 /* Daily forecast data */
 #container .daily-forecast {
-    margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr 1fr;grid-template-rows: 1; gap: 4px;
+    margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr 1fr;grid-template-rows: 1; gap: 10px;
 }
 #container .daily-forecast div {
     padding: 0rem;
