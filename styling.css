@@ -15,8 +15,8 @@ body {
     grid-column-start: span 3;
     color: whitesmoke;
     text-align: center;
-    font-family: sans-serif;
-    background-color: rgb(15, 62, 78);
+    font-family: 'Runic MT Condensed';
+    background-color: rgb(0, 115, 153);
     border:2px solid black;
     justify-content: center;
     margin: 0 auto;
@@ -28,7 +28,7 @@ body {
     grid-column-gap: 10px;
     grid-column: 2;
     text-align: center;
-    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   
   aside.three-day {
