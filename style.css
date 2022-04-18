@@ -62,8 +62,9 @@ header form .form-control::before {
     position: absolute;display: block;z-index: 1000;
 }
 header form input[type='text'] {
-    width: 100%;padding: 1rem 1rem 1rem 4rem; margin: 0;font-size: 1.2rem;font-weight: 400;/*background-color: #e9ecef;*/color: #006d77;
-    border: 0px solid rgba(82, 183, 136, 0.5);border-radius: 15px 0 0 15px; box-sizing: border-box;position: relative;box-shadow: 0px 0px 0px 10px rgba(82, 183, 136, 0.5);
+    width: 100%;padding: 1rem 1rem 1rem 4rem; margin: 0;font-size: 1.2rem;font-weight: 600;/*background-color: #e9ecef;*/color: #006d77 !important;
+    border: 0px solid rgba(82, 183, 136, 0.5);border-radius: 15px 0 0 15px; box-sizing: border-box;position: relative;
+    box-shadow: 0px 0px 0px 10px rgba(82, 183, 136, 0.5);
 }
 header form input[type='text']::before {
     
@@ -72,8 +73,8 @@ header form input[type='submit'] {
     padding: 1.2rem 2.2rem;margin: 0;display: block;border-radius: 0 15px 15px 0;background: var(--btnLocation);color: #fbf5f3;cursor: pointer;
     font-size: 1.2rem;font-weight: 800;border: 0px solid rgba(82, 183, 136, 0.5);border-left: none;box-shadow: 0px 0px 0px 10px rgba(82, 183, 136, 0.5);
 }
-header form .button:hover {
-  background: #006d77;
+header form input[type='submit']:hover {
+  background: #00545b;
 }
 /*
  *
@@ -85,7 +86,7 @@ header form .button:hover {
 #container {
     width: 80%;margin: 25px auto;min-height: calc(100vh - 70px);display: grid;grid-template-columns: 1fr 2fr 1fr;gap: 10px;
 }
-/* Current forecst data */
+/* Current forecast data */
 #container .current-forecast {
     padding: 1rem;border: 1px solid #bee3db;text-align: center;background-color: #a8dadc;border-radius: 1px;box-shadow: 0px 1px 4px #2a9d8f;
 }
@@ -106,7 +107,7 @@ header form .button:hover {
     font-size: 1.4rem;line-height: 2.4;font-weight: 400;text-align: left;
 }
 #container .current-forecast p span.data-header i {
-    float: right;
+    float: right;line-height: 3.4rem;
 }
 #container .current-forecast p span.data-value {
     font-size: 1.4rem;font-weight: 600;text-align: right;
@@ -119,12 +120,12 @@ header form .button:hover {
 #container .current-forecast p:nth-child(8) span.data-value,
 #container .current-forecast p:nth-child(9) span.data-value,
 #container .current-forecast p:nth-child(10) span.data-value {
-    font-size: 2.4rem;line-height: 2.4rem;
+    font-size: 2.4rem;line-height: 3.4rem;
 }
 #container .current-forecast div {
     margin: 1rem auto;
 }
-/* Daily forecast data */
+/*** Daily forecast data ***/
 #container .daily-forecast {
     margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr 1fr;grid-template-rows: 1; gap: 10px;
 }
@@ -148,7 +149,10 @@ header form .button:hover {
     color: var(--light)       
 }
 #container .daily-forecast td span {
-    font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;
+    display: flex; font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;
+}
+#container .daily-forecast td span i {
+    margin: 0 3px; font-size: 1.0rem;
 }
 /*
  *
@@ -205,7 +209,7 @@ header form .button:hover {
 #container .widget-temp-convert form .result span {
     font-size: 4rem;line-height: 4rem;
 }
-/* Aside: Widget prev searches */
+/*** Aside: Widget prev searches ***/
 #container aside.widget-prev-searches {
     padding: 1rem;
 }
@@ -274,7 +278,7 @@ footer section .fa-js {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     /* ===> MAIN <=== */
     header {
-        padding: 0.5rem 0;background-color: #f4a261;display: grid;grid-template-columns: 1fr 1fr;
+        padding: 0.5rem 0;/*background-color: #f4a261;*/display: grid;grid-template-columns: 1fr 1fr;
     }
     #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr 1fr;gap: 0px;}
     #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr;gap: 0px;}
@@ -295,7 +299,28 @@ footer section .fa-js {
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
-   
+    header {
+        width: 100%;padding: 0.5rem 0;display: grid;grid-template-columns: 1fr;
+    }
+    header h1 {
+        font-size: 2.2rem;
+    }
+    header form {
+        padding: 0 1rem;
+    }
+    header form .form-control::before {
+        content: "";
+    }
+    header form input[type='text'] {
+        width: 100%;padding: 1rem; margin: 0;
+    }
+    header form input[type='submit'] {
+        padding: 1.0rem 1rem;
+    }
+    #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .widget-temp-convert form label.heading {font-size: 1.2rem;}
+    #container .widget-temp-convert form {padding: 1rem;}
 }
 @media only screen and (min-width: 360px) and (max-width: 767px) { 
     /* CSS */

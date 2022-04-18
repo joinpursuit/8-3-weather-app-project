@@ -4,12 +4,12 @@
 // > Global definitions
 const BASE_URL = "https://wttr.in",
       JSON_FORMAT     = 'format=j1',
+      farenheitUnit   = '°F',
       locationForm    = document.getElementById("location-search"),
       convertForm     = document.getElementById("temp-convert"),
       prevSearches    = document.getElementById("prev-searches"),
       inputLocation   = document.getElementById("location"),
-      storedLocations = {},
-      farenheitUnit   = '°F';
+      storedLocations = {};
 
 inputLocation.focus(); 
 /**
@@ -20,10 +20,9 @@ inputLocation.focus();
 locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const { location } = event.target;
-    // => Getting data
+    // => Calling the function to fetch the data from the API
     getLocationByName(location.value);
     locationForm.reset();
-     
 });
 
 /**
@@ -33,16 +32,17 @@ locationForm.addEventListener("submit", (event) => {
  */
 convertForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const temp        = document.getElementById('temp-to-convert'),
-          radioInputs = document.getElementsByName('convertOp');
-    let convertOp;
+    const temperature = document.getElementById('temp-to-convert'),
+          radioInputs = document.getElementsByName('unit');
+    let convertToUnit;
+    // > Looping throught the node list to get the radio checked
     radioInputs.forEach(radio => {
         if(radio.checked){
-            convertOp = radio;
+            convertToUnit = radio;
         }
     });
-    // => Getting data
-    convertTemp(temp.value, convertOp.value);
+    // => Calling the function to execute the temperature conversion
+    convertTemperature(temperature.value, convertToUnit.value);
     convertForm.reset();
 });
 
@@ -159,15 +159,15 @@ function getDailyForecast(data){
                         <table>
                         <tr>
                             <td>Average Temperature</td>
-                            <td><span>${element.avgtempF}°F</span></td>
+                            <td><span>${element.avgtempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         <tr>
                             <td>Max Temperature</td>
-                            <td><span>${element.maxtempF}°F</span></td>
+                            <td><span>${element.maxtempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         <tr>
                             <td>Min Temperature</td>
-                            <td><span>${element.mintempF}°F</span></td>
+                            <td><span>${element.mintempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         </table>`;
                         
@@ -328,34 +328,35 @@ function validateArea(location, areaName) {
 
 /**
  * ==================================
- * convertTemp()
+ * convertTemperature()
  * ==================================
- * Gets a temperature inputted through the temperature coversions form
+ * Gets a temperature inputted through the temperature coversion form
  * @param {number} temp - A number that represents a temperature.
- * @param {string} convertOp - A string that represents the unit to covert.
+ * @param {string} unit - A string that represents the unit to covert.
  * @returns {} No specific return.
  *
  * EXAMPLE:
- *  convertTemp(100, c)
+ *  convertTemperature(100, c)
  *  //> =37.78 °Celsius
  */
-function convertTemp(temp, convertOp) { 
+function convertTemperature(temp, unit) { 
     let result = 0;
-    let celsiusToFahrenheit = (celsius => {
+    
+    const celsiusToFahrenheit = (celsius => {
         let fahrenheit = ( (celsius * (9/5) + 32) ).toFixed(2);
         return fahrenheit;
     });
   
-    let fahrenheitToCelsius = (fahrenheit => {
+    const fahrenheitToCelsius = (fahrenheit => {
         let celsius = ( (fahrenheit - 32) * (5/9) ).toFixed(2);
         return celsius;
     });
 
-    if (convertOp === 'f') {
+    if (unit === 'f') {
         result = celsiusToFahrenheit(temp);
         document.querySelector('.result').innerHTML = ` = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
     } 
-    else if (convertOp === 'c') {
+    else if (unit === 'c') {
         result = fahrenheitToCelsius(temp);
         document.querySelector('.result').innerHTML = ` = ${result} <span>°C <i class="fa fa-solid fa-temperature-full"></i></span>`;
     }
