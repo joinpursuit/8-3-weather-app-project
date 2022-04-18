@@ -3,23 +3,12 @@
             src: url('VT323-Regular.ttf')
         }
         
-        #icon {
-            align-items: center;
-            padding-top: 20px;
-            height: 200px;
-            max-width: 200px;
-            outline: none;
-            border-radius: 25px;
-            opacity: 1.0;
-        }
-        
         .card {
             display: grid;
             align-items: center;
             text-align: center;
             justify-content: center;
             background: purple;
-            background-image: url('https://tinyurl.com/47a5mh5j');
             padding: 15px;
             margin: 0%;
             max-height: 100vh;

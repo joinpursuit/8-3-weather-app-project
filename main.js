@@ -1,7 +1,7 @@
 const form = document.querySelector('form');
 const article = document.querySelector('article');
 const articles = document.querySelectorAll('aside article');
-const current = document.querySelector('.currentData');
+let current = document.querySelector('.currentData');
 
 
 let list = document.querySelector('ul');
@@ -9,25 +9,30 @@ let input = document.querySelector('submit');
 let search = document.querySelector('#searchbar');
 const BASE_URL = 'http://wttr.in/';
 const id_URL = '?format=j1';
+let weatherIcon = document.createElement('img')
 
-form
-    .addEventListener('submit', (event) => {
-        event.preventDefault();
-        document.querySelector('main p').hidden = true;
-        let searchLocation = `${BASE_URL}${search.value}${id_URL}`;
-        let city = search.value;
-        fetch(searchLocation)
-            .then((response) => {
-                return response.json();
-            })
-            .then((weatherData) => {
-                currentWeather(weatherData, city);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-        form.reset();
-    });;
+
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    document.querySelector('main p').hidden = true;
+    weatherIcon.style.opacity = "0.5"
+    let searchLocation = `${BASE_URL}${search.value}${id_URL}`;
+    let city = search.value;
+    fetch(searchLocation)
+        .then((response) => {
+            return response.json();
+        })
+        .then((weatherData) => {
+            currentWeather(weatherData, city);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    form.reset();
+});;
+//
+//
 
 function currentWeather(weatherData, city) {
     let area = weatherData.nearest_area[0].areaName[0].value;
@@ -61,9 +66,41 @@ function currentWeather(weatherData, city) {
     let currentlyP = document.createElement('p');
     currentlyP.textContent = `Feels like it's ${currently}°F.`;
     current.append(currentlyP);
+
+    const chanceOfSunshine = weatherData.weather[0].hourly[0].chanceofsunshine;
+    const sunny = document.createElement('p')
+    sunny.textContent = `Chance of Sunshine: ${chanceOfSunshine} %`
+    current.append(sunny);
+
+    const chanceOfRain = weatherData.weather[0].hourly[0].chanceofrain;
+    const rainy = document.createElement('p')
+    rainy.textContent = `Chance of Rain: ${chanceOfRain} %`
+    current.append(rainy);
+
+    const chanceOfSnow = weatherData.weather[0].hourly[0].chanceofsnow;
+    const snow = document.createElement('p')
+    snow.textContent = `Chance of Snow: ${chanceOfSnow} %`
+    current.append(snow);
+
+    for (let i = 0; i < weatherData.weather[0].hourly.length; i++) {
+        if (Number(weatherData.weather[0].hourly[i].chanceofsunshine) > 50) {
+            weatherIcon.src = "./assets/icons8-summer.gif";
+            weatherIcon.alt = "sun"
+        }
+        if (Number(weatherData.weather[0].hourly[i].chanceofrain) > 50) {
+            weatherIcon.src = "./assets/icons8-torrential-rain.gif"
+            weatherIcon.alt = "rain"
+        }
+        if (Number(weatherData.weather[0].hourly[i].chanceofsnow) > 50) {
+            weatherIcon.src = "./assets/icons8-light-snow.gif"
+            weatherIcon.alt = "snow"
+        }
+    }
+    current.prepend(weatherIcon);
 }
-
-
+//
+//
+//
 let widget = document.querySelector('#widget');
 
 widget.addEventListener('submit', (event) => {
@@ -87,4 +124,5 @@ widget.addEventListener('submit', (event) => {
     } else {
         finalResult.textContent = ((temp * 9) / 5 + 32).toFixed(2);
     }
+
 });
