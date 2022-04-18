@@ -12,11 +12,10 @@ form.addEventListener('submit', (event) => {
       let li = document.createElement('li');
       ul.append(li);
       let a = document.createElement('a');
-      a.textContent = `${enteredlocation}`;
+      a.textContent = `${enteredlocation}`+ " " ;
       //TODO: Hyperlink for previously searched
       a.href = '#';
-      // const hide = document.querySelector('hide');
-      // hide.classList.add("hidden");
+      
       const currentCondition = forecast.current_condition[0].FeelsLikeF;
       li.textContent = currentCondition;
       li.prepend(a);
@@ -32,6 +31,8 @@ form.addEventListener('submit', (event) => {
 function generateWeather(forecast, enteredlocation) {
   const display = document.querySelector('#display');
   display.innerHTML = '';
+  // let assignClass = document.querySelector('#display')
+  // assignClass.classList.add('hidden') 
   const area = forecast.nearest_area[0].areaName[0].value;
   const region = forecast.nearest_area[0].region[0].value;
   const country = forecast.nearest_area[0].country[0].value;
@@ -41,9 +42,9 @@ function generateWeather(forecast, enteredlocation) {
   display.append(h2);
   let areaDisplay = document.createElement('p');
   if (enteredlocation === area) {
-    areaDisplay.textContent = `Area: ${area}`;
+    areaDisplay.textContent = `Area: ${area} `;
   } else {
-    areaDisplay.textContent = `Nearest Area: ${area}`;
+    areaDisplay.textContent = `Nearest Area: ${area} `;
   }
   display.append(areaDisplay);
   let regionDisplay = document.createElement('p');
@@ -95,7 +96,7 @@ function generateWeather(forecast, enteredlocation) {
     if (parseInt(forecast.weather[0].hourly[i].chanceofsnow) > 50) {
       snowBool = true;
     }
-    const date = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+    const date = ['Today', 'Tomorrow', 'Two Days From Now'];
     for (let i = 0; i < forcastDate.length; i++) {
       forcastDate[i].innerHTML = '';
       let dateDisplay = document.createElement('p');
@@ -140,9 +141,9 @@ convertingTemperature.addEventListener('submit', (event) => {
   let convertTemps = event.target.querySelectorAll('.converting-temp');
   //TODO: This link is the conversion formula, https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
   let type = '';
-  for (let tempType of convertTemps) {
-    if (tempType.checked) {
-      type = tempType.value;
+  for (let convertTemp of convertTemps) {
+    if (convertTemp.checked) {
+      type = convertTemp.value;
       break;
     }
   }
