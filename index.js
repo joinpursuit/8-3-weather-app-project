@@ -1,16 +1,15 @@
 'use strict';
 
 
-// > API's base url
-const BASE_URL = "https://wttr.in"
-
-const locationForm    = document.getElementById("location-search"),
+// > Global definitions
+const BASE_URL = "https://wttr.in",
+      locationForm    = document.getElementById("location-search"),
       convertForm     = document.getElementById("temp-convert"),
       prevSearches    = document.getElementById("prev-searches"),
       inputLocation   = document.getElementById("location"),
       formatJSON      = 'format=j1',
-      storedLocations = {};
-let   defaultUnit     = '°F';
+      storedLocations = {},
+      farenheitUnit   = '°F';
 
 inputLocation.focus(); 
 /**
@@ -51,13 +50,9 @@ convertForm.addEventListener("submit", (event) => {
  * ==================================
  * getLocationByName()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} location - A string that represents the name of a city
+ * Gets an inputted location throught the form to search the current weather, besides the forecast for the next days
+ * @param {string} location - A string that represents the name of a city/town
  * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
  */
 function getLocationByName(location) {
   fetch(`${BASE_URL}/${location}?${formatJSON}`)
@@ -70,7 +65,7 @@ function getLocationByName(location) {
               dailyForecast = document.querySelector('.daily-forecast'),
               dataSearch    = {};
 
-        // > Hidding initial message
+        // > Removing initial message-s
         initMessage.classList.add('hidden');
         prevSearchMessage.classList.add('hidden');
         // > Refresh data
