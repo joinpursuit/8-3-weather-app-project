@@ -24,6 +24,9 @@ function refresh() {
   document.querySelectorAll("img").forEach((item) => {
     item.remove();
   });
+  document.querySelectorAll("p").forEach((item) => {
+    item.remove();
+  });
 }
 
 // User Input
@@ -85,13 +88,19 @@ function dataHelper(file) {
   let img = document.createElement("img");
   if (file.weather[0].hourly[0].chanceofsunshine > 50) {
     img.setAttribute("alt", "sun");
-    img.setAttribute("src", "./assets/icons8-summer.gif");
+    img.setAttribute(
+      "src",
+      "https://media0.giphy.com/media/wGiDflDuxNx4keYKcb/giphy.gif"
+    );
   } else if (file.weather[0].hourly[0].chanceofrain > 50) {
     img.setAttribute("alt", "rain");
-    img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+    img.setAttribute(
+      "src",
+      "https://i.pinimg.com/originals/3d/1b/f1/3d1bf130498cd6fe0fa32ab0626b7678.gif"
+    );
   } else if (file.weather[0].hourly[0].chanceofsnow > 50) {
     img.setAttribute("alt", "snow");
-    img.setAttribute("src", "./assets/icons8-light-snow.gif");
+    img.setAttribute("src", "https://i.gifer.com/7cSA.gif");
   }
   displayBox.prepend(img);
   // Clear search.

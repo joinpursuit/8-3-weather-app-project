@@ -1,9 +1,9 @@
 .header {
-    background: rgb(4, 129, 135);
-    border: 2px solid black;
+    background: transparent;
+    /* border: 2px solid black; */
     text-align: center;
-    grid-row-start: span 3;
-    padding: 10px;
+    padding: 2em;
+
 }
 .h1 {
     color: white;
@@ -19,13 +19,24 @@
     justify-content: center;
     grid-gap: 7px;
     padding: 5px;
-    border-color: rgb(4, 129, 135);
-    background: rgb(239, 238, 238)
+    border-color: rgb(39, 39, 39);
+    color: white;
+    font-family: sans-serif;
+    background: transparent
 }
 body {
     display: grid;
     padding: 10px;
-    max-width: 1200px;
+    max-width: 1200;
+    margin: auto;
+    
+}
+html {
+    background: url(https://images.hdqwalls.com/download/earth-space-hd-1920x1080.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .mainSec {
     display: grid;
@@ -35,4 +46,20 @@ body {
 .threeDays {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    color: white;
+    font-family: sans-serif;
+}
+.convert {
+    color: white;
+}
+.history {
+    color: white;
+    font-family: sans-serif;
+}
+#conFtoC {
+    font-size: 15px;
+    font-family: sans-serif
+}
+aside.history {
+    padding-left: 1em;
 }
