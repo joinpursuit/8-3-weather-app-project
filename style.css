@@ -227,7 +227,7 @@ header form input[type='submit']:hover {
     padding: 0rem;list-style: none;
 }
 #container aside.widget-prev-searches ul li {
-    margin: 5px 0;font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;
+    margin: 5px 0;font-size: 1.8rem;line-height: 1.8rem;font-weight: 600;color: #006d77;display: inline-flex;
 }
 #container aside.widget-prev-searches ul li a {
     font-size: 1.2rem;line-height: 1.8rem;font-weight: 600;color: #2ec4b6;
@@ -311,7 +311,7 @@ footer section .fa-js {
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
+    /* Styles */
 }
     
 /* Smartphones (landscape) ----------- */

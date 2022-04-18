@@ -87,13 +87,14 @@ function getLocationByName(location) {
         dataSearch['Chance of Rain'] = `${result.weather[0].hourly[0].chanceofrain} <i class="fa fa-solid fa-cloud-rain"></i>`;
         dataSearch['Chance of Snow'] = `${result.weather[0].hourly[0].chanceofsnow} <i class="fa fa-thin fa-snowflake"></i>`;
         
-        // => Loading current forecast
+        // >> Display current forecast
         getCurrentForecast(dataSearch);
-        // => Aside: previous searches
-        previousSearches(location, `${result.current_condition[0].FeelsLikeF}°F`);
-        recallPreviousLocation();
-        // => Loading daily forecast
+        // >> Display daily forecast
         getDailyForecast(result.weather);
+        // >> Display previous searches
+        previousSearches(location, `${result.current_condition[0].FeelsLikeF}°F`);
+        // >> Asyn: Check 
+        recallPreviousLocation();
 
     })
     .catch((error) => {
@@ -106,7 +107,7 @@ function getLocationByName(location) {
  * ==================================
  * getCurrentForecast()
  * ==================================
- * Gets an object with the data to generate a container displaying the information
+ * Gets an object with the data to generate a container to display the current weather
  * @param {Object} data - An object with al the required information
  * @returns {dataList} A HTML structure with the formated data
  *
@@ -114,9 +115,9 @@ function getLocationByName(location) {
 function getCurrentForecast(data){
     const currForecast = document.querySelector('.current-forecast'),
           dataList     = document.getElementById('current-data');
-    //
+    // >> Looping throught the entries of the object. 
     for (const [key, value] of Object.entries(data)) {
-        // >
+        // >>
         let dataItem;
         if(key === 'img'){ 
             dataItem = document.createElement('div');
@@ -140,20 +141,16 @@ function getCurrentForecast(data){
  * ==================================
  * getDailyForecast()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} data - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
+ * Gets an object with the data to generate a container displaying the weather for the next days.
+ * @param {Object} data - An object with al the required information.
+ * @returns {Html element} Returns the html structure.
  */
 function getDailyForecast(data){
     const dailyForecast = document.querySelector('.daily-forecast');
           
     data.forEach((element, index) => {
         const dataList = document.createElement('div'); 
-        // > Creating list with data      
+        // >> Creates a table to display data      
         dataList.innerHTML = `
                         ${generateHeaders(index)}
                         <table>
@@ -180,19 +177,15 @@ function getDailyForecast(data){
  * ==================================
  * generateHeaders()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} day - A string that represents the name of a city
- * @returns {h4 html element} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  getLocationByName(location);
- *  //> 
+ * Given an index position of the data, generates a respective header with the day
+ * @param {number} day - A number that represents the element within the data
+ * @returns {html element} Returns a html element to generate the headers of the tables.
  */
 function generateHeaders(day) {
     const dailyHeaders = ['Today', 'Tomorrow', 'Day After Tomorrow'],
           header = document.createElement('h4');
 
-    // => Looping throught the array of headers
+    // >> Looping throught the array of headers
     dailyHeaders.forEach((element, index) => {
         if(day === index){
             header.innerHTML = element;
@@ -206,27 +199,23 @@ function generateHeaders(day) {
  * ==================================
  * previousSearches()
  * ==================================
- * Gets an inputted location by the user to search the weather
- * @param {string} location - A string that represents the name of a city
- * @param {string} temp - A string that represents the name of a city
- * @returns {} No specific return. Fetch the data from the API, then creates an object to manage the proper output.
- *
- * EXAMPLE:
- *  previousSearches(location, );
- *  //> 
+ * Given an inputted location besides its respective temperature, generates a list items with the pairs [location - temperature]
+ * @param {string} location - A string that represents the name of the location
+ * @param {string} temp - A string that represents the temperature
+ * @returns {html element} Returns a collection of list itmes that represents the previous searches.
  */
 function previousSearches(location, temp){
     const searchList        = document.getElementById('prev-searches'),
           prevSearchMessage = document.querySelector('main aside p');
     
-    // > Removing all the items, to reganerate the list      
+    // >> Removing all the items, to reganerate the list      
     searchList.querySelectorAll('*').forEach(node => {node.remove()});
     prevSearchMessage.classList.add('hidden');
     
-    // > Rename fn
+    // >> 
     checkPreviousSearch(location, temp)
     
-    // => Looping through the object of previous searches
+    // >> Looping through the object of previous searches
     for (const [key, value] of Object.entries(storedLocations)) {
         const searchItem = document.createElement('li');
         searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value} <i class="fa fa-solid fa-temperature-full"></i>`;
@@ -243,10 +232,10 @@ function previousSearches(location, temp){
  * Gets a pair of data that represents a location with their correspondent current weather
  * @param {string} location - A string that represents the name of a city.
  * @param {string} temp - A string that represents the curret temperature.
- * @returns {Object} Return the object tput.
+ * @returns {Object} Return the object which stores all the searches.
  */
 function checkPreviousSearch(location, temp){
-    // => Adding new properties that represent the previous searches
+    // >> Add a new property each time that the function is executed.
     storedLocations[location] = temp;
 
     return storedLocations;
@@ -261,7 +250,7 @@ function checkPreviousSearch(location, temp){
  * @returns {} No returns.
  */
 function recallPreviousLocation(){
-    // => Getinng all previous searches
+    // >> Getinng all previous searches
     const prevSearchLink = document.querySelectorAll('#prev-searches a');
 
     // >> Looping through the node list
@@ -285,7 +274,7 @@ function recallPreviousLocation(){
  */
 function validateWeatherCondition(sunchine, rain, snow){
     let fileName = '';
-    // => Validating all the probabilities
+    // >> Validating all the probabilities
     if(sunchine > 50){
         fileName = '<img src="./assets/icons8-summer.gif" alt="sun" >';   
     }
@@ -295,8 +284,7 @@ function validateWeatherCondition(sunchine, rain, snow){
     else if(snow > 50){
         fileName = '<img src="./assets/icons8-light-snow.gif" alt="snow" >';   
     }else{
-        // => Set a defualt Icon
-        //fileName = 'assets/icons8-summer.gif'; 
+        // >> Set a defualt Icon [?]
     }
     return fileName;
 }
@@ -316,7 +304,7 @@ function validateWeatherCondition(sunchine, rain, snow){
  */
 function validateArea(location, areaName) { 
     let areaKey;
-    // => Validating Area name matching with Location name
+    // >> Validating Area name matching with Location name
     if(location === areaName){
         areaKey = 'Area';
     }else{
@@ -341,17 +329,17 @@ function validateArea(location, areaName) {
  */
 function convertTemperature(temp, unit) { 
     let result = 0;
-    
+    // >> Celsius to Farenheit
     const celsiusToFahrenheit = (celsius => {
         let fahrenheit = ( (celsius * (9/5) + 32) ).toFixed(2);
         return fahrenheit;
     });
-  
+    // >> Farenheit to Celsius
     const fahrenheitToCelsius = (fahrenheit => {
         let celsius = ( (fahrenheit - 32) * (5/9) ).toFixed(2);
         return celsius;
     });
-
+    // >> Validating the type of unit, then it executes the respective helper function.
     if (unit === 'f') {
         result = celsiusToFahrenheit(temp);
         document.querySelector('.result').innerHTML = ` = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
