@@ -14,33 +14,44 @@
 <body>
     <header>
         <h1>Weather App</h1>
-        <form id="search form">
+        <form id="search-form">
             <label>
                 Pick a Location
-                <input type="text" type="submit" name="location" id="location" />
+                <input type="text" name="location" id="location" />
                 <input type="submit" name="Get Weather" id="Get Weather" value="Get Weather" />
             </label>
-
         </form>
     </header>
-    <aside class="temperature-conversion"></aside>
-    <main id="container" class="display">
-        <p class="choose a location">Choose a location to view the weather.</p>
-        <aside class="history"></aside>
-        <article id="current-weather"></article>
-        <aside>
+    <aside class="temperature-conversion">
+        <form id="conversion-form">
+            <div class="form-input">
+                <label for="temp-to-convert">Convert the temperature</label>
+                <input type="number" name="temperature" id="temp-to-convert" />
+            </div>
+            <div class="form-input">
+                <label for="to-c">To °C</label>
+                <input type="radio" id="to-c" name="convertTemp" value="c" checked />
+                <label for="to-f">To °F</label>
+                <input type="radio" id="to-f" name="convertTemp" value="f" />
+                <input type="submit" value="Convert" />
+            </div>
+        </form>
+        <h4 id="conversion-result"></h4>
+    </aside>
+    <main id="main" class="main">
+        <article id="current-weather" class="current"></article>
+        <aside class="three-days">
             <article id="today"></article>
             <article id="tomorrow"></article>
             <article id="day-after-tomorrow"></article>
         </aside>
-
+        <p id="choose-location-hint"> Choose a location to view the weather.</p>
     </main>
-    <aside>
+    <aside class="history">
         <section class="previous">
             <h4>Previous Searches</h4>
-            <ul></ul>
-            <p>No previous searches</p>
-            </h4>
+            <p id="no-searches-hint">No previous searches</p>
+            <ul id="history-list"></ul>
         </section>
     </aside>
 
