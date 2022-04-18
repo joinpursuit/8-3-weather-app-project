@@ -1,5 +1,3 @@
-//let WEATHER_API = `https://wttr.in/Melbourne?format=j1`;
-//let apiLocation = weatherSearchInput.value;
 let BASE_URL = `https://wttr.in/`;
 let API_FORMAT = `?format=j1`;
 document.querySelector('form');
@@ -24,20 +22,31 @@ form.addEventListener('submit', (event) => {
       anchorTag.href = '# ';
       let current = element.current_condition[0].FeelsLikeF;
       searcheslist1.textContent = `${current}` + `\u00B0F`;
-      // searcheslist1.innerHTML = `<a href ="javascript:void(0)" rel="${weatherPlaceInput}">  ${weatherPlaceInput}</a> ${current} &deg;F`;
-
       searcheslist1.prepend(anchorTag);
-
-      let areaContainer = element.nearest_area[0].areaName[0].value;
-      let regionContainer = element.nearest_area[0].areaName[0].value;
-      let countryContainer = element.nearest_area[0].country[0].value;
 
       anchorTag.addEventListener(`click`, (event) => {
         event.preventDefault();
-        //retrieveCityInfo()
+
         createAForcast(element, weatherPlaceInput);
       });
     });
+});
+
+let tempConverter = document.querySelector('.conversion');
+tempConverter.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let userInput = document.getElementById('temp-to-convert').value;
+
+  const celConvert = document.getElementById('to-c');
+  const fahConvert = document.getElementById('to-f');
+  const result = document.getElementById('result');
+
+  if (celConvert.checked) {
+    result.textContent = ((userInput - 32) / 1.8).toFixed(2) + `\u00B0C`;
+  } else if (fahConvert.checked) {
+    result.textContent = (userInput * 1.8 + 32).toFixed(2) + `\u00B0F`;
+  }
 });
 
 function createAForcast(element, weatherPlaceInput) {
@@ -56,7 +65,7 @@ function createAForcast(element, weatherPlaceInput) {
   if (weatherPlaceInput !== apiArea) {
     displayedArea.textContent = `Nearest Area is: ${apiArea}`;
   } else {
-    displayedArea.textContent = `Area is ${apiArea}`;
+    displayedArea.textContent = `Area is: ${apiArea}`;
   }
   display.append(displayedArea);
 
@@ -65,7 +74,7 @@ function createAForcast(element, weatherPlaceInput) {
   display.append(displayedCountry);
 
   let displayedRegion = document.createElement('p');
-  displayedRegion.textContent = `Region of ${apiRegion}`;
+  displayedRegion.textContent = `Region of: ${apiRegion}`;
   display.append(displayedRegion);
 
   let displayedCurrentFeels = document.createElement('p');
@@ -133,29 +142,6 @@ function createAForcast(element, weatherPlaceInput) {
     display.prepend(icon);
   }
 
-  /* let userInput = document.getElementById('temp-to-convert').value;
-  let tempConverter = document.querySelector('conversion');
-  tempConverter.addEventListener('submit', (event) => {
-    event.preventDefault();
-    let input = Number(event.target.querySelector('input').value);
-    let userInput = document.getElementById('temp-to-convert').value;
-    let measurements = event.target.querySelectorAll('.converter');
-    const celConvert = document.getElementById('to-c');
-    const fahConvert = document.getElementById('to-f');
-    const result = document.getElementById('result');
-    //let type = '';
-
-    if (celConvert.checked) {
-      result.textContent = ((userInput - 32) / 1.8).toFixed(2);
-      console.log(result);
-      //return result;
-    } else if (fahConvert.checked) {
-      result.innerText = (userInput * 1.8 + 32).toFixed(2);
-      console.log(result);
-      //return result;
-    }
-  }); */
-
   let displayedWeather = document.querySelectorAll('aside article');
 
   for (let i = 0; i < displayedWeather.length; i++) {
@@ -179,37 +165,3 @@ function createAForcast(element, weatherPlaceInput) {
     displayedWeather[i].append(entry, avgTempF, maxTempF, minTempF);
   }
 }
-
-/* displayedWeather.forEach((ele) => {
-    console.log(element);
-    ele.innerHTML = '';
-    //let threeDaysForcast = ['Today', 'Tomorrow', 'Day After Tomorrow'];
-    let displayedWeather = document.createElement('p');
-    const todayTempAverage = element.weather.avgtempF;
-    const todayTempMax = element.weather.maxtempF;
-    const todayTempMin = element.weather.mintempF;
-    ele.textContent = ['Today', 'Tomorrow', 'Day After Tomorrow'];
-
-    let minTempF = document.createElement('p');
-    let avgTempF = document.createElement('p');
-    let maxTempF = document.createElement('p');
-
-    maxTempF.textContent = todayTempMax;
-    avgTempF.textContent = todayTempAverage;
-    minTempF.textContent = todayTempMin;
-    ele.append(displayedWeather, avgTempF, maxTempF, minTempF);
-  });  */
-//}
-/*function retrieveCityInfo() {
-  const allChildren = document.querySelectorAll(`#searchList a`);
-  //console.log(allChildren);
-  allChildren.forEach((link) => {
-    link.addEventListener(`click`, (event) => {
-      event.preventDefault();
-      console.log(link.getAttribute('rel'));
-      document.getElementById('searchlist').textContent = createAForcast(
-        link.getAttribute('rel'),
-      );
-      //createAForcast(element, weatherPlaceInput);
-    });
-  }); */

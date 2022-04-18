@@ -31,7 +31,7 @@ main{
   box-shadow: 20px 10px 20px 10px black;
   color: white;
   display:grid;
-grid-column-start: span 1;
+  grid-column-start: span 1;
   padding-top: 10px; 
   padding-bottom: 20px;
   text-align: center;
@@ -65,26 +65,29 @@ grid-column-start: span 1;
 
 
 @media (min-width: 720px) and (max-width: 980px) {
+  img {
+    max-width: 70%;
+  }
   main{
-    width: 50%;
+    
     background: pink;
     color: black;
     border: grey;
   }
   header{
-    width: 60%;
+
     background: pink;
     color: black;
     border: grey;
   }
   .conversion{
-    width: 50%;
+
     background: pink;
     color: black;
     border: grey;
   }
   .aside-three{
-    width: 50%;
+
     background: pink;
    color:  black;
     border: grey;
@@ -92,24 +95,26 @@ grid-column-start: span 1;
 
 }
 @media (max-width: 719px) {
+  img {
+    max-width: 50%;
+  }
 main {
-  width: 30%;
+ 
   background: orange;
-  
   border: black;
 }
 header{
-  width: 40%;
+  
   background: orange;
   border: black;
 }
 .conversion{
-  width: 30%;
+
   background: orange;
   border: black;
 }
 .aside-three{
-  width: 30%;
+
   background: orange;
   border: black;
 }
