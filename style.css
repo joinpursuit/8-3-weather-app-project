@@ -45,6 +45,9 @@ h6 {
 header {
     padding: 2rem 0;display: grid;grid-template-columns: 1fr 2fr 1fr;grid-column-start: 2; background-color: #2a9d8f;border-bottom: 3px solid #4f7d5d;text-align: center;
 }
+header section {
+    grid-column-start: 2;
+}
 header h1 {
     margin: 0rem 0;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;
 }
@@ -278,10 +281,22 @@ footer section .fa-js {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     /* ===> MAIN <=== */
     header {
-        padding: 0.5rem 0;/*background-color: #f4a261;*/display: grid;grid-template-columns: 1fr 1fr;
+        padding: 1rem 2rem;/*background-color: #f4a261;*/display: grid;grid-template-columns: 1fr;
     }
-    #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr 1fr;gap: 0px;}
-    #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr 1fr;gap: 0px;}
+    header form input[type='text'] {
+        -webkit-appearance: none !important;
+    }
+    header form input[type='submit'] {
+        padding: 1.2rem 2.2rem;
+        -webkit-appearance: none !important;
+    }
+    #container {
+        width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;
+    }
+    #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .widget-temp-convert form input[type='submit'] {
+        -webkit-appearance: none !important;
+    }
 }
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
@@ -323,9 +338,9 @@ footer section .fa-js {
     #container .widget-temp-convert form {padding: 1rem;}
 }
 @media only screen and (min-width: 360px) and (max-width: 767px) { 
-    /* CSS */
+    /* test s9 */
     header {
-        width: 100%;padding: 0.5rem 0;display: grid;grid-template-columns: 1fr;
+        width: 100%;padding: 0.5rem 0;display: grid;grid-template-columns: 1fr 2fr 1fr;
     }
     #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;}
     #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
