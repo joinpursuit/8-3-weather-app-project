@@ -2,7 +2,7 @@
 <html>
     <body>
 <header>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <h1>Weather App</h1>
    <link href="./style.css" rel="stylesheet" />
   <script defer src= "main.js"></script>
@@ -17,35 +17,39 @@
   </header>
   <main>
 </aside>
-  <form>
-  <aside id="asideOne">
-    <label id="temp-to-convert">
+  <form >
+  <aside id="aside1">
+      <div id="leftSidebar">
+    <label>
       Convert the temperature:
-      <select id="convertTemp" > </select>
+      <select id="convertTemp" ></select>
     </label>
     <br>
     <label>
       To Celcius
-      <input id="toCelius" name="to-celsius" type="radio" value ="To Celsius">
+      <input id="toCelius" name="temp-to-convert" type="radio" value ="To Celsius" checked>
     </label>
     <br>
     <br>
     <label>
       
         To Fahrenheit
-        <input id="toFahrenheit" name="to-fahrenheit" type="radio" value ="To Fahrenheit">
+        <input id="toFahrenheit" name="temp-to-convert" type="radio" value ="To Fahrenheit">
       </label>
     <br>
     <button id="switchFromCToF" type="submit">Submit</button>
+      </div>
     </form>
 </aside>
+<!-- <div id="weatherIcon"></div> -->
     <article>
         <div>
+          <a id='condition-icon'> </a>
         <article id="searchSection"></article>
         <p id="initMessage">Enter your location above to make a search.</p>
       </div>
       <br>
-      <div> class= "container" </div>
+      <div id = "container" ></div>
 
     </article>
 

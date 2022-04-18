@@ -19,12 +19,44 @@ div {
   text-align: center;
   background: light grey;
 }
-.container {
+#container {
   display: grid;
-  grid-template-columns: repeat(3, 1 fr);
-  height: 200px;
+  grid-template-columns: repeat(3, 3fr);
+  height: fit-content;
 }
 main {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
+
+#aside1 {
+  /* border: ; */
+  display: inline-block;
+  border-style: onset;
+  border-color: bisque;
+}
+#seachSection {
+  /* margin-top: 50px; */
+}
+
+#leftSidebar {
+  display: contents;
+  border-style: onset;
+  border-color: bisque;
+  text-align: center;
+  /* width: 30px;
+  height: fit-content; */
+}
+
+/* Media Queries */
+
+@media (min-width: 1280px) {
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+}
+
+@media (max-width: 767px) {
+}
+
+/* Appearance */
+background-image : url (' https://media.istockphoto.com/photos/pink-transparent-clear-water-surface-texture-summer-background-picture-id1267105176?k=20&m=1267105176&s=170667a&w=0&h=_KKq6DCnWH3entNoJPY8bo_Iqa0SJixgvkSbYTi7iF8=');
