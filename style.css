@@ -113,7 +113,7 @@ header form input[type='submit']:hover {
     float: right;line-height: 3.4rem;
 }
 #container .current-forecast p span.data-value {
-    font-size: 1.4rem;font-weight: 600;text-align: right;
+    font-size: 1.4rem;line-height: 3.4rem;font-weight: 600;text-align: right;
 }
 #container .current-forecast p span small {
     font-size: 0.8rem;line-height: 2rem;
@@ -137,7 +137,7 @@ header form input[type='submit']:hover {
     background-color: #00afb9; 
 }
 #container .daily-forecast h4 {
-    font-size: 1.2rem;line-height: 2.8rem;font-weight: 800;color: var(--light)/*#006d77*/;text-align: center;
+    padding: 1rem 0;font-size: 1.2rem;line-height: 2.8rem;font-weight: 800;color: var(--light)/*#006d77*/;text-align: center;
 }
 #container .daily-forecast table {
     width: 100%;
@@ -164,7 +164,7 @@ header form input[type='submit']:hover {
  ************************
  *
  */
-/* Aside: Widget temp converter */
+/* Aside: Widget temperature form converter */
 #container .widget-temp-convert {
     box-sizing: border-box;
 }
@@ -178,11 +178,12 @@ header form input[type='submit']:hover {
     margin: 0;display: block;font-size: 1.4rem;line-height: 2.8rem;font-weight: 800;color: rgba(0, 145, 174, 0.6);text-shadow: none;
 }
 #container .widget-temp-convert form input[type='number'] {
-    width:100%;padding: 0.5rem; margin: 1rem 0;font-family: 'Open Sans', sans-serif;font-size: 1.8rem;
-    font-weight: 600;background-color: #e9ecef;color: #006d77; border: none;box-sizing: border-box;box-shadow: 0px 0px 0px 10px rgba(0, 145, 174, 0.5);
+    width: 80%;padding: 0.5rem; margin: 1rem 0;font-family: 'Open Sans', sans-serif;font-size: 1.8rem;
+    font-weight: 600;background-color: #e9ecef;color: #006d77;box-sizing: border-box;/*box-shadow: 0px 0px 0px 10px rgba(0, 145, 174, 0.5);*/
+    border: 10px solid rgba(0, 145, 174, 0.7);border-radius: 20px;
 }
 #container .widget-temp-convert form .form-control {
-    padding: 0.5rem 0;display: grid;grid-template-columns: 1fr 1fr;
+    padding: 0.1rem 0;display: grid;grid-template-columns: 2fr 1fr;
 }
 #container .widget-temp-convert form input[type='radio'] {
     width: 1.8rem;height: 1.8rem;margin: 5px;
@@ -281,7 +282,7 @@ footer section .fa-js {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     /* ===> MAIN <=== */
     header {
-        padding: 1rem 2rem;/*background-color: #f4a261;*/display: grid;grid-template-columns: 1fr;
+        
     }
     header form input[type='text'] {
         -webkit-appearance: none !important;
@@ -291,7 +292,13 @@ footer section .fa-js {
         -webkit-appearance: none !important;
     }
     #container {
-        width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;
+        width: 90%;margin: 2rem auto;display: grid;grid-template-columns: 1fr;gap: 5px;
+    }
+    #container article {
+        /* grid-column-start: 1; */
+    }
+    #container aside {
+        /* grid-column-start: 2; */
     }
     #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
     #container .widget-temp-convert form input[type='submit'] {
@@ -309,13 +316,19 @@ footer section .fa-js {
     
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) {
-/* Styles */
+    /* Styles */
+    header form .form-control::before {
+        content: "\f002";
+    }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
     header {
         width: 100%;padding: 0.5rem 0;display: grid;grid-template-columns: 1fr;
+    }
+    header section {
+        grid-column-start: 1;
     }
     header h1 {
         font-size: 2.2rem;
@@ -337,13 +350,37 @@ footer section .fa-js {
     #container .widget-temp-convert form label.heading {font-size: 1.2rem;}
     #container .widget-temp-convert form {padding: 1rem;}
 }
+
 @media only screen and (min-width: 360px) and (max-width: 767px) { 
     /* test s9 */
     header {
-        width: 100%;padding: 0.5rem 0;display: grid;grid-template-columns: 1fr 2fr 1fr;
+        width: 100%;padding: 0.5rem 1rem;box-sizing: border-box; grid-template-columns: 1fr;
+    }
+    header section {
+        grid-column-start: 1;
+    }
+    header h1 {
+        font-size: 2.2rem;
+    }
+    header form .form-control::before {
+        content: "";
+    }
+    header form input[type='text'] {
+        width: 100%;padding: 1rem; margin: 0;
+    }
+    header form input[type='submit'] {
+        padding: 1.0rem 1rem;
     }
     #container {width: 100%;margin: 5px auto;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .current-forecast p:nth-child(6) span.data-value,
+    #container .current-forecast p:nth-child(7) span.data-value,
+    #container .current-forecast p:nth-child(8) span.data-value,
+    #container .current-forecast p:nth-child(9) span.data-value,
+    #container .current-forecast p:nth-child(10) span.data-value {
+        font-size: 2.0rem;line-height: 3.0rem;
+    }
     #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
+    #container .widget-temp-convert form label.heading {font-size: 1.2rem;}
 }
 
 
