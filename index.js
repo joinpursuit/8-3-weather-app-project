@@ -342,11 +342,11 @@ function convertTemperature(temp, unit) {
     // >> Validating the type of unit, then it executes the respective helper function.
     if (unit === 'f') {
         result = celsiusToFahrenheit(temp);
-        document.querySelector('.result').innerHTML = ` = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
+        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
     } 
     else if (unit === 'c') {
         result = fahrenheitToCelsius(temp);
-        document.querySelector('.result').innerHTML = ` = ${result} <span>°C <i class="fa fa-solid fa-temperature-full"></i></span>`;
+        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>°C <i class="fa fa-solid fa-temperature-full"></i></span>`;
     }
 }
 
