@@ -14,7 +14,7 @@
     --success: #009070;
     --btnLocation: #006d77;
     --light: #F3F3F3;
-  }
+}
 /*
  *
  ************************
@@ -49,7 +49,7 @@ header section {
     grid-column-start: 2;
 }
 header h1 {
-    margin: 0rem 0;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;
+    margin: 0rem;font-size: 3rem;font-weight: 800;text-shadow: 2px 2px 4px #006d77; color: #95d5b2;
 }
 header form {
     width: auto; padding: 0 0rem; margin: auto;
@@ -67,7 +67,6 @@ header form .form-control::before {
 header form input[type='text'] {
     width: 100%;padding: 1rem 1rem 1rem 4rem; margin: 0;font-size: 1.2rem;font-weight: 600;background-color: #e9ecef;color: #006d77 !important;
     border: 10px solid rgba(75, 206, 145, 0.9);border-right: none; border-radius: 20px 0 0 20px; box-sizing: border-box;position: relative;
-    /* box-shadow: 0px 0px 0px 10px rgba(82, 183, 136, 0.5); */
 }
 header form input[type='text']::before {
     
@@ -75,7 +74,6 @@ header form input[type='text']::before {
 header form input[type='submit'] {
     padding: 1.2rem 2.2rem;margin: 0;display: block;border-radius: 0 15px 15px 0;background: #006d77;color: #fbf5f3;cursor: pointer;
     font-size: 1.2rem;font-weight: 800;border: 10px solid rgba(75, 206, 145, 0.9);border-left: none;border-radius: 0 20px 20px 0;
-    /* box-shadow: 0px 0px 0px 10px rgba(82, 183, 136, 0.5); */
 }
 header form input[type='submit']:hover {
   background: #00545b;
@@ -225,7 +223,10 @@ header form input[type='submit']:hover {
     position: absolute;right: 10px;top: -7px; font-size: 3.0rem;
 }
 #container aside.widget-prev-searches p {
-    padding: 1rem;display: inline-block;border-radius: 3px; font-size: 1.0rem;line-height: 1.0rem;font-weight: 500;color: #FFF;
+    padding: 1rem;display: block;text-align: center;font-size: 1.0rem;line-height: 1.0rem;font-weight: 500;color: #006d77;
+}
+#container aside.widget-prev-searches p i {
+    margin: 2rem;display: block;font-size: 3rem;
 }
 #container aside.widget-prev-searches ul {
     padding: 0rem;list-style: none;border-right: 0px solid #006d77;
