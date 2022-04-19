@@ -218,7 +218,7 @@ function previousSearches(location, temp){
     // >> Looping through the object of previous searches
     for (const [key, value] of Object.entries(storedLocations)) {
         const searchItem = document.createElement('li');
-        searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'>${key}</a> - ${value} <i class="fa fa-solid fa-temperature-full"></i>`;
+        searchItem.innerHTML = `<a href='javascript:void(0)' rel='${key}'><i class="fa fa-solid fa-location-dot"></i> ${key}</a> : ${value} <i class="fa fa-solid fa-temperature-full"></i>`;
         searchList.append(searchItem)
     }    
 
