@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;700;800&display=swap');
 
 /*
- *
  ************************
- ===> VARIABLE DEFINITIONS <===
+ ===> V A R I A B L E S <===
  ************************
- *
  */
 :root {
     --primary: #0076c6;
@@ -16,11 +14,9 @@
     --light: #F3F3F3;
 }
 /*
- *
  ************************
- ===> GENERAL STYLES <===
+ ===> G L O B A L <===
  ************************
- *
  */
 html,
 body {
@@ -36,11 +32,9 @@ h6 {
     margin: 0;
 }
 /*
- *
  ************************
- ===> HEADER <===
+ ===> H E A D E R <===
  ************************
- *
  */
 header {
     padding: 2rem 0;display: grid;grid-template-columns: 1fr 2fr 1fr;grid-column-start: 2; background-color: #2a9d8f;border-bottom: 3px solid #4f7d5d;text-align: center;
@@ -58,15 +52,15 @@ header form label {
     font-size: 1.2rem;line-height: 2.4rem;font-weight: 600;color: #FFF;
 }
 header form .form-control {
-    margin: 1rem 0;display: flex;
+    margin: 1rem 0;display: flex;position: relative;
 }
 header form .form-control::before {
-    content: "\f002";margin: 22px;font-size: 2rem;line-height: 2.5rem;color: var(--btnLocation);
+    content: "\f002";margin: 25px;font-size: 2rem !important;color: var(--btnLocation);font: var(--fa-font-solid);
     position: absolute;display: block;z-index: 1000;
 }
 header form input[type='text'] {
     width: 100%;padding: 1rem 1rem 1rem 4rem; margin: 0;font-size: 1.2rem;font-weight: 600;background-color: #e9ecef;color: #006d77 !important;
-    border: 10px solid rgba(75, 206, 145, 0.9);border-right: none; border-radius: 20px 0 0 20px; box-sizing: border-box;position: relative;
+    border: 10px solid rgba(75, 206, 145, 0.9);border-right: none; border-radius: 20px 0 0 20px; box-sizing: border-box;
 }
 header form input[type='text']::before {
     
@@ -79,11 +73,9 @@ header form input[type='submit']:hover {
   background: #00545b;
 }
 /*
- *
  ************************
- ===> MAIN <===
+ ===> M A I N <===
  ************************
- *
  */
 #container {
     width: 80%;margin: 25px auto;min-height: calc(100vh - 70px);display: grid;grid-template-columns: 1fr 2fr 1fr;gap: 10px;
@@ -159,11 +151,14 @@ header form input[type='submit']:hover {
 /*
  *
  ************************
- ===> ASIDES <===
+ ===> A S I D E S <===
  ************************
  *
- */
-/* Aside: Widget temperature form converter */
+ *
+ ************************
+ ===> Aside: Widget temperature form converter <===
+ ************************
+*/
 #container .widget-temp-convert {
     box-sizing: border-box;
 }
@@ -212,7 +207,11 @@ header form input[type='submit']:hover {
 #container .widget-temp-convert form .result span {
     font-size: 4rem;line-height: 4rem;
 }
-/*** Aside: Widget prev searches ***/
+/*
+ ************************
+ ===> Aside: Widget prev searches <===
+ ************************
+*/
 #container aside.widget-prev-searches {
     padding: 0rem;
 }
@@ -238,17 +237,21 @@ header form input[type='submit']:hover {
     background-color: rgba(168, 218, 220, 0.1);
 }
 #container aside.widget-prev-searches ul li a {
-    font-size: 1.2rem;line-height: 1.8rem;font-weight: 600;color: #2ec4b6;
+    font-size: 1.2rem;line-height: 1.8rem;font-weight: 600;color: #2ec4b6;transition: all 1s ease;
+}
+#container aside.widget-prev-searches ul li a {
+    
+}
+#container aside.widget-prev-searches ul li a:hover i {
+    
 }
 /*
- *
  ************************
- ===> FOOTER <===
+ ===> F O O T E R <===
  ************************
- *
- */
+*/
 footer {
-	/*height: 50px;*/margin: 20px 0;padding: 1rem; background-color: #a8dadc;
+	margin: 20px 0;padding: 1rem; background-color: #a8dadc;
 }
 footer section {
 	text-align: center;
@@ -260,32 +263,49 @@ footer section .fa-js {
 	margin: 0 1px;font-size: 2rem;color: #1f8d9b;
 }
 /*
- *
  ************************
- ===> HELPERS <===
+ ===> H E L P E R S <===
  ************************
- *
  */
 .hidden {
     display: none !important;
 }
 /*
- *
  ************************
- ===> ERROR <===
+ ===> E R R O R <===
  ************************
- *
  */
 .error {
     padding: 2rem 4rem;margin: 2rem auto;display: table;font-size: 1rem;font-weight: 600;background: var(--error);color: #fefefe;border-radius: 2px;
 }
 /*
- *
- ************************
- ===> MEDIA QUERIES <===
- ************************
- *
+ **********************************
+ ===> M E D I A  Q U E R I E S <===
+ **********************************
  */
+/*** Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+    header {
+        
+    }
+}
+/* (1440x900) WXGA+ Display */
+@media  screen and (max-width: 1440px) {
+    /* insert styles here */
+    #container {
+        width: 100%;
+    }
+}
+/*** Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+    /* Styles */
+    header {
+        
+    }
+    #container {
+       
+    }
+}
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     /* ===> MAIN <=== */
@@ -300,7 +320,7 @@ footer section .fa-js {
         -webkit-appearance: none !important;
     }
     #container {
-        width: 90%;margin: 2rem auto;display: grid;grid-template-columns: 1fr;gap: 5px;
+        width: 90%;display: grid;grid-template-columns: 1fr;gap: 5px;
     }
     #container article {
         /* grid-column-start: 1; */
@@ -313,9 +333,19 @@ footer section .fa-js {
         -webkit-appearance: none !important;
     }
 }
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    /* Styles */
+    #container {
+        margin: 2rem auto;
+    }
+}
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
     /* Styles */
+    #container {
+        margin: 4rem auto;
+    }
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -326,7 +356,7 @@ footer section .fa-js {
 @media only screen and (min-width : 321px) {
     /* Styles */
     header form .form-control::before {
-        content: "\f002";
+        /* content: "\f002"; */
     }
 }
 
@@ -390,13 +420,3 @@ footer section .fa-js {
     #container .daily-forecast {margin: 2rem 0;display: grid;grid-template-columns: 1fr;gap: 0px;}
     #container .widget-temp-convert form label.heading {font-size: 1.2rem;}
 }
-
-
-/* general reset/setup styling for icons - needed on all */
-.icon::before {
-    /* display: none;   */
-    /* See https://fontawesome.com/docs/web/add-icons/pseudo-elements#css-pseudo-elements-with-our-svg-js-framework */
-  }
-  .icon-solid::before {
-    font: var(--fa-font-solid);
-  }

@@ -5,6 +5,7 @@
 const BASE_URL = "https://wttr.in",
       JSON_FORMAT     = 'format=j1',
       farenheitUnit   = '°F',
+      celsiusUnit     = '°C',
       locationForm    = document.getElementById("location-search"),
       convertForm     = document.getElementById("temp-convert"),
       prevSearches    = document.getElementById("prev-searches"),
@@ -23,6 +24,9 @@ locationForm.addEventListener("submit", (event) => {
     // => Calling the function to fetch the data from the API
     getLocationByName(location.value);
     locationForm.reset();
+    document.querySelector('.current-forecast').scrollIntoView({
+        behavior: 'smooth'
+    });
 });
 
 /**
@@ -82,7 +86,7 @@ function getLocationByName(location) {
         dataSearch['Region'] = result.nearest_area[0].region[0].value;
         dataSearch['Country'] = result.nearest_area[0].country[0].value;
         dataSearch['Local time'] = `${(result.current_condition[0].localObsDateTime).substring(10)} <i class="fa fa-solid fa-clock"></i>`;
-        dataSearch['Currently'] = `<small>Feels like</small> ${result.current_condition[0].FeelsLikeF}°F <i class="fa fa-solid fa-temperature-full"></i>`;
+        dataSearch['Currently'] = `<small>Feels like</small> ${result.current_condition[0].FeelsLikeF}${farenheitUnit} <i class="fa fa-solid fa-temperature-full"></i>`;
         dataSearch['Chance of Sunshine'] = `${result.weather[0].hourly[0].chanceofsunshine} <i class="fa fa-solid fa-sun"></i>`;
         dataSearch['Chance of Rain'] = `${result.weather[0].hourly[0].chanceofrain} <i class="fa fa-solid fa-cloud-rain"></i>`;
         dataSearch['Chance of Snow'] = `${result.weather[0].hourly[0].chanceofsnow} <i class="fa fa-thin fa-snowflake"></i>`;
@@ -92,7 +96,7 @@ function getLocationByName(location) {
         // >> Display daily forecast
         getDailyForecast(result.weather);
         // >> Display previous searches
-        previousSearches(location, `${result.current_condition[0].FeelsLikeF}°F`);
+        previousSearches(location, `${result.current_condition[0].FeelsLikeF}${farenheitUnit}`);
         // >> Asyn: Check 
         recallPreviousLocation();
 
@@ -110,7 +114,6 @@ function getLocationByName(location) {
  * Gets an object with the data to generate a container to display the current weather
  * @param {Object} data - An object with al the required information
  * @returns {dataList} A HTML structure with the formated data
- *
  */
 function getCurrentForecast(data){
     const currForecast = document.querySelector('.current-forecast'),
@@ -143,7 +146,7 @@ function getCurrentForecast(data){
  * ==================================
  * Gets an object with the data to generate a container displaying the weather for the next days.
  * @param {Object} data - An object with al the required information.
- * @returns {Html element} Returns the html structure.
+ * @returns {Html element} Returns a html table structure with the forecast distributeb in three tables                              .
  */
 function getDailyForecast(data){
     const dailyForecast = document.querySelector('.daily-forecast');
@@ -156,15 +159,15 @@ function getDailyForecast(data){
                         <table>
                         <tr>
                             <td>Average Temperature</td>
-                            <td><span>${element.avgtempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
+                            <td><span>${element.avgtempF}${farenheitUnit} <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         <tr>
                             <td>Max Temperature</td>
-                            <td><span>${element.maxtempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
+                            <td><span>${element.maxtempF}${farenheitUnit} <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         <tr>
                             <td>Min Temperature</td>
-                            <td><span>${element.mintempF}°F <i class="fa fa-solid fa-temperature-full"></i></span></td>
+                            <td><span>${element.mintempF}${farenheitUnit} <i class="fa fa-solid fa-temperature-full"></i></span></td>
                         </tr>
                         </table>`;
                         
@@ -303,29 +306,24 @@ function validateWeatherCondition(sunchine, rain, snow){
  *  //> 
  */
 function validateArea(location, areaName) { 
-    let areaKey;
     // >> Validating Area name matching with Location name
-    if(location === areaName){
-        areaKey = 'Area';
-    }else{
-        areaKey = 'Nearest Area';    
-    }
-
-    return areaKey;
+    return (location === areaName) ? 'Area' : 'Nearest Area';
 }
 
 /**
  * ==================================
  * convertTemperature()
  * ==================================
- * Gets a temperature inputted through the temperature coversion form
+ * Gets a temperature inputted through the temperature coversion form and exceutes a conversion process according the option selected.
  * @param {number} temp - A number that represents a temperature.
  * @param {string} unit - A string that represents the unit to covert.
- * @returns {} No specific return.
+ * @returns {} No specific return. Generates a result which is added inside the html element '.result'.
  *
  * EXAMPLE:
  *  convertTemperature(100, c)
  *  //> =37.78 °Celsius
+ * convertTemperature(100, f)
+ *  //> =212 °Farenheit
  */
 function convertTemperature(temp, unit) { 
     let result = 0;
@@ -339,14 +337,14 @@ function convertTemperature(temp, unit) {
         let celsius = ( (fahrenheit - 32) * (5/9) ).toFixed(2);
         return celsius;
     });
-    // >> Validating the type of unit, then it executes the respective helper function.
+    // >> Validating the type of unit, then it executes the respective helper function to proceed with the appropriate conversion.
     if (unit === 'f') {
         result = celsiusToFahrenheit(temp);
-        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>°F <i class="fa fa-solid fa-temperature-full"></i></span>`;
+        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>${farenheitUnit} <i class="fa fa-solid fa-temperature-full"></i></span>`;
     } 
     else if (unit === 'c') {
         result = fahrenheitToCelsius(temp);
-        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>°C <i class="fa fa-solid fa-temperature-full"></i></span>`;
+        document.querySelector('.result').innerHTML = `<i class="fa fa-solid fa-calculator"></i> = ${result} <span>${celsiusUnit} <i class="fa fa-solid fa-temperature-full"></i></span>`;
     }
 }
 
