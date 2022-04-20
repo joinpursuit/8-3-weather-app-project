@@ -39,17 +39,15 @@ main {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    padding-top: 10px;
     border: 2px solid rgb(10, 128, 118);
     text-align: center;
 }
-
 
 h4,
 ul{
     margin-top: 0%;
 }
-
-
 
 .forecast{
     display: grid;
@@ -62,9 +60,10 @@ ul{
     grid-column-end: 5;
 }
 
-
-
-
-@media (max-width: 990px){
-
+#today,
+#tomorrow,
+#dayAfterTomorrow {
+    background-color: rgb(220, 220, 220);
+    border: 2px solid rgb(10, 128, 118);
+    height: fit-content;
 }

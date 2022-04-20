@@ -1,17 +1,18 @@
-const fetchForm = document.getElementById('fetch-form');
-const requestedCity = document.getElementById('requested-city');
 const button = document.getElementById('fetch-button');
-const convertForm = document.getElementById('convert-form');
 const headingCity = document.getElementById('city');
 
 button.addEventListener('click', (event) => {
   event.preventDefault();
+  const requestedCity = document.getElementById('requested-city');
   const city = requestedCity.value;
+  const fetchForm = document.getElementById('fetch-form');
 
   getCity(city);
   getWeather(city);
   fetchForm.reset();
 });
+
+const convertForm = document.getElementById('convert-form');
 
 convertForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -21,14 +22,13 @@ convertForm.addEventListener('submit', (event) => {
   const result = document.getElementById('calculation');
 
   if (convertToC.checked) {
-    result.textContent = ((numToConvert - 32) / 1.8).toFixed(2);
-    console.log(result.textContent);
+    result.textContent = `${((numToConvert - 32) / 1.8).toFixed(2)}°C`;
   } else if (convertToF.checked) {
-    result.textContent = (numToConvert * 1.8 + 32).toFixed(2);
-    console.log(result.textContent);
+    result.textContent = `${(numToConvert * 1.8 + 32).toFixed(2)}°F`;
   } else {
     result.textContent = 'No unit of temperature was selected.';
   }
+  convertForm.reset();
 });
 
 function getWeather(city) {
@@ -36,11 +36,12 @@ function getWeather(city) {
     .then((response) => {
       return response.json();
     })
-    .then(getWeatherInfo)
+    .then((response) => {
+      getWeatherInfo(response)
+      return response
+    })
     .then(getSearches)
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(console.log);
 }
 
 function getPreviousWeather(city) {
@@ -101,6 +102,7 @@ function getWeatherInfo(response) {
   chanceOfSnow.innerHTML = `<strong>Chance of Snow: </strong>${forecast[0].hourly[0].chanceofsnow}`;
 
   const weatherIcon = document.querySelector('img');
+
   if (forecast[0].hourly[0].chanceofsunshine > 50) {
     weatherIcon.setAttribute('src', './assets/icons8-summer.gif');
     weatherIcon.setAttribute('alt', 'sun');
@@ -110,6 +112,9 @@ function getWeatherInfo(response) {
   } else if (forecast[0].hourly[0].chanceofsnow > 50) {
     weatherIcon.setAttribute('src', './assets/icons8-light-snow.gif');
     weatherIcon.setAttribute('alt', 'snow');
+  } else {
+    weatherIcon.setAttribute('src', '');
+    weatherIcon.setAttribute('alt', '');
   }
 
   const today = document.getElementById('todayForecast');
@@ -149,22 +154,19 @@ function getWeatherInfo(response) {
   minTempAfterTomorrow.innerHTML = `<strong>Min Temperature: </strong><span>${forecast[2].mintempF}°F</span>`;
 }
 
-const getSearches = () => {
-  const ul = document.getElementById('searchHistory');
+const getSearches = (response) => {
   const searchP = document.getElementById('searchPlaceholder');
   searchP.textContent = '';
 
-  const currently = document.getElementById('currently');
-  const currentTemp = currently.textContent.split(' ').reverse()[0];
-  const city = headingCity.textContent;
-
   const li = document.createElement('li');
-  li.innerHTML = `<a href="#">${city}</a><span>- ${currentTemp}</span>`;
+  const feelsLikeF = response.current_condition[0].FeelsLikeF
+  li.innerHTML = `<a href="#">${headingCity.textContent}</a><span> - ${feelsLikeF}°F</span>`;
 
   li.addEventListener('click', (event) => {
     event.preventDefault();
     getPreviousWeather(city);
   });
 
+  const ul = document.getElementById('searchHistory');
   ul.append(li);
 };
