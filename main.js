@@ -1,6 +1,4 @@
 const button = document.getElementById('fetch-button');
-const headingCity = document.getElementById('city');
-
 button.addEventListener('click', (event) => {
   event.preventDefault();
   const requestedCity = document.getElementById('requested-city');
@@ -13,7 +11,6 @@ button.addEventListener('click', (event) => {
 });
 
 const convertForm = document.getElementById('convert-form');
-
 convertForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const convertToC = document.getElementById('to-c');
@@ -52,7 +49,7 @@ function getPreviousWeather(city) {
     .then(getCity(city))
     .then(getWeatherInfo);
 }
-
+const headingCity = document.getElementById('city');
 const getCity = (city) => {
   const placeholderP = document.getElementById('placeholder');
 
@@ -155,18 +152,18 @@ function getWeatherInfo(response) {
 }
 
 const getSearches = (response) => {
+  const ul = document.getElementById('searchHistory');
   const searchP = document.getElementById('searchPlaceholder');
   searchP.textContent = '';
 
   const li = document.createElement('li');
-  const feelsLikeF = response.current_condition[0].FeelsLikeF
-  li.innerHTML = `<a href="#">${headingCity.textContent}</a><span> - ${feelsLikeF}°F</span>`;
+  const city = headingCity.textContent
+  li.innerHTML = `<a href="#">${city}</a><span> - ${response.current_condition[0].FeelsLikeF}°F</span>`;
 
   li.addEventListener('click', (event) => {
     event.preventDefault();
     getPreviousWeather(city);
   });
 
-  const ul = document.getElementById('searchHistory');
   ul.append(li);
 };
