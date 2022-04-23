@@ -1,0 +1,19 @@
+body {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+main {
+    display: grid;
+    margin: 0 auto;
+    text-align: center;
+    grid-template-rows: 2;
+}
+
+header {
+    background: turquoise;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+}
