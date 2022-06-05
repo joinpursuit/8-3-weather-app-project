@@ -42,29 +42,43 @@ function getObjectData(searchInfo) {
   }
 }
 
-function condtionIcon(finalImag) {
-  function getIcon(icon) {
-    let lastIcon = "";
-    const rain = json.weather[0].hourly[0].chanceofrain;
-    sunshine = json.weather[0].hourly[0].chanceofsunshine;
-    snow;
-
-    if (sunshine > 50) {
-      icon = '<img src="./assets/icons8-summer.gif" alt="sun" />';
-    } else if (rain > 50) {
-      icon = '<img src="./assets/icons8-rain-cloud.gif" alt="rain" />';
-    }
-    return lastIcon
+for (let i = 0; i < json.weather[0].hourly.length; i++) {
+  if (Number(json.weather[0].hourly[i].chanceofsunshine) > 50) {
+    icon.src = './assets/icons8-summer.gif';
+    icon.alt = 'sun';
   }
 
+  if (Number(json.weather[0].hourly[i].chanceofrain) > 50) {
+    icon.src = './assets/icons8-torrential-rain.gif';
+    icon.alt = 'rain';
+  }
 
-let finalImg = getIcon(icon);
-
-  const finalImgArticle = document.getElementById("condition-icon");
-  
-
-  finalImgArticle.appendChild(finalImg);
+  if (Number(json.weather[0].hourly[i].chanceofsnow) > 50) {
+    icon.src = './assets/icons8-light-snow.gif';
+    icon.alt = 'snow';
+  }
 }
+// function condtionIcon(finalImag) {
+//   function getIcon(icon) {
+//     let lastIcon = "";
+//     const rain = json.weather[0].hourly[0].chanceofrain;
+//     sunshine = json.weather[0].hourly[0].chanceofsunshine;
+//     snow;
+
+//     if (sunshine > 50) {
+//       icon = '<img src="./assets/icons8-summer.gif" alt="sun" />';
+//     } else if (rain > 50) {
+//       icon = '<img src="./assets/icons8-rain-cloud.gif" alt="rain" />';
+//     }
+//     return lastIcon
+//   }
+
+// let finalImg = getIcon(icon);
+
+//   const finalImgArticle = document.getElementById("condition-icon");
+
+//   finalImgArticle.appendChild(finalImg);
+// }
 
 // // getIcon(){
 // //     const src = document.getElementById ("condition-icon")
