@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text="text/css" href="styling.css"/>
+    <script defer src="main.js"></script>
+    <title>Weather App</title>
+    
+</head>
+<body>
+   <header>
+    <h1>Weather App</h1>
+    <form id="search-form">
+        <label>
+        Pick a Location
+ <input type="text" type="submit" class="search-bar" />
+<input type="submit" class="button" value="Get Weather"/>
+        </label>
+        
+    </form>
+   </header>
+   <section class="main">
+    <div class="converter">
+        <aside>
+
+    <form class="converter">
+            <label>
+                convert the temperature:
+                <input type="number" id="temp to convert" />
+            </label>
+                    <label>
+<input type="radio" name="temp to convert" id="to C" value="C" class="temperature" checked="yes to celcius"               
+                 </label>
+  <label>
+<input type="radio" name="temp to convert" id="to F" value="F" class="temperature" checked="yes to fahrenheit"
+
+            </label>
+            <label>
+                <input type="submit" class="button" value="convert"/>
+            </label>
+<h4 class="converted temp"></h4>
+        </form>
+    </aside>
+</div>
+<div>
+    <main>
+
+
+ <p class="choose a location"> Choose a location to view the weather. </p>
+    <article class="current weather"></article>
+    <aside class="upcoming weather">
+        <div>
+        <article class="today"></article>
+        </div>
+        <div>
+        <article class="tommorrow"></article>
+        </div>
+        <div>
+        <article class="day after tommorrow"></article>  
+        </div>  
+        
+    
+    </aside>
+   </main>
+</div>
+<div>
+   <aside class="weather history">
+    <section>
+
+   
+        <h4> Previous Searches</h4>
+            <ul></ul>
+            <p class="default">No previous searches.</p>
+
+    </section>
+   </aside>
+</body>
+</html>
