@@ -12,9 +12,9 @@
 <body>
    <header>
     <h1>Weather App</h1>
-    <form id="search-form">
+    <form class="choose a location">
         <label>
-        Pick a Location
+        Choose a Location
  <input type="text" type="submit" class="search-bar" />
 <input type="submit" class="button" value="Get Weather"/>
         </label>
@@ -31,10 +31,11 @@
                 <input type="number" id="temp to convert" />
             </label>
                     <label>
-<input type="radio" name="temp to convert" id="to C" value="C" class="temperature" checked="yes to celcius"               
+<input type="radio" name="temp to convert" id="to C" value="C"/>°C
+ checked="yes to celcius"               
                  </label>
   <label>
-<input type="radio" name="temp to convert" id="to F" value="F" class="temperature" checked="yes to fahrenheit"
+<input type="radio" name="temp to convert" id="to F" value="F"/>°F  checked="yes to fahrenheit"
 
             </label>
             <label>
@@ -49,16 +50,16 @@
 
 
  <p class="choose a location"> Choose a location to view the weather. </p>
-    <article class="current weather"></article>
-    <aside class="upcoming weather">
+    <article class="current-weather weather"></article>
+    <aside class="upcoming-weather">
         <div>
-        <article class="today"></article>
+        <article class="today weather"></article>
         </div>
         <div>
-        <article class="tommorrow"></article>
+        <article class="tommorrow weather"></article>
         </div>
         <div>
-        <article class="day after tommorrow"></article>  
+        <article class="day after tommorrow weather"></article>  
         </div>  
         
     
