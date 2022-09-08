@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/> 
+    <script defer src="main.js"></script>
+    <title>Weather App</title>
+
+</head>
+<body>
+    <header>
+        <h1>Weather App</h1>
+    <form id="search form">
+        <label>
+        Pick a Location
+        <input type="text" type="submit" name="location" id="location" placeholder="location here" required/>
+        <input type="submit" name="Get Weather" id="get-weather" value="Get Current Weather"/>
+         </label>
+
+    </form>
+</header>
+<section class="convert">
+<aside class="temperature-conversion"> 
+    <form>
+    <label> 
+        Convert the temperature:
+        <input type="number" id="temp-to-convert" placeholder="temperature here" required/>
+    </label>
+    <label>
+    <input type="radio" name="temp-to-convert" id="to-c" value="C" class="temperature" checked="yes"/>
+        To Celcius
+    </label>
+
+    <label>
+        <input type="radio" name="temp-to-convert" id="to-f" value="F" class="temperature" checked /> 
+        To Fahrenheit
+    </label>
+    <label>
+       <input type="submit" value="Convert"/>
+    </label>
+    <h4></h4>
+</form>
+</aside>
+</section>
+<main id="container" class="display">
+    <p class="choose a location">Choose a location to view the weather.</p>
+
+<article id="current-weather"></article>
+<aside id="three-day">
+    <article id="today"></article>
+    <article id="tomorrow"></article>
+    <article id="day-after-tomorrow"></article>
+</aside>
+</main>
+<aside>
+<section class="previous">
+<h4>Previous Searches
+    <ul></ul>
+    <p>No previous searches</p>
+</h4>
+</section>
+</aside>
+</body>
+</html>

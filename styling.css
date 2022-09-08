@@ -1,0 +1,46 @@
+body {
+    font-family: 'Open Sans' sans-serif;
+    max-width: 1200 px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-row-gap: 10px;
+    grid-template-rows: 3;
+    margin: 0 auto;
+  }
+  
+  header {
+    color: white;
+    padding-bottom: 25px;
+    grid-column-start: span 3;
+    color: whitesmoke;
+    text-align: center;
+    font-family: sans-serif;
+    border:1px solid black;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    background-image: url('https://source.unsplash.com/1600x900/?weather');
+  }
+  
+  main {
+    display:grid;
+    grid-column-gap: 10px;
+    grid-column: 2;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  
+  aside.three-day {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  section.convert {
+    text-align: center;
+  }
+  
+  h4 {
+    text-align: left;
+    font-family: sans-serif;
+    color: black;
+  }
