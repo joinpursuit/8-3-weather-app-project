@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="styling.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+   <title>Weather App</title>
 
     </head>
 <body>
@@ -25,15 +27,15 @@
 
     <form class="converter">
             <label>
-                convert the temperature:
-                <input type="number" id="temp to convert" />
+                convert °C to °F 
+                <input type="number" id="temp-to-convert" />
             </label>
                     <label>
-<input type="radio" name="temp to convert" id="to C" value="C"/>°C
+<input type="radio" name="temp-to-convert" id="to C" value="C"/>°C
  checked="yes to celcius"               
                  </label>
   <label>
-<input type="radio" name="temp to convert" id="to F" value="F"/>°F  checked="yes to fahrenheit"
+<input type="radio" name="temp-to-convert" id="to F" value="F"/>°F  checked="yes to fahrenheit"
 
             </label>
             <label>
@@ -47,7 +49,7 @@
     <main>
 
 
- <p class="choose a location"> Choose a location to view the weather. </p>
+ <p class="defaults"> Choose a location to view the weather. </p>
     <article class="current-weather weather"></article>
     <aside class="upcoming-weather">
         <div>

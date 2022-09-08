@@ -1,4 +1,4 @@
-const { file } = require("tmp");
+//const { file } = require("tmp");
 
 //console.log('hello world');
 const form =document.querySelector("form");
@@ -75,5 +75,37 @@ let minTomorrow = document.createElement("p")
 minTomorrow.innerHTML = `<strong>Min Temperature</strong> ${file.weather[1].mintempF}°F`;
 tomorrow.append(minTomorrow);
 
+//let dayAfterTomorrow = document.querySelector("article.//day-after-tomorrow-weather");
+//l//et dayAfterTomorrowText = document.createElement("h4")
+//dayAfterTomorrowText.textContent="Day After Tomorrow";
+//dayAfterTomorrow.append(dayAfterTomorrow);
+let chanceofsunshine =document.createElement("p");
+chanceofsunshine.innerHTML = `<strong>Chance of Sunshine</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
+currentWeather.append(chanceofsunshine);
 
+let chanceOfRain =document.createElement("p");
+chanceOfRain.innerHTML = `<strong>Chance of Rain</strong> ${file.weather[0].hourly[0].chanceofrain}`;
+currentWeather.append(chanceOfRain);
+
+
+let chanceOfSnow = document.createElement("p");
+chanceOfSnow.innerHTML = `<strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
+currentWeather.append(chanceOfSnow);
+
+let img = document.createElement("img");
+if(file.weather[0].hourly[0].chanceofsunshine > 50) {
+    img.setAttribute("alt","sun");
+    img.setAttribute("src", "./assets/icons8-summer.gif");
+}else if (file.weather[0].hourly.chanceofrain > 50){
+    img.setAttribute("alt","rain");
+    img.setAttribute("src" ,"./assets/icons8-torrential-rain.gif");
+}else if (file.weather[0].hourly[0].chanceofsnow > 50){
+    img.setAttribute("alt", "snow");
+    img.setAttribute("src", "./assets/icons8-light-snow.gif");
 }
+
+     currentWeather.prepend(img);
+};
+
+
+
