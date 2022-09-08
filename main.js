@@ -2,7 +2,7 @@
 
 //console.log('hello world');
 const form =document.querySelector("form");
-const searchBar =document.querySelector("input.search bar");
+const searchBar =document.querySelector("input.search-bar");
 const converter =document.querySelector("form.converter"); 
 
 const clear_defaults =()=>{
