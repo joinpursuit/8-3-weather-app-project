@@ -5,6 +5,20 @@ const form =document.querySelector("form");
 const searchBar =document.querySelector("input.search-bar");
 const converter =document.querySelector("form.converter"); 
 
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
+    //let url = `https:wttr.in/Melbourne?format=j1'
+
+    fetch('https:wttr.in/Melbourne?format=j1')
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+        })
+        .catch(err => console.log(err))
+
+})
+
 const clear_defaults =()=>{
     document.querySelectorAll(".defaults").forEach((item)=> item.classList.add("hidden"));
     document.querySelectorAll("weather").forEach((item)=> (item.innerHTML = ""));
