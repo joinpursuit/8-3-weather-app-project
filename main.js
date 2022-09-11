@@ -123,7 +123,7 @@ const clear_defaults = () => {
 
     // let result = document.querySelector("h4.converted-temp");
     // let convertC = document.getElementById("to-c");
-    // let convertF = document.getElementById("tof");
+    // let convertF = document.getElementById("to-f");
     // let originalNumber = document.querySelector("#temp-to-convert");
     
     // if (convertC) {
