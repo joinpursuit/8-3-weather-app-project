@@ -11,6 +11,14 @@ form.addEventListener("submit", (event) => {
   weatherDisplay(userCity);
 });
 
+function addToPreviousSearch(userInput, currentTemp){
+  let ul = document.querySelector("ul");
+}
+
+
+
+
+
 function weatherDisplay(userInput) {
   // console.log(city)
   // let url = `https://wttr.in/Melbourne?format=j1`
@@ -63,44 +71,58 @@ function weatherDisplay(userInput) {
       minToday.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[0].mintempF}°F`;
       today.append(minToday);
 
-      let tomorrow = document.querySelector("article.tomorrow-weather");
+      let tomorrow = document.querySelector(".tomorrow-weather");
       let tomorrowText = document.createElement("h4");
       tomorrowText.textContent = "Tomorrow";
       tomorrow.append(tomorrowText);
 
       let avgTomorrow = document.createElement("p");
-      avgTomorrow.innerHTML = `<strong>Average Temperature</strong> ${file.weather[1].avgtempF}°F`;
+      avgTomorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[1].avgtempF}°F`;
       tomorrow.append(avgTomorrow);
 
       let maxTomorrow = document.createElement("p");
-      maxTomorrow.innerHTML = `<strong>Max Temperature</strong> ${file.weather[1].maxtempF}°F`;
+      maxTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[1].maxtempF}°F`;
       tomorrow.append(maxTomorrow);
 
       let minTomorrow = document.createElement("p");
-      minTomorrow.innerHTML = `<strong>Min Temperature</strong> ${file.weather[1].mintempF}°F`;
+      minTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${file.weather[1].mintempF}°F`;
       tomorrow.append(minTomorrow);
 
-      //let dayAfterTomorrow = document.querySelector("article.//day-after-tomorrow-weather");
-      //l//et dayAfterTomorrowText = document.createElement("h4")
-      //dayAfterTomorrowText.textContent="Day After Tomorrow";
-      //dayAfterTomorrow.append(dayAfterTomorrow);
+    let dayAfterTomorrow = document.querySelector(".day-after-tomorrow-weather");
+      let dayAfterTomorrowText = document.createElement("h4")
+      dayAfterTomorrowText.textContent="Day After Tomorrow";
+      dayAfterTomorrow.append(dayAfterTomorrowText);
+
+      let avgDayAfterTomorrow = document.createElement("p");
+      avgDayAfterTomorrow.innerHTML = `<strong> Average Temperature:</strong> ${file.weather[2].avgtempF}°F`;
+      dayAfterTomorrow.append(avgDayAfterTomorrow);
+
+      let maxDayAfterTomorrow = document.createElement("p");
+      maxDayAfterTomorrow.innerHTML = `<strong>Max Temperature:</strong> ${file.weather[2].maxtempF}°F`;
+      dayAfterTomorrow.append(maxDayAfterTomorrow);
+
+      let minDayAfterTomorrow = document.createElement("p");
+      minDayAfterTomorrow.innerHTML = `<strong>Min Temperature:</strong> ${ file.weather[2].mintempF}°F`;
+      dayAfterTomorrow.append(minDayAfterTomorrow);
+
+
       let chanceofsunshine = document.createElement("p");
       chanceofsunshine.innerHTML = `<strong>Chance of Sunshine</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
       currentWeather.append(chanceofsunshine);
 
-      let chanceOfRain = document.createElement("p");
-      chanceOfRain.innerHTML = `<strong>Chance of Rain</strong> ${file.weather[0].hourly[0].chanceofrain}`;
-      currentWeather.append(chanceOfRain);
+      let chanceofrain = document.createElement("p");
+      chanceofrain.innerHTML = `<strong>Chance of Rain</strong> ${file.weather[0].hourly[0].chanceofrain}`;
+      currentWeather.append(chanceofrain);
 
-      let chanceOfSnow = document.createElement("p");
-      chanceOfSnow.innerHTML = `<strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
-      currentWeather.append(chanceOfSnow);
+      let chanceofsnow = document.createElement("p");
+      chanceofsnow.innerHTML = `<strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
+      currentWeather.append(chanceofsnow);
 
       let img = document.createElement("img");
       if (file.weather[0].hourly[0].chanceofsunshine > 50) {
         img.setAttribute("alt", "sun");
         img.setAttribute("src", "./assets/icons8-summer.gif");
-      } else if (file.weather[0].hourly.chanceofrain > 50) {
+      } else if (file.weather[0].hourly[0].chanceofrain > 50) {
         img.setAttribute("alt", "rain");
         img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
       } else if (file.weather[0].hourly[0].chanceofsnow > 50) {
@@ -109,6 +131,13 @@ function weatherDisplay(userInput) {
       }
 
       currentWeather.prepend(img);
+     
+     
+      if (shouldIAdd){
+        addToPreviousSearch(userInput, file.current_condition[0].FeelsLikeF)
+      }
+
+
     })
     .catch((err) => console.log(err));
 }
