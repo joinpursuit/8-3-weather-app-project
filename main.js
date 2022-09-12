@@ -131,8 +131,7 @@ function weatherDisplay(userInput) {
       }
 
       currentWeather.prepend(img);
-     
-     
+
       if (shouldIAdd){
         addToPreviousSearch(userInput, file.current_condition[0].FeelsLikeF)
       }
@@ -141,6 +140,25 @@ function weatherDisplay(userInput) {
     })
     .catch((err) => console.log(err));
 }
+// const addPrevSearch =(userInput) =>{
+//   let previousSearchList =document.querySelector("aside.weather-history ul");
+//   let listItem =document.createElement("li");
+
+//   listItem.innerHTML= `<a href="#">${userInput}</a> -${file.current_condition[0].FeelsLikeF}°F}`;
+//   previousSearchList.append(listItem);
+  
+//   listItem.addEventListener("submit", (event)=>{
+//     event.preventDefault();
+//     fetch(`https://wttr.in/${userInput}?format=j1`)
+//     .then((res)=> res.json())
+//     .then((json)=> {
+//       cleardefaults();
+//       addWeather(json, userInput);
+// })
+// .catch((err)=> console.log(err));
+//  })
+// };
+
 
 const clear_defaults = () => {
   document
@@ -148,16 +166,8 @@ const clear_defaults = () => {
     .forEach((item) => item.classList.add("hidden"));
   document.querySelectorAll("weather").forEach((item) => (item.innerHTML = ""));
 };
+// converter.addEventListener("submit", (event) => {
+//   event.preventDefault();
 
 
-    // let result = document.querySelector("h4.converted-temp");
-    // let convertC = document.getElementById("to-c");
-    // let convertF = document.getElementById("to-f");
-    // let originalNumber = document.querySelector("#temp-to-convert");
-    
-    // if (convertC) {
-    //     result.textContent = `${((originalNumber.value - 32) / 1.8).toFixed(2)}`;
 
-    // }else if (convertF){
-    //     result.textContent = `${((originalNumber.value * 1.8 + 32) .toFixed(2))}`;
-    // }
