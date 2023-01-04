@@ -67,10 +67,16 @@ document.querySelector("form").addEventListener("submit",(event) => {
 
         // //create 3 articles with today, tomorrow, and day after tomorrow results
 
+        //create the articles
+        const today = document.createElement("article");
+        const tomorrow = document.createElement("article");
+        const dayAfter = document.createElement("article");
+
+        //put the data for those days into the articles
 
 
-
-
+        //append the articles to the upcoming class aside element
+        upcoming.append(today, tomorrow, dayAfter);
 
 
     })
