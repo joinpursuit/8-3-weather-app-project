@@ -15,6 +15,7 @@ body{
     padding: 25px;
     border: solid rgb(60, 60, 60);
     color: white;
+    text-align: center;
 
     background-color: teal;
 }
@@ -22,6 +23,7 @@ body{
 .main{
     grid-area: main;
     margin: 20px 0px;
+    text-align: center;
 
     background-color: blue;
 }

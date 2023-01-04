@@ -2,7 +2,13 @@
 //get the searches list element
 const searchedList = document.querySelector(".searches");
 
+//get the article element for the main results
+const searchResult = document.querySelector(".search-result");
 
+//get the aside element for the results of today, tomorrow, and the day after tomorrow
+const upcoming = document.querySelector(".upcoming")
+
+console.log(searchResult, searchedList)
 //get the form and add the submit event listener
 document.querySelector("form").addEventListener("submit",(event) => {
     //stop the page from refreshing
@@ -48,7 +54,12 @@ document.querySelector("form").addEventListener("submit",(event) => {
 
         // //place the results in the main .search-result article
 
-        //
+        //change the inner html of the search-result article element to the data
+        searchResult.innerHTML = `<h2>${searchLocation}</h2>
+        <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
+        <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
+        <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
+        <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
 
 
 
