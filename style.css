@@ -1,8 +1,36 @@
 body{
-    
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous"
+    ;
+
+
 }
 
 .header {
+    grid-area: header;
+    
     background-color: teal;
 }
 
+.main{
+    grid-area: main;
+    
+    background-color: lightgrey;
+}
+
+.previous {
+    grid-area: previous;
+    
+    background-color: crimson;
+    
+}
+
+.aside {
+    grid-area: aside;
+
+    background-color: pink;
+}
