@@ -1,10 +1,26 @@
-document.querySelector('.form').addEventListener("submit", (event) => {
+const BASE_URL = 'https://wttr.in/';
+const form = document.querySelector('.form');
+const currentWeather = document.querySelector('article');
+const weatherIcon = document.createElement('img');
+
+
+
+
+form.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log(`https://v3.wttr.in/${event.target.location.value}?format=j1`, "This is our weather search link!");
-    fetch (`https://v3.wttr.in/${event.target.location.value}?format=j1`)
-    .then(result => {
-        return result.json()
-    }).then(weather => {
-        console.log(weather, 'This is our weather info!')
-    })
+
+    let city = event.target.location.value;
+
+    console.log(`${BASE_URL}${city}?format=j1`, "This is our weather search link!");
+
+    fetch(`${BASE_URL}${city}?format=j1`)
+        .then((res) => {
+            return res.json()
+        })
+        .then((response) => {
+
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 })
