@@ -40,7 +40,7 @@ body{
     background-color: pink;
 }
 
-.searched {
+.search-result {
     background-color: lightgray;
     border: solid 1px teal;
 }
