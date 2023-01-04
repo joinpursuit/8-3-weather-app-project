@@ -11,14 +11,12 @@ form.addEventListener("submit", (event) => {
 
     let city = event.target.location.value;
 
-    console.log(`${BASE_URL}${city}?format=j1`, "This is our weather search link!");
-
     fetch(`${BASE_URL}${city}?format=j1`)
         .then((res) => {
             return res.json()
         })
         .then((response) => {
-
+            
         })
         .catch((error) => {
             console.log(error);
