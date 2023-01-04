@@ -12,19 +12,24 @@ body{
 
 .header {
     grid-area: header;
-    
+    padding: 25px;
+    border: solid rgb(60, 60, 60);
+    color: white;
+
     background-color: teal;
 }
 
 .main{
     grid-area: main;
-    
-    background-color: lightgrey;
+    margin: 20px 0px;
+
+    background-color: blue;
 }
 
 .previous {
     grid-area: previous;
-    
+    padding: 0px 15px;
+
     background-color: crimson;
     
 }
@@ -33,4 +38,9 @@ body{
     grid-area: aside;
 
     background-color: pink;
+}
+
+.searched {
+    background-color: lightgray;
+    border: solid 1px teal;
 }
