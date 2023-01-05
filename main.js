@@ -15,8 +15,11 @@ fetch(`https://v3.wttr.in/${event.target.location.value}?format=j1`).then(result
     console.log(weather)
     ul.textContent=`Currently:`
     ul.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`)
-
-
+    
+    const mainArticle = document.querySelector(".chosen")
+    const bigLocation = document.createElement("h1")
+    bigLocation.innerText = `${event.target.location.value}`
+    mainArticle.append(bigLocation)
 
     // ul.textContent = `Feels Like ${weather.current_condition[0].FeelsLikeC}*C`
     // article[0].append(ul)
