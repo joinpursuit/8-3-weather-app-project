@@ -31,15 +31,30 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
         .then((result) => {
 
-
+            
             // //place the results in the main .search-result article
 
-            //change the inner html of the search-result article element to the data
-            searchResult.innerHTML = `<h2>${searchLocation}</h2>
-            <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
-            <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
-            <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-            <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+            //check if the location matches the area
+            if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()){
+
+                //change the inner html of the search-result article element to the data
+                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
+                <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
+                <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+            } else {
+                //its not the exact area
+                //change the inner html of the search-result article element to the data
+                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
+                <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
+                <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+            }
+
+            
 
 
 
@@ -77,8 +92,8 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
             // //place the link to the search in previous section
 
-            //make the p tag empty
-            document.querySelector(".searches p").textContent = "";
+            //delete the p tag empty
+            document.querySelector(".searches p").remove();
 
             //create a new list item
 
@@ -115,12 +130,27 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
                             // //place the results in the main .search-result article
 
-                            //change the inner html of the search-result article element to the data
-                            searchResult.innerHTML = `<h2>${recent.textContent}</h2>
-                            <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
-                            <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
-                            <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                            <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                            // //place the results in the main .search-result article
+
+                            //check if the location matches the area
+                            if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()) {
+
+                                //change the inner html of the search-result article element to the data
+                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                                <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
+                                <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
+                                <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+                            } else {
+                                //its not the exact area
+                                //change the inner html of the search-result article element to the data
+                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                                <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
+                                <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
+                                <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                            }
 
                             // //create 3 articles with today, tomorrow, and day after tomorrow results
 
