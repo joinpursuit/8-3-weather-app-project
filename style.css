@@ -1,8 +1,32 @@
-.previous {
-    background-color: crimson;
+    .header{
+        background-color: dodgerblue;
+        align-content: center;
+        grid-area: header;
+    }
+    
+    .main {
+        background-color: burlywood;
+        grid-area: main;
+    }
+    
+    .previous {
+        background-color: wheat;
+        grid-area: previous;
+    }
+    
+    .aside {
+        background-color: bisque;
+        grid-area: aside;
     }
     
     body {
-    
+        background-color: rgba(126, 252, 0, 0.208);
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        "header header header"
+        "aside main previous"
+        "aside . previous"
     }
-    
+        
