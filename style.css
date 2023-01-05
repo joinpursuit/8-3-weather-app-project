@@ -1,7 +1,10 @@
     .header{
         background-color: dodgerblue;
+        color: snow;
         align-content: center;
         grid-area: header;
+        padding-bottom: 5%;
+        padding-left:20%
     }
     
     .main {

@@ -11,40 +11,86 @@
 <body>
     <header class="header">
         <h1>Weather App</h1>
-        <form>
+        <form class="form">
             <label for="location">Pick a Location</label>
-            <input type="text" name="location" />
+            <input type="text" name="location" placeholder=""/>
             <input type="submit" value="Get Weather"/>
 
         </form>
     </header>
-<aside class = "aside">
-This starts empty but will eventually contain a temperature conversion widget.
+<aside class = "tempConversionWidget">
+    <form>
+        <!-- <BR>
+        <BR>
+        <label for="tempconv">Temperature conversion
+        <input type="number" name="temp" size="6"/></label>
+        <BR>
+            <label>
+            <input type="radio" checked/> to Celsius
+            </label>
+        <label>
+            <input type="radio"/> to Fahrenheit
+            </label>
+            <input type="submit" value="Calculate"> -->
+
+<h3>Temperature Converter</h3>
+<p>Type a value in the Celsius field to convert the value to Fahrenheit:</p>
+  <label>Celsius</label>
+  <input id="inputCelsius" type="number" placeholder="Celsius" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
+</p>
+<p>Fahrenheit: <span id="outputFahrenheit"></span></p>
+<p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
+    <label>Fahrenheit</label>
+    <input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
+    oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
+</p>
+        <p>Celsius: <span id="outputCelsius"></span></p>
+    </form>
 </aside>
 
-    <main class="main">
-        Here is some placeholder text.
-        <article class="chosen">
-            this will contain the current weather but starts empty.
-            <ul><strong></strong></ul> 
-            </article>
-        <article>
-        Choose a location to view the weather.
-        <ul><strong></strong></ul> 
-        </article>
-        <aside>
+
+
+
+
+
+<!-- 
+<main class="main">
+    <p id = "pInitial" style = "text-align: center;">Choose a location to view the weather.</p>
+    <div class = "styleTop">
+        <article class="top-section"> <!-- current weather -->
+     <!--        <span id="weather-image-container"></span>
+    <!--         <h2 id = "h2inputText"></h2> <!--search name -->
+    <!--         <p id = "Area"></p>  <!-- Area -->
+   <!--          <p id = "Region"></p> <!--Region -->
+   <!--          <p id = "Country"></p> <!-- Country-->
+      <!--       <p id = "CurrentTemp"></p> <!--Currently feel like -->
+ <!--            <p id = "Sunshine"></p> <!--Chance of Sunshine-->
+ <!--            <p id = "Rain"></p> <!--Chance of Rain -->
+  <!--           <p id = "Snow"></p> <!--Chance of Snow -->
+ <!--        </article> -->
+
+
+
+
+
+<main class="main"> <!--Text will go here-->>
+    <article class="chosen">
+        <p style = "text-align: center";> Choose a location to view the weather.</p>
+ 
+    </article>
+  <aside>
             This aside has three article elements that will hve upcoming weather but it starts empty.
-            <article>Today
+    <article>Today
                 <ul></ul>
                 <ul></ul>
                 <ul></ul>
             </article>
-            <article>Tommorrow
+    <article>Tommorrow
                 <ul></ul>
                 <ul></ul>
                 <ul></ul>
             </article>
-            <article>Day After Tomorrow
+    <article>Day After Tomorrow
                 <ul></ul>
                 <ul></ul>
                 <ul></ul>
