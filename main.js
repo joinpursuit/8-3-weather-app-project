@@ -1,5 +1,5 @@
 // submit should clear the field.
-document.querySelector("form").addEventListener("submit", (event) => {
+document.querySelector(".header form").addEventListener("submit", (event) => {
     event.preventDefault()
     console.log(`https://wttr.in/${event.target.location.value}?format=j1`, "HELLO FROM THE OTHER SIDE")
     // changed v3.wttr.in to wttr.in
@@ -14,7 +14,8 @@ document.querySelector("form").addEventListener("submit", (event) => {
             console.log(weather, "Finally properly formatted weather");
 
             //clears field
-            const screenLocation = document.querySelector(".main").querySelector("article");
+            //const screenLocation = document.querySelector(".main").querySelector("article");
+            const screenLocation = document.querySelector("main article");
             //setting innerHTML to "" wipes everything in article.
             screenLocation.innerHTML = "";
 
@@ -25,13 +26,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
             //overrides sun with rain, overwrites rain with snow
             const imgWeather = document.createElement("img");
             if (Number(chanceSnow) > 50) {
-                imgWeather.src = "assets/icons8-light-snow.gif";
+                imgWeather.src = "./assets/icons8-light-snow.gif";
                 imgWeather.alt = "snow";
             } else if (Number(chanceRain) > 50) {
-                imgWeather.src = "assets/icons8-torrential-rain.gif";
+                imgWeather.src = "./assets/icons8-torrential-rain.gif";
                 imgWeather.alt = "rain";
             } else if (Number(chanceSunshine) > 50) {
-                imgWeather.src = "assets/icons8-summer.gif";
+                imgWeather.src = "./assets/icons8-summer.gif";
                 imgWeather.alt = "sun";
             }
             screenLocation.appendChild(imgWeather);
@@ -41,9 +42,10 @@ document.querySelector("form").addEventListener("submit", (event) => {
             const locationName = document.createElement("h2");
             locationName.innerText = locationStorage;
             screenLocation.appendChild(locationName);
+            console.log("Supernatural ", screenLocation);
 
             // Adds main section area
-            const areaDiv = document.createElement("div");
+            const areaDiv = document.createElement("p");
             const nearestArea = weather.nearest_area[0].areaName[0].value;
             let appendAreaText = "";
             if (locationStorage === nearestArea) {
@@ -55,32 +57,32 @@ document.querySelector("form").addEventListener("submit", (event) => {
             screenLocation.appendChild(areaDiv);
 
             // adds main section region
-            const regionDiv = document.createElement("div");
+            const regionDiv = document.createElement("p");
             regionDiv.innerHTML = `<strong>Region:</strong> ${weather.nearest_area[0].region[0].value}`;
             screenLocation.appendChild(regionDiv);
 
             // adds main section country
-            const countryDiv = document.createElement("div");
+            const countryDiv = document.createElement("p");
             countryDiv.innerHTML = `<strong>Country:</strong> ${weather.nearest_area[0].country[0].value}`;
             screenLocation.appendChild(countryDiv);
 
             // adds main section Currently in Fahrenheit
-            const feelsFDiv = document.createElement("div");
+            const feelsFDiv = document.createElement("p");
             feelsFDiv.innerHTML = `<strong>Currently:</strong> Feels Like ${weather.current_condition[0].FeelsLikeF}°F`;
             screenLocation.appendChild(feelsFDiv);
 
             //adds main section Chance of Sunshine
-            const divChanceSunshine = document.createElement("div");
+            const divChanceSunshine = document.createElement("p");
             divChanceSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceSunshine}`;
             screenLocation.appendChild(divChanceSunshine);
 
             //adds main section Chance of Rain
-            const divChanceRain = document.createElement("div");
+            const divChanceRain = document.createElement("p");
             divChanceRain.innerHTML = `<strong>Chance of Rain:</strong> ${chanceRain}`;
             screenLocation.appendChild(divChanceRain);
 
             //adds main section Chance of Snow
-            const divChanceSnow = document.createElement("div");
+            const divChanceSnow = document.createElement("p");
             divChanceSnow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceSnow}`;
             screenLocation.appendChild(divChanceSnow);
 
@@ -208,7 +210,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
                                 console.log(weather, "Finally properly formatted weather");
                     
                                 //clears field
-                                const screenLocation = document.querySelector(".main").querySelector("article");
+                                const screenLocation = document.querySelector(".main article");
                                 //setting innerHTML to "" wipes everything in article.
                                 screenLocation.innerHTML = "";
                     
@@ -219,13 +221,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
                                 //overrides sun with rain, overwrites rain with snow
                                 const imgWeather = document.createElement("img");
                                 if (Number(chanceSnow) > 50) {
-                                    imgWeather.src = "assets/icons8-light-snow.gif";
+                                    imgWeather.src = "./assets/icons8-light-snow.gif";
                                     imgWeather.alt = "snow";
                                 } else if (Number(chanceRain) > 50) {
-                                    imgWeather.src = "assets/icons8-torrential-rain.gif";
+                                    imgWeather.src = "./assets/icons8-torrential-rain.gif";
                                     imgWeather.alt = "rain";
                                 } else if (Number(chanceSunshine) > 50) {
-                                    imgWeather.src = "assets/icons8-summer.gif";
+                                    imgWeather.src = "./assets/icons8-summer.gif";
                                     imgWeather.alt = "sun";
                                 }
                                 screenLocation.appendChild(imgWeather);
@@ -237,7 +239,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
                                 screenLocation.appendChild(locationName);
                     
                                 // Adds main section area
-                                const areaDiv = document.createElement("div");
+                                const areaDiv = document.createElement("p");
                                 const nearestArea = weather.nearest_area[0].areaName[0].value;
                                 let appendAreaText = "";
                                 if (locationStorage === nearestArea) {
@@ -249,32 +251,32 @@ document.querySelector("form").addEventListener("submit", (event) => {
                                 screenLocation.appendChild(areaDiv);
                     
                                 // adds main section region
-                                const regionDiv = document.createElement("div");
+                                const regionDiv = document.createElement("p");
                                 regionDiv.innerHTML = `<strong>Region:</strong> ${weather.nearest_area[0].region[0].value}`;
                                 screenLocation.appendChild(regionDiv);
                     
                                 // adds main section country
-                                const countryDiv = document.createElement("div");
+                                const countryDiv = document.createElement("p");
                                 countryDiv.innerHTML = `<strong>Country:</strong> ${weather.nearest_area[0].country[0].value}`;
                                 screenLocation.appendChild(countryDiv);
                     
                                 // adds main section Currently in Fahrenheit
-                                const feelsFDiv = document.createElement("div");
+                                const feelsFDiv = document.createElement("p");
                                 feelsFDiv.innerHTML = `<strong>Currently:</strong> Feels Like ${weather.current_condition[0].FeelsLikeF}°F`;
                                 screenLocation.appendChild(feelsFDiv);
                     
                                 //adds main section Chance of Sunshine
-                                const divChanceSunshine = document.createElement("div");
+                                const divChanceSunshine = document.createElement("p");
                                 divChanceSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceSunshine}`;
                                 screenLocation.appendChild(divChanceSunshine);
                     
                                 //adds main section Chance of Rain
-                                const divChanceRain = document.createElement("div");
+                                const divChanceRain = document.createElement("p");
                                 divChanceRain.innerHTML = `<strong>Chance of Rain:</strong> ${chanceRain}`;
                                 screenLocation.appendChild(divChanceRain);
                     
                                 //adds main section Chance of Snow
-                                const divChanceSnow = document.createElement("div");
+                                const divChanceSnow = document.createElement("p");
                                 divChanceSnow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceSnow}`;
                                 screenLocation.appendChild(divChanceSnow);
                     
@@ -343,3 +345,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
         })
 });
 
+document.querySelector(".aside form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const tempInput = event.target.parentElement.querySelector("#temp-to-convert").value;
+    const radioButton = event.target.parentElement.querySelector("input[name='tempconverter']:checked").value;
+    if (radioButton === "celsius") {
+        event.target.parentElement.querySelector("h4").innerText = ((tempInput - 32) * 5 / 9).toFixed(2);
+    } else if (radioButton === "fahrenheit") {
+        event.target.parentElement.querySelector("h4").innerText = ((tempInput * 9 / 5) + 32).toFixed(2);
+    }
+});
