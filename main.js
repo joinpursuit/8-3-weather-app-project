@@ -13,8 +13,10 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     //stop the page from refreshing
     event.preventDefault();
 
+    //////!!Messes up the imperfect search test!!
     //assign the search to a variable and capitalize the first letter
-    let searchLocation = event.target.location.value[0].toUpperCase() + event.target.location.value.substring(1).toLowerCase();
+    // let searchLocation = event.target.location.value[0].toUpperCase() + event.target.location.value.substring(1).toLowerCase();
+    let searchLocation = event.target.location.value;
 
     //clear the search box
     event.target.location.value = "";
@@ -35,7 +37,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
             // //place the results in the main .search-result article
 
             //check if the location matches the area
-            if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()){
+            if (searchLocation === result.nearest_area[0].areaName[0].value){
 
                 //change the inner html of the search-result article element to the data
                 searchResult.innerHTML = `<h2>${searchLocation}</h2>
@@ -92,7 +94,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
             // //place the link to the search in previous section
 
-            //delete the p tag empty
+            //delete the p tag 
             if (document.querySelector(".searches p")) {
                 document.querySelector(".searches p").remove();
             }
