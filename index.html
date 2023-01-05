@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script defer src="./main.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Weather App</h1>
+        <form>
+            <label for="location">Pick a Location</label>
+            <input type="text" name="location"/>
+            <input type="submit" value="Get Weather"/>
+        </form>
+    </header>
+    <!-- Following aside to include temperature widget, starts empty
+    Convert the temperature: 100 (up and down buttons), selectors To Celsius, To Farenheit, Submit button.  0.00 at bottom.  Sorta uh
+    
+     In the empty aside, add a form. The form should have
+ A label for Convert the temperature:
+ An input type number, id temp-to-convert
+ A label for to-c
+ An input type radio with id to-c, name convert-temp ,value c
+ An input type radio with id to-f, name convert-temp, value f
+ An input type submit
+ An h4 element that will store the result of the calculation
+ 
+ Limit to 2 decimal places. .. --> 
+    <aside class="aside">
+
+    </aside>
+    <main class="main">
+        <article>
+            <!-- Rows:  Melbourne / Area: Melbourne OR Nearest Area: New York (or whatever) IF there is a mismatch/ Region: Victoria / Country: Australia / Currently: Feels like 37 (degree symbol) F ; Chance of Sunshine: 86 / Chance of Rain: 0 / Chance of Snow: 0 . . . 
+                
+                if there is more than a 50% chance of sunshine, show the summer icon with alt text sun
+if there is more than a 50% chance of rain, show the torrential-rain icon with alt text rain
+if there is more than a 50% chance of snow, show the light-snow icon with alt text snow
+
+all this replaces the placeholder text-->
+            Choose a location to view the weather
+        </article>
+        <!-- Has columns Today, Tomorrow, Day After Tomorrow, each with Average Temperature: 54 (degree symbol) F, Max Temperature: Min Temperature.-->
+        <aside>
+            <article></article>
+            <article></article>
+            <article></article>
+        </aside>
+    </main>
+    <aside class="previous">
+        <section>
+            <h4>Previous Searches</h4>
+            <!-- Will include bullet list with Melbourne (link) - 37 (degrees) F; most recent on bottom.
+            
+            If link is clicked, a new link does NOT show up in the 'aside' UL element.-->
+            <ul>
+                <p>No previous searches.</p>
+            </ul>
+        </section>
+    </aside>
+</body>
+</html>
