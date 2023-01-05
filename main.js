@@ -93,7 +93,10 @@ document.querySelector("form").addEventListener("submit", async (event) => {
             // //place the link to the search in previous section
 
             //delete the p tag empty
-            document.querySelector(".searches p").remove();
+            if (document.querySelector(".searches p")) {
+                document.querySelector(".searches p").remove();
+            }
+            
 
             //create a new list item
 
