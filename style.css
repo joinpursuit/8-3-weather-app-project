@@ -30,17 +30,17 @@ body{
     grid-area: previous;
     padding: 0px 15px;
 
-    background-color: rgb(235, 91, 120);
+    background-color: rgb(231, 187, 196);
     
 }
 
 .aside {
     grid-area: aside;
 
-    background-color: pink;
+    background-color: rgb(160, 185, 230);
 }
 
-.search-result {
+article {
     background-color: lightgray;
     border: solid 1px teal;
     padding: 20px;
@@ -51,6 +51,7 @@ body{
     grid-template-columns: auto auto auto;
 }
 
+/* because my links don't look like links ??? */
 a {
     color: blue;
     text-decoration: underline;
