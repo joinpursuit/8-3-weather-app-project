@@ -33,7 +33,9 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
         .then((result) => {
 
-            
+            //create a variable for the results of the first object in the hourly array
+            let chanceOf = result.weather[0].hourly[0]
+
             // //place the results in the main .search-result article
 
             //check if the location matches the area
@@ -44,7 +46,10 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
+                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
+                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
+                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
 
             } else {
                 //its not the exact area
@@ -53,13 +58,11 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
+                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
+                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
+                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
             }
-
-            
-
-
-
 
             // //create 3 articles with today, tomorrow, and day after tomorrow results
 
@@ -73,7 +76,6 @@ document.querySelector("form").addEventListener("submit", async (event) => {
             <p><b>Average Temperature:</b> ${result.weather[0].avgtempF}°F</p>
             <p><b>Max Temperature:</b> ${result.weather[0].maxtempF}°F</p>
             <p><b>Min Temperature:</b> ${result.weather[0].mintempF}°F</p>`
-
 
             tomorrow.innerHTML = `<h2>Tomorrow</h2>
             <p><b>Average Temperature:</b> ${result.weather[1].avgtempF}°F</p>
@@ -99,9 +101,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                 document.querySelector(".searches p").remove();
             }
             
-
-            //create a new list item
-
+            //create a new list item if an item the the same name isnt already there
             if (!searchedList.textContent.includes(searchLocation)) {
                 const prevSearch = document.createElement("li");
 
@@ -113,8 +113,6 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
                 //get the recent class link
                 const recent = document.querySelector(".recent")
-
-                
 
                 //give the recent link a click event
                 recent.addEventListener("click", () => {
@@ -145,7 +143,10 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
+                                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
+                                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
+                                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
 
                             } else {
                                 //its not the exact area
@@ -154,7 +155,10 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
+                                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
+                                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
+                                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
                             }
 
                             // //create 3 articles with today, tomorrow, and day after tomorrow results
@@ -169,7 +173,6 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                             <p><b>Average Temperature:</b> ${result.weather[0].avgtempF}°F</p>
                             <p><b>Max Temperature:</b> ${result.weather[0].maxtempF}°F</p>
                             <p><b>Min Temperature:</b> ${result.weather[0].mintempF}°F</p>`
-
 
                             tomorrow.innerHTML = `<h2>Tomorrow</h2>
                             <p><b>Average Temperature:</b> ${result.weather[1].avgtempF}°F</p>
@@ -191,13 +194,8 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
                 //remove the recent class links class
                 recent.classList.toggle("recent")
-                
-
-
 
             }
-
-
         })
 })
 
