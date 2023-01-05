@@ -24,15 +24,13 @@ body{
     grid-area: main;
     margin: 20px 0px;
     text-align: center;
-
-    background-color: blue;
 }
 
 .previous {
     grid-area: previous;
     padding: 0px 15px;
 
-    background-color: crimson;
+    background-color: rgb(235, 91, 120);
     
 }
 
@@ -45,4 +43,19 @@ body{
 .search-result {
     background-color: lightgray;
     border: solid 1px teal;
+    padding: 20px;
+}
+
+.upcoming {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:active {
+    color: red;
 }
