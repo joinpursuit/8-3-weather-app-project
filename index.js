@@ -5,6 +5,8 @@ document.querySelector("form").addEventListener("submit", (event) => {
   let ul = document.querySelector("ul");
   let previous = document.querySelector(".previous");
   let p = document.createElement("p");
+  let threeDays = document.querySelectorAll(".forecast .day");
+  let forecast = ["Today", "Tomorrow", "Day After Tomorrow"];
 
   let city = event.target.location.value;
   event.target.location.value = ""; //to clear input
@@ -22,8 +24,9 @@ document.querySelector("form").addEventListener("submit", (event) => {
 
       article.appendChild(p);
 
+      // populate the search aside
       if (previous) {
-        previous.remove(); //ask jose thelogic of this. i was using it without an if
+        previous.remove(); //ask jose the logic of this. i was using it without an if
         let li = document.createElement("li");
         li.innerHTML = `${weather.nearest_area[0].areaName[0].value}`;
         ul.append(li);
@@ -32,5 +35,15 @@ document.querySelector("form").addEventListener("submit", (event) => {
         li.innerHTML = `${weather.nearest_area[0].areaName[0].value}`;
         ul.append(li);
       }
+
+      //populate forecast
+
+      for (let i = 0; i < threeDays.length; i++) {
+        threeDays.innerHTML = "";
+        let days = document.createElement("p");
+        days.innerHTML = forecast[i]
+        threeDays[i].append(days);
+      }
     });
+    console.log(threeDays);
 });
