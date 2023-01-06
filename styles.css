@@ -1,0 +1,29 @@
+.header {
+    background-color: darkslategrey;
+    grid-area: header;
+}
+
+.main {
+    background-color: rgb(54, 146, 106);
+    text-align: center;
+    grid-area: main;
+}
+
+.previous {
+    background-color: wheat;
+    grid-area: previous;
+    text-decoration: underline;
+}
+
+.aside {
+    background-color: burlywood;
+    grid-area: aside;
+}
+
+body {
+    background-color: cornsilk;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "header header header" "aside main previous";
+}
