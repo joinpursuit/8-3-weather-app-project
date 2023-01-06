@@ -8,8 +8,12 @@ const searchResult = document.querySelector(".search-result");
 //get the aside element for the results of today, tomorrow, and the day after tomorrow
 const upcoming = document.querySelector(".upcoming")
 
+//create an empty div
+const weatherDiv = document.createElement("div");
+
+
 //get the form and add the submit event listener
-document.querySelector("form").addEventListener("submit", async (event) => {
+document.querySelector("form").addEventListener("submit", (event) => {
     //stop the page from refreshing
     event.preventDefault();
 
@@ -22,7 +26,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     event.target.location.value = "";
 
     //the link for the searches in json
-    await fetch(`https://wttr.in/${searchLocation}?format=j1`)
+    fetch(`https://wttr.in/${searchLocation}?format=j1`)
 
         .then((res) => {
             //log a success message
@@ -33,20 +37,41 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
         .then((result) => {
 
+
             //create a variable for the results of the first object in the hourly array
             let chanceOf = result.weather[0].hourly[0];
 
             //create an array of objects of the chance of each weather type
             let chanceOfWeather = [
-            {chance: Number(chanceOf.chanceofsunshine),
-            weather: "sun",
-            img: ""},
-            {chance: Number(chanceOf.chanceofrain),
-            weather: "rain",
-            img: ""},
-            {chance: Number(chanceOf.chanceofsnow),
-            weather: "snow",
-            img: ""}];
+            {chance: chanceOf.chanceofsunshine,
+            weather: "Sunshine",
+            img: "assets/icons8-summer.gif"},
+            {chance: chanceOf.chanceofrain,
+            weather: "Rain",
+            img: "assets/icons8-torrential-rain.gif"},
+            {chance: chanceOf.chanceofsnow,
+            weather: "Snow",
+            img: "assets/icons8-light-snow.gif"},
+            {chance: chanceOf.chanceofwindy,
+            weather: "Windy",
+            img: "assets/icons8-wind.gif"},
+            {chance: chanceOf.chanceoffog,
+            weather: "Fog",
+            img: "assets/icons8-fog.gif"},
+            {chance: chanceOf.chanceofthunder,
+            weather: "Thunder Storm",
+            img: "assets/icons8-storm.gif"},
+            ];
+            
+            //clear the weather div
+            weatherDiv.innerHTML = "";
+
+            //put the weather chance of every weather type into the div
+            for (weather of chanceOfWeather){
+                let sentence = document.createElement("p");
+                sentence.innerHTML = `<b>Chance of ${weather.weather}:</b> ${weather.chance}`
+                weatherDiv.append(sentence);
+            }
             
             
             // //calculate which has the highest chance, and set the appropriate photo
@@ -57,31 +82,26 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                 let weather = a.chance > b.chance ? a : b;
                 return weather;
             })
-            console.log(chanceOfWeather);
 
             // //place the results in the main .search-result article
-
-            //place the picture in the main article tag
-            
-
 
             //check if the location matches the area
             if (searchLocation === result.nearest_area[0].areaName[0].value){
 
                 //change the inner html of the search-result article element to the data
-                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
+                 <h2>${searchLocation}</h2>
                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
-                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
-                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
-                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`
+                ;
 
             } else {
                 //its not the exact area
                 //change the inner html of the search-result article element to the data
-                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
+                <h2>${searchLocation}</h2>
                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
@@ -166,7 +186,8 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                             if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()) {
 
                                 //change the inner html of the search-result article element to the data
-                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
+                                <h2>${searchLocation}</h2>
                                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
@@ -178,7 +199,8 @@ document.querySelector("form").addEventListener("submit", async (event) => {
                             } else {
                                 //its not the exact area
                                 //change the inner html of the search-result article element to the data
-                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
+                                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
+                                <h2>${searchLocation}</h2>
                                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
@@ -226,3 +248,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
         })
 })
 
+
+//  function weather(){
+
+//  }
