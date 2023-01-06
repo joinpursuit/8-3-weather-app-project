@@ -34,9 +34,36 @@ document.querySelector("form").addEventListener("submit", async (event) => {
         .then((result) => {
 
             //create a variable for the results of the first object in the hourly array
-            let chanceOf = result.weather[0].hourly[0]
+            let chanceOf = result.weather[0].hourly[0];
+
+            //create an array of objects of the chance of each weather type
+            let chanceOfWeather = [
+            {chance: Number(chanceOf.chanceofsunshine),
+            weather: "sun",
+            img: ""},
+            {chance: Number(chanceOf.chanceofrain),
+            weather: "rain",
+            img: ""},
+            {chance: Number(chanceOf.chanceofsnow),
+            weather: "snow",
+            img: ""}];
+            
+            
+            // //calculate which has the highest chance, and set the appropriate photo
+
+            //assign the highest weather chance to a variable
+            let highestChance = chanceOfWeather.reduce((a, b) => {
+                //compare the weather chance
+                let weather = a.chance > b.chance ? a : b;
+                return weather;
+            })
+            console.log(chanceOfWeather);
 
             // //place the results in the main .search-result article
+
+            //place the picture in the main article tag
+            
+
 
             //check if the location matches the area
             if (searchLocation === result.nearest_area[0].areaName[0].value){
@@ -133,7 +160,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
                             // //place the results in the main .search-result article
 
-                            // //place the results in the main .search-result article
+                            //
 
                             //check if the location matches the area
                             if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()) {
