@@ -63,5 +63,12 @@ a:active {
 
 div {
     display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 20px 20px;
+    border: solid 1px rgb(193, 140, 140)
+}
 
+img {
+    width: 225px;
+    height: 225px;
 }

@@ -8,6 +8,9 @@ const searchResult = document.querySelector(".search-result");
 //get the aside element for the results of today, tomorrow, and the day after tomorrow
 const upcoming = document.querySelector(".upcoming")
 
+//create an image
+const pic = document.createElement("img");
+
 //create an empty div
 const weatherDiv = document.createElement("div");
 
@@ -58,9 +61,9 @@ document.querySelector("form").addEventListener("submit", (event) => {
             {chance: chanceOf.chanceoffog,
             weather: "Fog",
             img: "assets/icons8-fog.gif"},
-            {chance: chanceOf.chanceofthunder,
-            weather: "Thunder Storm",
-            img: "assets/icons8-storm.gif"},
+            {chance: chanceOf.chanceofovercast,
+            weather: "Overcast",
+            img: "assets/icons8-night.gif"},
             ];
             
             //clear the weather div
@@ -73,7 +76,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
                 weatherDiv.append(sentence);
             }
             
-            
             // //calculate which has the highest chance, and set the appropriate photo
 
             //assign the highest weather chance to a variable
@@ -83,32 +85,48 @@ document.querySelector("form").addEventListener("submit", (event) => {
                 return weather;
             })
 
+            //set the src and alt for the weather type of the highest chance
+            pic.setAttribute("src", highestChance.img);
+            pic.setAttribute("alt", highestChance.weather);
+
             // //place the results in the main .search-result article
 
             //check if the location matches the area
             if (searchLocation === result.nearest_area[0].areaName[0].value){
 
                 //change the inner html of the search-result article element to the data
-                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
-                 <h2>${searchLocation}</h2>
+                searchResult.innerHTML = `<h2>${searchLocation}</h2>
                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`
-                ;
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+                //check if the highest result is at least 50
+                if (highestChance.chance >= 50) {
+                    //prepend the picture
+                    searchResult.prepend(pic);
+                }
+                
+                //attach the weather chance div
+                searchResult.append(weatherDiv);
 
             } else {
                 //its not the exact area
                 //change the inner html of the search-result article element to the data
-                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
-                <h2>${searchLocation}</h2>
+                searchResult.innerHTML = `<h2>${searchLocation}</h2>
                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
-                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
-                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
-                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
+                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+                //check if the highest result is at least 50
+                if (highestChance.chance >= 50) {
+                    //prepend the picture
+                    searchResult.prepend(pic);
+                }
+                
+                //attach the weather chance div
+                searchResult.append(weatherDiv);
             }
 
             // //create 3 articles with today, tomorrow, and day after tomorrow results
@@ -186,28 +204,38 @@ document.querySelector("form").addEventListener("submit", (event) => {
                             if (searchLocation.toLowerCase() === result.nearest_area[0].areaName[0].value.toLowerCase()) {
 
                                 //change the inner html of the search-result article element to the data
-                                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
-                                <h2>${searchLocation}</h2>
+                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
                                 <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
-                                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
-                                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
-                                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+                                //check if the highest result is at least 50
+                                if (highestChance.chance >= 50) {
+                                    //prepend the picture
+                                    searchResult.prepend(pic);
+                                }
+                                
+                                //attach the weather chance div
+                                searchResult.append(weatherDiv);
 
                             } else {
                                 //its not the exact area
                                 //change the inner html of the search-result article element to the data
-                                searchResult.innerHTML = `<img src="${highestChance.img}" alt="${highestChance.weather}" width="225px" height="225px">
-                                <h2>${searchLocation}</h2>
+                                searchResult.innerHTML = `<h2>${searchLocation}</h2>
                                 <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
                                 <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
                                 <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>
-                                <p><b>Chance of Sunshine:</b> ${chanceOf.chanceofsunshine}</p>
-                                <p><b>Chance of Rain:</b> ${chanceOf.chanceofrain}</p>
-                                <p><b>Chance of Snow:</b> ${chanceOf.chanceofsnow}</p>`;
+                                <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
+
+                                //check if the highest result is at least 50
+                                if (highestChance.chance >= 50) {
+                                    //prepend the picture
+                                    searchResult.prepend(pic);
+                                }
+                                
+                                //attach the weather chance div
+                                searchResult.append(weatherDiv);
                             }
 
                             // //create 3 articles with today, tomorrow, and day after tomorrow results
