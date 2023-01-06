@@ -5,7 +5,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
   let ul = document.querySelector("ul");
   let previous = document.querySelector(".previous");
   let p = document.createElement("p");
-  let threeDays = document.querySelectorAll(".forecast .day");
+  let threeDays = document.querySelectorAll(".day");
   let forecast = ["Today", "Tomorrow", "Day After Tomorrow"];
 
   let city = event.target.location.value;
@@ -36,14 +36,30 @@ document.querySelector("form").addEventListener("submit", (event) => {
         ul.append(li);
       }
 
-      //populate forecast
+      //populate forecast, tried to use map.. didn't work..tried to use for of ...didnt work
 
       for (let i = 0; i < threeDays.length; i++) {
-        threeDays.innerHTML = "";
-        let days = document.createElement("p");
-        days.innerHTML = forecast[i]
-        threeDays[i].append(days);
+        threeDays[i].innerHTML = "";
+
+        let day = (document.createElement("h2").innerHTML = forecast[i]); //why it didnt work with backticks ? like creating a new element
+
+        let averageTemperature = (document.createElement(
+          "section"
+        ).innerHTML = `Average Temperature:${weather.weather[0].avgtempF}`);
+        let maxTemperature = (document.createElement(
+          "section"
+        ).innerHTML = `Max Temperature:${weather.weather[0].maxtempF}`);
+        let minTemperature = (document.createElement(
+          "section"
+        ).innerHTML = `Min Temperature:${weather.weather[0].mintempF}`);
+
+        threeDays[i].append(
+          day,
+          averageTemperature,
+          maxTemperature,
+          minTemperature
+        );
       }
+      console.log(weather);
     });
-    console.log(threeDays);
 });
