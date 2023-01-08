@@ -7,22 +7,28 @@ function weatherFunc(searchLocation, result){
     let chanceOfWeather = [
     {chance: chanceOf.chanceofsunshine,
     weather: "Sunshine",
-    img: "assets/icons8-summer.gif"},
+    alt: "sun",
+    img: "./assets/icons8-summer.gif"},
     {chance: chanceOf.chanceofrain,
     weather: "Rain",
-    img: "assets/icons8-torrential-rain.gif"},
+    alt: "rain",
+    img: "./assets/icons8-torrential-rain.gif"},
     {chance: chanceOf.chanceofsnow,
     weather: "Snow",
-    img: "assets/icons8-light-snow.gif"},
+    alt: "snow",
+    img: "./assets/icons8-light-snow.gif"},
     {chance: chanceOf.chanceofwindy,
     weather: "Windy",
-    img: "assets/icons8-wind.gif"},
+    alt: "wind",
+    img: "./assets/icons8-wind.gif"},
     {chance: chanceOf.chanceoffog,
     weather: "Fog",
-    img: "assets/icons8-fog.gif"},
+    alt: "fog",
+    img: "./assets/icons8-fog.gif"},
     {chance: chanceOf.chanceofovercast,
     weather: "Overcast",
-    img: "assets/icons8-night.gif"},
+    alt: "overcast",
+    img: "./assets/icons8-night.gif"},
     ];
     
     //clear the weather div
@@ -46,7 +52,7 @@ function weatherFunc(searchLocation, result){
 
     //set the src and alt for the weather type of the highest chance
     pic.setAttribute("src", highestChance.img);
-    pic.setAttribute("alt", highestChance.weather);
+    pic.setAttribute("alt", highestChance.alt);
 
     // //place the results in the main .search-result article
 
