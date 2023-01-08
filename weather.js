@@ -69,7 +69,25 @@ form.addEventListener('submit', (event) => {
 
         today.append(avgTempToday, minTempToday, maxTempToday);
 
-        const tomorrow = document.querySelector()
+        const tomorrow = document.querySelector('#tomorrow');
+        tomorrow.innerHTML = `<h2>Tomorrow</h2>`
+        const avgTempTmw = document.createElement('p');
+        const minTempTmw = document.createElement('p');
+        const maxtempTmw = document.createElement('p');
+        const avgTemp1 = res2.weather[1].avgtempF
+        avgTempTmw.innerHTML = `<strong>Average Temperature: </strong>${avgTemp1}°F`;
+        const minTemp1 = res2.weather[1].mintempF
+        minTempTmw.innerHTML = `<strong>Min Temperature: </strong>${minTemp1}°F`;
+        const maxTemp1 = res2.weather[1].maxtempF
+        maxtempTmw.innerHTML = `<strong>Max Temperature: </strong>${maxTemp1}°F`;
+
+        tomorrow.append(avgTempTmw, minTempTmw, maxtempTmw);
+
+        const afterTmw = document.querySelector('#afterTomorrow');
+        afterTmw.innerHTML = `<h2>Day After Tomorrow</2>`
+        const avgTempAfter = document.createElement('p')
+        const minTempAfter =
+
 
     })
 })
