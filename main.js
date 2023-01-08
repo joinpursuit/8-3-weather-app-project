@@ -143,6 +143,7 @@ const weatherDiv = document.createElement("div");
 
 
 
+
 //get the form and add the submit event listener
 document.querySelector("form").addEventListener("submit", (event) => {
     //stop the page from refreshing
@@ -216,4 +217,38 @@ document.querySelector("form").addEventListener("submit", (event) => {
 
             }
         })
+})
+
+//get the h4 element where our result from converting will go
+let answerConverted = document.querySelector("h4");
+
+//tell the convert submit input what to do
+document.querySelector(".convert").addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    //get the number in the input box
+    let numberToConvert = event.target.temp.value;
+
+    //clear the search box
+    event.target.temp.value = "";
+
+    //get the value of the radio buttons
+    conversionType = event.target["convert-temp"].value;
+    
+    //check whether converting from celsius or fahrenheit 
+    converting = (conversionType === "c") ? () => {
+
+        //convert from f to c
+        answerConverted.innerText = ((numberToConvert - 32) * 5/9).toFixed(2);
+
+    } : () => {
+
+        //convert from f to c
+        answerConverted.innerText = ((numberToConvert * 9/5) + 32).toFixed(2);
+
+    }
+    //call the converting function
+    converting();
+
 })
