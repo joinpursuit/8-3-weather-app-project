@@ -38,9 +38,9 @@ function fetchWeather(city) {
         .then((response) => response.json())
         .then((json) => {
             locationWeather.innerText = city;
-            document.querySelector(`.${city}`).append(` - ${json.current_condition[0].FeelsLikeF}°F`)
-            // console.log(cityClass)
-            displayWeather(json)
+            document.querySelector(`.${city}`).append(` - ${json.current_condition[0].FeelsLikeF}°F`);
+            console.log(json);
+            displayWeather(json);
         })
         .catch((error) => console.log(error));
 }
@@ -53,7 +53,9 @@ function displayWeather(data) {
     let { chanceofsunshine } = data.weather[0].hourly[4];
     let { chanceofrain } = data.weather[0].hourly[4];
     let { chanceofsnow } = data.weather[0].hourly[4];
+
     console.log(nearest, region, country, FeelsLikeF, chanceofsunshine, chanceofrain, chanceofsnow);
+
     document.querySelector(".nearest").innerHTML = `<b>Nearest Area:</b> ` + nearest;
     document.querySelector(".region").innerHTML = `<b>Region:</b> ` + region;
     document.querySelector(".country").innerHTML = `<b>Country:</b> ` + country;
@@ -62,15 +64,54 @@ function displayWeather(data) {
     document.querySelector(".rainChance").innerHTML = `<b>Chance of Rain:</b> ` + chanceofrain + `%`;
     document.querySelector(".snowChance").innerHTML = `<b>Chance of Snow:</b> ` + chanceofsnow + `%`;
 
-    let weatherToday = document.createElement('article');
-    weatherToday.innerHTML = `<b>Today</b>`
-    document.createElement('p').append(weatherToday)
-    let weatherTomorrow = document.createElement('article');
-    let weatherThreeDay = document.createElement('article');
+    // Forecast structure creation
+    // let weatherToday = document.createElement('article');
+    // let weatherTomorrow = document.createElement('article');
+    // let weatherThreeDay = document.createElement('article');
+    // weatherToday.innerHTML = `<b>Today</b>`;
+    // weatherTomorrow.innerHTML = `<b>Tomorrow</b>`;
+    // weatherThreeDay.innerHTML = `<b>Day After Tomorrow</b>`;
+    // document.querySelector('.forecast').append(weatherToday, weatherTomorrow, weatherThreeDay)
 
-    // weatherToday.append(document.createElement('p').innerHTML = `<b>Average Temperature:</b> ${data.current_condition[0].FeelsLikeF}`)
-    // weatherToday.createElement('p').innerHTML = `<b>Max Temperature: ${data.weather}`
+    document.querySelector('.forecast').innerHTML = '';
+    const forecastDays = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
-    document.querySelector('.forecast').append(weatherToday)
+    // Loop for Forecast
+    for (let i = 0; i < data.weather.length; i++) {
+
+        let forecastDay = document.createElement('article');
+        forecastDay.innerHTML = `<b>${forecastDays[i]}</b>`
+
+        let avgTemp = document.createElement('p');
+        avgTemp.innerHTML = `<b>Average Temperature:</b> ${data.weather[i].avgtempF}°F`
+
+        let maxTemp = document.createElement('p');
+        maxTemp.innerHTML = `<b>Max Temperature:</b> ${data.weather[i].maxtempF}°F`
+
+        let minTemp = document.createElement('p');
+        minTemp.innerHTML = `<b>Min Temperature:</b> ${data.weather[i].mintempF}°F`
+
+        forecastDay.append(avgTemp, maxTemp, minTemp);
+        document.querySelector('.forecast').append(forecastDay)
+
+        // weatherToday.append(document.createElement('p').innerHTML = `<b>Average Temperature:</b> ${data.current_condition[0].FeelsLikeF}`)
+        // weatherToday.createElement('p').innerHTML = `<b>Max Temperature: ${data.weather}`
+    }
 }
 
+// Temperature Conversion
+const tempConvert = document.querySelector('.tempConversion');
+tempConvert.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const tempToConvert = event.target.querySelector('#tempToConvert').value;
+    console.log(tempToConvert);
+
+    if (document.querySelector('#toC').checked) {
+        let celc = (tempToConvert - 32) * 5 / 9;
+        document.querySelector('.convertedTemp').innerText = `${celc.toFixed(2)} °C`;
+    } else if (document.querySelector('#toF').checked) {
+        let fahr = (tempToConvert * 9) / 5 + 32;
+        document.querySelector('.convertedTemp').innerText = `${fahr.toFixed(2)} °F`;
+    }
+})

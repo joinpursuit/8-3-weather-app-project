@@ -23,17 +23,21 @@
     <aside class="tempConversion">
         <form>
             <label>Convert the Temperature
-                <input type="number" id="tempToConvert" placeholder="Enter your temp..." required />
+                <input type="number" id="tempToConvert" placeholder="Enter your temp..." required>
             </label>
             <label>
-                <input type="radio" id="toC" name="convertTemp" value="c" checked />
+                <input type="radio" id="toC" name="convertTemp" value="c" checked>
                 to Celsius
             </label>
             <label>
-                <input type="radio" id="toF" name="convertTemp" value="f" />
+                <input type="radio" id="toF" name="convertTemp" value="f">
                 to Fahrenheit
             </label>
+            <label>
+                <input type="submit" value="Convert">
+            </label>
         </form>
+        <h3 class="convertedTemp"></h3>
     </aside>
 
     <main class="main">
