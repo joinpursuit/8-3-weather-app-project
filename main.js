@@ -55,16 +55,17 @@ function searchResult(userInput, area, region, country, feelsLikeF, chanceSunshi
     const todays = document.querySelector(".todays")
 
     //if the user's input value is different than area data, show as "Nearest Area".
-    todays.innerHTML = `
-    <img />
-    <h2>${userInput}</h2>
-    `;
     if (userInput === area) {
-        todays.innerHTML += `
+        todays.innerHTML = `
+        <img />
+        <h2>${userInput}</h2>
         <p><strong>Area:</strong> ${area}</p>
         `;
     } else {
-        todays.innerHTML += `
+        const inputData = userInput.toLowerCase().charAt(0).toUpperCase() + userInput.toLowerCase().slice(1);
+        todays.innerHTML = `
+        <img />
+        <h2>${inputData}</h2>
         <p><strong>Nearest Area:</strong> ${area}</p>
         `;
     }

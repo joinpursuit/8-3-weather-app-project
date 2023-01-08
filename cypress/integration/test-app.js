@@ -166,7 +166,7 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchMamaroneck");
 
-    cy.get(`main article  h2`).contains("mamaroneck");
+    cy.get(`main article  h2`).contains("Mamaroneck");
     cy.get(`main article  p`).contains("Nearest Area");
     cy.get(`main article  p`).contains("Orienta");
   });
