@@ -4,18 +4,16 @@ const locationWeather = document.querySelector('.location-weather h2');
 
 locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     let citySearched = event.target.location.value;
     event.target.location.value = '';
     console.log(`You want ${citySearched} weather!`, `${BASE_URL}${citySearched}?format=j1`)
-
     fetchWeather(citySearched);
-    displayWeather(json);
 })
+
 function fetchWeather(city) {
     fetch(`${BASE_URL}${city}?format=j1`)
     .then((response) => response.json())
-    .then((json) => this.displayWeather(json))
+    .then((json) => displayWeather(json))
     .catch((error) => console.log(error));
 }
 
@@ -30,13 +28,13 @@ function displayWeather(data) {
     let { chanceofrain } = data.weather[0].hourly[4];
     let { chanceofsnow } = data.weather[0].hourly[4];
     console.log(nearest, region, country, FeelsLikeF, chanceofsunshine, chanceofrain, chanceofsnow);
-    document.querySelector(".nearest").innerText = `Nearest Area: ` + nearest;
-    document.querySelector(".region").innerText = `Region: ` + region;
-    document.querySelector(".country").innerText = `Country: ` + country;
-    document.querySelector(".currentTemp").innerText = `Currently: Feels Like ` + FeelsLikeF;
-    document.querySelector(".sunChance").innerText = `Chance of Sunshine: ` + chanceofsunshine + `%`;
-    document.querySelector(".rainChance").innerText = `Chance of Rain: ` + chanceofrain + `%`;
-    document.querySelector(".snowChance").innerText = `Chance of Snow: ` + chanceofsnow + `%`;
+    document.querySelector(".nearest").innerHTML = `<b>Nearest Area:</b> ` + nearest;
+    document.querySelector(".region").innerHTML = `<b>Region:</b> ` + region;
+    document.querySelector(".country").innerHTML = `<b>Country:</b> ` + country;
+    document.querySelector(".currentTemp").innerHTML = `<b>Currently:</b> Feels Like ` + FeelsLikeF + ` &degF`;
+    document.querySelector(".sunChance").innerHTML = `<b>Chance of Sunshine:</b> ` + chanceofsunshine + `%`;
+    document.querySelector(".rainChance").innerHTML = `<b>Chance of Rain:</b> ` + chanceofrain + `%`;
+    document.querySelector(".snowChance").innerHTML = `<b>Chance of Snow:</b> ` + chanceofsnow + `%`;
     
 }
 

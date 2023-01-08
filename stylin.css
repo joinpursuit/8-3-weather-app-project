@@ -4,7 +4,8 @@
 }
 
 body {
-    background-color: forestgreen;
+    height: 100vh;
+    background: linear-gradient(135deg, var(lightblue), var(aqua));
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto;
@@ -13,7 +14,7 @@ body {
         "aside main previous";
 }
 
-.tempConvert {
+.tempConversion {
     grid-area: aside;
     background-color: pink;
 }
