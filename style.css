@@ -6,14 +6,21 @@ html {
 }
 
 header {
-    background-image: url(https://cdn.pixabay.com/photo/2016/12/14/04/08/thunderbolt-1905603_960_720.png);
+    background-image: url(./assets/thunderbolt-1905603\ \(1\).png);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     border: ridge;
     border-radius: 15px 15px;
-    /* background-color: midnightblue; */
-    color: aliceblue;
+
     padding: 30px ;
     grid-area: header;
+
+    color: aliceblue;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(57, 57, 63), 0 0 0.2em rgb(122, 122, 143);
+    color: white;
+    font: 1.5em Georgia, serif;
 }
 
 
@@ -28,6 +35,13 @@ form {
     grid-area: section;
 }
 
+.tri {
+    grid-area: tri;
+}
+
+.tempc {
+    grid-area: tempc;
+}
 
 
 main {
@@ -48,5 +62,6 @@ body {
     grid-template-rows: auto auto auto;
     grid-template-areas:
     "header header header"
-    ". main section";
+    "tempc main section"
+    ". tri .";
 }
