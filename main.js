@@ -2,18 +2,18 @@ const BASE_URL = 'https://wttr.in/';
 const locationForm = document.querySelector('.locationForm');
 const locationWeather = document.querySelector('.location-weather h2');
 
+
 locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     let citySearched = event.target.location.value;
     event.target.location.value = '';
+    console.log(`You want ${citySearched} weather!`)
 
-    console.log(`You want ${citySearched} weather!`, `${BASE_URL}${citySearched}?format=j1`)
-    
     document.querySelector('#noSearch').hidden = true;
     let prevSearch = document.createElement('li');
     let prevCity = document.createElement('a');
-    
+
     prevCity.textContent = citySearched;
     prevCity.href = `${BASE_URL}${citySearched}?format=j1`
     prevCity.addEventListener('click', (event) => {
@@ -21,16 +21,16 @@ locationForm.addEventListener("submit", (event) => {
         console.log('You just clicked your last search');
         fetchWeather(citySearched);
     });
-    
+
     document.querySelector('#previousSearches').append(prevSearch)
     // prevSearch.innerText = ` - prev temp °F`
     prevSearch.prepend(prevCity)
     prevSearch.classList = citySearched
-    
+
     console.log(prevCity, prevSearch);
-    
+
     fetchWeather(citySearched);
-    
+
 })
 
 function fetchWeather(city) {
@@ -46,7 +46,6 @@ function fetchWeather(city) {
 }
 
 function displayWeather(data) {
-
     let { value: nearest } = data.nearest_area[0].areaName[0];
     let { value: region } = data.nearest_area[0].region[0];
     let { value: country } = data.nearest_area[0].country[0];
@@ -63,5 +62,15 @@ function displayWeather(data) {
     document.querySelector(".rainChance").innerHTML = `<b>Chance of Rain:</b> ` + chanceofrain + `%`;
     document.querySelector(".snowChance").innerHTML = `<b>Chance of Snow:</b> ` + chanceofsnow + `%`;
 
+    let weatherToday = document.createElement('article');
+    weatherToday.innerHTML = `<b>Today</b>`
+    document.createElement('p').append(weatherToday)
+    let weatherTomorrow = document.createElement('article');
+    let weatherThreeDay = document.createElement('article');
+
+    // weatherToday.append(document.createElement('p').innerHTML = `<b>Average Temperature:</b> ${data.current_condition[0].FeelsLikeF}`)
+    // weatherToday.createElement('p').innerHTML = `<b>Max Temperature: ${data.weather}`
+
+    document.querySelector('.forecast').append(weatherToday)
 }
 
