@@ -1,0 +1,64 @@
+
+body {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "convert main previous"
+    "convert result .";
+    text-align: center;
+    font-family: Tahoma;
+    width: fit-content;
+    justify-content: auto, center;
+}
+
+.header{
+    grid-area: header;
+    background-color: #268182;
+    color: white;
+    border: 2px solid black;
+}
+
+.form {
+    margin: 20px;
+    font-weight: bold;
+}
+
+.main {
+    grid-area: main;
+    text-align: center;
+    margin: 15px;
+}
+
+.todays {
+    background-color: #efefef;
+    border: 1.75px solid #53a0a0;
+    padding: 30px;
+}
+
+.previous {
+    grid-area: previous;
+    background-color: white;
+    text-align: left;
+    margin: 5px;
+}
+
+.convert {
+    grid-area: convert;
+    text-align: left;
+}
+
+.result {
+    display: grid;
+    grid-area: result;
+    background-color: white;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* .today
+.tomorrow
+.dayAfter {
+    padding: 20px;
+} */
