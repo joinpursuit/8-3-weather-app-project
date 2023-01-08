@@ -56,43 +56,43 @@ function weatherFunc(searchLocation, result){
 
     // //place the results in the main .search-result article
 
+    //clear the inner html of the search result area
+    searchResult.innerHTML = "";
+
+    //create p tag for area
+    const area = document.createElement("p");
+
+    //create h2 tag for searched location
+    const search = document.createElement("h2")
+    search.textContent = `${searchLocation}`
+    
+    //create p tags and set the innerHTML for each piece of data to show
+    const region = document.createElement("p")
+    region.innerHTML = `<b>Region:</b> ${result.nearest_area[0].region[0].value}`;
+    const country = document.createElement("p")
+    country.innerHTML = `<b>Country:</b> ${result.nearest_area[0].country[0].value}`;
+    const feelsLike = document.createElement("p")
+    feelsLike.innerHTML = `<b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F`;
+
     //check if the location matches the area
-    if (searchLocation === result.nearest_area[0].areaName[0].value){
-
-        //change the inner html of the search-result article element to the data
-        searchResult.innerHTML = `<h2>${searchLocation}</h2>
-        <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
-        <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
-        <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-        <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
-
-        //check if the highest result is at least 50
-        if (highestChance.chance >= 50) {
-            //prepend the picture
-            searchResult.prepend(pic);
-        }
-        
-        //attach the weather chance div
-        searchResult.append(weatherDiv);
-
-    } else {
-        //its not the exact area
-        //change the inner html of the search-result article element to the data
-        searchResult.innerHTML = `<h2>${searchLocation}</h2>
-        <p><b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
-        <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
-        <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
-        <p><b>Currently:</b> Feels Like ${result.current_condition[0].FeelsLikeF}°F</p>`;
-
-        //check if the highest result is at least 50
-        if (highestChance.chance >= 50) {
-            //prepend the picture
-            searchResult.prepend(pic);
-        }
-        
-        //attach the weather chance div
-        searchResult.append(weatherDiv);
+    //change the inner html of the search-result article element to the area or nearest area
+    area.innerHTML = (searchLocation === result.nearest_area[0].areaName[0].value) ? 
+    `<b>Area:</b> ${result.nearest_area[0].areaName[0].value}` : 
+    `<b>Nearest Area:</b> ${result.nearest_area[0].areaName[0].value}`
+    
+    //check if the highest result is at least 50
+    if (highestChance.chance >= 50) {
+        //append the picture
+        searchResult.append(pic);
     }
+
+    //append all the data tags
+    searchResult.append(search);
+    searchResult.append(area);
+    searchResult.append(region);
+    searchResult.append(country);
+    searchResult.append(feelsLike);
+    searchResult.append(weatherDiv);
 
     // //create 3 articles with today, tomorrow, and day after tomorrow results
 
@@ -105,17 +105,17 @@ function weatherFunc(searchLocation, result){
     today.innerHTML = `<h2>Today</h2>
     <p><b>Average Temperature:</b> ${result.weather[0].avgtempF}°F</p>
     <p><b>Max Temperature:</b> ${result.weather[0].maxtempF}°F</p>
-    <p><b>Min Temperature:</b> ${result.weather[0].mintempF}°F</p>`
+    <p><b>Min Temperature:</b> ${result.weather[0].mintempF}°F</p>`;
 
     tomorrow.innerHTML = `<h2>Tomorrow</h2>
     <p><b>Average Temperature:</b> ${result.weather[1].avgtempF}°F</p>
     <p><b>Max Temperature:</b> ${result.weather[1].maxtempF}°F</p>
-    <p><b>Min Temperature:</b> ${result.weather[1].mintempF}°F</p>`
+    <p><b>Min Temperature:</b> ${result.weather[1].mintempF}°F</p>`;
 
     dayAfter.innerHTML = `<h2>Day After Tomorrow</h2>
     <p><b>Average Temperature:</b> ${result.weather[2].avgtempF}°F</p>
     <p><b>Max Temperature:</b> ${result.weather[2].maxtempF}°F</p>
-    <p><b>Min Temperature:</b> ${result.weather[2].mintempF}°F</p>`
+    <p><b>Min Temperature:</b> ${result.weather[2].mintempF}°F</p>`;
 
     //empty the upcoming aside tag
     upcoming.innerHTML = "";
