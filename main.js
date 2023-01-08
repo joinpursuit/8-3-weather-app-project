@@ -57,9 +57,9 @@ sub.addEventListener("click", (event) => {
             <p><b>Min Temperature:</b> ${result.weather[2].mintempF}°F</p>   
             `
             //////////
-            
+            noPrev[0].innerHTML = ""
             ul.innerHTML += `
-            <li><a href="${BASE_URL}">${txt.value.charAt(0).toUpperCase()+txt.value.slice(1)}</a></li>
+            <li class="list"><a href="${BASE_URL}">${txt.value.charAt(0).toUpperCase()+txt.value.slice(1)}</a></li>
             `
 
 
