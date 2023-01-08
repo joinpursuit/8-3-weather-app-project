@@ -3,6 +3,7 @@ function weatherFunc(searchLocation, result){
     //create a variable for the results of the first object in the hourly array
     let chanceOf = result.weather[0].hourly[0];
 
+    ////// !!other weather types included here but dont work with tests !!
     //create an array of objects of the chance of each weather type
     let chanceOfWeather = [
     {chance: chanceOf.chanceofsunshine,
@@ -65,7 +66,7 @@ function weatherFunc(searchLocation, result){
     //create h2 tag for searched location
     const search = document.createElement("h2")
     search.textContent = `${searchLocation}`
-    
+
     //create p tags and set the innerHTML for each piece of data to show
     const region = document.createElement("p")
     region.innerHTML = `<b>Region:</b> ${result.nearest_area[0].region[0].value}`;
@@ -83,7 +84,8 @@ function weatherFunc(searchLocation, result){
     //check if the highest result is at least 50
     if (highestChance.chance >= 50) {
         //append the picture
-        searchResult.append(pic);
+        pictureDiv.append(pic)
+        searchResult.append(pictureDiv);
     }
 
     //append all the data tags
@@ -122,9 +124,11 @@ function weatherFunc(searchLocation, result){
 
     //append the articles to the upcoming class aside element
     upcoming.append(today, tomorrow, dayAfter);
+
+
+
+
 }
-
-
 
 //get the searches list element
 const searchedList = document.querySelector(".searches");
@@ -138,11 +142,48 @@ const upcoming = document.querySelector(".upcoming")
 //create an image
 const pic = document.createElement("img");
 
+//create a picture div
+const pictureDiv = document.createElement("div");
+pictureDiv.className = "picture";
+
+
+
+//make the picture move
+pictureDiv.addEventListener("mousemove", (event) => {
+
+    //get the dimensions for the div
+    const rect = event.target.getBoundingClientRect();
+
+    // let xAxis = (window.innerWidth / 2 - event.pageX) / 3;
+    // let yAxis = (window.innerHeight / 2 - event.pageY) / 3;
+    
+    //
+    let x = ((event.clientX - rect.left) - rect.right/2);
+    let y =((event.clientY - rect.top) - rect.bottom/2);
+    console.log(xAxis, yAxis, rect.top, rect.left)
+
+    xRotate = 
+    yRotate = 
+
+    pic.style.transform = `rotateY(${xRotate}deg) rotateX(${yRotate}deg)`;
+
+    //pic.style.transformOrigin = `${yAxis}% ${xAxis}%`
+    
+});
+
+pictureDiv.addEventListener("mouseenter", (event) => {
+    pic.style.transition = "none";
+});
+
+pictureDiv.addEventListener("mouseleave", (event) => {
+    pic.style.transition = "all 0.5s ease";
+    pic.style.transform = `rotateY(0deg) rotateX(0deg)`;
+});
+
+
+
 //create an empty div
 const weatherDiv = document.createElement("div");
-
-
-
 
 //get the form and add the submit event listener
 document.querySelector("form").addEventListener("submit", async (event) => {
@@ -252,3 +293,4 @@ document.querySelector(".convert").addEventListener("submit", (event) => {
     converting();
 
 })
+
