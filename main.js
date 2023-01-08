@@ -16,8 +16,8 @@ function weatherFunc(searchLocation, result){
     {chance: chanceOf.chanceofsnow,
     weather: "Snow",
     alt: "snow",
-    img: "./assets/icons8-light-snow.gif"},
-    {chance: chanceOf.chanceofwindy,
+    img: "./assets/icons8-light-snow.gif"}/*,
+     {chance: chanceOf.chanceofwindy,
     weather: "Windy",
     alt: "wind",
     img: "./assets/icons8-wind.gif"},
@@ -29,7 +29,7 @@ function weatherFunc(searchLocation, result){
     weather: "Overcast",
     alt: "overcast",
     img: "./assets/icons8-night.gif"},
-    ];
+    */];
     
     //clear the weather div
     weatherDiv.innerHTML = "";
