@@ -60,7 +60,7 @@ function weatherFunc(searchLocation, result){
     if (searchLocation === result.nearest_area[0].areaName[0].value){
 
         //change the inner html of the search-result article element to the data
-        searchResult.innerHTML = `<h2>${result.nearest_area[0].areaName[0].value}</h2>
+        searchResult.innerHTML = `<h2>${searchLocation}</h2>
         <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
         <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
         <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
@@ -145,7 +145,7 @@ const weatherDiv = document.createElement("div");
 
 
 //get the form and add the submit event listener
-document.querySelector("form").addEventListener("submit", (event) => {
+document.querySelector("form").addEventListener("submit", async (event) => {
     //stop the page from refreshing
     event.preventDefault();
 
@@ -158,7 +158,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
     event.target.location.value = "";
 
     //the link for the searches in json
-    fetch(`https://wttr.in/${searchLocation}?format=j1`)
+    await fetch(`https://wttr.in/${searchLocation}?format=j1`)
 
         .then((res) => {
             //log a success message
@@ -193,10 +193,10 @@ document.querySelector("form").addEventListener("submit", (event) => {
                 const recent = document.querySelector(".recent")
 
                 //give the recent link a click event
-                recent.addEventListener("click", () => {
+                recent.addEventListener("click", async () => {
 
                     ////Make the link show the results
-                    fetch(`https://wttr.in/${recent.textContent}?format=j1`)
+                    await fetch(`https://wttr.in/${recent.textContent}?format=j1`)
 
                         .then((res) => {
                             //log a success message
