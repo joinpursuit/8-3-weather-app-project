@@ -5,34 +5,71 @@
 // const locationInput = document.querySelector("input") //from Paola
 // let city = event.target.location.value; //from Evan
 
+
 document.querySelector("form").addEventListener("submit",(event) => {
     // The reason that we say form instead of input is so that it doesn't stop on every letter that the user inputs.
     // In order to see what is going on, prevent the default action. 
     event.preventDefault()
 
-    //use console log here so if our code breaks
+    //use console log here so if our code breaks, we can keep track of where it broke.
     console.log(`https://wttr.in/${event.target.location.value}?format=j1`, "Hello from the other side")
 
+//Tell the program to go get the result.
+
 fetch(`https://wttr.in/${event.target.location.value}?format=j1`).then
-// Then we take the result and do something with it. 
-// We have included the console log instruction so we can look at it as a developer when we want to to make sure that the fetch was succesful.
+
+// Then take the result and do something with it. 
+
 //the result wiill do the following
 (result => {
+
+// Console log here so if the code breaks, we know where.
     console.log("Fetch was successful")
-    return result.json()  //this returns the translated result (to JSON)
+
+ //this returns the result, translated to JSON
+    return result.json() 
+
+    //But wait! There's more!
 }).then(weather =>{
-    console.log(weather)
-    const ul=document.querySelector("ul")
-    ul.textContent=`Currently:`
-    ul.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`)
-    const mainArticle = document.querySelector(".chosen")
-    const bigLocation = document.createElement("h1")
+
+  // Console log here so if the code breaks, we know where but also so we can look at the json without going to the source URL  
+    console.log(weather);
+
+    const strong = document.createElement("strong")
+    const ul=document.createElement("ul")
+
+
+//make a variable for the chosen location. I had the article as a class="chosen" but now I think I will create it in its entirety here.
+    const chosen=document.querySelector(".chosen")
+    chosen.textContent=`Currently:`
+    chosen.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`);
+    
+    const mainArticle = document.querySelector(".chosen");
+    
+    const bigLocation = document.createElement("h1");
     bigLocation.innerText = `${event.target.location.value}`
-    mainArticle.append(bigLocation)
+    mainArticle.append(bigLocation);
+
+    //adding the nearest area to the chosen location
+  
+    const bigLocationArea = document.createElement("p");
+    bigLocationArea.innerText = `Area: ${weather.nearest_area[0].areaName[0].value}`;
+    mainArticle.append(bigLocationArea);
+
+    //adding the nearest Region to the chosen location
+
+    const bigLocationRegion = document.createElement ("p");
+    bigLocationRegion.innerText = `Region: ${weather.nearest_area[0].region[0].value}`;
+    mainArticle.append(bigLocationRegion);
+
+
+    //adding the Country in which the chosen location is located
+
+    const bigLocationCountry = document.createElement ("p");
+    bigLocationCountry.innerText = `Country: ${weather.nearest_area[0].country[0].value}`;
+    mainArticle.append(bigLocationRegion);
 
     /* do each thing one by one before appending.
-
-    const bigLocationArea = document.querySelector
     const bigLocationRegion
     const bigLocationCountry
     const bigLocationFeelsLike
