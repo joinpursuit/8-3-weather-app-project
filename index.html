@@ -23,29 +23,31 @@
     <aside class="tempConversion">
         <form>
             <label>Convert the Temperature
-                <input type="number" id="tempToConvert" placeholder="Enter your temp..." required/>
+                <input type="number" id="tempToConvert" placeholder="Enter your temp..." required />
             </label>
             <label>
-                <input type="radio" id="toC" name="convertTemp" value="c" checked/>
+                <input type="radio" id="toC" name="convertTemp" value="c" checked />
                 to Celsius
             </label>
             <label>
-                <input type="radio" id="toF" name="convertTemp" value="f"/>
+                <input type="radio" id="toF" name="convertTemp" value="f" />
                 to Fahrenheit
             </label>
         </form>
     </aside>
 
     <main class="main">
-        <article id="locationWeather">Choose a location to view the weather.</article>
+        <article class="location-weather">
+            <h2>Choose a location to view the weather.</h2>
+        </article>
         <aside class="forecast">
-            <!-- <article id="nearestArea"></article>
-            <article id="region"></article>
-            <article id="country"></article>
-            <article id="currentTemp"></article>
-            <article id="sunChance"></article>
-            <article id="rainChance"></article>
-            <article id="snowChance"></article> -->
+            <article class="nearest"></article>
+            <article class="region"></article>
+            <article class="country"></article>
+            <article class="currentTemp"></article>
+            <article class="sunChance"></article>
+            <article class="rainChance"></article>
+            <article class="snowChance"></article>
         </aside>
     </main>
 
@@ -58,4 +60,5 @@
         </section>
     </aside>
 </body>
+
 </html>
