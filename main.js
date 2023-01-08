@@ -60,7 +60,7 @@ function weatherFunc(searchLocation, result){
     if (searchLocation === result.nearest_area[0].areaName[0].value){
 
         //change the inner html of the search-result article element to the data
-        searchResult.innerHTML = `<h2>${searchLocation}</h2>
+        searchResult.innerHTML = `<h2>${result.nearest_area[0].areaName[0].value}</h2>
         <p><b>Area:</b> ${result.nearest_area[0].areaName[0].value}</p>
         <p><b>Region:</b> ${result.nearest_area[0].region[0].value}</p>
         <p><b>Country:</b> ${result.nearest_area[0].country[0].value}</p>
