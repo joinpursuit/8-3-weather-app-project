@@ -28,3 +28,7 @@ body {
     background-color: lightseagreen;
     grid-area: previous;
 }
+
+.location-weather {
+    text-transform: capitalize;
+}

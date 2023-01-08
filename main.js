@@ -6,20 +6,38 @@ locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
     let citySearched = event.target.location.value;
     event.target.location.value = '';
-    console.log(`You want ${citySearched} weather!`, `${BASE_URL}${citySearched}?format=j1`)
+
     fetchWeather(citySearched);
+    console.log(`You want ${citySearched} weather!`, `${BASE_URL}${citySearched}?format=j1`)
+
+    document.querySelector('#noSearch').hidden = true;
+    let newSearch = document.createElement('a');
+    newSearch.textContent = citySearched;
+    newSearch.href = `${BASE_URL}${citySearched}?format=j1`
+    console.log(newSearch);
+
+    newSearch.addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log('You just clicked your last search');
+        fetchWeather(citySearched);
+    });
+
+    document.querySelector('#previousSearches').append(newSearch)
+
 })
 
 function fetchWeather(city) {
     fetch(`${BASE_URL}${city}?format=j1`)
-    .then((response) => response.json())
-    .then((json) => displayWeather(json))
-    .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((json) => {
+            locationWeather.innerText = city;
+            displayWeather(json)
+        })
+        .catch((error) => console.log(error));
 }
 
 function displayWeather(data) {
-    locationWeather.textContent = '';
-    
+
     let { value: nearest } = data.nearest_area[0].areaName[0];
     let { value: region } = data.nearest_area[0].region[0];
     let { value: country } = data.nearest_area[0].country[0];
@@ -35,6 +53,6 @@ function displayWeather(data) {
     document.querySelector(".sunChance").innerHTML = `<b>Chance of Sunshine:</b> ` + chanceofsunshine + `%`;
     document.querySelector(".rainChance").innerHTML = `<b>Chance of Rain:</b> ` + chanceofrain + `%`;
     document.querySelector(".snowChance").innerHTML = `<b>Chance of Snow:</b> ` + chanceofsnow + `%`;
-    
+
 }
 
