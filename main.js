@@ -2,45 +2,58 @@ const BASE_URL = 'https://wttr.in/';
 const locationForm = document.querySelector('.locationForm');
 const locationWeather = document.querySelector('.location-weather h2');
 
-
+// Event Listener for City Submit Search
 locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
+    // Bucket for city searched, clears search text and invokes fetch function
     let citySearched = event.target.location.value;
     event.target.location.value = '';
     console.log(`You want ${citySearched} weather!`)
-
-    document.querySelector('#noSearch').hidden = true;
-    let prevSearch = document.createElement('li');
-    let prevCity = document.createElement('a');
-
-    prevCity.textContent = citySearched;
-    prevCity.href = `${BASE_URL}${citySearched}?format=j1`
-    prevCity.addEventListener('click', (event) => {
-        event.preventDefault();
-        console.log('You just clicked your last search');
-        fetchWeather(citySearched);
-    });
-
-    document.querySelector('#previousSearches').append(prevSearch)
-    // prevSearch.innerText = ` - prev temp °F`
-    prevSearch.prepend(prevCity)
-    prevSearch.classList = citySearched
-
-    console.log(prevCity, prevSearch);
-
+    // Invoking function to fetchWeather & and within that function, displayWeather
     fetchWeather(citySearched);
-
 })
 
 function fetchWeather(city) {
     fetch(`${BASE_URL}${city}?format=j1`)
         .then((response) => response.json())
         .then((json) => {
+            //Makes H2 in Main = to city searched, then invokes displayWeather function that I created to fill in data
             locationWeather.innerText = city;
-            document.querySelector(`.${city}`).append(` - ${json.current_condition[0].FeelsLikeF}°F`);
             console.log(json);
             displayWeather(json);
+
+            /**
+             * Previous Search History Creation
+             */
+            // Selecting and hiding message of no previous
+            document.querySelector('#noSearch').hidden = true;
+            // Creating 2 new elements
+            let prevSearch = document.createElement('li');
+            let prevCity = document.createElement('a');
+
+            // Edge case check to ensure no duplicate previous searches
+            if (!document.querySelector(`.${city}`)) {
+                // Adding CITY to a-tag, making it a link, and adding event listener
+                prevCity.textContent = city;
+                prevCity.href = `${BASE_URL}${city}?format=j1`
+                prevCity.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    console.log('You just clicked your last search');
+
+                    fetchWeather(city);
+                });
+                // Add class to previous search a-tag that equals the city name
+                // PREPENDS the City a-tag to the prevSearch li-tag
+                // APPENDS the whole li-tag (that now contains the a-tag) to the previous search aside
+                // Selects to a-tag based on the city class and APPENDS the temp
+                prevSearch.classList = city
+                prevSearch.prepend(prevCity)
+                document.querySelector('#previous-searches').append(prevSearch)
+                document.querySelector(`.${city}`).append(` - ${json.current_condition[0].FeelsLikeF}°F`);
+
+                // console.log(prevSearch);
+
+            }
         })
         .catch((error) => console.log(error));
 }
@@ -104,13 +117,13 @@ const tempConvert = document.querySelector('.tempConversion');
 tempConvert.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const tempToConvert = event.target.querySelector('#tempToConvert').value;
+    const tempToConvert = event.target.querySelector('#temp-to-convert').value;
     console.log(tempToConvert);
 
-    if (document.querySelector('#toC').checked) {
+    if (document.querySelector('#to-c').checked) {
         let celc = (tempToConvert - 32) * 5 / 9;
         document.querySelector('.convertedTemp').innerText = `${celc.toFixed(2)} °C`;
-    } else if (document.querySelector('#toF').checked) {
+    } else if (document.querySelector('#to-f').checked) {
         let fahr = (tempToConvert * 9) / 5 + 32;
         document.querySelector('.convertedTemp').innerText = `${fahr.toFixed(2)} °F`;
     }
