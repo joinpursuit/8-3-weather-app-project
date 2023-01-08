@@ -3,6 +3,11 @@ html {
     color: aliceblue;
     background-color: black;
 
+    font: Georgia, serif;
+    color: aliceblue;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(57, 57, 63), 0 0 0.2em rgb(122, 122, 143);
+    color: white;
+
 }
 
 header {
@@ -35,22 +40,51 @@ form {
     grid-area: section;
 }
 
-.tri {
-    grid-area: tri;
-}
 
 .tempc {
     grid-area: tempc;
 }
 
 
-main {
+.solo {
     padding: 30px 0;
     grid-area: main;
-    border: 10px ridge #101113bf;
-    background-color: rgb(103 101 103);
+    border: 7px ridge #101113bf;
+    background-color: rgb(38 39 47);
     margin: 10px;
 }
+
+.tri{
+    grid-area: tri;
+
+}
+
+
+
+.tri1 {
+    grid-area: tri1;
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+}
+
+.tri2 {
+    grid-area: tri2;
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+}
+
+.tri3 {
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+    grid-area: tri3;
+}
+
 
 
 
@@ -63,5 +97,7 @@ body {
     grid-template-areas:
     "header header header"
     "tempc main section"
-    ". tri .";
+    /* "tri1 tri2 tri3" */
+    ". tri ."
+    ;
 }
