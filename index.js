@@ -1,11 +1,10 @@
 document.querySelector("form").addEventListener("submit", (event) => {
-
   event.preventDefault();
+
   const BASE_URL = "https://wttr.in/";
   let article = document.querySelector("article");
   let ul = document.querySelector("ul");
   let previous = document.querySelector(".previous");
-  let p = document.createElement("p");
   let threeDays = document.querySelectorAll(".day");
   let forecast = ["Today", "Tomorrow", "Day After Tomorrow"];
 
@@ -18,12 +17,20 @@ document.querySelector("form").addEventListener("submit", (event) => {
     })
     .then((weather) => {
       article.innerHTML = `<h1 class="city">${weather.nearest_area[0].areaName[0].value}</h1>`;
-      p.innerHTML = `<span class="details"><strong>Area:</strong> ${weather.nearest_area[0].region[0].value}</span>
-        <br> <span class="details"><strong>Country:</strong> ${weather.nearest_area[0].country[0].value}</span> 
-        <br> <span class="details"><strong>Region:</strong> ${weather.nearest_area[0].region[0].value}</span> 
-        <br> <span class="details"><strong>Currently feels like:</strong> ${weather.current_condition[0]["FeelsLikeF"]}</span>`;
 
-      article.appendChild(p);
+      let area = document.createElement("p");
+      area.innerHTML = `<span><strong>Area:</strong> ${weather.nearest_area[0].region[0].value}</span>`;
+
+      let region = document.createElement("p");
+      region.innerHTML = `<span><strong>Region:</strong> ${weather.nearest_area[0].region[0].value}</span>`;
+
+      let country = document.createElement("p");
+      country.innerHTML = `<span><strong>Country:</strong> ${weather.nearest_area[0].country[0].value}</span>`;
+
+      let current = document.createElement("p");
+      current.innerHTML = `<span class="details"><strong>Currently feels like:</strong> ${weather.current_condition[0]["FeelsLikeF"]}</span>`;
+
+      article.append(area, region, country, current);
 
       // populate the search aside
       if (previous) {
@@ -33,7 +40,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
         ul.append(li);
       } else {
         let li = document.createElement("li");
-        li.innerHTML = `<a href="${BASE_URL}${city}?format=j1">${weather.nearest_area[0].areaName[0].value}</a>`;
+        li.innerHTML = `<a href="${BASE_URL}${city}?format=j1"></a> - ${weather.current_condition[0]["FeelsLikeF"]}`;
         ul.append(li);
       }
 
@@ -44,15 +51,14 @@ document.querySelector("form").addEventListener("submit", (event) => {
 
         let day = (document.createElement("h2").innerHTML = forecast[i]); //why it didnt work with backticks ? like creating a new element
 
-        let averageTemperature = (document.createElement(
-          "section"
-        ).innerHTML = `Average Temperature: ${weather.weather[0].avgtempF}`);
-        let maxTemperature = (document.createElement(
-          "section"
-        ).innerHTML = `Max Temperature: ${weather.weather[0].maxtempF}`);
-        let minTemperature = (document.createElement(
-          "section"
-        ).innerHTML = `Min Temperature: ${weather.weather[0].mintempF}`);
+        let averageTemperature = document.createElement("section");
+        averageTemperature.innerHTML = `<span><strong>Average Temperature:</strong> ${weather.weather[0].avgtempF}</span>`;
+
+        let maxTemperature = document.createElement("section");
+        maxTemperature.innerHTML = `Max Temperature: ${weather.weather[0].maxtempF}`;
+
+        let minTemperature = document.createElement("section");
+        minTemperature.innerHTML = `Min Temperature: ${weather.weather[0].mintempF}`;
 
         threeDays[i].append(
           day,
@@ -62,9 +68,5 @@ document.querySelector("form").addEventListener("submit", (event) => {
         );
       }
       console.log(weather);
-
-    
     });
 });
-
-

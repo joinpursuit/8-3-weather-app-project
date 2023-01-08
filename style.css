@@ -3,9 +3,6 @@
   background-color: #258080;
   grid-area: header;
   
-  
-
-  
 }
 
 .main {
@@ -43,8 +40,8 @@ body {
 
 }
 
-/* .forecast {
-    display: flexbox;
+.forecast {
+    display: grid;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: ;
-} */
+    background-color: red;
+}
