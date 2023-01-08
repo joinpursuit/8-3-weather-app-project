@@ -1,0 +1,62 @@
+
+
+.header{
+    background-color: aquamarine;
+    grid-area: header;
+}
+
+.main {
+    background-color: deeppink;
+    text-align: center;
+    grid-area: main;
+}
+
+.previous {
+    background-color: crimson;
+    grid-area: previous;
+}
+
+.aside {
+    background-color: yellowgreen;
+    grid-area: aside;
+}
+.weatherForecast {
+    background-color: bisque;
+    grid-area: auto auto auto;
+}
+
+body {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "header header header" "aside main previous";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                          
+/* .weatherForecast {
+    display: grid;
+    border: 3px solid rgb(17, 61, 77);
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: ;
+    border: 1px solid rgb(64, 151, 182);
+    text-align: center;
+    color: white;
+    color: rgb(184, 30, 30);
+} */
