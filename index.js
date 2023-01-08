@@ -16,10 +16,11 @@ document.querySelector("form").addEventListener("submit", (event) => {
       return result.json();
     })
     .then((weather) => {
-      article.innerHTML = `<h1 class="city">${weather.nearest_area[0].areaName[0].value}</h1>`;
+      article.innerHTML = `<h1 class="city">${city}</h1>`;
+
 
       let area = document.createElement("p");
-      area.innerHTML = `<span><strong>Area:</strong> ${weather.nearest_area[0].region[0].value}</span>`;
+      area.innerHTML = `<span><strong>Area:</strong> ${weather.nearest_area[0].areaName[0].value}</span>`;
 
       let region = document.createElement("p");
       region.innerHTML = `<span><strong>Region:</strong> ${weather.nearest_area[0].region[0].value}</span>`;
@@ -28,7 +29,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
       country.innerHTML = `<span><strong>Country:</strong> ${weather.nearest_area[0].country[0].value}</span>`;
 
       let current = document.createElement("p");
-      current.innerHTML = `<span class="details"><strong>Currently feels like:</strong> ${weather.current_condition[0]["FeelsLikeF"]}</span>`;
+      current.innerHTML = `<span><strong>Currently feels like:</strong> ${weather.current_condition[0]["FeelsLikeF"]}</span>`;
 
       article.append(area, region, country, current);
 
@@ -52,7 +53,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
         let day = (document.createElement("h2").innerHTML = forecast[i]); //why it didnt work with backticks ? like creating a new element
 
         let averageTemperature = document.createElement("section");
-        averageTemperature.innerHTML = `<span><strong>Average Temperature:</strong> ${weather.weather[0].avgtempF}</span>`;
+        averageTemperature.innerHTML = `Average Temperature: ${weather.weather[0].avgtempF}`;
 
         let maxTemperature = document.createElement("section");
         maxTemperature.innerHTML = `Max Temperature: ${weather.weather[0].maxtempF}`;
