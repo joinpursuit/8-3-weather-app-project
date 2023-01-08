@@ -42,6 +42,7 @@ function fetchWeather(city) {
 
             // Edge case check to ensure no duplicate previous searches
             if (!document.querySelector(`.${city}`)) {
+                
                 // Adding CITY to a-tag, making it a link, and adding event listener
                 prevCity.textContent = city;
                 prevCity.href = `${BASE_URL}${city}?format=j1`
@@ -86,13 +87,16 @@ function fetchWeather(city) {
         // Following lines take relevant info from json/data, and place into p-tags within main
 
         // Changes weather icon based on chance of relevant weather
+        // for (i = 0; i < data.weather[0].hourly.length; i++) {}
         if (chanceofsunshine > 50) {
             weatherIcon.src = './assets/icons8-summer.gif';
             weatherIcon.alt = 'sun';
-        } else if (chanceofrain > 50) {
+        }
+        if (chanceofrain > 50) {
             weatherIcon.src = './assets/icons8-torrential-rain.gif';
             weatherIcon.alt = 'rain';
-        } else if (chanceofsnow > 50) {
+        }
+        if (chanceofsnow > 50) {
             weatherIcon.src = './assets/icons8-light-snow.gif';
             weatherIcon.alt = 'snow';
         }
