@@ -1,4 +1,5 @@
 document.querySelector("form").addEventListener("submit", (event) => {
+
   event.preventDefault();
   const BASE_URL = "https://wttr.in/";
   let article = document.querySelector("article");
@@ -11,7 +12,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
   let city = event.target.location.value;
   event.target.location.value = ""; //to clear input
 
-  fetch(`${BASE_URL}${city}?format=j1`)
+  fetch(`${BASE_URL}${city}?format=j1`) // is readability
     .then((result) => {
       return result.json();
     })
@@ -28,11 +29,11 @@ document.querySelector("form").addEventListener("submit", (event) => {
       if (previous) {
         previous.remove(); //ask jose the logic of this. i was using it without an if
         let li = document.createElement("li");
-        li.innerHTML = `${weather.nearest_area[0].areaName[0].value}`;
+        li.innerHTML = `<a href="${BASE_URL}${city}?format=j1">${weather.nearest_area[0].areaName[0].value}</a> `;
         ul.append(li);
       } else {
         let li = document.createElement("li");
-        li.innerHTML = `${weather.nearest_area[0].areaName[0].value}`;
+        li.innerHTML = `<a href="${BASE_URL}${city}?format=j1">${weather.nearest_area[0].areaName[0].value}</a>`;
         ul.append(li);
       }
 
@@ -45,13 +46,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
 
         let averageTemperature = (document.createElement(
           "section"
-        ).innerHTML = `Average Temperature:${weather.weather[0].avgtempF}`);
+        ).innerHTML = `Average Temperature: ${weather.weather[0].avgtempF}`);
         let maxTemperature = (document.createElement(
           "section"
-        ).innerHTML = `Max Temperature:${weather.weather[0].maxtempF}`);
+        ).innerHTML = `Max Temperature: ${weather.weather[0].maxtempF}`);
         let minTemperature = (document.createElement(
           "section"
-        ).innerHTML = `Min Temperature:${weather.weather[0].mintempF}`);
+        ).innerHTML = `Min Temperature: ${weather.weather[0].mintempF}`);
 
         threeDays[i].append(
           day,
@@ -61,5 +62,9 @@ document.querySelector("form").addEventListener("submit", (event) => {
         );
       }
       console.log(weather);
+
+    
     });
 });
+
+
