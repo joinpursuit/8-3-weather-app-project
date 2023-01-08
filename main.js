@@ -1,9 +1,10 @@
+
 const article = document.querySelectorAll("article")
 const ul = document.querySelectorAll( "ul")
 const h2 = document.querySelector("bold")
 const aside = document.querySelectorAll("aside")
 const p = document.querySelector("p")
-
+const array = []
 document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault()
      fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
@@ -11,26 +12,30 @@ document.querySelector("form").addEventListener("submit", (event) => {
         return result.json()
     }).then(weather => {
         console.log(weather)
-        document.getElementById('inputText').placeholder = "";
-        article[0].textContent = ''
-        h2.textContent = weather.nearest_area[0].areaName[0].value
-        ul[0].innerHTML = `<strong>Area</strong>: ${weather.nearest_area[0].areaName[0].value}`
-        ul[1].innerHTML = `<strong>Region</strong>: ${weather.nearest_area[0].region[0].value}`
-        ul[2].innerHTML = `<strong>Country</strong>: ${weather.nearest_area[0].country[0].value}`
-        ul[3].innerHTML = `<strong>Currently</strong>: Feels like ${weather.current_condition[0].FeelsLikeF}°F `
+        function get(){
+        document.getElementById('inputText').value = "";
+        article[0].innerHTML = `<h2><bold>${weather.nearest_area[0].areaName[0].value}</bold><h2>`
+        article[0].innerHTML += `<p><strong>Area</strong>: ${weather.nearest_area[0].areaName[0].value}</p><p><strong>Region</strong>: ${weather.nearest_area[0].region[0].value}</p><p><strong>Country</strong>: ${weather.nearest_area[0].country[0].value}</p><p><strong>Currently</strong>: Feels like ${weather.current_condition[0].FeelsLikeF}°F </p>`
         const head = document.querySelectorAll('h2')
-        head[1].innerHTML = `<strong>Today</strong>`
-        head[2].innerHTML = `<strong>Tomorrow</strong>` 
-        head[3].innerHTML = `<strong>Day After Tomorrow</strong>`
+        head[2].innerHTML = `<strong>Today</strong>`
+        head[3].innerHTML = `<strong>Tomorrow</strong>` 
+        head[4].innerHTML = `<strong>Day After Tomorrow</strong>`
         article[1].innerHTML = `<strong>Average Temperature</strong>: ${weather.weather[0].avgtempF}°F<br><strong>Max Temperature</strong>: ${weather.weather[0].maxtempF}°F<br><strong>Min Temperature</strong>: ${weather.weather[0].mintempF}°F`
         article[2].innerHTML = `<strong>Average Temperature</strong>: ${weather.weather[1].avgtempF}°F<br><strong>Max Temperature</strong>: ${weather.weather[1].maxtempF}°F<br><strong>Min Temperature</strong>: ${weather.weather[1].mintempF}°F`
         article[3].innerHTML = `<strong>Average Temperature</strong>: ${weather.weather[2].avgtempF}°F<br><strong>Max Temperature</strong>: ${weather.weather[2].maxtempF}°F<br><strong>Min Temperature</strong>: ${weather.weather[2].mintempF}°F`
-        p.innerHTML = ''
+        }
+        get()
         let li = document.createElement('li')
-        li.innerHTML = `${weather.nearest_area[0].areaName[0].value}:${weather.current_condition[0].FeelsLikeF}°F`
-        ul[4].append(li)
-
-        document.getElementById('inputText').value = "";
+        if(!array.includes(weather.nearest_area[0].areaName[0].value)){
+            li.innerHTML = `<a href="">${weather.nearest_area[0].areaName[0].value}</a>:${weather.current_condition[0].FeelsLikeF}°F`
+            ul[4].append(li)
+        }
+        p.remove()
+        array.push(weather.nearest_area[0].areaName[0].value)
+        li.addEventListener("click", (event) => {
+            event.preventDefault()
+            get()
+        })
         const conversion = document.querySelector('#conversionForm');
         conversion.addEventListener('submit', (event) => {
         event.preventDefault();
