@@ -4,26 +4,33 @@ const locationWeather = document.querySelector('.location-weather h2');
 
 locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
     let citySearched = event.target.location.value;
     event.target.location.value = '';
 
-    fetchWeather(citySearched);
     console.log(`You want ${citySearched} weather!`, `${BASE_URL}${citySearched}?format=j1`)
-
+    
     document.querySelector('#noSearch').hidden = true;
-    let newSearch = document.createElement('a');
-    newSearch.textContent = citySearched;
-    newSearch.href = `${BASE_URL}${citySearched}?format=j1`
-    console.log(newSearch);
-
-    newSearch.addEventListener('click', (event) => {
+    let prevSearch = document.createElement('li');
+    let prevCity = document.createElement('a');
+    
+    prevCity.textContent = citySearched;
+    prevCity.href = `${BASE_URL}${citySearched}?format=j1`
+    prevCity.addEventListener('click', (event) => {
         event.preventDefault();
         console.log('You just clicked your last search');
         fetchWeather(citySearched);
     });
-
-    document.querySelector('#previousSearches').append(newSearch)
-
+    
+    document.querySelector('#previousSearches').append(prevSearch)
+    // prevSearch.innerText = ` - prev temp °F`
+    prevSearch.prepend(prevCity)
+    prevSearch.classList = citySearched
+    
+    console.log(prevCity, prevSearch);
+    
+    fetchWeather(citySearched);
+    
 })
 
 function fetchWeather(city) {
@@ -31,6 +38,8 @@ function fetchWeather(city) {
         .then((response) => response.json())
         .then((json) => {
             locationWeather.innerText = city;
+            document.querySelector(`.${city}`).append(` - ${json.current_condition[0].FeelsLikeF}°F`)
+            // console.log(cityClass)
             displayWeather(json)
         })
         .catch((error) => console.log(error));

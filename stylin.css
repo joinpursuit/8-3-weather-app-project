@@ -26,6 +26,7 @@ body {
 
 .previous {
     background-color: lightseagreen;
+    text-transform: capitalize;
     grid-area: previous;
 }
 
