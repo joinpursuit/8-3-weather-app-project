@@ -36,8 +36,60 @@ document.querySelector('form').addEventListener('submit', (event) => {
     
         mainArticle.appendChild(newPTag)
 
+    })
 
 
+    fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
+    .then(result => {
+       return result.json()
+    })
+    .then(weather => {
+
+
+        let todayTag = document.querySelector('.today')
+        let tomorrowTag = document.querySelector('.tomorrow')
+        let dayTag = document.querySelector('.day')
+
+        todayTag.innerHTML = `<h1>Today</h1>`
+
+        let pToday = document.createElement('p')
+
+        pToday.innerHTML = 
+        `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[0].avgtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Max Temperature:</strong> ${weather.weather[0].maxtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Min Temperature:</strong> ${weather.weather[0].mintempF} &#8457</span>`
+
+        todayTag.appendChild(pToday)
+
+
+        tomorrowTag.innerHTML = `<h1>Tomorrow</h1>`
+
+        let pTom = document.createElement('p')
+
+        pTom.innerHTML =
+        `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
+
+        tomorrowTag.appendChild(pTom)
+
+
+        dayTag.innerHTML = `<h1>Day After Tomorrow</h1>`
+
+        let dayAfterP = document.createElement('p')
+
+        dayAfterP.innerHTML = 
+        `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
+        <br>
+        <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
+
+        dayTag.appendChild(dayAfterP)
 
 
     })
@@ -58,6 +110,65 @@ document.querySelector('form').addEventListener('submit', (event) => {
         })
 
     })
+
+
+
+
+        // let todayTag = document.querySelector('.today')
+        // let tomorrowTag = document.querySelector('.tomorrow')
+        // let dayTag = document.querySelector('.day')
+
+        // todayTag.innerHTML = `<h1>Today</h1>`
+
+        // let pToday = document.createElement('p')
+
+        // pToday.innerHTML = 
+        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[0].avgtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[0].maxtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[0].mintempF} &#8457</span>`
+
+        // todayTag.appendChild(pToday)
+
+
+        // tomorrowTag.innerHTML = `<h1>Tomorrow</h1>`
+
+        // let pTom = document.createElement('p')
+
+        // pTom.innerHTML =
+        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
+
+        // tomorrowTag.appendChild(pTom)
+
+
+        // dayTag.innerHTML = `<h1>Day After Tomorrow</h1>`
+
+        // let dayAfterP = document.createElement('p')
+
+        // dayAfterP.innerHTML = 
+        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
+        // <br>
+        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
+
+        // dayTag.appendChild(dayAfterP)
+        
+
+
+
+
+
+
+    
+
+
+        
 
 
 // document.querySelector('form').addEventListener('submit', (event) => {
