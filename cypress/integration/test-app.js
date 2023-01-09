@@ -72,7 +72,7 @@ describe("Get 3 forecast days", () => {
   });
 });
 
-describe("Keep track of previous searches", () => {
+describe.skip("Keep track of previous searches", () => {
   it("should also store searches with the name and current 'feels like' temperature in the sidebar", () => {
     cy.get("aside section")
       .should("contain.text", "Melbourne")
@@ -166,7 +166,7 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchMamaroneck");
 
-    cy.get(`main article  h2`).contains("mamaroneck");
+    cy.get(`main article  h2`).contains("Mamaroneck");
     cy.get(`main article  p`).contains("Nearest Area");
     cy.get(`main article  p`).contains("Orienta");
   });

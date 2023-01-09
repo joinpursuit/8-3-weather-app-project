@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Weather App</h1>
-        <form>
+        <form id="form">
             <label for="place">Pick a Location</label>
             <input type="text" name="place" placeholder="Enter Location Here"/>
             <input type="submit" value="Get Weather"/>
@@ -21,18 +21,43 @@
 
     </aside>
     <main class="main">
-        <article>"Choose a location to view the weather"</article>
+           
+             <article id="current">
+                <p>Choose a location to view the weather.</p>
+                <h2></h2>
+                <p id="area"></p>
+                <p id="region"></p>
+                <p id="country"></p>
+                <p id="currently"></p>
+            </article>
         <aside>
-            <article></article>
-            <article></article>
-            <article></article>
+            <article id="today">
+               <h3></h3>
+               <p class="avg-tempL"></p> 
+               <p class="max-tempL"></p>
+               <p class="min-tempL"></p>
+            </article>
+            <article id="tomorrow">
+               <h3></h3>
+               <p class="avg-tempM"></p> 
+               <p class="max-tempM"></p>
+               <p class="min-tempM"></p>
+            </article>
+            <article id="day-after">
+               <h3></h3>
+               <p class="avg-tempR"></p> 
+               <p class="max-tempR"></p>
+               <p class="min-tempR"></p>
+            </article>
         </aside>
+    
     </main>
     <aside id="aside-R">
         <section>
             <h4>Previous Searches</h4>
-                <ul></ul>
-                <p>No previous searches</p>
+                <ul id="prev-search">
+                    <p>No previous searches.</p>
+                </ul>
         </section>
     </aside>
 
