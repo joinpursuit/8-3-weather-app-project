@@ -42,6 +42,7 @@ header {
     margin: 0 auto;
     width: 90%;
     background-image: url('https://source.unsplash.com/1600x900/?weather');
+    background-size: cover;
 }
 
 main {
@@ -109,6 +110,10 @@ img {
     border-style: ridge;
     border-color: darkcyan;
     border-radius: 25px;
+}
+
+img :hover {
+    opacity: 1.0;
 }
 
 /* .forecast-day {
