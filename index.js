@@ -21,13 +21,15 @@ const getWeatherInfo = (url, input) => {
 const handleResponse = (response, input) => {
   removeElement();
   const mainContainer = document.querySelector(".main");
+  mainContainer.innerHTML = ""
   const mainData = populateMain(response, input);
   mainContainer.append(mainData);
-
+  
   const forecastContainer = document.querySelector(".forecast");
+  // forecastContainer.innerHTML = ""
   const forecastArticles = populateForecast(response);
   forecastContainer.append(forecastArticles);
-
+  
   const previousContainer = document.querySelector(".previous");
   const previousSearches = createPreviousSearch(response, input);
   previousContainer.append(previousSearches);
@@ -35,7 +37,7 @@ const handleResponse = (response, input) => {
 
 const populateMain = (weather, input) => {
   const mainDiv = document.createElement("div");
-
+  
   const h1 = document.createElement("h1");
   h1.innerHTML = input;
   const area = document.createElement("p");
@@ -46,7 +48,7 @@ const populateMain = (weather, input) => {
   country.innerHTML = `Country: ${weather.nearest_area[0].country[0].value}`;
   const currently = document.createElement("p");
   currently.innerHTML = `Currently: ${weather.current_condition[0]["FeelsLikeF"]}°F`;
-
+  
   mainDiv.append(h1, area, region, country, currently);
   return mainDiv;
 };
@@ -60,8 +62,10 @@ const removeElement = () => {
 
 const populateForecast = (weather) => {
   const daysArticles = document.querySelectorAll(".day");
+  
 
   for (let i = 0; i < daysArticles.length; i++) {
+    daysArticles[i].innerHTML = ""
     let daysForecast = ["Today", "Tomorrow", "Day After Tomorrow"];
     const h3 = document.createElement("h3");
     h3.innerHTML = daysForecast[i];
