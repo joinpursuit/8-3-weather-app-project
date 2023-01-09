@@ -1,46 +1,113 @@
+@font-face {
+    font-family: 'Rocher';
+    src: url('https://assets.codepen.io/9632/RocherColorGX.woff2');
+}
+
+@font-palette-values --Purples {
+    font-family: Rocher;
+    base-palette: 10;
+}
+
 body {
-    font-family: 'Open Sans' sans-serif;
-    max-width: 1200 px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 'auto auto';
+    grid-template-areas:
+        "header header header"
+        "aside main previous";
     grid-row-gap: 10px;
-    grid-template-rows: 3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-width: 5px;
+    border-style: ridge;
+    border-color: darkcyan;
+    max-width: 98%;
     margin: 0 auto;
-  }
-  
-  header {
-    color: white;
-    padding-bottom: 25px;
+    background-image: url('https://img.freepik.com/free-vector/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg?w=740&t=st=1673300780~exp=1673301380~hmac=9276b941f86f059871e7e5d43306fc9e9ba1252b330fd8f3711a1a2289c04b63');
+    background-size: cover;
+}
+
+header {
+    display: grid;
+    grid-area: header;
     grid-column-start: span 3;
-    color: whitesmoke;
+    font-family: 'Rocher';
+    font-palette: --Purples;
+    border-width: 15px;
+    border-style: ridge;
+    border-color: darkcyan;
     text-align: center;
-    font-family: sans-serif;
-    border:1px solid black;
-    justify-content: center;
+    text-align: center;
+    padding-bottom: 15px;
     margin: 0 auto;
     width: 90%;
     background-image: url('https://source.unsplash.com/1600x900/?weather');
-  }
-  
-  main {
-    display:grid;
+}
+
+main {
+    display: grid;
+    grid-area: main;
+    border-style: ridge;
+    border-width: 15px;
+    border-color: darkcyan;
+    text-align: center;
     grid-column-gap: 10px;
     grid-column: 2;
     text-align: center;
-    font-family: sans-serif;
-  }
-  
-  aside.three-day {
+}
+
+aside.forecast {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-  }
-  
-  section.convert {
-    text-align: center;
-  }
-  
-  h4 {
+}
+
+h2 {
+    font-family: 'Rocher';
+    font-palette: --Purples;
+    font-size: xx-large;
+}
+
+h4 {
+    font-family: 'Rocher';
+    font-palette: --Purples;
+    font-size: larger;
     text-align: left;
-    font-family: sans-serif;
-    color: black;
-  }
+}
+
+.tempConversion {
+    display: grid;
+    padding-left: 50px;
+    padding-top: 25px;
+    padding-right: 25px;
+    text-align: left;
+    grid-area: aside;
+}
+
+#convert-title {
+    font-family: 'Rocher';
+    font-palette: --Purples;
+    font-size: larger;
+}
+
+.previous {
+    display: grid;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-right: 75px;
+    text-transform: capitalize;
+    grid-area: previous;
+}
+
+.location-weather {
+    border-bottom: 5px;
+    text-transform: capitalize;
+}
+
+img {
+    opacity: .8;
+    border-style: ridge;
+    border-color: darkcyan;
+}
+
+/* .forecast-day {
+    text-decoration-line: underline;
+} */

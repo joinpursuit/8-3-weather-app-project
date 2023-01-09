@@ -122,6 +122,7 @@ function fetchWeather(city) {
         for (let i = 0; i < data.weather.length; i++) {
 
             let forecastDay = document.createElement('article');
+            forecastDay.classList = 'forecast-day';
             forecastDay.innerHTML = `<b>${forecastDays[i]}</b>`
 
             let avgTemp = document.createElement('p');
