@@ -4,9 +4,9 @@ form.addEventListener("submit", (event) => {
 
     //the user's input value. first letter upper case and the rest lower.
     const userInput = event.target.location.value;
-    // It was giving Cypress Error if I put it this codes:
-    //let userInput = event.target.location.value.toLowerCase();
-    //userInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
+    // It was giving Cypress Error if I fix the lower and upper cases:
+    //const inputData = event.target.location.value;
+    //const userInput = inputData.toLowerCase().charAt(0).toUpperCase() + inputData.toLowerCase().slice(1);
    
     //to get the response after the user click on "Get Weather"
     getWeather(userInput);
@@ -52,20 +52,19 @@ function getWeather(userInput) {
 
 //to show the search result information
 function searchResult(userInput, area, region, country, feelsLikeF, chanceSunshine, chanceRain, chanceSnow) {
-    const todays = document.querySelector(".todays")
+    const todays = document.querySelector(".todays");
 
     //if the user's input value is different than area data, show as "Nearest Area".
-    if (userInput === area) {
-        todays.innerHTML = `
-        <img />
-        <h2>${userInput}</h2>
+    todays.innerHTML = `
+    <img />
+    <h2>${userInput}</h2>
+    `;
+    if (userInput.toLowerCase() === area.toLowerCase()) {
+        todays.innerHTML += `
         <p><strong>Area:</strong> ${area}</p>
         `;
     } else {
-        const inputData = userInput.toLowerCase().charAt(0).toUpperCase() + userInput.toLowerCase().slice(1);
-        todays.innerHTML = `
-        <img />
-        <h2>${inputData}</h2>
+        todays.innerHTML += `
         <p><strong>Nearest Area:</strong> ${area}</p>
         `;
     }
@@ -80,13 +79,13 @@ function searchResult(userInput, area, region, country, feelsLikeF, chanceSunshi
 
     //set the image source and its text based on the chances.
     const img = document.querySelector("img")
-    if (chanceSunshine >= 50) {
+    if (chanceSunshine > 50) {
         img.setAttribute("src", "./assets/icons8-summer.gif");
         img.setAttribute("alt", "sun");
-    } else if (chanceRain >= 50){
+    } else if (chanceRain > 50){
         img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
         img.setAttribute("alt", "rain");
-    } else if (chanceSnow >= 50){
+    } else if (chanceSnow > 50){
         img.setAttribute("src", "./assets/icons8-light-snow.gif");
         img.setAttribute("alt", "snow");
     }
@@ -96,12 +95,15 @@ function searchResult(userInput, area, region, country, feelsLikeF, chanceSunshi
 //to show (today, tomorrow, day after tomorrow)'s (average, max, min) temperatures.
 function threeDaysWeather(temp) {
     for (let i = 0; i < temp.length; i++) {
-        const today = document.querySelector(".today")
-        const tomorrow = document.querySelector(".tomorrow")
-        const dayAfter = document.querySelector(".dayAfter")
+        const today = document.querySelector(".today");
+        const tomorrow = document.querySelector(".tomorrow");
+        const dayAfter = document.querySelector(".dayAfter");
+        const asideResult = document.querySelector("main aside");
 
-        const daysStr = ["Today", "Tomorrow", "Day After Tomorrow"]
+        const daysStr = ["Today", "Tomorrow", "Day After Tomorrow"];
         const daysTag = [today, tomorrow, dayAfter];
+
+        asideResult.classList.add("result");
 
         daysTag[i].innerHTML = `
         <h3>${daysStr[i]}</h3>

@@ -152,8 +152,8 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchSeattle");
     cy.get(`main article h2`).contains("Seattle");
-    cy.get(`main article  p`).contains("Area");
-    cy.get(`main article  p`).contains("Seattle");
+    cy.get(`main article p`).contains("Area");
+    cy.get(`main article p`).contains("Seattle");
   });
   it("Can have the different entry name and area name", () => {
     cy.intercept("GET", "https://wttr.in/mamaroneck*", {
@@ -166,9 +166,9 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchMamaroneck");
 
-    cy.get(`main article  h2`).contains("Mamaroneck");
-    cy.get(`main article  p`).contains("Nearest Area");
-    cy.get(`main article  p`).contains("Orienta");
+    cy.get(`main article h2`).contains("mamaroneck");
+    cy.get(`main article p`).contains("Nearest Area");
+    cy.get(`main article p`).contains("Orienta");
   });
 });
 
@@ -184,14 +184,14 @@ describe("Add icon based on chance data", () => {
       .click();
     cy.wait("@fetchMamaroneck");
     cy.get(`main article p`).contains("Chance of Sunshine");
-    cy.get(`main article  p`).contains("53");
+    cy.get(`main article p`).contains("53");
   });
   it("Has a Chance of Rain p tag with appropriate data", () => {
-    cy.get(`main article  p`).contains("Chance of Rain");
-    cy.get(`main article  p`).contains("0");
+    cy.get(`main article p`).contains("Chance of Rain");
+    cy.get(`main article p`).contains("0");
   });
   it("Has a Chance of Snow p tag with appropriate data", () => {
-    cy.get(`main article  p`).contains("Chance of Snow");
+    cy.get(`main article p`).contains("Chance of Snow");
   });
 
   // sunny icon
