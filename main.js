@@ -1,14 +1,5 @@
 
-// document.querySelector("form").addEventListener("submit", (event) => {
-//     event.preventDefault()
-//     console.log(`https://v3.wttr.in/${event.target.location.value}?format=j1`, "HELLO FROM THE OTHER SIDE")
-//     fetch(`https://v3.wttr.in/${event.target.location.value}?format=j1`).then(result => {
-//         console.log("Fetch was successful")
-//         return result.json()
-//     }).then(weather => {
-//         console.log(weather, "Finally properly formatted weather")
-//     })
-// });
+let array = []
 
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -18,8 +9,10 @@ document.querySelector('form').addEventListener('submit', (event) => {
     })
     .then(weather => {
 
-        let mainArticle = document.querySelector('article')
+        document.getElementById('inputText').value = "";
 
+        let mainArticle = document.querySelector('article')
+        function getWeather(){
         mainArticle.innerHTML =
         `<h1 class='city'> ${weather.nearest_area[0].areaName[0].value}</h1>`
     
@@ -34,23 +27,14 @@ document.querySelector('form').addEventListener('submit', (event) => {
         <br>
         <span class="details"><strong>Currently:</strong> Feels Like ${weather.current_condition[0]['FeelsLikeF']} &#8457;</span>`
     
-        mainArticle.appendChild(newPTag)
-
-    })
-
-
-    fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
-    .then(result => {
-       return result.json()
-    })
-    .then(weather => {
+        mainArticle.append(newPTag)
 
 
         let todayTag = document.querySelector('.today')
         let tomorrowTag = document.querySelector('.tomorrow')
         let dayTag = document.querySelector('.day')
 
-        todayTag.innerHTML = `<h1>Today</h1>`
+        todayTag.innerHTML = `<h2>Today</h2>`
 
         let pToday = document.createElement('p')
 
@@ -61,10 +45,10 @@ document.querySelector('form').addEventListener('submit', (event) => {
         <br>
         <span class="today"><strong>Min Temperature:</strong> ${weather.weather[0].mintempF} &#8457</span>`
 
-        todayTag.appendChild(pToday)
+        todayTag.append(pToday)
 
 
-        tomorrowTag.innerHTML = `<h1>Tomorrow</h1>`
+        tomorrowTag.innerHTML = `<h2>Tomorrow</h2>`
 
         let pTom = document.createElement('p')
 
@@ -75,116 +59,72 @@ document.querySelector('form').addEventListener('submit', (event) => {
         <br>
         <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
 
-        tomorrowTag.appendChild(pTom)
+        tomorrowTag.append(pTom)
 
 
-        dayTag.innerHTML = `<h1>Day After Tomorrow</h1>`
+        dayTag.innerHTML = `<h2>Day After Tomorrow</h2>`
 
         let dayAfterP = document.createElement('p')
 
         dayAfterP.innerHTML = 
-        `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
+        `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[2].avgtempF} &#8457</span>
         <br>
-        <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
+        <span class="today"><strong>Max Temperature:</strong> ${weather.weather[2].maxtempF} &#8457</span>
         <br>
-        <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
+        <span class="today"><strong>Min Temperature:</strong> ${weather.weather[2].mintempF} &#8457</span>`
 
-        dayTag.appendChild(dayAfterP)
-
-
-    })
-
-    
-    fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
-        .then(result => {
-           return result.json()
-        })
-        .then(weather => {
+        dayTag.append(dayAfterP)
+    }
+        getWeather()
 
         let ul = document.querySelector('ul')
+        let previous = document.querySelector(".previous")
         let li = document.createElement('li')
 
-        li.innerHTML = `${weather.nearest_area[0].areaName[0].value} -${weather.current_condition[0]['FeelsLikeF']} &#8457;`
+        
+        if (previous){
+            previous.remove()
+
+            li.innerHTML = `<a href="">${weather.nearest_area[0].areaName[0].value}</a> -${weather.current_condition[0]['FeelsLikeF']} &#8457;`
         ul.append(li)
+        }
+        
+        else if(!array.includes(weather.nearest_area[0].areaName[0].value)) {
+            // let li = document.createElement('li')
 
+            li.innerHTML = `<a href="">${weather.nearest_area[0].areaName[0].value}</a> -${weather.current_condition[0]['FeelsLikeF']} &#8457;`
+        ul.append(li)
+        }
+        
+        array.push(weather.nearest_area[0].areaName[0].value)
+
+
+        li.addEventListener("click", (event) => {
+            event.preventDefault()
+            getWeather()
         })
-
+        })
     })
 
 
+    let conversion = document.querySelector('#conversionForm')
+    conversion.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        let convInput = event.target.convert.value
+        let toF = document.querySelector('#to-f')
+        let toC = document.querySelector('to-c')
 
 
-        // let todayTag = document.querySelector('.today')
-        // let tomorrowTag = document.querySelector('.tomorrow')
-        // let dayTag = document.querySelector('.day')
-
-        // todayTag.innerHTML = `<h1>Today</h1>`
-
-        // let pToday = document.createElement('p')
-
-        // pToday.innerHTML = 
-        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[0].avgtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[0].maxtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[0].mintempF} &#8457</span>`
-
-        // todayTag.appendChild(pToday)
-
-
-        // tomorrowTag.innerHTML = `<h1>Tomorrow</h1>`
-
-        // let pTom = document.createElement('p')
-
-        // pTom.innerHTML =
-        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
-
-        // tomorrowTag.appendChild(pTom)
-
-
-        // dayTag.innerHTML = `<h1>Day After Tomorrow</h1>`
-
-        // let dayAfterP = document.createElement('p')
-
-        // dayAfterP.innerHTML = 
-        // `<span class="today"><strong>Average Tempature:</strong> ${weather.weather[1].avgtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Max Temperature:</strong> ${weather.weather[1].maxtempF} &#8457</span>
-        // <br>
-        // <span class="today"><strong>Min Temperature:</strong> ${weather.weather[1].mintempF} &#8457</span>`
-
-        // dayTag.appendChild(dayAfterP)
+        if (toF.checked) {
+            convInput = convInput * (9 / 5) + 32
+            document.querySelector('#result').innerHTML = `${convInput.toFixed(2)}°F`
         
-
-
-
-
-
-
-    
-
-
-        
-
-
-// document.querySelector('form').addEventListener('submit', (event) => {
-    
-    // let ul = document.querySelector('ul')
-    // let li = document.createElement('li')
-
-    // li.innerHTML = `${event.target.location.value}`
-
-    // ul.appendChild(li)
-
-    // })
-
-
-
-
+        }else {
+            convInput = (convInput - 32) * (5 / 9)
+            document.querySelector('#result').innerHTML = `${convInput.toFixed(2)}°C`
+        }
+    })
 
 
 // article main city & area :weather.nearest_area[0].areaName[0].value 
@@ -213,11 +153,5 @@ document.querySelector('form').addEventListener('submit', (event) => {
 
 //weather.nearest_area[0].areaName[0].value
 // weather.weather[0].avgtempF
-
-
-
-
-
-
 
 //https://v3.wttr.in/?format=j1
