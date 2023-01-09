@@ -1,5 +1,6 @@
 let links = [];
 let feelsLike = [];
+
 document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault();
     if (document.querySelector('article')) {
@@ -100,8 +101,27 @@ document.querySelector("form").addEventListener("submit", (event) => {
             a.addEventListener("click", (event) => { 
                 document.getElementById('input').value = area;
             })
-             
+            
 
-
+            // convert f to c
+        })
+        
     })
-})
+    document.querySelector('.conversion').addEventListener('submit', (event) => {
+        event.preventDefault;
+        try {
+            const valueToConvert = event.target.convert-temp.value;
+        const toF = document.querySelector("#to-f");
+        const toC = document.querySelector("#to-c");
+        let h4 = document.querySelector('h4');
+        if (toF.checked) {
+            valueToConvert = valueToConvert * (9/5) + 32;
+            h4.innerText = `${valueToConvert.toFixed(2)}°F`;
+        } else if (toC.checked) {
+            valueToConvert = (valueToConvert - 32) * (5/9);
+            h4.innerText = `${valueToConvert.toFixed(2)}°C`;
+        }} catch(error) {
+            alert('error')
+        }
+        
+    })
