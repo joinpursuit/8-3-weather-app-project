@@ -152,22 +152,22 @@ pictureDiv.className = "picture";
 pictureDiv.addEventListener("mousemove", (event) => {
 
     //get the dimensions for the div
-    const rect = event.target.getBoundingClientRect();
-
-    // let xAxis = (window.innerWidth / 2 - event.pageX) / 3;
-    // let yAxis = (window.innerHeight / 2 - event.pageY) / 3;
+    const rect = pictureDiv.getBoundingClientRect();
     
-    //
-    let x = ((event.clientX - rect.left) - rect.right/2);
-    let y =((event.clientY - rect.top) - rect.bottom/2);
-    console.log(xAxis, yAxis, rect.top, rect.left)
+    //mouse position in relation to the div
+    let x = ((event.clientX - rect.left) - (rect.right - rect.left)/2);
+    let y =((event.clientY - rect.top) - (rect.bottom - rect.top)/2);
+    
 
-    xRotate = 
-    yRotate = 
+    xRotate = x/5;
+    yRotate = y/5;
 
     pic.style.transform = `rotateY(${xRotate}deg) rotateX(${yRotate}deg)`;
 
-    //pic.style.transformOrigin = `${yAxis}% ${xAxis}%`
+    
+    console.log(x, y)
+    pic.style.left = `${-x}px`
+    pic.style.top = `${-y}px`
     
 });
 
@@ -178,6 +178,9 @@ pictureDiv.addEventListener("mouseenter", (event) => {
 pictureDiv.addEventListener("mouseleave", (event) => {
     pic.style.transition = "all 0.5s ease";
     pic.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    pic.style.transformOrigin = `initial inherit`
+    pic.style.left = `${0}px`
+    pic.style.top = `${0}px`
 });
 
 
