@@ -35,6 +35,26 @@ document.querySelector("form").addEventListener("submit", (event) => {
       let country = weather.nearest_area[0].country[0].value;
       let currently = weather.current_condition[0].FeelsLikeF;
       let mainArticle = document.querySelector("article");
+      if (weather.weather[0].hourly[0].chanceofrain > 50) {
+        let img = mainArticle.appendChild(document.createElement("img"));
+        img.setAttribute("alt", "rain");
+        img.src = "./assets/icons8-torrential-rain.gif";
+        let blurb = mainArticle.appendChild(document.createElement("p"));
+        blurb.innerText = 'Chance of Rain'
+    } else if (weather.weather[0].hourly[0].chanceofsnow > 50) {
+        let img = mainArticle.appendChild(document.createElement("img"));
+        img.setAttribute("alt", "snow");
+        img.src = "./assets/icons8-light-snow.gif";
+        let blurb = mainArticle.appendChild(document.createElement("p"));
+        blurb.innerText = 'Chance of Snow'
+    } else if (weather.weather[0].hourly[0].chanceofsunshine > 50) {
+        let img = mainArticle.appendChild(document.createElement("img"));
+        img.setAttribute("alt", "sun");
+        img.src = "./assets/icons8-summer.gif";  
+        let blurb = mainArticle.appendChild(document.createElement("p"));
+        blurb.innerText = 'Chance of Sunshine'
+     
+    }
       let header = mainArticle.appendChild(document.createElement("h2"));
       let p1 = mainArticle.appendChild(document.createElement("p"));
       if (area.toLowerCase() != city.toLowerCase()) {
@@ -44,8 +64,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
         header.append(`${area}`);
         p1.innerText = `Area: ${area}`;
       }
-      console.log(area)
-      console.log(city)
+     
       let p2 = mainArticle.appendChild(document.createElement("p"));
       p2.append(`Region: ${region}`);
       let p3 = mainArticle.appendChild(document.createElement("p"));
@@ -147,16 +166,38 @@ function fetchData(url, city) {
 
 function handleWeather(weather1, city) {
   const { nearest_area, weather, current_condition } = weather1;
+  
 
   document.getElementById("input").value = "";
 
   clearElements();
+  
   let area = nearest_area[0].areaName[0].value;
   let region = nearest_area[0].region[0].value;
   let country = nearest_area[0].country[0].value;
   let currently = current_condition[0].FeelsLikeF;
   let mainArticle = document.querySelector("article");
   let header = mainArticle.appendChild(document.createElement("h2"));
+  if (Number(weather[0].hourly[0].chanceofsunshine) > 50) {
+    let img = mainArticle.appendChild(document.createElement("img"));
+    img.setAttribute("alt", "sun");
+    img.src = "./assets/icons8-summer.gif";
+    let blurb = mainArticle.appendChild(document.createElement("p"));
+    blurb.innerText = 'Chance of Sunshine'
+} else if (Number(weather[0].hourly[0].chanceofrain) > 50) {
+    let img = mainArticle.appendChild(document.createElement("img"));
+    img.setAttribute("alt", "rain");
+    img.src = "./assets/icons8-torrential-rain.gif";  
+    let blurb = mainArticle.appendChild(document.createElement("p"));
+    blurb.innerText = 'Chance of Rain'
+} else if (Number(weather[0].hourly[0].chanceofsnow) > 50) {
+    let img = mainArticle.appendChild(document.createElement("img"));
+    img.setAttribute("alt", "snow");
+    img.src = "./assets/icons8-light-snow.gif";
+    let blurb = mainArticle.appendChild(document.createElement("p"));
+    blurb.innerText = 'Chance of Snow'
+}
+
   if (area.toLowerCase() != city.toLowerCase()) {
     header.append(`${city}`);
     mainArticle.append(`Nearest Area: ${area}`);
@@ -234,6 +275,7 @@ function handleWeather(weather1, city) {
   });
 }
 
+
 function clearElements() {
   document.getElementById("input").value = "";
   document.querySelector("main article").innerHTML = "";
@@ -243,23 +285,19 @@ function clearElements() {
 }
 
 
-    document.querySelector('.conversion').addEventListener('submit', (event) => {
-        event.preventDefault();
-            let valueToConvert = event.target.tempToConvert.value;
-            console.log(valueToConvert);
-            const toF = document.querySelector("#to-f");
-            const toC = document.querySelector("#to-c");
-            let h4 = document.querySelector('aside h4');
-            if (toF.checked) {
-                valueToConvert = valueToConvert * (9/5) + 32;
-                h4.innerText = `${valueToConvert.toFixed(2)}°F`;
-            } else if (toC.checked) {
-                valueToConvert = (valueToConvert - 32) * (5/9);
-                h4.innerText = `${valueToConvert.toFixed(2)}°C`;
-            }
-            console.log(valueToConvert)
-            console.log(toF)
-            console.log(toC)
-        
-        
-    })
+document.querySelector('.conversion').addEventListener('submit', (event) => {
+    event.preventDefault();
+        let valueToConvert = event.target.tempToConvert.value;
+        console.log(valueToConvert);
+        const toF = document.querySelector("#to-f");
+        const toC = document.querySelector("#to-c");
+        let h4 = document.querySelector('aside h4');
+        if (toF.checked) {
+            valueToConvert = valueToConvert * (9/5) + 32;
+            h4.innerText = `${valueToConvert.toFixed(2)}°F`;
+        } else if (toC.checked) {
+            valueToConvert = (valueToConvert - 32) * (5/9);
+            h4.innerText = `${valueToConvert.toFixed(2)}°C`;
+        }    
+    });
+
