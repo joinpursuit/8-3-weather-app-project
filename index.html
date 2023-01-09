@@ -15,37 +15,27 @@
             <label for="location">Pick a Location</label>
             <input type="text" name="location" placeholder=""/>
             <input type="submit" value="Get Weather"/>
-
         </form>
     </header>
 <aside class = "tempConversionWidget">
+    
+    <h3>Temperature Converter</h3> 
+      <!-- or should the h3 be in the form? -->
     <form>
-        <!-- <BR>
         <BR>
-        <label for="tempconv">Temperature conversion
-        <input type="number" name="temp" size="6"/></label>
         <BR>
-            <label>
-            <input type="radio" checked/> to Celsius
-            </label>
-        <label>
-            <input type="radio"/> to Fahrenheit
-            </label>
-            <input type="submit" value="Calculate"> -->
+        <input type="number" name="temp" size="6"/>
+        <label for="tempconv">Temperature conversion</label>
+            <BR>
+                
+        <input type="radio" checked/>         
+            <label for="celsius">to Celsius </label>
+        <input type="radio"/> 
+        <label for="toFahrenheit">to Fahrenheit  </label>
+            <input type="submit" value="Calculate">
 
-<h3>Temperature Converter</h3>
 
-<!-- <p>Type a value in the Celsius field to convert the value to Fahrenheit:</p>
-  <label>Celsius</label>
-  <input id="inputCelsius" type="number" placeholder="Celsius" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
-</p>
-<p>Fahrenheit: <span id="outputFahrenheit"></span></p>
-<p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
-    <label>Fahrenheit</label>
-    <input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
-    oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
-</p>
-        <p>Celsius: <span id="outputCelsius"></span></p> -->
+
     </form>
 </aside>
 
@@ -66,31 +56,48 @@
  <!--        </article> -->
 
 
-<main class="main"> <!--Text will go here-->
+<main class="main"> 
+    <section class="main">
+        <div>
     <article class="chosen">
         <p style = "text-align: center";> Choose a location to view the weather.</p>
- 
+        </div>
     </article>
+    </section>
+    <section>
   <aside>
-            <!-- This aside has three article elements that will have upcoming weather but it starts empty. -->
-    <article>Today
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
+            <!-- This aside has three article elements that will have upcoming weather but it starts empty. 
+            
+            Put this is jv so that i doesn't rrender until submit is pressed. -->
+    <div class="grid-container">
+        <div class="threeInOne">
+        <article id="today">
+                <!-- <b>Today</b>
+                <ul><b>Average Temperature: </b></ul>
+                <ul><b>Maximum Temperature: </b></ul>
+                <ul><b>Minimium Temperature: </b></ul> -->
             </article>
-    <article>Tomorrow
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
+        </div>
+        <div class="threeInOne">
+        <article id="tomorrow">
+                <!-- <b>Tomorrow</b>
+                <ul><b>Average Temperature: </b></ul>
+                <ul><b>Maximum Temperature: </b></ul>
+                <ul><b>Minimium Temperature: </b></ul> -->
             </article>
-    <article>Day After Tomorrow
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
+           </div>
+        <div class="threeInOne"> 
+        <article id="asatte">
+        <!-- <b>Day After Tomorrow</b>
+        <ul><b>Average Temperature: </b></ul>
+        <ul><b>Maximum Temperature: </b></ul>
+        <ul><b>Minimium Temperature: </b></ul> -->
             </article>
+            </div>
+    </div>
         </aside>
     </main>
-      
+</section>
  <aside class="previous">
     <!-- Ths aside will contain weather history -->
         <section>
@@ -103,3 +110,21 @@
 
 </body>
 </html>
+
+   <!-- 
+I didn't end up using the following:
+
+ 
+    I thought this would be cool but it doesn't really work and it is hard to read. so I am commenting it out.
+    <p>Type a value in the Celsius field to convert the value to Fahrenheit:</p>
+    <label for="celsius">Celsius</label>
+    <input id="inputCelsius" type="number" placeholder="Celsius" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
+    </p>
+    <p>Fahrenheit: <span id="outputFahrenheit"></span></p>
+
+    <p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
+        <label for="fahrenheit">Fahrenheit</label>
+        <input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
+        oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
+    </p>
+            <p>Celsius: <span id="outputCelsius"></span></p>  -->
