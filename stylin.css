@@ -106,13 +106,13 @@ h4 {
 }
 
 img {
-    opacity: .9;
+    opacity: .8;
     border-style: ridge;
     border-color: darkcyan;
     border-radius: 25px;
 }
 
-img :hover {
+img:hover {
     opacity: 1.0;
 }
 

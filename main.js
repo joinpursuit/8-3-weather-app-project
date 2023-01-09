@@ -78,9 +78,9 @@ function fetchWeather(city) {
         let { value: region } = data.nearest_area[0].region[0];
         let { value: country } = data.nearest_area[0].country[0];
         let { FeelsLikeF } = data.current_condition[0];
-        let { chanceofsunshine } = data.weather[0].hourly[4];
-        let { chanceofrain } = data.weather[0].hourly[4];
-        let { chanceofsnow } = data.weather[0].hourly[4];
+        let { chanceofsunshine } = data.weather[0].hourly[0];
+        let { chanceofrain } = data.weather[0].hourly[0];
+        let { chanceofsnow } = data.weather[0].hourly[0];
 
         console.log(nearest, region, country, FeelsLikeF, chanceofsunshine, chanceofrain, chanceofsnow);
 
