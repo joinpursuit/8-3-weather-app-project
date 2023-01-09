@@ -2,7 +2,6 @@
 .header{
     background-color: green;
     grid-area: header;
-    border: ;
 }
 
 .main {
@@ -28,4 +27,10 @@ body {
     grid-template-areas: 
     "header header header"
     "aside main previous";
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }
