@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script defer src="./main.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Weather App</h1>
+        <form>
+            <label for="location">Pick a Location</label>
+            <input type="text" name="location"/>
+            <input type="submit" value="Get Weather"/>
+        </form>
+    </header>
+
+    <aside class="aside">
+        <form class="convert">
+            <label><b>Convert the temperature:</b></label>
+            <input type="number" id="temp-to-convert" name="temp"/>
+            <br>
+            <label>to-c</label>
+            <input type="radio" id="to-c" name="convert-temp" value="c"/>
+            <label>to-f</label>
+            <input type="radio" id="to-f" name="convert-temp" value="f"/>
+            <br>
+            <input type="submit"/>
+            <h4></h4>
+        </form>
+    </aside>
+
+    <main class="main">
+        <article 
+        class="search-result">
+            Choose a location to view the weather.
+            <!-- pic goes here -->
+            <!-- search results go here -->
+        </article>
+        <aside class="upcoming">
+            <!-- today, tomorrow, day after tomorrow go here -->
+        </aside>
+    </main>
+
+    <aside class="previous">
+        <section>
+            <h4>Previous Searches</h4>
+            <ul class="searches">
+                <p>No previous searches.</p>
+                <!-- search name and feels like temperature goes here -->
+            </ul>
+            
+        </section>
+    </aside>
+
+</body>
+</html>
+
