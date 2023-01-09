@@ -19,7 +19,6 @@ const getWeatherInfo = (url, input) => {
 };
 
 const handleResponse = (response, input) => {
-
   removeElement();
   const mainContainer = document.querySelector(".main");
   const mainData = populateMain(response, input);
@@ -35,7 +34,6 @@ const handleResponse = (response, input) => {
 };
 
 const populateMain = (weather, input) => {
-  
   const mainDiv = document.createElement("div");
 
   const h1 = document.createElement("h1");
@@ -86,9 +84,9 @@ const populateForecast = (weather) => {
   }
 };
 const createPreviousSearch = (weather, input) => {
-  let ul = document.querySelector(".previous")
+  let ul = document.querySelector(".previous");
   const searchli = document.createElement("a");
-  searchli.href = 'www.google.com';
+  searchli.href = "www.google.com";
   searchli.innerHTML = input;
 
   searchli.addEventListener("click", liClickEvent);
@@ -96,8 +94,7 @@ const createPreviousSearch = (weather, input) => {
 
   const searchliElement = document.createElement("li");
   searchliElement.append(searchli, "-", feelsLikeTemp);
-  ul.append(searchliElement)
-  
+  ul.append(searchliElement);
 };
 
 weatherFormSubmit.addEventListener("submit", weatherFormSubmitEvent);
