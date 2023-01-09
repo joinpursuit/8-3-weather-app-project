@@ -17,7 +17,24 @@
             <input type="submit" value="Get Weather"/>
         </form>
     </header>
-    <aside class="aside">
+    <aside class="temp-conversion">
+        <form id="conversionForm">
+            <strong><label for="temp-to-convert">Convert the Temperature:</label></strong>
+            <br>
+            <br>
+                <input type="number" name="convert" id="temp-to-convert" />
+                <br>
+                <br>
+                <input type="radio" name="conv" value="C" id="to-c" />
+                <label>Celsius</label>
+            <br>
+                <input type="radio" name="conv" value="F" id="to-f" />
+                <label>Fahrenheit</label>
+            <br>
+            <br>
+                <input type="submit" value="submit" />
+                <h4 id="result"></h4>
+            </form>
     </aside>
     <main class="main">
         <article id="main_article">
@@ -34,6 +51,11 @@
             <article></article>
             <article></article>
         </aside>
+        <aside class="forecast">
+            <article class="today">Today</article>
+            <article class="tomorrow">Tomorrow</article>
+            <article class="day_after_tomorrow">Day After Tomorrow</article>
+        </aside>
     </main>
     <aside class="previous">
         <section>
@@ -43,5 +65,6 @@
             </ul>
         </section>
     </aside>
+    
 </body>
 </html>
