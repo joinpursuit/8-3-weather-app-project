@@ -59,10 +59,9 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     height: fit-content;
     width: fit-content;
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
 }
 
-.card {
+.result, .card, .gif {
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
 }
 
