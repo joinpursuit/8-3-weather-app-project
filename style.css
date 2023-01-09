@@ -1,0 +1,69 @@
+.header{
+  grid-area: header;
+  background-image: url("https://www.2ec.com.au/wp-content/uploads/sites/4/2022/08/MicrosoftTeams-image-21.jpg");
+  background-size: 1000px;
+  background-position: bottom;
+  border-bottom: 5px solid black;
+  justify-content: center;
+  padding: 10px;
+}
+
+.previous {
+  display: inline-block;
+  grid-area: previous;
+  border: 1px solid black;
+  justify-content: center;
+  padding: 10px;
+}
+.days article{
+  grid-area: days;
+   border: 2px solid black;
+   justify-content: center;
+   padding: 10px;
+
+ }
+.aside {
+  grid-area: aside;
+  border: 1px solid black;
+  justify-content: center;
+  padding: 10px;
+}
+
+.main {
+  grid-area: main;
+  border: 5px solid black; 
+  justify-content: center;
+  padding: 10px solid black;}
+
+body {
+    background: rgb(33,29,136);
+    background: linear-gradient(94deg, rgba(33,29,136,1) 0%, rgba(29,129,253,1) 50%, rgba(69,246,252,1) 100%);    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous"
+    "days days days";
+    justify-content: center;
+    color: white;
+text-shadow: -1px 1px 2px #000,
+				  1px 1px 2px #000,
+				  1px -1px 0 #000,
+				  -1px -1px 0 #000;
+  text-align: center;
+  font-family: sans-serif;
+  border: 10px solid black;
+  justify-content: center; 
+} 
+
+img {
+  border:solid black 5px;
+}
+
+aside aside form{
+justify-content: center;
+padding: 10px solid black;
+}
+article  {
+  border: 2px solid black;
+}
