@@ -18,7 +18,16 @@
         </form>
     </header>
     <aside class="aside">
-
+        <form class="conversion">
+            <label for="tempToConvert">Convert the temperature:</label>
+            <input type="number" name="tempToConvert" id="temp-to-convert"/><br>
+            <input type="radio" id="to-c" name="convert-temp" value="c">
+            <label for="to-c">To celcius</label><br>
+            <input type="radio" id="to-f" name="convert-temp" value="f">
+            <label for="to-f">To fahrenheit</label><br>
+            <input type="submit" value="Get Conversion">
+            <h4>hey</h4>
+        </form>
     </aside>
     <main class="main">
         <article>Choose a location to view the weather.</article>
@@ -36,17 +45,5 @@
             </ul>
         </section>
     </aside>
-    <div>
-        <form class="conversion">
-            <label for="temp-to-convert">Convert the temperature:</label>
-            <input type="number" name="temp-to-convert" id="input"/><br>
-            <input type="radio" id="to-c" name="convert-temp" value="c">
-            <label for="c">To celcius</label><br>
-            <input type="radio" id="to-f" name="convert-temp" value="f">
-            <label for="f">To fahrenheit</label><br>
-            <input type="submit" value="Get Conversion">
-            <h4>hey</h4>
-        </form>
-    </div>
 </body>
 </html>
