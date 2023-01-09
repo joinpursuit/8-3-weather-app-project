@@ -17,43 +17,43 @@
             <p><input id="inputText" type="text" placeholder="Enter City or Zip Code"></p>
             <input id="submitLocation" type="submit" value="Get Weather">
         </form>
-        </header>
-        <aside class="temp-converion">
+    </header>
+    <aside class="temp-converion">
             <form id="conversionForm">
-                <strong><label for="temp-to-convert">Convert the Temperature</label></strong>
+            <strong><label for="temp-to-convert">Convert the Temperature:</label></strong>
+            <br>
+            <br>
+                <input type="number" name="convert" id="temp-to-convert" required />
                 <br>
                 <br>
-                <input type="number" name="convert" id="temp-to-convert" required/>
-                <br>
-                <br>
-                <input type="radio" name="conv" value="C" id="to-c"/>
+                <input type="radio" name="conv" value="C" id="to-c" />
                 <label for="toC">Celsius</label>
-                <br>
-                <input id="radio" name="conv" value="F" id="to-f"/>
-                <label for="toF">Fahrenheit</label>
-                <br>
-                <br>
-                <input id="sub" type="submit" value="Submit"/>
+            <br>
+                <input id="radio" name="conv" value="F" id="#to-f" />
+                <label for="#to-f">Fahrenheit</label>
+            <br>
+            <br>
+                <input id="sub" type="submit" value="Submit" />
                 <h4 id="result"></h4>
-                </form>
+            </form>
         </aside>
         <main id="container" class="display">
-        <div class="main">
-            <article id="currentWeather">Choose a location to view the weather:</article>
-            <aside class="weatherForecast">
-                <article id="today">Today</article>
-                <article id="tomorrow">Tomorrow</article>
-                <article id="afterTomorrow">Day After Tomorrow</article>
+            <div class="main">
+                <article id="currentWeather">Choose a location to view the weather:</article>
+                <aside class="weatherForecast">
+                    <article id="today">Today</article>
+                    <article id="tomorrow">Tomorrow</article>
+                    <article id="afterTomorrow">Day After Tomorrow</article>
             </aside>
         </div>
-        </main>
-        <aside class="sidebar">
+    </main>
+    <aside class="sidebar">
             <div>
                 <section class="pSearch">
-                <h4>Previous Searches</h4>
+                <h4>Previous Searches: </h4>
                 <ul id="searchHistory">
                     <p class="noPrevSearch"><i>No previous searches</i>
-                    </p></ul>
+                 </p></ul>
                 </section>
             </div>
         </aside>
