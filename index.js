@@ -1,64 +1,51 @@
 const weatherFormSubmit = document.querySelector("form");
 
-
 const weatherFormSubmitEvent = (event) => {
-  
   event.preventDefault();
   const input = weatherFormSubmit.location.value;
   const BASE_URL = `https://wttr.in/${input}?format=j1`;
-  
-  getWeatherInfo(BASE_URL);
+
+  getWeatherInfo(BASE_URL,input);
   event.target.location.value = "";
-  
-}
+};
 
-const getWeatherInfo = (url) => {
+const getWeatherInfo = (url,input) => {
   fetch(url)
-  .then((response) => response.json())
-  .then((weather)  => {
-    console.log(weather)
-  })
+    .then((response) => response.json())
+    .then((weather) => {
+      handleResponse(weather,input);
+      console.log(weather);
+    })
+    .catch((error) => console.log(error));
+};
+
+const handleResponse = (response, input) => {
+  const mainContainer = document.querySelector(".main");
+  const mainData = populateMain(response, input)
+  mainContainer.append(mainData)
 }
 
+
+const populateMain = (weather,input) => {
+ const mainDiv = document.createElement("div");
+ 
+const h1 = document.createElement("h1");
+h1.innerHTML = input;
+const area = document.createElement("p");
+area.innerHTML = `Area: ${weather.nearest_area[0].areaName[0].value}`
+const region = document.createElement("p");
+region.innerHTML = `Region: ${weather.nearest_area[0].region[0].value}` 
+const country = document.createElement("p");
+country.innerHTML = `Country: ${weather.nearest_area[0].country[0].value}`
+const currently = document.createElement("p")
+currently.innerHTML = `Currently: ${weather.current_condition[0]["FeelsLikeF"]}`
+
+console.log(weather.nearest_area[0].areaName[0].value)
+
+mainDiv.append(h1,area,region,country,currently);
+return mainDiv
+}
 
 weatherFormSubmit.addEventListener("submit", weatherFormSubmitEvent);
 
 
-  // try {
-  //   event.prevent
-  //   const BASE_URL = "https://wttr.in/";
-  //   const city = form.location.value;
-  //   fetch(`${BASE_URL}${city}?format=j1`)
-  //   .then((result) => {
-  //     result.json();
-  //   })
-  //   .then((weather) => {
-  //     console.log(weather);
-  //   });
-  // } catch {
-  //   console.log("error")
-  // }
-//};
-
-// document.querySelector("form").addEventListener("submit", (event) => {
-// //   event.preventDefault();
-
-// //   const BASE_URL = "https://wttr.in/";
-// //   let article = document.querySelector("article");
-// //   let ul = document.querySelector("ul");
-// //   let previous = document.querySelector(".previous");
-// //   let threeDays = document.querySelectorAll(".day");
-// //   let forecast = ["Today", "Tomorrow", "Day After Tomorrow"];
-
-// //   let city = event.target.location.value;
-// //   event.target.location.value = ""; //to clear input
-
-// //   fetch(`${BASE_URL}${city}?format=j1`) // is readability
-// //     .then((result) => {
-// //       return result.json();
-// //     })
-// //     .then((weather) => {
-
-// //       conbsole.lof
-// //     });
-// //     });
