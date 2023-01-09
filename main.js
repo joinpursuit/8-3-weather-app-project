@@ -1,14 +1,14 @@
+// Create fetch function to retrieve weather data -------------------------------------
 const URL = "https://wttr.in/"
 
 const inputBar = document.querySelector("form")
 
 
-inputBar.addEventListener("submit", (event) => {
+inputBar.addEventListener("submit", async (event) => {
     event.preventDefault()
 
-    fetch(`${URL}${event.target.place.value}?format=j1`)
+    await fetch(`${URL}${event.target.place.value}?format=j1`)
         .then( result => {
-            // console.log('Fetch successful')
             return result.json()
         }).then (weather => {
             const weatherData = weather
@@ -16,28 +16,28 @@ inputBar.addEventListener("submit", (event) => {
             const regionData = (weatherData.nearest_area[0].region[0].value)
             const countryData = (weatherData.nearest_area[0].country[0].value)
             const currentData = (weatherData.current_condition[0].FeelsLikeF)
-            // console.log(minTemp);
 
-            // const mainTag = document.querySelector('main')
+// Set variables to store access main elements--------------------------------------------       
 
 let mainTagDefault = document.querySelector('main article p')
 let mainTagHead = document.querySelector('main article h2')
-
 
         const liArea = document.getElementById('area')
         const liRegion = document.getElementById('region')
         const liCountry = document.getElementById('country')
         const liCurrently = document.getElementById('currently')
 
+
+//MAIN modify the content of main elements-------------------------------------------------------
 mainTagDefault.innerText = ""
 mainTagHead.innerText = areaData
 liArea.innerText = `Area: ${areaData}`
 
-// console.log(mainTagHead)
 liRegion.innerText = `Region: ${regionData}`
 liCountry.innerText = `Country: ${countryData}`
 liCurrently.innerText = `Currently: Feels like ${currentData}°F`
-//today -----------------------------------------------------------------------------------------------------------
+
+//TODAY select and modify the elements under the today section --------------------------------------------------------
         const avgTempToday = (weatherData.weather[0].avgtempF) /* Index 0=>today, 1=>tomorrow, 2=>day-after */
         const maxTempToday = (weatherData.weather[0].maxtempF) 
         const minTempToday = (weatherData.weather[0].mintempF) 
@@ -54,7 +54,7 @@ maxTempL.innerText = `Max Temperature: ${maxTempToday}°F`
 let minTempL = document.querySelector('#today p.min-tempL')
 minTempL.innerText = `Min Temperature: ${minTempToday}°F`
 
-//tomorrow -------------------------------------------------------------------------------------------------------
+//TOMMOROW select and modify the elements under the tomorrow section-----------------------------------------------------
         const avgTempTomorrow = (weatherData.weather[1].avgtempF) /* Index 0=>today, 1=>tomorrow, 2=>day-after */
         const maxTempTomorrow = (weatherData.weather[1].maxtempF) 
         const minTempTomorrow = (weatherData.weather[1].mintempF) 
@@ -70,7 +70,7 @@ maxTempM.innerText = `Max Temperature: ${maxTempTomorrow}°F`
 
 let minTempM = document.querySelector('#tomorrow p.min-tempM')
 minTempM.innerText = `Min Temperature: ${minTempTomorrow}°F`
-//day-after ----------------------------------------------------------------------------------------------------------
+//DAY-AFTER select and modify the elements under the day-after section-------------------------------------------------------
             const avgTempDayAfter = (weatherData.weather[2].avgtempF) /* Index 0=>today, 1=>tomorrow, 2=>day-after */
             const maxTempDayAfter = (weatherData.weather[2].maxtempF) 
             const minTempDayAfter = (weatherData.weather[2].mintempF) 
@@ -87,18 +87,11 @@ maxTempR.innerText = `Max Temperature: ${maxTempDayAfter}°F`
 let minTempR = document.querySelector('#day-after p.min-tempR')
 minTempR.innerText = `Min Temperature: ${minTempDayAfter}°F`
 
-//Previous Search -----------------------------------------------------------------------------------------------
+//PREVIOUS SEARCH  select and modify the previous search section----------------------------------------------
 
 const prevPlaceholderText = document.querySelector('#prev-search p')
 prevPlaceholderText.innerText = ""
 
-
-
-
-
-// const previousSearch = document.getElementById('aside-R').querySelector('section').querySelector('p')
-// prevAreaToAnchor = areaData.setAttribute()
-// let prevSearch = (`${areaData}: ${currentData}°F`)
 const prevList = document.querySelector('#prev-search')
 let li = document.createElement('li')
 li.innerHTML = `<a href="#">${areaData}</a> - ${currentData}°F`

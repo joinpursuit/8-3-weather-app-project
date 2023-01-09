@@ -29,6 +29,7 @@ body {
     "asideL main asideR";
 } */
 
+
 header {
     background-color: aqua;
     justify-content: center;
@@ -49,11 +50,9 @@ main aside article {
     padding: 5px;
     text-align: center;
     margin: auto;
-  
-    
-    
     
 }
+
 #aside-L {
 background-color: lightslategray;
 }
@@ -63,3 +62,13 @@ background-color: lightslategray;
     justify-content: end;
     padding: 5px;
 }
+
+/* body {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+    grid-area: 
+    " header header header header header "
+    " aside-L main main main aside-R "
+    ; */
+/* } */
