@@ -89,15 +89,15 @@ function fetchWeather(city) {
         // Changes weather icon based on chance of relevant weather
         // for (i = 0; i < data.weather[0].hourly.length; i++) {}
         if (chanceofsunshine > 50) {
-            weatherIcon.src = './assets/icons8-summer.gif';
+            weatherIcon.src = 'https://i.pinimg.com/originals/75/16/ea/7516ea5454d6ebb256d2ecb34b66a95c.gif';
             weatherIcon.alt = 'sun';
         }
         if (chanceofrain > 50) {
-            weatherIcon.src = './assets/icons8-torrential-rain.gif';
+            weatherIcon.src = 'https://forums.synfig.org/uploads/default/original/2X/3/31d749625faa93271be23874d416f9be755b7cb9.gif';
             weatherIcon.alt = 'rain';
         }
         if (chanceofsnow > 50) {
-            weatherIcon.src = './assets/icons8-light-snow.gif';
+            weatherIcon.src = 'https://cdn.dribbble.com/users/2120934/screenshots/6193458/13_snow.gif';
             weatherIcon.alt = 'snow';
         }
 
