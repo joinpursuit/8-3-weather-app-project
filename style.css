@@ -38,3 +38,7 @@ body {
     grid-template-rows: "auto auto auto";
     grid-template-areas: "header header header" "aside main previous";
 }
+/* . notation is for class, # is for id */
+.none {
+display: none;
+}
