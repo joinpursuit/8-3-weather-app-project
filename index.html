@@ -11,20 +11,49 @@
 <body>
     <header class="header">
         <h1>Weather App</h1>
-        <form>
+        <form id="location">
             <label for="location">Pick a Location</label>
-            <input type="text" name="location" />
-            <input type="submit" value="Get Weather" />
+            <input id="inputText"type="text" type="text" name="location" value=""/>
+            <input id="submitLocation" type="submit" value="Get Weather" />
         </form>
     </header>
-    <aside class="aside">
-
+    <aside class="temp-conversion">
+        <form id="converter">
+            <strong><label for="temp-to-convert">Convert the Temperature:</label></strong>
+            <br>
+            <br>
+                <input type="number" name="convert" id="temp-to-convert" />
+                <br>
+                <br>
+                <input type="radio" name="conv" value="C" id="to-c" />
+                <label>Celsius</label>
+            <br>
+                <input type="radio" name="conv" value="F" id="to-f" />
+                <label>Fahrenheit</label>
+            <br>
+            <br>
+                <input type="submit" value="submit" />
+                <h4 id="result"></h4>
+            </form>
     </aside>
     <main class="main">
+        <div class="main">
+        <h2><bold></bold></h2>
         <article>
-            Choose a location to view the weather               
-         </article>
-        <aside>
+            Choose a location to view the weather.
+        </article>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <aside id="threeDayWeatherReports" class="weatherForecasts">
+            <article id="weatherOfToday" class="forecast"></article>
+            <article id="weatherOfTomorrow" class="forecast"></article>
+            <article id="weatherOfDayAfterTomorrow" class="forecast"></article>
+        </aside>
+            <h2></h2>
+            <h2></h2>
+            <h2></h2>
             <article></article>
             <article></article>
             <article></article>
@@ -40,3 +69,59 @@
     </aside>
 </body>
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script defer src="./main.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Weather App</h1>
+        <form id="weatherForm">
+            <label for="location">Pick a Location</label>
+            <input type="text" name="location" />
+            <input type="submit" value="Get Weather" />
+        </form>
+    </header>
+    <aside class="aside" id="conversion">
+            <form>
+              <label for="temp">Convert the Temperature</label>
+              <input type="number" name="temp" />
+          
+              <label for="temp_c">To Celsius</label>
+              <input type="radio" name="temp_to_convert" id="to-c" value="c" />
+          
+              <label for="temp_f">To Fahrenheit</label>
+              <input type="radio" name="temp_to_convert" id="to-f" value="f" />
+          
+              <input type="submit" value="Submit" />
+            </form>
+            <h4></h4>
+          </aside>
+    <main class="main">
+        <article>
+            Choose a location to view the weather               
+         </article>
+        <aside id="threeDayWeatherReports">
+            <article id="weatherOfToday" class="forecast"></article>
+            <article id="weatherOfTomorrow" class="forecast"></article>
+            <article id="weatherOfDayAfterTomorrow" class="forecast"></article>
+        </aside>
+    </main>
+    <aside class="previous">
+        <section>
+            <h4>Previous Searches</h4>
+            <ul>
+                <p>No previous searches.</p>
+            </ul>
+        </section>
+    </aside>
+</body>
+</html> -->
