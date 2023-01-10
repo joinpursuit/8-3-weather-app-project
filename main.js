@@ -78,18 +78,11 @@ function weatherDisplay(weather) {
 function previousSearch(location, data) {
   const ul = document.querySelector("ul");
   const li = document.createElement("li");
-  const pSearch = document.getElementById("previous_searches");   pSearch.style.display = "none";
-// if(document.getElementById(`pSearch`))document.getElementById(`pSearch`).remove();
+if(document.getElementById(`previous_searches`))document.getElementById(`previous_searches`).remove();
 
   li.innerHTML = `<a id="${location}" href="#">${location}</a> - ${data.current_condition[0].FeelsLikeF}°F`;
   
-//   for (let i = 0; i < ul.children; i++) {
-//    if (ul.children[i] === li){
-//     return 
-//    } 
-//   }
   ul.append(li);
-  console.log(ul.children[1].firstElementChild.textContent)
   const a = document.getElementById(`${location}`);
   a.addEventListener("click", () => {
     weatherDisplay(data)
@@ -99,7 +92,6 @@ function previousSearch(location, data) {
 
   });
 }
-
 
 //Can't have 2 event listener in one code block.
 const conversion = document.querySelector("#conversionForm");
