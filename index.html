@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather App</h1>
+      <form>
+        <label for="location">Pick a Location</label>
+        <input name="location" id="location" type="text" />
+        <input type="submit" id="submit-button" value="Get Weather" />
+      </form>
+    </header>
+
+    <main>
+      <aside id="convert">
+        <form id="conversion">
+          <label for="temp-to-convert">Convert the Temperature</label>
+          <input type="number" id="temp-to-convert" name="temp" step="1" />
+          <br />
+          <input
+            type="radio"
+            name="unit"
+            value="fahrenheit"
+            class="radio"
+            id="to-f"
+          />
+          <label for="to-c">To Fahrenheit</label>
+          <br />
+          <input
+            type="radio"
+            name="unit"
+            checked
+            value="celsius"
+            class="radio"
+            id="to-c"
+          />
+          <label for="to-c">To Celsius</label>
+          <br />
+          <input type="submit" id="convert-temp" value="Convert" />
+        </form>
+        <h4 id="h4-temp"></h4>
+      </aside>
+      <article id="current">
+        <br />
+        <p id="choose">Choose a location to view the weather</p>
+      </article>
+      <aside id="futures">
+        <article id="today" class="none">
+          <h3>Today</h3>
+          <p>
+            <strong>Average Temperature:</strong> <span id="today_avg"></span>
+          </p>
+          <p><strong>Max Temperature:</strong> <span id="today_max"></span></p>
+          <p><strong>Min Temperature:</strong> <span id="today_min"></span></p>
+        </article>
+        <article id="tomorrow" class="none">
+          <h3>Tomorrow</h3>
+          <p>
+            <strong>Average Temperature:</strong>
+            <span id="tomorrow_avg"></span>
+          </p>
+          <p>
+            <strong>Max Temperature:</strong> <span id="tomorrow_max"></span>
+          </p>
+          <p>
+            <strong>Min Temperature:</strong> <span id="tomorrow_min"></span>
+          </p>
+        </article>
+        <article id="next" class="none">
+          <h3>Day After Tomorrow</h3>
+          <p>
+            <strong>Average Temperature:</strong> <span id="next_avg"></span>
+          </p>
+          <p><strong>Max Temperature:</strong> <span id="next_max"></span></p>
+          <p><strong>Min Temperature:</strong> <span id="next_min"></span></p>
+        </article>
+      </aside>
+      <aside id="previous">
+        <section>
+          <h4>Previous Searches</h4>
+
+          <ul id="prev-search">
+            <p id="no-prev">No previous searches</p>
+          </ul>
+        </section>
+      </aside>
+    </main>
+  </body>
+</html>
