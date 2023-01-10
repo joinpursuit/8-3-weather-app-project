@@ -1,3 +1,7 @@
+
+body{
+    background-color:beige;
+}
 header{
     margin-left:18.5vw;
     padding-top: 20px;
@@ -5,7 +9,7 @@ header{
     width: 65vw;
     color:white;
     background-color: rgb(51, 137, 137);
-    border:solid 4px black;
+    border:solid 4px rgb(180, 94, 94);
     text-align: center;
 }
 main{
@@ -16,6 +20,20 @@ main{
      margin-left: 19vw; 
     margin-top:20px
 }
+#temp-to-convert{
+    width:8vw;
+    margin:5px;
+}
+#to-c{
+    margin-bottom:25px;
+}
+#convert-temp{
+    margin:5px;
+}
+.radio{
+    margin:10px;
+}
+
 .none{
     display:none;
 }
