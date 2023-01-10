@@ -7,6 +7,7 @@ const weatherFormSubmitEvent = (event) => {
 
   getWeatherInfo(BASE_URL, input);
   event.target.location.value = "";
+
 };
 
 const getWeatherInfo = (url, input) => {
@@ -21,14 +22,14 @@ const getWeatherInfo = (url, input) => {
 const handleResponse = (response, input) => {
   removeElement();
   const mainContainer = document.querySelector(".main");
-  mainContainer.innerHTML = ""
+  mainContainer.innerHTML = "";
   const mainData = populateMain(response, input);
   // mainContainer.append(mainData);
-  
+
   const forecastContainer = document.querySelector(".forecast");
   const forecastArticles = populateForecast(response);
   // forecastContainer.append(forecastArticles);
-  
+
   const previousContainer = document.querySelector(".previous");
   const previousSearches = createPreviousSearch(response, input);
   previousContainer.append(...previousSearches);
@@ -36,7 +37,7 @@ const handleResponse = (response, input) => {
 
 const populateMain = (weather, input) => {
   const mainArticle = document.querySelector(".main");
-  
+
   const h1 = document.createElement("h1");
   h1.innerHTML = input;
   const area = document.createElement("p");
@@ -47,11 +48,10 @@ const populateMain = (weather, input) => {
   country.innerHTML = `<strong>Country:</strong> ${weather.nearest_area[0].country[0].value}`;
   const currently = document.createElement("p");
   currently.innerHTML = `<strong>Currently:</strong> Feels Like ${weather.current_condition[0].FeelsLikeF}°F`;
-  
-  mainArticle.append(h1, area, region, country,currently);
-  
-  console.log(weather)
-  
+
+  mainArticle.append(h1, area, region, country, currently);
+
+  console.log(weather);
 };
 
 const removeElement = () => {
@@ -63,15 +63,14 @@ const removeElement = () => {
 
 const populateForecast = (weather) => {
   const daysArticles = document.querySelectorAll(".day");
-  
 
   for (let i = 0; i < daysArticles.length; i++) {
-    daysArticles[i].innerHTML = ""
+    daysArticles[i].innerHTML = "";
     let daysForecast = ["Today", "Tomorrow", "Day After Tomorrow"];
     const h3 = document.createElement("h3");
     h3.innerHTML = daysForecast[i];
 
-    daysArticles[i].style.background = "blue"
+    
 
     const averageTemperature = document.createElement("section");
     averageTemperature.innerHTML = `<strong>Average Temperature:</strong> ${weather.weather[i].avgtempF}°F`;
@@ -89,8 +88,8 @@ const populateForecast = (weather) => {
       minTemperature
     ); //append child didnt work. research more
   }
-  console.log(daysArticles)
-  return daysArticles
+  console.log(daysArticles);
+  return daysArticles;
 };
 
 const createPreviousSearch = (weather, input) => {
@@ -101,15 +100,19 @@ const createPreviousSearch = (weather, input) => {
 
   searchAnchor.addEventListener("click", liClickEvent);
   const feelsLikeTemp = document.createElement("span");
-  feelsLikeTemp.innerHTML = ` - ${weather.current_condition[0].FeelsLikeF}°F` 
+  feelsLikeTemp.innerHTML = ` - ${weather.current_condition[0].FeelsLikeF}°F`;
 
   const searchliElement = document.createElement("li");
-  searchliElement.append(searchAnchor,feelsLikeTemp);
+  searchliElement.append(searchAnchor, feelsLikeTemp);
   ul.append(searchliElement);
 };
 
 const liClickEvent = (event) => {
-event.preventDefault();
+  event.preventDefault();
 
-}
+  const input = event.target.innerText;
+  const BASE_URL = `https://wttr.in/${input}?format=j1`;
+
+  getWeatherInfo(BASE_URL, input);
+};
 weatherFormSubmit.addEventListener("submit", weatherFormSubmitEvent);
