@@ -16,6 +16,7 @@ Pressing the submit button will do the following things.
 2) JSON translates the code
 3) use the code to create an expanded main box that lists the user-chosen location, as well as information about that area.
 4) Un-hide the temperature conversion area
+5) make previous searches a thing
 
 */
 
@@ -56,12 +57,28 @@ fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
     ul.textContent=`Currently:`
     ul.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`)
 
+// juan via MaxW
+// const mainArticle = document.getElementById("main_article")
+// mainArticle.remove()
+// const newArticle = document.createElement("article")
+// newArticle.setAttribute("id", "xxxxx")
+
+
+const mainSection = document.querySelector("section.main")
+
 
 //create a variable for the article, which I have already given the class "chosen" 
     
-    const mainArticle = document.querySelector("article.chosen");
-    console.log("This is mainArticle", mainArticle)
-    mainArticle.textContent
+    const oldArticle = document.querySelector("article.chosen");
+    console.log("This is oldArticle", oldArticle);
+    // oldArticle.textContent
+
+//deleting the oldArticle
+    oldArticle.remove();
+//replacing old article with newArticle
+    const mainArticle=document.createElement("article");
+    mainArticle.classList.add("chosen");
+    mainSection.append(mainArticle);
 
 
 //make a variable for the chosen location and assign it to an H1 header (which also makes it bold)
@@ -111,31 +128,40 @@ fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
     console.log("Three in one reporting for duty", threeInOne);
   
 
+    // const today2 = document.createElement("ul");
+    // 
 
-    const bottom = document.createElement("ul");
-    bottom.classList.add("last")
-    bottom.innerText = `Today\nAverage Temperature: ${weather.weather[0].avgtempC}°C\nMaximum Temperature: ${weather.weather[0].maxtempC}°C\nMinimum Temperature: ${weather.weather[0].mintempC}`;
-    console.log("Is this appending",bottom);
-    threeInOne[0].append(bottom);
+    
+    const today = document.querySelector("#today ul")
+    console.log("today?", today)
+    today.remove();
+    const newToday = document.createElement("ul");
+    newToday.classList.add("last");
+    newToday.innerText = `Today\nAverage Temperature: ${weather.weather[0].avgtempC}°C\nMaximum Temperature: ${weather.weather[0].maxtempC}°C\nMinimum Temperature: ${weather.weather[0].mintempC}°C`;
+    console.log("Is this appending",newToday);
+    document.getElementById("today").append(newToday);
 
 
+    const oldTomorrow = document.querySelector("#tomorrow ul");
+    console.log("oldTomorrow?", oldTomorrow);
+    oldTomorrow.remove()
     const tomorrow = document.createElement("ul");
-    tomorrow.classList.add("last")
-    tomorrow.innerText = `Tomorrow\nAverage Temperature: ${weather.weather[1].avgtempC}°C\nMaximum Temperature: ${weather.weather[1].maxtempC}°C\nMinimum Temperature: ${weather.weather[1].mintempC}`;
-    console.log("Is this appending",tomorrow);
-    threeInOne[1].append(tomorrow);
+    tomorrow.classList.add("last");
+    tomorrow.innerText = `Tomorrow\nAverage Temperature: ${weather.weather[1].avgtempC}°C\nMaximum Temperature: ${weather.weather[1].maxtempC}°C\nMinimum Temperature: ${weather.weather[1].mintempC}°C`;
+    console.log("Tomorrow",tomorrow);
+    document.getElementById("tomorrow").append(tomorrow);
 
-
-    const assate = document.createElement("ul");
-    assate.classList.add("last")
-    assate.innerText = `Tomorrow\nAverage Temperature: ${weather.weather[2].avgtempC}°C\nMaximum Temperature: ${weather.weather[2].maxtempC}°C\nMinimum Temperature: ${weather.weather[2].mintempC}`;
-    console.log("Is this appending",assate);
-    threeInOne[2].append(assate);
+    const originalAsatte = document.querySelector("#asatte ul")
+    originalAsatte.remove() 
+    const asatte = document.createElement("ul")
+    asatte.innerText = `The Day After Tomorrow\nAverage Temperature: ${weather.weather[2].avgtempC}°C\nMaximum Temperature: ${weather.weather[2].maxtempC}°C\nMinimum Temperature: ${weather.weather[2].mintempC}°C`;
+    console.log("Asatte",asatte);
+    document.getElementById("asatte").append(asatte);
 
 
 
     // const p = document.createElement('p');
-    // p.classList.add("bottom");
+    // p.classList.add("today");
     // let text = document.createTextNode("TEST");
     // p.appendChild(text);
     // document.mainArticle.append(p);
@@ -143,6 +169,13 @@ fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
 
 })    
 });
+
+
+//this function should take the user inputteed chosen location and add it here. It should be clickable so that it would then become the next input. There should also be temperature next to it.
+function previous (locationName, weather) {
+
+}
+
 
 /* still need to
 add event listener/s
@@ -152,11 +185,7 @@ fix the temperatire conversion part
 */
 
 
-// juan via MaxW
-// const mainArticle = document.getElementById("main_article")
-// mainArticle.remove()
-// const newArticle = document.createElement("article")
-// newArticle.setAttribute("id", "xxxxx")
+
 
 
 /* When the input field receives input, convert the value from fahrenheit to celsius */
