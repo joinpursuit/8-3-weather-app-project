@@ -42,6 +42,7 @@ width: 90%;
 
 .forecast {
   display: grid;
+  background-color: brown;
   grid-template-columns: repeat(3,1fr);
   text-align: center;
 
