@@ -21,19 +21,64 @@
     
     <h3>Temperature Converter</h3> 
       <!-- or should the h3 be in the form? -->
-    <form>
+    <form id="tempconvform" name="tempconvform" >
+        <table class="calculation">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="x">Celsius</label>
+                    </td>
+                    <td>
+                        <input id="x" class="intext" type="text" name="x" required="" data-form-type = "other">
+                    </td>
+                    <td class="degreesC">°C</td>              
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <button class="button" type="button" title="calculate" onclick="OnCalcCelFar()">
+                        <span>&rarr;</span>
+                        Calculate
+                        </button>
+
+                        <button class="button" type="reset" title="Reset" onclick="">
+                        <span>&circlearrowleft;</span>
+                        Reset
+                        </button> 
+
+                        <button class="button" type="button" title="calculate" onclick="">
+                            <span> &UpArrowDownArrow; </span>
+                            Swap
+                            </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fahrenheit</td>
+                    <td>
+                        <input id="y" class="outtext" type="text" readonly="" data-form-type="other">
+                    </td>
+                </tr>
+                <tr id="calculation">
+                    <td>Calculation</td>
+                    <td>
+                        <textarea id="TA" class="outtext" rows="2"></textarea>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+<!--         
         <BR>
         <BR>
         <input type="number" name="temp" size="6"/>
         <label for="tempconv">Temperature conversion</label>
             <BR>
                 
-        <input type="radio" checked/>         
-            <label for="celsius">to Celsius </label>
-        <input type="radio"/> 
-        <label for="toFahrenheit">to Fahrenheit  </label>
-            <input type="submit" value="Calculate">
-
+        <input type="radio" />         <label for="celsius">to Celsius </label>
+        <input type="radio"/>           <label for="toFahrenheit">to Fahrenheit  </label>
+        <input type="submit" value="Calculate"> <label for="Calculate"></label>
+ -->
 
 
     </form>

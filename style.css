@@ -48,6 +48,14 @@
     }
 
     .tempConversionWidget {
-        display: none;
+       font-size: sm;
     }
+
+    .hidden{
+        display:none
+    }
+     
+
+
+
         
