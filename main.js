@@ -20,6 +20,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
       document.querySelector("input").value = "";
 
       weatherDisplay(weather)
+      console.log(weather)
     });
 });
 
@@ -35,12 +36,20 @@ function weatherDisplay(weather) {
   const p2 = document.createElement("p");
   const p3 = document.createElement("p");
   const p4 = document.createElement("p");
+  const p5 = document.createElement("p");
+  const p6 = document.createElement("p");
+  const p7 = document.createElement("p");
+
   p1.innerHTML = `<strong>Area:</strong> ${weather.nearest_area[0].areaName[0].value}`;
   p2.innerHTML = `<strong>Region:</strong> ${weather.nearest_area[0].region[0].value}`;
   p3.innerHTML = `<strong>Country:</strong> ${weather.nearest_area[0].country[0].value}`;
   p4.innerHTML = `<strong>Currently:</strong> Feels like ${weather.current_condition[0].FeelsLikeF}°F`;
+  p5.innerHTML = `<strong>Chance of Sunshine:</strong> ${weather.weather[0].hourly[0].chanceofsunshine}%`;
+  p6.innerHTML = `<strong>Chance of Rain:</strong> ${weather.weather[0].hourly[0].chanceofrain}%`;
+  p7.innerHTML = `<strong>Chance of Snow:</strong> ${weather.weather[0].hourly[0].chanceofsnow}%`;
 
-  newArticle.append(h2, p1, p2, p3, p4);
+  newArticle.append(h2, p1, p2, p3, p4, p5, p6, p7);
+  
 
   let today = document.querySelector(".today");
   let tomorrow = document.querySelector(".tomorrow");
@@ -74,6 +83,20 @@ function weatherDisplay(weather) {
 <span class="today"><strong>Min Temperature:</strong> ${weather.weather[2].mintempF} &#8457</span>`;
   day.append(dayAfter);
 
+  let image = document.createElement("img")
+
+  if (weather.weather[0].hourly[0].chanceofsunshine >= 50){
+    image.setAttribute("src", "./assets/icons8-summer.gif")
+    image.setAttribute("alt", "sun");
+    
+  }else if(weather.weather[0].hourly[0].chanceofsnow >= 50){
+    image.setAttribute("src", "./assets/icons8-light-snow.gif")
+    image.setAttribute("alt", "snow");
+  }else if(weather.weather[0].hourly[0].chanceofrain >= 50){
+    image.setAttribute("src", "./assets/icons8-torrential-rain.gif")
+    image.setAttribute("alt", "rain");
+  }
+  newArticle.prepend(image)
 }
 function previousSearch(location, data) {
   const ul = document.querySelector("ul");
@@ -88,6 +111,8 @@ if(document.getElementById(`previous_searches`))document.getElementById(`previou
     weatherDisplay(data)
     li.remove()
     ul.append(li)
+
+
 
 
   });
