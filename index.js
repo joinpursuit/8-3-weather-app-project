@@ -1,25 +1,27 @@
 const weatherFormSubmit = document.querySelector("form");
+const conversionFormSubmit = document.querySelector(".conversionform");
+weatherFormSubmit.addEventListener("submit", weatherFormSubmitEvent);
+conversionFormSubmit.addEventListener("submit", conversionFormSubmitEvent);
 
-const weatherFormSubmitEvent = (event) => {
+function weatherFormSubmitEvent(event) {
   event.preventDefault();
   const input = weatherFormSubmit.location.value;
   const BASE_URL = `https://wttr.in/${input}?format=j1`;
 
   getWeatherInfo(BASE_URL, input);
   event.target.location.value = "";
+}
 
-};
-
-const getWeatherInfo = (url, input) => {
+function getWeatherInfo(url, input) {
   fetch(url)
     .then((response) => response.json())
     .then((weather) => {
       handleResponse(weather, input);
     })
     .catch((error) => console.log(error));
-};
+}
 
-const handleResponse = (response, input) => {
+function handleResponse(response, input) {
   removeElement();
   const mainContainer = document.querySelector(".main");
   mainContainer.innerHTML = "";
@@ -33,9 +35,9 @@ const handleResponse = (response, input) => {
   const previousContainer = document.querySelector(".previous");
   const previousSearches = createPreviousSearch(response, input);
   previousContainer.append(...previousSearches);
-};
+}
 
-const populateMain = (weather, input) => {
+function populateMain(weather, input) {
   const mainArticle = document.querySelector(".main");
 
   const h1 = document.createElement("h1");
@@ -51,17 +53,17 @@ const populateMain = (weather, input) => {
 
   mainArticle.append(h1, area, region, country, currently);
 
-  console.log(weather);
-};
+  
+}
 
-const removeElement = () => {
+function removeElement() {
   const removeThis = document.querySelectorAll(".remove");
   if (removeThis) {
     removeThis.forEach((el) => el.remove());
   }
-};
+}
 
-const populateForecast = (weather) => {
+function populateForecast(weather) {
   const daysArticles = document.querySelectorAll(".day");
 
   for (let i = 0; i < daysArticles.length; i++) {
@@ -69,8 +71,6 @@ const populateForecast = (weather) => {
     let daysForecast = ["Today", "Tomorrow", "Day After Tomorrow"];
     const h3 = document.createElement("h3");
     h3.innerHTML = daysForecast[i];
-
-    
 
     const averageTemperature = document.createElement("section");
     averageTemperature.innerHTML = `<strong>Average Temperature:</strong> ${weather.weather[i].avgtempF}°F`;
@@ -86,16 +86,14 @@ const populateForecast = (weather) => {
       averageTemperature,
       maxTemperature,
       minTemperature
-    ); //append child didnt work. research more
+    );
   }
-  console.log(daysArticles);
   return daysArticles;
-};
+}
 
-const createPreviousSearch = (weather, input) => {
+function createPreviousSearch(weather, input) {
   let ul = document.querySelector(".previous");
   const searchAnchor = document.createElement("a");
-  // searchli.href = "#";
   searchAnchor.innerHTML = input;
 
   searchAnchor.addEventListener("click", liClickEvent);
@@ -105,14 +103,34 @@ const createPreviousSearch = (weather, input) => {
   const searchliElement = document.createElement("li");
   searchliElement.append(searchAnchor, feelsLikeTemp);
   ul.append(searchliElement);
-};
+}
 
-const liClickEvent = (event) => {
+function liClickEvent(event) {
   event.preventDefault();
 
   const input = event.target.innerText;
   const BASE_URL = `https://wttr.in/${input}?format=j1`;
 
   getWeatherInfo(BASE_URL, input);
-};
-weatherFormSubmit.addEventListener("submit", weatherFormSubmitEvent);
+}
+function conversionFormSubmitEvent(event) {
+  event.preventDefault();
+  let conversionTemp = event.target.temperature.value;
+  conversionTemp.innerHTML = ''
+    console.log(conversionTemp)
+  const toCelsius = document.querySelector(".to-celsius");
+  const toFahrenheit = document.querySelector(".to-fahrenheit");
+
+  if (toCelsius.checked) {
+    conversionTemp = (conversionTemp - 32) * (5 / 9);
+    let result = document.querySelector(".result").innerHTML = `${conversionTemp.toFixed(
+      2
+    )}°C`;
+  } else {
+    conversionTemp = conversionTemp * (9 / 5) + 32;
+    let result = document.querySelector(".result").innerHTML = `${conversionTemp.toFixed(
+      2
+    )}°F`;
+  }
+
+}

@@ -36,7 +36,8 @@ width: 90%;
 }
 
 .previous {
-  
+  text-align: center;
+  display: grid;
   grid-area: previous;
 }
 
@@ -52,7 +53,9 @@ width: 90%;
 
 
 .temperature-convertion {
-    background-color: blueviolet;
+    background-color: gold;
+    display: grid;
+    grid-area: aside;
 
 }
 

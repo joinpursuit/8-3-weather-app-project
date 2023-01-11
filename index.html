@@ -18,7 +18,15 @@
         </form>
     </header>
     <aside class="temperature-convertion">"convert temperature here"
-
+    <form class="conversionform"><strong><label for="temperature convertion"></label></strong>
+        <input type="number" name="temperature" class="temperature"/>;
+        <input type="radio" name="conv" value="celsius" class="to-celsius"/>
+        <label for="celsius">Celsius</label>
+        <input type="radio" name="conv" value="fahrenheit" class="to-fahrenheit"/>
+        <label for="fahrenheit">Fahrenheit</label>
+        <input type="submit" value="submit"/>
+        <h4 class="result"></h4>
+    </form>
     </aside>
     <main class="maincontainer">
         <article class="main">
