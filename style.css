@@ -1,0 +1,70 @@
+body {
+font-family: sans-serif;
+  display: grid;
+  max-width: 1200px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-row-gap: 10px;
+  
+  grid-template-rows: 3;
+  grid-template-areas:
+    "header header header"
+    "aside main previous";
+}
+
+.header {
+  color: white;
+  padding-bottom: 25px;
+  border: 10px;
+  background-color: #258080;
+  text-align: center;
+  grid-column-start: span 3;
+  grid-area: header;
+  font-family: sans-serif;
+  border: 1px solid black;
+margin: 0 auto;
+width: 90%;
+
+}
+
+.main {
+  background-color: #EFEFEF;
+  grid-column-gap: 10px;
+  grid-column: 2;
+  text-align: center;
+  font-family: sans-serif;
+  border: 1px solid #258080;
+}
+
+.previouscontainer {
+  text-align: center;
+  display: grid;
+  grid-area: previous;
+}
+
+.forecast {
+  display: grid;
+  
+  grid-template-columns: repeat(3,1fr);
+  text-align: center;
+
+}
+
+.temperature-convertion {
+    text-align: center;
+    background-color: gold;
+    display: grid;
+    grid-area: aside;
+
+}
+
+a {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+/* .forecast.day {
+    display: grid;
+    font-family: sans-serif;
+    background-color: red;
+} */

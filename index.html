@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script  src="./index.js" async ></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Weather App</h1>
+        <form>
+            <label for="location">Pick a Location</label>
+            <input type="text" name="location"/>
+            <input type="submit" value="Get Weather"/>
+        </form>
+    </header>
+    <aside class="temperature-convertion">"convert temperature here"
+    <form class="conversionform"><strong><label for="temperature convertion"></label></strong>
+        <input type="number" name="temperature" class="temperature"/>;
+        <input type="radio" name="conv" value="celsius" class="to-celsius"/>
+        <label for="celsius">Celsius</label>
+        <input type="radio" name="conv" value="fahrenheit" class="to-fahrenheit"/>
+        <label for="fahrenheit">Fahrenheit</label>
+        <input type="submit" value="submit"/>
+        <h4 class="result"></h4>
+    </form>
+    </aside>
+    <main class="maincontainer">
+        <article class="main">
+           <p class="remove">Choose a location to view the weather</p> 
+        </article>
+        <aside class="forecast">
+            <article class="day"></article>
+            <article class="day"></article>
+            <article class="day"></article>
+        </aside>
+    </main>
+    <aside class="previouscontainer">
+        <section>
+            <h4>Previous Searches</h4>
+            <ul class="previous">
+                <p class="remove">No previous searches.</p>
+            </ul>
+        </section>
+    </aside>
+</body>
+</html>
