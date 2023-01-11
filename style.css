@@ -35,7 +35,7 @@ width: 90%;
   border: 1px solid #258080;
 }
 
-.previous {
+.previouscontainer {
   text-align: center;
   display: grid;
   grid-area: previous;
@@ -49,10 +49,8 @@ width: 90%;
 
 }
 
-
-
-
 .temperature-convertion {
+    text-align: center;
     background-color: gold;
     display: grid;
     grid-area: aside;
