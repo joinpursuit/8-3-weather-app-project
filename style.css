@@ -1,0 +1,44 @@
+.header {
+    background-color: teal;
+    grid-area: header;
+    text-align: center;
+}
+
+.main {
+    background-color: orange;
+    text-align: center;
+    grid-area: main;
+}
+
+.previous {
+    background-color: gold;
+    display: grid;
+    grid-area: previous;
+    text-decoration: underline;
+}
+
+.temp-conversion {
+    background-color: gold;
+    display: grid;
+    grid-area: aside;
+}
+.forecast {
+    background-color: skyblue;
+    display: grid;
+    grid-template-columns: "auto auto auto";
+    grid-template-rows: "auto auto auto";
+    grid-template-areas: "header header header";
+
+}
+body {
+    background-color: beige;
+    display: grid;
+    text-align: center;
+    grid-template-columns: "auto auto auto";
+    grid-template-rows: "auto auto auto";
+    grid-template-areas: "header header header" "aside main previous";
+}
+/* . notation is for class, # is for id */
+.none {
+display: none;
+}
