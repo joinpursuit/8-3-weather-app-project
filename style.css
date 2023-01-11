@@ -1,0 +1,70 @@
+
+body {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "convert main previous"
+    "convert result previous";
+    text-align: center;
+    font-family: Tahoma;
+    width: fit-content;
+    justify-content: auto, center;
+}
+
+.header{
+    grid-area: header;
+    background-color: #268182;
+    color: white;
+    border: 2px solid black;
+    grid-template-areas: 
+    "header header header"
+    "today tomorrow dayAfter"
+}
+
+.form {
+    margin: 20px;
+    font-weight: bold;
+}
+
+.main {
+    grid-area: main;
+    text-align: center;
+    margin: 15px;
+}
+
+.todays {
+    background-color: #efefef;
+    border: 1.75px solid #53a0a0;
+    padding: 30px;
+}
+
+.previous {
+    grid-area: previous;
+    text-align: left;
+    margin: 5px;
+}
+
+.convert {
+    grid-area: convert;
+    text-align: left;
+}
+
+.result {
+    display: grid;
+    grid-area: result;
+    background-color: white;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: fit-content;
+    width: fit-content;
+}
+
+.header, .result, .card, .gif {
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+.today, .tomorrow, .dayAfter {
+    padding: 15px;
+}
