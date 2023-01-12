@@ -57,7 +57,7 @@ function clicked() {
 
 
             
-            if(!document.getElementById(`${txt.value.charAt(0).toUpperCase() + txt.value.slice(1)}`)){
+            if(!document.getElementById(`${txt.value.charAt(0).toUpperCase() + txt.value.slice(1)}`) && txt.value.length > 1){
 
                 ul.innerHTML += `
                 <li class="list" id="${txt.value.charAt(0).toUpperCase() + txt.value.slice(1)}"><a href="#">${txt.value.charAt(0).toUpperCase() + txt.value.slice(1)}</a> - ${result.current_condition[0].FeelsLikeF}°F</li>
