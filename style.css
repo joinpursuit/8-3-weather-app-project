@@ -27,7 +27,7 @@ body {
     grid-template-areas: 
     "header header header"
     "aside main previous"
-    "today tommorrow    div";
+    "today tommorrow day"
 }
 .previous{
     background-color: gold;
