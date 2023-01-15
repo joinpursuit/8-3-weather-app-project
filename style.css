@@ -10,7 +10,7 @@
 }
 
 .previous {
-    background-color: rgb(96, 156, 235);
+    background-color: rgb(192, 145, 18);
     grid-area: previous;
 }
 
@@ -28,6 +28,7 @@ body {
     "header header header"
     "aside main previous"
     "today tommorrow day"
+    "rise  set   moon"
 }
 .previous{
     background-color: gold;
@@ -37,16 +38,40 @@ body {
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
     background-color: crimson;
+    text-align: center;
 }
 .tommorrow {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
     background-color: rgb(210, 177, 70);
+    text-align: center;
 }
 .day {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
     background-color: rgb(210, 70, 189);
+    text-align: center;
+}
+.rise{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(17, 240, 20);
+    text-align: center;
+}
+.set{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(147, 231, 149);
+    text-align: center;
+}
+.moon{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(22, 73, 22);
+    text-align: center;
 }

@@ -8,6 +8,10 @@ const arr = [];
 const inputs = document.querySelector("input");
 const today = document.querySelector(".today");
 const tommorrow = document.querySelector(".tommorrow");
+const day = document.querySelector(".day");
+const rise = document.querySelector(".rise");
+const set = document.querySelector(".set");
+const moon = document.querySelector(".moon");
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -49,13 +53,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
       today.append(h3today, paragraphtoday);
 
       const strong02 = document.createElement("strong");
-      strong02.textContent = `Max Temperture`;
+      strong02.textContent = ` Max Temperture:`;
       const maxTemp = weather.weather[0].maxtempF;
       paragraphtoday.append(strong02, maxTemp);
       today.append(h3today, paragraphtoday);
 
       const strong03 = document.createElement("strong");
-      strong03.textContent = `Min Temperture`;
+      strong03.textContent = ` Min Temperture:`;
       const minTemp = weather.weather[0].mintempF;
       paragraphtoday.append(strong03, minTemp);
       today.append(h3today, paragraphtoday);
@@ -71,15 +75,90 @@ document.querySelector("form").addEventListener("submit", (event) => {
       tommorrow.append(h3tommorrow, paragraphtommorrow);
 
       const strong05 = document.createElement("strong");
-      strong05.textContent = `Max Temperture`;
+      strong05.textContent = ` Max Temperture:`;
       const maxTemp1 = weather.weather[1].maxtempF;
       paragraphtommorrow.append(strong05, maxTemp1);
       tommorrow.append(h3tommorrow, paragraphtommorrow);
 
       const strong06 = document.createElement("strong");
-      strong06.textContent = `Min Temperture`;
+      strong06.textContent = ` Min Temperture:`;
       const minTemp1 = weather.weather[1].mintempF;
       paragraphtommorrow.append(strong06, minTemp1);
       tommorrow.append(h3tommorrow, paragraphtommorrow);
+
+      const h3day = document.createElement("h3");
+      h3day.textContent = "The Day After Tommorow";
+
+      const paragraphday = document.createElement("p");
+      const strong7 = document.createElement("strong");
+      strong7.textContent = `Average Tempeture: `;
+      const avgTemp2 = weather.weather[2].avgtempF;
+      paragraphday.append(strong7, avgTemp2);
+      day.append(h3day, paragraphday);
+
+      const strong08 = document.createElement("strong");
+      strong08.textContent = ` Max Temperture:`;
+      const maxTemp2 = weather.weather[2].maxtempF;
+      paragraphday.append(strong08, maxTemp2);
+      day.append(h3day, paragraphday);
+
+      const strong09 = document.createElement("strong");
+      strong09.textContent = ` Min Temperture:`;
+      const minTemp2 = weather.weather[2].mintempF;
+      paragraphday.append(strong09, minTemp2);
+      day.append(h3day, paragraphday);
+
+      const h3rise = document.createElement("h3");
+      h3rise.textContent = "Sunrise";
+
+      const paragraphrise = document.createElement("p");
+      const strong10 = document.createElement("strong");
+      strong10.textContent = `Sunrise: `;
+      const sunrise = weather.weather[0].sunrise;
+      paragraphrise.append(strong10, sunrise);
+      rise.append(h3rise, paragraphrise);
+
+      const h3set = document.createElement("h3");
+      h3set.textContent = "Sunset";
+
+      const paragraphset = document.createElement("p");
+      const strong11 = document.createElement("strong");
+      strong11.textContent = `Sunset: `;
+      const sunset = weather.weather[0].sunset;
+      paragraphset.append(strong11, sunset);
+      set.append(h3set, paragraphset);
+
+      const h3moon = document.createElement("h3");
+      h3moon.textContent = "Moon Phase";
+
+      const paragraphmoon = document.createElement("p");
+      const strong12 = document.createElement("strong");
+      strong12.textContent = `Moonphase: `;
+      const moonphase = weather.weather[0].astronomy.moon_phase;
+      paragraphmoon.append(strong12, moonphase);
+      moon.append(h3moon, paragraphmoon);
+
+
+
+
+
+
+
+
     });
+});
+
+const conversion = document.querySelector("#conversionForm");
+conversion.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let conversion = event.target.convert.value;
+  let toC = document.querySelector("#to-c");
+  let toF = document.querySelector("#to-f");
+  if (toC.checked) {
+    conversion = (conversion - 32) * (5 / 9);
+    document.querySelector("#result").innerHTML = `${conversion.toFixed(2)}°C`;
+  } else {
+    conversion = conversion * (9 / 5) + 32;
+    document.querySelector("#result").innerHTML = `${conversion.toFixed(2)}°F`;
+  }
 });
