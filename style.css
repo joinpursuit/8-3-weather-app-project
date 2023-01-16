@@ -1,26 +1,27 @@
 .header{
-    background-color: rgb(127, 146, 255);
+    background-color: rgb(153, 204, 241);
     grid-area: header;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .main {
-    background-color: rgb(128, 163, 227);
+    background-color: rgb(112, 168, 228);
     grid-area: main;
     text-align: center;
 }
 
 .previous {
-    background-color: rgb(192, 145, 18);
+    background-color:rgb(112, 168, 228);
     grid-area: previous;
 }
 
 .aside {
-    background-color: rgb(94, 157, 239);
+    background-color: rgb(112, 168, 228);
     grid-area: aside;
 }
 
 body {
-    background-color: rgb(159, 121, 208);
+    background-color:rgb(153, 204, 241);
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
@@ -31,7 +32,7 @@ body {
     "rise  set   moon"
 }
 .previous{
-    background-color: gold;
+    background-color:rgb(112, 168, 228);
 }
 .today{
     display: grid;
@@ -74,4 +75,5 @@ body {
     grid-template-rows: auto auto auto;
     background-color: rgb(22, 73, 22);
     text-align: center;
+    
 }

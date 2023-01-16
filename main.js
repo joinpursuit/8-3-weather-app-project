@@ -4,7 +4,6 @@ const ul = document.querySelectorAll("strong");
 const h2 = document.querySelector("bold");
 const p = document.querySelector("p");
 const article = document.querySelectorAll("article");
-const arr = [];
 const inputs = document.querySelector("input");
 const today = document.querySelector(".today");
 const tommorrow = document.querySelector(".tommorrow");
@@ -12,6 +11,7 @@ const day = document.querySelector(".day");
 const rise = document.querySelector(".rise");
 const set = document.querySelector(".set");
 const moon = document.querySelector(".moon");
+const image = document.querySelector("img");
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -22,7 +22,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
     .then((weather) => {
       article[0].textContent = "";
       inputs.value = "";
-
       const ulTags = document.querySelectorAll("main ul");
       ulTags.forEach((ul) => ul.lastChild.remove());
 
@@ -109,42 +108,34 @@ document.querySelector("form").addEventListener("submit", (event) => {
       day.append(h3day, paragraphday);
 
       const h3rise = document.createElement("h3");
-      h3rise.textContent = "Sunrise";
+      h3rise.textContent = "Sunrise 🌄";
 
       const paragraphrise = document.createElement("p");
       const strong10 = document.createElement("strong");
-      strong10.textContent = `Sunrise: `;
-      const sunrise = weather.weather[0].sunrise;
+      strong10.textContent = `Sunrise : `;
+      const sunrise = weather.weather[0].astronomy[0].sunrise;
       paragraphrise.append(strong10, sunrise);
       rise.append(h3rise, paragraphrise);
 
       const h3set = document.createElement("h3");
-      h3set.textContent = "Sunset";
+      h3set.textContent = "Sunset 🌇";
 
       const paragraphset = document.createElement("p");
       const strong11 = document.createElement("strong");
       strong11.textContent = `Sunset: `;
-      const sunset = weather.weather[0].sunset;
+      const sunset = weather.weather[0].astronomy[0].sunset;
       paragraphset.append(strong11, sunset);
       set.append(h3set, paragraphset);
 
       const h3moon = document.createElement("h3");
-      h3moon.textContent = "Moon Phase";
+      h3moon.textContent = "Moon Phase 🌘";
 
       const paragraphmoon = document.createElement("p");
       const strong12 = document.createElement("strong");
       strong12.textContent = `Moonphase: `;
-      const moonphase = weather.weather[0].astronomy.moon_phase;
+      const moonphase = weather.weather[0].astronomy[0].moon_phase;
       paragraphmoon.append(strong12, moonphase);
       moon.append(h3moon, paragraphmoon);
-
-
-
-
-
-
-
-
     });
 });
 
