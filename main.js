@@ -11,7 +11,9 @@ const day = document.querySelector(".day");
 const rise = document.querySelector(".rise");
 const set = document.querySelector(".set");
 const moon = document.querySelector(".moon");
-const image = document.querySelector("img");
+// const image = document.querySelector("img");
+const main = document.querySelector("main")
+
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -20,11 +22,11 @@ document.querySelector("form").addEventListener("submit", (event) => {
       return result.json();
     })
     .then((weather) => {
-      article[0].textContent = "";
-      inputs.value = "";
+    //   article[0].textContent = "";
+    //   inputs.value = "";
+    
       const ulTags = document.querySelectorAll("main ul");
       ulTags.forEach((ul) => ul.lastChild.remove());
-
       h2.textContent = weather.nearest_area[0].areaName[0].value;
       ul[0].textContent = `Area:`;
       ul[0].after(weather.nearest_area[0].areaName[0].value);
@@ -152,4 +154,24 @@ conversion.addEventListener("submit", (event) => {
     conversion = conversion * (9 / 5) + 32;
     document.querySelector("#result").innerHTML = `${conversion.toFixed(2)}°F`;
   }
+   document.querySelector(".main").appendChild(image);
+
+
 });
+// function chance(){
+//     if(weather.weather[0].hourly[0].chanceofsunshine > 50){
+//         let giphyObj = (`https://media.giphy.com/media/uqpK3SuxEY4W9YQvdg/giphy.gif`)
+//         let newImg = document.createElement("img");
+//         newImg.setAttribute("src", giphyObj);
+//         document.querySelector(".main").appendChild(newImg)
+//     } else if (weather.weather[0].hourly[0].chanceofrain > 50){
+//         let giphyObj1 = (`https://media.giphy.com/media/3og0IOUWB5AZoP6la0/giphy.gif`)
+//         let newImg = document.createElement("img");
+//         newImg.setAttribute("src", giphyObj1);
+//         document.querySelector(".main").appendChild(newImg)
+//     } else if (weather.weather[0].hourly[0].chanceofsnow > 50){
+//         let giphyObj2 = (`https://media.giphy.com/media/l0HlVixqvZq8aqXGo/giphy.gif`)
+//         let newImg = document.createElement("img");
+//         newImg.setAttribute("src", giphyObj2);
+//     }
+  

@@ -3,6 +3,10 @@ background-color: grey;
 }
 h1 {
  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
- color: silver;
+ color:silver;
 }
-
+newImg {
+ border-radius: 4px;
+ height: auto;
+ max-width: 10%;
+}
