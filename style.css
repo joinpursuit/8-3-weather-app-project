@@ -1,0 +1,123 @@
+html {
+    text-align: center;
+    color: aliceblue;
+    background-color: black;
+
+    font: Georgia, serif;
+    color: aliceblue;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(57, 57, 63), 0 0 0.2em rgb(122, 122, 143);
+    color: white;
+
+}
+
+header {
+    background-image: url(./assets/thunderbolt-1905603\ \(1\).png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: ridge;
+    border-radius: 15px 15px;
+
+    padding: 30px ;
+    grid-area: header;
+
+    color: aliceblue;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(57, 57, 63), 0 0 0.2em rgb(122, 122, 143);
+    color: white;
+    font: 1.5em Georgia, serif;
+}
+
+
+form {
+    /* background-color: midnightblue; */
+    grid-area: form
+}
+
+
+
+.section {
+    grid-area: section;
+}
+
+
+.tempc {
+    grid-area: tempc;
+}
+
+
+.solo {
+    padding: 30px 0;
+    grid-area: main;
+    border: 7px ridge #101113bf;
+    background-color: rgb(38 39 47);
+    margin: 10px;
+}
+
+.tri{
+    grid-area: tri;
+
+}
+
+
+
+.tri1 {
+    grid-area: tri1;
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+}
+
+.tri2 {
+    grid-area: tri2;
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+}
+
+.tri3 {
+    display: inline-block;   
+    width: 200px;
+    height: 100px;
+
+    grid-area: tri3;
+}
+
+
+
+
+
+
+body {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+    "header header header"
+    "tempc main section"
+    /* "tri1 tri2 tri3" */
+    ". tri ."
+    ;
+}
+
+ul li::before {
+    color: aliceblue;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(57, 57, 63), 0 0 0.2em rgb(122, 122, 143);
+    color: white;
+    font: 1.5em Georgia, serif;
+
+
+
+}
+
+h4 { 
+    text-align: left;   
+    padding-left: 25px;
+}
+
+.list {
+
+    text-align: left ;
+}
