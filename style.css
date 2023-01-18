@@ -1,0 +1,39 @@
+.header {
+    background-color: rgb(1, 142, 142);
+    grid-area: header;
+    text-align: center;
+    color: white;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: small;
+    border-color: black;
+    padding-bottom: 25px;
+}
+
+.main {
+    background-color: limegreen;
+    grid-area: main;
+}
+
+.previous {
+    background-color: blanchedalmond;
+    grid-area: previous;
+}
+
+.aside {
+    background-color: blanchedalmond;
+    grid-area: aside;
+}
+
+body {
+    background-color: darkturquoise;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous"
+    "aside . previous";
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
