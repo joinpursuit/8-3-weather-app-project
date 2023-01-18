@@ -1,4 +1,4 @@
-const API_URL = 'https://v3.wttr.in/'
+const API_URL = 'https://wttr.in/'
 const query = '?format=j1'
 
 document.querySelector("form").addEventListener("submit", (event) => {
@@ -18,14 +18,26 @@ document.querySelector("form").addEventListener("submit", (event) => {
         city.textContent = location;
         weatherDisplay.append(city);
 
-        const mainSection = document.createElement('p');
+        const areaP = document.createElement('p');
         const area = weather.nearest_area[0].areaName[0].value;
 
         if (location == area) {
-            mainSection.innerHTML = `<strong>Area:</strong> ${area}`;
+            areaP.innerHTML = `<strong>Area:</strong> ${area}`;
         } else {
-            mainSection.innerHTML = `<strong>Nearest Area:</strong> ${area}`
+            areaP.innerHTML = `<strong>Nearest Area:</strong> ${area}`
         }
-        weatherDisplay.append(mainSection);
+        weatherDisplay.append(areaP);
+
+        const regionP = document.createElement('p');
+        regionP.innerHTML = `<strong>Region:</strong> ${weather.nearest_area[0].region[0].value}`;
+        weatherDisplay.append(regionP);
+        
+        const countryP = document.createElement('p');
+        countryP.innerHTML = `<strong>Country:</strong> ${weather.nearest_area[0].country[0].value}`;
+        weatherDisplay.append(countryP);
+
+        const feelsFP = document.createElement('p');
+        feelsFP.innerHTML = `<strong>Currently:</strong> Feels Like ${weather.current_condition[0].FeelsLikeF}°F`;
+        weatherDisplay.append(feelsFP);
     })
 });
