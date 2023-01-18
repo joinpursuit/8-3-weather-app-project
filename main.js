@@ -14,7 +14,6 @@ const moon = document.querySelector(".moon");
 // const image = document.querySelector("img");
 const main = document.querySelector("main")
 
-
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
   fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
@@ -24,7 +23,12 @@ document.querySelector("form").addEventListener("submit", (event) => {
     .then((weather) => {
     //   article[0].textContent = "";
     //   inputs.value = "";
-    
+
+    function clearform() {
+        document.querySelector("aside").innerHTML = "";
+      }
+      clearform();
+
       const ulTags = document.querySelectorAll("main ul");
       ulTags.forEach((ul) => ul.lastChild.remove());
       h2.textContent = weather.nearest_area[0].areaName[0].value;
@@ -138,6 +142,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
       const moonphase = weather.weather[0].astronomy[0].moon_phase;
       paragraphmoon.append(strong12, moonphase);
       moon.append(h3moon, paragraphmoon);
+      
     });
 });
 
@@ -158,20 +163,4 @@ conversion.addEventListener("submit", (event) => {
 
 
 });
-// function chance(){
-//     if(weather.weather[0].hourly[0].chanceofsunshine > 50){
-//         let giphyObj = (`https://media.giphy.com/media/uqpK3SuxEY4W9YQvdg/giphy.gif`)
-//         let newImg = document.createElement("img");
-//         newImg.setAttribute("src", giphyObj);
-//         document.querySelector(".main").appendChild(newImg)
-//     } else if (weather.weather[0].hourly[0].chanceofrain > 50){
-//         let giphyObj1 = (`https://media.giphy.com/media/3og0IOUWB5AZoP6la0/giphy.gif`)
-//         let newImg = document.createElement("img");
-//         newImg.setAttribute("src", giphyObj1);
-//         document.querySelector(".main").appendChild(newImg)
-//     } else if (weather.weather[0].hourly[0].chanceofsnow > 50){
-//         let giphyObj2 = (`https://media.giphy.com/media/l0HlVixqvZq8aqXGo/giphy.gif`)
-//         let newImg = document.createElement("img");
-//         newImg.setAttribute("src", giphyObj2);
-//     }
-  
+
