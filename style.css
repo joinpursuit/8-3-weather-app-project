@@ -1,7 +1,6 @@
 .header {
     background-color: rgb(1, 142, 142);
     grid-area: header;
-    text-align: center;
     color: white;
     border-style: solid;
     border-radius: 5px;
@@ -11,22 +10,29 @@
 }
 
 .main {
-    background-color: limegreen;
+    background-color: navy;
     grid-area: main;
+    min-height: 500px;
+    max-height: fit-content;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .previous {
-    background-color: blanchedalmond;
+    background-color: darkgreen;
     grid-area: previous;
 }
 
 .aside {
-    background-color: blanchedalmond;
+    background-color: darkgreen;
     grid-area: aside;
 }
 
 body {
     background-color: darkturquoise;
+    text-align: center;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
