@@ -1,0 +1,19 @@
+body {
+background-color: grey;
+}
+h1 {
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ color:silver;
+}
+img{
+    border-radius: 300px;
+    width: 550px;
+    height: 550px;
+}
+@media screen and (max-width: 900px){
+    img{
+        border-radius: 300px;
+        width: 550px;
+        height: 550px;
+    }
+}

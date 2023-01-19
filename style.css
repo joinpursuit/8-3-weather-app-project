@@ -1,0 +1,79 @@
+.header{
+    background-color: rgb(153, 204, 241);
+    grid-area: header;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.main {
+    background-color: rgb(112, 168, 228);
+    grid-area: main;
+    text-align: center;
+}
+
+.previous {
+    background-color:rgb(112, 168, 228);
+    grid-area: previous;
+}
+
+.aside {
+    background-color: rgb(112, 168, 228);
+    grid-area: aside;
+}
+
+body {
+    background-color:rgb(153, 204, 241);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous"
+    "today tommorrow day"
+    "rise  set   moon"
+}
+.previous{
+    background-color:rgb(112, 168, 228);
+}
+.today{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(194, 117, 233);
+    text-align: center;
+}
+.tommorrow {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(203, 54, 226);
+    text-align: center;
+}
+.day {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: rgb(210, 70, 189);
+    text-align: center;
+}
+.rise{
+    display: grid;
+    /* grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto; */
+    background-color: rgb(174, 244, 175);
+    text-align: center;
+}
+.set{
+    display: grid;
+    /* grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto; */
+    background-color: rgb(120, 200, 122);
+    text-align: center;
+}
+.moon{
+    display: grid;
+    /* grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto; */
+    background-color: rgb(22, 73, 22);
+    text-align: center;
+    
+}
