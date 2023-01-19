@@ -39,5 +39,37 @@ document.querySelector("form").addEventListener("submit", (event) => {
         const feelsFP = document.createElement('p');
         feelsFP.innerHTML = `<strong>Currently:</strong> Feels Like ${weather.current_condition[0].FeelsLikeF}°F`;
         weatherDisplay.append(feelsFP);
+
+        const days = document.querySelectorAll('.main aside article');
+        const avg = '<strong>Average Temperature:</strong>';
+        const max = '<strong>Max Temperature:</strong>';
+        const min = '<strong>Min Temperature:</strong>';
+        for (let i = 0; i < 3; i++) {
+            days[i].innerHTML = '';
+            const dayHeading = document.createElement('h3');
+            if (i == 0) {
+                dayHeading.innerText = 'Today';
+            } else if (i == 1) {
+                dayHeading.innerText = 'Tomorrow';
+            } else {
+                dayHeading.innerText = 'Day After Tomorrow';
+            }
+            const dayAvg = document.createElement('div');
+            const dayMax = document.createElement('div');
+            const dayMin = document.createElement('div');
+            dayAvg.innerHTML = `${avg} ${weather.weather[i].avgtempF}°F`;
+            dayMax.innerHTML = `${max} ${weather.weather[i].maxtempF}°F`;
+            dayMin.innerHTML = `${min} ${weather.weather[i].mintempF}°F`;
+            days[i].append(dayHeading);
+            days[i].append(dayAvg);
+            days[i].append(dayMax);
+            days[i].append(dayMin);
+        }
+
+        
+
+        
+        
+        
     })
 });
