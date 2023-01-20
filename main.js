@@ -74,6 +74,18 @@ document.querySelector("form").addEventListener("submit", (event) => {
             days[i].append(dayMax);
             days[i].append(dayMin);
         }
+        // Selects the default message in the previous searches section and removes it
+        const clearMsg = document.querySelector('.previous section ul p');
+        const clearPrev = document.querySelector('.previous section ul');
+        clearPrev.removeChild(clearMsg);
+        // Displays the recently made search on the previous searches section
+        const updatePrev = document.querySelector('.previous section ul');
+        const newSearch = document.createElement('li');
+        newSearch.innerText = 'Hello';
+        updatePrev.append(newSearch);
+
+
+        
     
         
 
