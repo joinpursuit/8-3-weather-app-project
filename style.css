@@ -1,0 +1,93 @@
+/* this page will modify all the aesthics*/
+.header{ 
+  background-image: url("https://newsonair.gov.in/writereaddata/News_Pictures/MIS/2022/Dec/NPIC-20221218184238.jpg");
+  background-size: 1000px;
+  background-position: bottom;
+  border-bottom: 5px solid rgb(249, 246, 246);
+  justify-content: center;
+  padding: 300px; /*this increases the image at the bottom*/
+  grid-area: header;}/*it divides the interface into "areas' which consist of columns, rows
+    
+} /*.header refers to the class that we created on the html sheet 
+this will modify that specific area*/
+
+.main{
+    background-color: crimson;
+    grid-area: main;
+} /* .main refers to the class that we created on the html sheet 
+this will modify that specific area*/
+
+.previous{
+    background-color: aliceblue;
+    display: inline-block;
+    grid-area: previous;
+    border: 1px solid black;
+    justify-content:center;
+    padding: 10px;
+
+} /* refers to the class that we created on the html sheet 
+this will modify that specific area*/
+
+.days article{
+     grid-area: days;
+     border: 2px solid black;
+     justify-content: center;
+     padding: 10px;
+
+.aside{
+    grid-area: aside;
+    border: 1px solid black;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.column1 {
+
+}
+
+body{
+    background-color: linear-gradient(94deg, rgba(33,29,136,1) 0%, rgba(29,129,253,1) 50%, rgba(69,246,252,1) 100%);    display: grid;
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 1fr;
+    grid-template-rows: auto auto auto ;
+    grid-template-areas: 
+    "header header header "
+    "aside main previous"
+    "days days days";
+    justify-content: center;
+    color: white;
+text-shadow: -1px 1px 2px #000,
+				  1px 1px 2px #000,
+				  1px -1px 0 #000,
+				  -1px -1px 0 #000;
+  text-align: center;
+  font-family: sans-serif;
+  border: 10px solid black;
+  justify-content: center; }
+   /* "aside . previous" if choose this, have to place another auto in grid template row; 
+       background: rgb(33,29,136);
+    background: linear-gradient(94deg, rgba(33,29,136,1) 0%, rgba(29,129,253,1) 50%, rgba(69,246,252,1) 100%);    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous"
+    "days days days";
+    justify-content: center;
+    color: white;
+text-shadow: -1px 1px 2px #000,
+				  1px 1px 2px #000,
+				  1px -1px 0 #000,
+				  -1px -1px 0 #000;
+  text-align: center;
+  font-family: sans-serif;
+  border: 10px solid black;
+  justify-content: center; 
+    /* line 34 -35 these strings represent 3 coloumns (vertical, they are paired by 1 column header/aside)
+    2 coloumn: header/main, and 3 column: header/previous 
+    then tworows (horizontal) 1st row: header, header, header and 2nd row: aside, main, previous
+    then line 36 is for the 3 articles Inside the main (today, tomorrow & day after tomorrow)*/
+    
+
+
