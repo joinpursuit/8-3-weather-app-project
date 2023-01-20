@@ -1,0 +1,147 @@
+<!DOCTYPE html> <!--You can input html 5 and the docutype will populate-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/> <!-- This link, links the overall aesthetic of the page-->
+    <script defer src="./main.js"> </script> <!--src is an appreviaton for source, this tells it where we are getting the info
+    defer tells it to run after all the elements have been loaded on page, script tag is for javaSCRIPT-->
+</head>
+<body> <!--the body is the web page, what we visually see-->
+ <header class="header">  <!--this starts the header, class can be applied multiple times on the page, 
+class is specifically used for css styling, think of it like a graduating class...id can only be unique to a specific element, only goes to ONE person
+think of it like a social security # -->
+<h1>Weather App</h1> <!--this is the title-->
+<form> <!--within the header there is a form-->
+    <label for="location"> Pick a Location</label> <!--this labels it the for corresponds with name,its looking "FOR" that "NAME in line 19"  -->
+    <input type="text" name="location"/> <!--this tells the form what inputs we are prompting the user to "input" -->
+    <input type="submit" value="Get Weather"/> <!--This is a submit input, looks like a button this is what the user will "press" after the text have been input-->
+</form> <!-- this is the closing tag for the form -->
+ </header>
+
+  <main>
+        <aside id="convert">
+            <form id="conversion"> 
+                <label for="temp-to-convert">Convert the Temperature</label>
+                <input type="number" id="temp-to-convert" name="temp" step="1">
+                <br>
+                <input type="radio" name="unit" value="fahrenheit" id="to-f">
+                <label for="to-c">To Fahrenheit</label>
+                <br>
+                <input type="radio" name="unit" checked value="celsius" id="to-c">
+                <label for="to-c">To Celsius</label>
+                <br>
+                <input type="submit" id="convert-temp" value="Convert">
+
+            </form>
+            <h4 id="h4-temp"></h4>
+        </aside>
+        <article id="current">
+            <br>
+            <p id="choose">Choose a location to view the weather</p>
+
+      <aside id="convert">
+        <form id="conversion">
+          <label for="temp-to-convert">Convert the Temperature</label>
+          <input type="number" id="temp-to-convert" name="temp" step="1" />
+          <br />
+          <input
+            type="radio"
+            name="unit"
+            value="fahrenheit"
+            class="radio"
+            id="to-f"
+          />
+          <label for="to-c">To Fahrenheit</label>
+          <br />
+          <input
+            type="radio"
+            name="unit"
+            checked
+            value="celsius"
+            class="radio"
+            id="to-c"
+          />
+          <label for="to-c">To Celsius</label>
+          <br />
+          <input type="submit" id="convert-temp" value="Convert" />
+        </form>
+        <h4 id="h4-temp"></h4>
+      </aside>
+      <article id="current">
+        <br />
+        <p id="choose">Choose a location to view the weather</p>
+      </article>
+      <aside id="futures">
+        <article id="today" class="none">
+          <h3>Today</h3>
+          <p>
+            <strong>Average Temperature:</strong> <span id="today_avg"></span>
+          </p>
+          <p><strong>Max Temperature:</strong> <span id="today_max"></span></p>
+          <p><strong>Min Temperature:</strong> <span id="today_min"></span></p>
+        </article>
+        <article id="tomorrow" class="none">
+          <h3>Tomorrow</h3>
+          <p>
+            <strong>Average Temperature:</strong>
+            <span id="tomorrow_avg"></span>
+          </p>
+          <p>
+            <strong>Max Temperature:</strong> <span id="tomorrow_max"></span>
+          </p>
+          <p>
+            <strong>Min Temperature:</strong> <span id="tomorrow_min"></span>
+          </p>
+        </article>
+        <article id="next" class="none">
+          <h3>Day After Tomorrow</h3>
+          <p>
+            <strong>Average Temperature:</strong> <span id="next_avg"></span>
+          </p>
+          <p><strong>Max Temperature:</strong> <span id="next_max"></span></p>
+          <p><strong>Min Temperature:</strong> <span id="next_min"></span></p>
+        </article>
+        <aside  id="futures">
+            <article id="today" class="none">
+                <h3>Today</h3>
+                <p><strong>Average Temperature:</strong> <span id="today_avg"></span></p>
+                <p><strong>Max Temperature:</strong> <span id="today_max"></span></p>
+                <p><strong>Min Temperature:</strong> <span id="today_min"></span></p>
+            </article>
+            <article id="tomorrow" class="none">
+                <h3>Tomorrow</h3>
+                <p><strong>Average Temperature:</strong> <span id="tomorrow_avg"></span></p>
+                <p><strong>Max Temperature:</strong> <span id="tomorrow_max"></span></p>
+                <p><strong>Min Temperature:</strong> <span id="tomorrow_min"></span></p>
+            </article>
+            <article id="next" class="none">
+                <h3>Day After Tomorrow</h3>
+                <p><strong>Average Temperature:</strong> <span id="next_avg"></span></p>
+                <p><strong>Max Temperature:</strong> <span id="next_max"></span></p>
+                <p><strong>Min Temperature:</strong> <span id="next_min"></span></p>
+            </article>
+        </aside>
+        <aside id="previous">
+            <section>
+            <h4>Previous Searches</h4>
+
+            <ul id="prev-search">
+                <p id="no-prev">No previous searches</p>
+      </aside>
+      <aside id="previous">
+        <section>
+          <h4>Previous Searches</h4>
+
+            </ul>
+          <ul id="prev-search">
+            <p id="no-prev">No previous searches</p>
+          </ul>
+        </section>
+        </aside>
+      </aside>
+    </main>
+</body>
+</html>
