@@ -17,7 +17,22 @@
         <input type="submit" value="Get Weather" />
       </form>
     </header>
-    <aside class="aside">I am Aside</aside>
+    <aside class="aside">
+      I am Aside
+
+      <form id="conversion">
+        <label for="temp-to-convert">Convert the Temperature</label>
+        <input type="number" id="temp-to-convert" name="temp" step="1" />
+        <br />
+        <input type="radio" name="unit" value="fahrenheit" id="to-f" />
+        <label for="to-c">To Fahrenheit</label>
+        <br />
+        <input type="radio" name="unit" checked value="celsius" id="to-c" />
+        <label for="to-c">To Celsius</label>
+        <br />
+        <input type="submit" id="convert-temp" value="Convert" />
+      </form>
+    </aside>
     <main class="main">
       <p>Choose a location to view the weather.</p>
       <aside>
