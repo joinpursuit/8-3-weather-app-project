@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Shrikhand&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Shrikhand', cursive;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    background-color: #acc8d7;
+  }
+  .container {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous";
+  }
+  /* .card {
+    transform-style: preserve-3d;
+    min-height: 425vh;
+    width: 85rem;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+    background-color: #acc8d7;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous";
+  } */
+
+
+.header{
+    grid-area: header;
+    min-height: 35vh;
+    
+    align-items: center;
+    justify-content: center;
+    background-color: #acc8d7;
+   
+}
+
+header h1 {
+    /* margin-left: -1%; */
+    margin-top: -315px; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+header form {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    background-color: white;
+    text-align: center;
+}
+
+.header img {
+    width: 40rem;
+    background-color: #acc8d7;
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    grid-area: main;
+    
+}
+
+main article {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5px;
+    padding: 30px;
+    box-sizing: content-box;
+    font-size: larger;
+}
+#main {
+    border-right: 3px solid black;
+  
+}
+.previous {
+    background-color: #acc8d7;
+    grid-area: previous;
+    align-items: center;
+    text-align: center;
+}
+
+section {
+    background-color: #acc8d7;
+    margin-left: 20px;
+}
+
+.aside {
+    background-color: #acc8d7;
+    grid-area: aside;
+    
+}
+
+/* .card {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header"
+    "aside main previous";
+} */
+
+.today {
+    display: grid;
+    justify-content: flex-start;
+    height: 200px;
+    box-sizing: content-box;
+    min-width: auto;
+    margin-top: auto;
+    margin-left: -250px;
+    padding: 40px;
+    position: absolute;
+    border-radius: 20%;
+    border: solid black;
+}
+
+.tomorrow {
+    display: grid; 
+    justify-content: center;
+    height:200px;
+    box-sizing: content-box;
+    margin-left: 140px;
+    margin-top: auto;
+    padding: 40px;
+    position: absolute;
+    border-radius: 20%;
+    border: solid black;
+}
+
+
+.dayAfter {
+    display: grid;
+    justify-content: end;
+    height: 200px;
+    box-sizing: content-box;
+    min-width: auto;
+    margin-left: 530px;
+    padding: 40px;
+    margin-top: auto;
+    position: absolute;
+    border-radius: 20%;
+    border: solid black;
+} 
+
