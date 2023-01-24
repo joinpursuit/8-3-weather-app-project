@@ -49,6 +49,7 @@
 
     .tempConversionWidget {
        font-size: sm;
+       display:none
     }
 
     .hidden{

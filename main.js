@@ -1,27 +1,13 @@
-/*
-From Jose C.
-  const article = document.querySelectorAll("article")
-  const ul=document.createElement("ul")
-
-  From Paola
-  const locationInput = document.querySelector("input")
-
-  From Evan
-  let city = event.target.location.value; 
-*/
-
-/* 
-Pressing the submit button will do the following things.
+/* Goal:  Pressing the submit button will do the following things.
 1) fetch code from the API
 2) JSON translates the code
 3) use the code to create an expanded main box that lists the user-chosen location, as well as information about that area.
 4) Un-hide the temperature conversion area
 5) make previous searches a thing
-
 */
 
 document.querySelector("form").addEventListener("submit",(event) => {
-    // Select the form instead of the so that it doesn't stop on every letter that the user inputs.
+    // Select the form instead of the document so that it doesn't stop on every letter that the user inputs.
 
     // In order to see what is going on, prevent the default action. 
     event.preventDefault()
@@ -57,14 +43,8 @@ fetch(`https://wttr.in/${event.target.location.value}?format=j1`)
     ul.textContent=`Currently:`
     ul.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`)
 
-// juan via MaxW
-// const mainArticle = document.getElementById("main_article")
-// mainArticle.remove()
-// const newArticle = document.createElement("article")
-// newArticle.setAttribute("id", "xxxxx")
 
-
-const mainSection = document.querySelector("section.main")
+    const mainSection = document.querySelector("section.main")
 
 
 //create a variable for the article, which I have already given the class "chosen" 
@@ -73,9 +53,10 @@ const mainSection = document.querySelector("section.main")
     console.log("This is oldArticle", oldArticle);
     // oldArticle.textContent
 
-//deleting the oldArticle
+//delete the oldArticle (before it is even seen one time). Hat tip Juan Feliz.
     oldArticle.remove();
-//replacing old article with newArticle
+
+//replace old article with newArticle
     const mainArticle=document.createElement("article");
     mainArticle.classList.add("chosen");
     mainSection.append(mainArticle);
@@ -89,29 +70,24 @@ const mainSection = document.querySelector("section.main")
     console.log("This is bigLocation", bigLocation)
 
 
-    //adding the nearest area to the chosen location
+//adding the nearest area to the chosen location
   
     const bigLocationArea = document.createElement("p");
     bigLocationArea.innerText = `Area: ${weather.nearest_area[0].areaName[0].value}`;
     mainArticle.append(bigLocationArea);
     console.log("This is bigLocationArea", bigLocationArea)
 
-    //adding the nearest Region to the chosen location
+//adding the nearest Region, the Country, and the Feels Like to the chosen location
 
     const bigLocationRegion = document.createElement ("p");
     bigLocationRegion.innerText = `Region: ${weather.nearest_area[0].region[0].value}`;
     mainArticle.append(bigLocationRegion);
     console.log("This is bigLocationRegion", bigLocationRegion);
 
-
-    //adding the Country in which the chosen location is located
-
     const bigLocationCountry = document.createElement ("p");
     bigLocationCountry.innerText = `Country: ${weather.nearest_area[0].country[0].value}`;
     mainArticle.append(bigLocationCountry);
     console.log("This is bigLocationCountry", bigLocationCountry);
-
-//should I be using textContent instead of innerText?
 
     const bigLocationFeelsLike = document.createElement("p");
     bigLocationFeelsLike.innerText = `Feels like: ${weather.current_condition[0].FeelsLikeC}°C`;
@@ -171,24 +147,19 @@ const mainSection = document.querySelector("section.main")
 });
 
 
-//this function should take the user inputteed chosen location and add it here. It should be clickable so that it would then become the next input. There should also be temperature next to it.
-function previous (locationName, weather) {
-
+//this function should take the user inputted chosen location and add it here. It should be clickable so that it would then become the next input. There should also be temperature next to it.
+function previousLocation (locationName, weather) {
+    const ul = document.querySelector("ul");
+    const li = document.querySelector("li");
+    if(document.getElementById(`previous_searches`))document.getElementById(`previous_searches`).remove();
+        li.innerHTML=`<a href="#">${location}</a>d`
 }
-
-
-/* still need to
-add event listener/s
-get the previous searches in the  aside
-make the toeday/tomorrow/day after tomorrow work
-fix the temperatire conversion part
-*/
-
 
 
 
 
 /* When the input field receives input, convert the value from fahrenheit to celsius */
+
 function temperatureConverterFarCel(valNum) {
     valNum = parseFloat(valNum);
     document.getElementById("outputCelsius").innerHTML = (valNum-32) / 1.8;
@@ -198,22 +169,10 @@ function temperatureConverterFarCel(valNum) {
     valNum = parseFloat(valNum);
     document.getElementById("outputFahrenheit").innerHTML=(valNum*1.8)+32;
   }
-
-
-
 const displayWeather=data => {
-
 }
 
-//I am taking out the next line for now but not sure where I got it so i may need it later.
-// let current =document.getElementById('current').remove()
 
-  //Harold suggested doing this without the "magic numbers"
-// function tempConversion (type, temp) {
-//     if (type === CELCIUS) {
-//         return ((temp - sc.DEGREE_DIFFERENCE) * sc.FAHRENHEIT_TO_CELSIUS_RATIO).toFixed(2); 
-//     } else if (type === sc.FAHRENHEIT) {
-//         return (temp *   sc.CELCIUS_TO_FAHRENHEIT_RATIO)+sc.DEGREE_DIFFERENCE; }}
 
 /* in class:
 document.querySelector("form").addEventListener("submit", (event) => {
@@ -230,12 +189,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
     })
 })
 
-
-DID NOT USE:
-    // const chosen=document.querySelector(".chosen")
-    // chosen.textContent=`Currently:`
-    // chosen.after(`Feels Like ${weather.current_condition[0].FeelsLikeC}*C`);
-    // console.log("This is chosen", chosen)
 
 I added a display none item to the conversion aside, so I will have to unhide that when someone submits.
 */
