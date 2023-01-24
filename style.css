@@ -1,0 +1,53 @@
+body {
+    display: grid;
+    justify-content: center;
+    margin: 0;
+    grid-template-columns: 1fr;
+}
+
+header {
+    height: 200px;
+    background-color: skyblue;
+}
+
+h1, form {
+    margin-left: 575px;
+    margin-top: 40px;
+}
+
+.placement {
+    height: 90px;
+    border: 2px solid lightslategray;
+    width: 670px;
+    margin-top: 50px;
+    grid-template-columns: 2fr;
+    margin-left: 70px;
+}
+
+.previous {
+    display: grid;
+    float: right;
+    margin-right: 230px;
+    margin-top: -272px;  
+    position: relative; 
+} 
+
+.weather-days {
+    display: grid;
+    opacity: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 100px;
+    margin-left: 230px;
+}
+
+.default-msg {
+ margin-left: 190px;
+ margin-top: 32px;
+ font-size: larger;
+}
+
+.weather-info {
+    font-size: larger;
+    display: grid;
+    margin-left: 235px
+}
