@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script defer src="./main.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1 id="appTitle">Weather App</h1>
+        <form class="form">
+            <label form="location"> Input a city </label>
+            <input type="text" name="location" class="input"/>
+            <input type="submit" value="Get Weather"/>
+        </form>
+    </header>
+    <aside class="aside"> 
+
+    </aside>
+    <main class="main">
+        <div class="div">
+        <article class="placement"> 
+            <p class="default-msg"> Choose a location to view the weather </p>
+            <section class="weather-info">
+            <img class="weather-icon" src=" " alt=" ">
+            <h2 class="city-name"> </h2>
+            <p class="area"> </p>
+            <p class="region"> </p>
+            <p class="country"> </p>
+            <p class="currently"> </p> 
+            <p class="sunshine"> </p>
+            <p class="rain"> </p>
+            <p class="snow"> </p>
+            </section>  
+        </article>
+        <aside class="previous">
+            <section>
+                <h4>Previous Searches</h4>
+                <ul class="previous-list"> </ul>
+                <p class="no-search-msg"> No previous searches </p>
+            </section>
+        </aside>
+        </div>
+        <aside class="weather-days">
+            <article>
+                <h3> Today </h3>
+                <span class="today-weather-info">
+                    <p class="today-avg-temp"> </p>
+                    <p class="today-max-temp"> </p>
+                    <p class="today-min-temp"> </p>
+                </span>
+            </article>
+            <article>
+                <h3> Tomorrow </h3>
+                <span class="tmm-weather-info">
+                    <p class="tmm-avg-temp"> </p>
+                    <p class="tmm-max-temp"> </p>
+                    <p class="tmm-min-temp"> </p>
+                </span>
+            </article>
+            <article>
+                <h3> Day After Tomorrow </h3>
+                <span class="dat-weather-info">
+                    <p class="dat-avg-temp"> </p>
+                    <p class="dat-max-temp"> </p>
+                    <p class="dat-min-temp"> </p>
+                </span>
+            </article>
+        </aside>
+    </main>  
+</body>
+</html>

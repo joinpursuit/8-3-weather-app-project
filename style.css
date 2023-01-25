@@ -1,0 +1,61 @@
+body {
+    display: grid;
+/*     justify-content: center; */
+/*     grid-template-columns: 3fr; */
+/*     align-content: center; */
+/*     align-content: center; */
+}
+
+header {
+    height: 200px;
+    background-color: skyblue;
+    display: grid;
+/*     grid-auto-columns: 2fr; */
+    align-items: center;
+}
+
+h1 {
+    margin-left: 630px;
+    margin-top: 40px;
+}
+
+form {
+    margin-left: 540px;
+}
+
+.placement {
+    height: 90px;
+    border: 2px solid lightslategray;
+    width: 670px;
+    margin-top: 50px;
+    grid-template-columns: 2fr;
+    margin-left: 70px;
+}
+
+.previous {
+    display: grid;
+    float: right;
+    margin-right: 230px;
+    margin-top: -117px;  
+    position: relative; 
+} 
+
+.weather-days {
+    display: grid;
+    opacity: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 100px;
+    margin-left: 230px;
+}
+
+.default-msg {
+ margin-left: 190px;
+ margin-top: 32px;
+ font-size: larger;
+}
+
+.weather-info {
+    font-size: larger;
+    display: grid;
+    margin-left: 235px
+}
