@@ -24,6 +24,10 @@ const previousSearch = document.querySelector('.previous-search');
 const previousList = document.querySelector('.previous-list');
 const noSearchMsgP = document.querySelector('.no-search-msg');
 const area = document.querySelector('.area');
+const sunshine = document.querySelector('.sunshine');
+const rain = document.querySelector('.rain');
+const snow = document.querySelector('.snow');
+const weatherImg = document.querySelector('.weather-icon');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -39,7 +43,7 @@ form.addEventListener('submit', (event) => {
         console.log(data);
 
         defaultMsg.style.display = `none`; 
-        placementWeatherInfo.style.height = `270px`
+        placementWeatherInfo.style.height = `730px`
         weatherDataSummary.style.opacity = `100%`;
         
         cityName.textContent = theInput;
@@ -47,6 +51,22 @@ form.addEventListener('submit', (event) => {
         region.textContent = "Region: " + data.nearest_area[0].region[0].value;
         country.textContent = "Country: " + data.nearest_area[0].country[0].value;
         currently.textContent = "Currently: " + "Feels like " + data.current_condition[0].FeelsLikeF + "°F";
+        sunshine.textContent = "Chance of Sunshine: " + data.weather[0].hourly[0].chanceofsunshine + "%";
+        rain.textContent = "Chance of Rain: " + data.weather[0].hourly[0].chanceofrain + "%";
+        snow.textContent = "Chance of Rain: " + data.weather[0].hourly[0].chanceofsnow + "%";
+
+        if (data.weather[0].hourly[0].chanceofsunshine > 50) {
+            weatherImg.alt = "sun";
+            weatherImg.src = `assets/icons8-summer.gif`;
+        }
+        else if (data.weather[0].hourly[0].chanceofrain > 50) {
+            weatherImg.alt = "rain";
+            weatherImg.src = `assets/icons8-torrential-rain.gif`;
+        }
+        else if (data.weather[0].hourly[0].chanceofsnow > 50) {
+            weatherImg.alt = "snow";
+            weatherImg.src = `assets/icons8-light-snow.gif`;
+        }
 
         todayAvgTemp.textContent = `Average Temperature: ${data.weather[0].avgtempF} °F`;
         todayMaxTemp.textContent = `Max Temperature: ${data.weather[0].maxtempF} °F`;
@@ -113,6 +133,3 @@ form.addEventListener('submit', (event) => {
     })
     form.reset();
 })
-
-//if previos search includes cityname do not record
-//check that all these variables are indeed being used when done with command find

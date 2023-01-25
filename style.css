@@ -1,18 +1,26 @@
 body {
     display: grid;
-    justify-content: center;
-    margin: 0;
-    grid-template-columns: 1fr;
+/*     justify-content: center; */
+/*     grid-template-columns: 3fr; */
+/*     align-content: center; */
+/*     align-content: center; */
 }
 
 header {
     height: 200px;
     background-color: skyblue;
+    display: grid;
+/*     grid-auto-columns: 2fr; */
+    align-items: center;
 }
 
-h1, form {
-    margin-left: 575px;
+h1 {
+    margin-left: 630px;
     margin-top: 40px;
+}
+
+form {
+    margin-left: 540px;
 }
 
 .placement {
@@ -28,7 +36,7 @@ h1, form {
     display: grid;
     float: right;
     margin-right: 230px;
-    margin-top: -272px;  
+    margin-top: -117px;  
     position: relative; 
 } 
 
