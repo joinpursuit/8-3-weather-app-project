@@ -225,8 +225,21 @@ fetch(API_URL + event.target.location.value + query)
     });    
 })
 });
-// // Temperature conversion widget
-// const widget = document.querySelector('.aside form').addEventListener('submit', (e) => {
-//     e.preventDefault();
-// })
+
+// Temperature conversion widget
+const widget = document.querySelector('.aside form');
+widget.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let toConvert = e.target.converting.value;
+    const celsius = document.getElementById('to-c');
+    const fahrenheit = document.getElementById('to-f');
+    const result = document.getElementById('result');
+    if (celsius.checked) {
+        toConvert = (toConvert - 32) / 1.8;
+        result.innerHTML = `${toConvert.toFixed(2)}°C`;
+    } else {
+        toConvert = (toConvert * 1.8) + 32;
+        result.innerHTML = `${toConvert.toFixed(2)}°C`;
+    }
+})
 

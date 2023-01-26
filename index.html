@@ -18,7 +18,21 @@
         </form>
     </header>
     <aside class="aside">
-
+        <form>
+            <label for="temp-conversion">Convert the temperature:</label>
+            <br>
+            <input type="number" id="temp-to-convert" name="converting">
+            <br>
+            <label for="C">To Celcius:</label>
+            <input type="radio" id="to-c" name="convert-temp" value="c">
+            <br>
+            <label for="F">To Fahrenheit:</label>
+            <input type="radio" id="to-f" name="convert-temp" value="f">
+            <br>
+            <input type="submit">
+            <h4 id="result"></h4>
+            <to-c></to-c>
+        </form>
     </aside>
     <main class="main">
         <article>
