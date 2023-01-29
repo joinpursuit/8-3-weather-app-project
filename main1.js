@@ -110,18 +110,18 @@ weatherForm.addEventListener("submit", (event) => {
 
       if (weather.weather[0].hourly[0].chanceofsunshine > 50) {
         mainImage.classList.remove("hidden");
-        mainImage.setAttribute("src", "./assets/icons8-summer.gif");
-        mainImage.setAttribute("alt", "sun");
+        mainImage.src = "./assets/icons8-summer.gif";
+        mainImage.alt = "sun";
         mainDisplay.prepend(mainImage);
       } else if (weather.weather[0].hourly[0].chanceofrain > 50) {
         mainImage.classList.remove("hidden");
-        mainImage.setAttribute("src", "./assets/icons8-torrential-rain.gif");
-        mainImage.setAttribute("alt", "rain");
+        mainImage.src = "./assets/icons8-torrential-rain.gif";
+        mainImage.alt = "rain";
         mainDisplay.prepend(mainImage);
       } else if (weather.weather[0].hourly[0].chanceofsnow > 50) {
         mainImage.classList.remove("hidden");
-        mainImage.setAttribute("src", "./assets/icons8-light-snow.gif");
-        imagemainImage.setAttribute("alt", "snow");
+        mainImage.src = "./assets/icons8-light-snow.gif";
+        imagemainImage.alt = "snow";
         mainDisplay.prepend(mainImage);
       } else {
         mainImage.classList.add("hidden");
