@@ -5,47 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main1.js"></script>
   </head>
   <body>
     <header class="header">
       <h1>Weather App</h1>
-      <form>
+      <form id="weather-form">
         <label for="location">Pick a Location</label>
         <input type="text" id="user-input" name="location" />
         <input type="submit" value="Get Weather" />
       </form>
     </header>
     <aside class="aside">
-      I am Aside
+      <!-- I am Aside -->
 
-      <form id="conversion">
-        <label for="temp-convert">Convert the Temperature</label>
-        <input type="number" name="temp" />
+      <form  hidden id="convert">
+        <div>
+        <label for="temp-to-convert">Convert the temperature:</label>
+        <input type="number" id="temp-to-convert"></input>
+        </div>
 
-        <input type="radio" value="fahrenheit" id="f" />
-        <label for="fh">To Fahrenheit</label>
+        <div>
+        <label for="to-c">To Celsius</label>
+        <input type="radio" id="to-c" name="convert-temp" value="c" />
+        </div>
 
-        <input type="radio" checked value="celsius" id="c" />
-        <label for="cl">To Celsius</label>
-        <input type="submit" id="temp-convert" value="Convert" />
+        <div>
+        <label for="to-f">To Fahrenheit</label>
+        <input type="radio" id="to-f" name="convert-temp" value="f" />
+        </div>
+
+        <input type="submit"></input>
+        <div>
+        <h4 id="converted"></h4>
+        </div>
       </form>
     </aside>
     <main class="main">
-      <p>Choose a location to view the weather.</p>
+      <p id="start-message">Choose a location to view the weather.</p>
       <aside>
-        <article id="current">p</article>
-        <article class="upcoming-weather" id="today"></article>
-        <article class="upcoming-weather" id="tomorrow"></article>
-        <article class="upcoming-weather" id="day-after"></article>
+        <div hidden id="main-display">
+        <article id="current">
+          <img />
+          <h3 id="location-header"></h3>
+          <p id="input-location"></p>
+          <p id="area"></p>
+          <p id="region"></p>
+          <p id="country"></p>
+          <p id="currently"></p>
+
+          <p id="sunshine"></p>
+          <p id="rain"></p>
+          <p id="snow"></p>
+        </div>
+        </article>
+        <div id="Avg-temps">
+        <article hidden id="today">
+          <h3>Today</h2>
+          <p id="today-avg"></p>
+          <p id="today-max"></p>
+          <p id="today-min"></p>
+        </article>
+        <article hidden id="tomorrow">
+          <h3>Tomorrow</h2>
+          <p id="tomorrow-avg"></p>
+          <p id="tomorrow-max"></p>
+          <p id="tomorrow-min"></p>
+        </article>
+        <article hidden id="day-after">
+          <h3>Day After Tomorrow</h2>
+          <p id="after-avg"></p>
+          <p id="after-max"></p>
+          <p id="after-min"></p>
+
+        </article>
+      </div>
       </aside>
     </main>
     <aside class="previous">
       <section>
         <h4>Previous Searches</h4>
-        <ul>
-          <p>No previous searches.</p>
+        <ul id="list">
+          <p id="previous-start"> No previous searches.</p>
         </ul>
       </section>
     </aside>

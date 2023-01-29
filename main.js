@@ -3,7 +3,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
   let inputSearch = document.getElementById("user-input").value;
   // console.log(inputSearch[0].current_condition);
 
-  console.log(inputSearch);
   console.log(
     `https://v3.wttr.in/${inputSearch}?format=j1`,
     "HELLO FROM THE OTHER SIDE"
@@ -16,6 +15,9 @@ document.querySelector("form").addEventListener("submit", (event) => {
     .then((weather) => {
       //article for current search
       let current = document.getElementById("current");
+      //event.target.weather_submit.value;
+      // console.log(current);
+      document.getElementById("current");
 
       let currentHeading = document.createElement("h2");
       currentHeading.innerHTML = `<b>${weather.nearest_area[0].areaName[0].value}</b>`;
