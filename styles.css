@@ -1,0 +1,125 @@
+/* .header{
+    background-color: aquamarine;
+    grid-area: header;
+}
+
+.main {
+    background-color: deeppink;
+    grid-area: main;
+}
+
+.previous {
+    background-color: crimson;
+    grid-area: previous;
+}
+
+.aside {
+    background-color: bisque;
+    grid-area: aside;
+    display: grid;
+}
+
+body {
+    background-color: lawngreen;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header header header"
+    "asideL main asideR";
+} */
+
+body{
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header header header header"
+    "aside-L main main aside-R"
+    ". main main ."
+    ;
+}
+header {
+    background-color: rgb(94, 234, 234);
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    grid-area: header;
+}
+.main {
+    grid-area: main;
+    grid-column: 2 / span 2;
+    background-color: rgb(200, 203, 200);
+    text-align: center;
+    border: 1px solid aqua;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    ". icon ."
+    ". current ."
+    "today tomorrow day-after";
+    
+    /* margin-top: 10px; */
+}
+.icon{
+    grid-area: icon;
+    grid-column: 1/ span 3;
+}
+main #current{
+    grid-area: current;
+    grid-column: 1/ span 3;
+
+}
+.today{
+    background-color: pink;
+    grid-area: today;
+    padding: 5%;
+   
+    /* grid-column: 1/2; */
+}
+.tomorrow{
+    background-color: yellow;
+    grid-area: tomorrow;
+    padding: 5%;
+    /* grid-column-start: 2; */
+    
+}
+.day-after{
+    background-color: lightgreen;
+    grid-area: day-after;
+    padding: 5%;
+    /* grid-column: 3/4; */
+}
+/* main aside article {
+    background-color: white;
+    display: contents;
+    display: inline-block ;
+    padding: 5px;
+    text-align: center;
+    margin: auto; */
+    
+/* } */
+
+#aside-L {
+grid-area: aside-L;
+background-color: lightslategray;
+}
+
+#aside-R {
+    grid-area: aside-R;
+    background-color: dimgray;
+    justify-content: end;
+    padding: 5px;
+}
+
+/* body {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+    grid-area: 
+    " header header header header header "
+    " aside-L main main main aside-R "
+    ; */
+/* } */
