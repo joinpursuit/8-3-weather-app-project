@@ -16,6 +16,12 @@ inputBar.addEventListener("submit", async (event) => {
             const regionData = (weatherData.nearest_area[0].region[0].value)
             const countryData = (weatherData.nearest_area[0].country[0].value)
             const currentData = (weatherData.current_condition[0].FeelsLikeF)
+            let chanceOfSunshine = Number(weatherData.weather[0].hourly[0].chanceofsunshine)
+            let chanceOfRain = Number(weatherData.weather[0].hourly[0].chanceofrain)
+            let chanceOfSnow = Number(weatherData.weather[0].hourly[0].chanceofsnow)
+            let weatherIcon = document.querySelector('.icon')
+            
+         
 
 // Set variables to store access main elements--------------------------------------------       
 
@@ -26,16 +32,35 @@ let mainTagHead = document.querySelector('main article h2')
         const liRegion = document.getElementById('region')
         const liCountry = document.getElementById('country')
         const liCurrently = document.getElementById('currently')
+        const liChanceOfSunshine = document.getElementById('chance-of-sunshine')
+        const liChanceOfRain = document.getElementById('chance-of-rain')
+        const liChanceOfSnow = document.getElementById('chance-of-snow')
 
 
 //MAIN modify the content of main elements-------------------------------------------------------
 mainTagDefault.innerText = ""
 mainTagHead.innerText = areaData
-liArea.innerText = `Area: ${areaData}`
+liArea.innerHTML = `<strong>Area:</strong> ${areaData}`
 
-liRegion.innerText = `Region: ${regionData}`
-liCountry.innerText = `Country: ${countryData}`
-liCurrently.innerText = `Currently: Feels like ${currentData}°F`
+liRegion.innerHTML = `<strong>Region:</strong> ${regionData}`
+liCountry.innerHTML = `<strong>Country:</strong> ${countryData}`
+liCurrently.innerHTML = `<strong>Currently:</strong> Feels like ${currentData}°F`
+liChanceOfSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceOfSunshine}`
+liChanceOfRain.innerHTML = `<strong>Chance of Rain:</strong> ${chanceOfRain}`
+liChanceOfSnow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceOfSnow}`
+
+//WEATHER ICON IN MAIN---------------------------------
+function icon() { weatherIcon.innerHTML = ""
+if(chanceOfSunshine >= 50){
+weatherIcon.innerHTML = `<img src="./assets/icons8-summer.gif"></img>`
+}
+if(chanceOfRain >= 50 ){    
+weatherIcon.innerHTML = `<img src="./assets/icons8-rain-cloud.gif"></img>`
+} 
+if(chanceOfSnow >=50 ){
+weatherIcon.innerHTML = `<img src="./assets/icons8-light-snow.gif"></img>`
+}
+}
 
 //TODAY select and modify the elements under the today section --------------------------------------------------------
         const avgTempToday = (weatherData.weather[0].avgtempF) /* Index 0=>today, 1=>tomorrow, 2=>day-after */
@@ -100,6 +125,8 @@ const links = document.querySelectorAll('#prev-search li a')
 
 
 prevList.append(li)
+
+icon()
 
 document.querySelector('#form').reset()
 
