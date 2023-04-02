@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./style2.css"/>
+    <script defer src="./main2.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Weather App</h1>
+        <form class="form">
+            <label for="location">Pick a Location</label>
+            <input type="text" id="location" name="location" placeholder=""/>
+            <input type="submit" value="Get Weather"/>
+        </form>
+    </header>
+
+    <main class="main"> 
+    <aside class = "tempConversionWidget" id="temperature-widget">
+    <h3>Temperature Converter</h3> 
+      <!-- or should the h3 be in the form? -->
+    <form id="tempconvform" name="tempconvform" >
+        <table class="calculation">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="x">Celsius</label>
+                    </td>
+                    <td>
+                        <input id="x" class="intext" type="text" name="x" required="" data-form-type = "other">
+                    </td>
+                    <td class="degreesC">°C</td>              
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <button class="button" type="button" title="calculate" onclick="OnCalcCelFar()">
+                        <span>&rarr;</span>
+                        Calculate
+                        </button>
+
+                        <button class="button" type="reset" title="Reset" onclick="">
+                        <span>&circlearrowleft;</span>
+                        Reset
+                        </button> 
+
+                        <button class="button" type="button" title="calculate" onclick="">
+                            <span> &UpArrowDownArrow; </span>
+                            Swap
+                            </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fahrenheit</td>
+                    <td>
+                        <input id="y" class="outtext" type="text" readonly="" data-form-type="other">
+                    </td>
+                </tr>
+                <tr id="calculation">
+                    <td>Calculation</td>
+                    <td>
+                        <textarea id="TA" class="outtext" rows="2"></textarea>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+<!--         
+        <BR>
+        <BR>
+        <input type="number" name="temp" size="6"/>
+        <label for="tempconv">Temperature conversion</label>
+            <BR>
+                
+        <input type="radio" />         <label for="celsius">to Celsius </label>
+        <input type="radio"/>           <label for="toFahrenheit">to Fahrenheit  </label>
+        <input type="submit" value="Calculate"> <label for="Calculate"></label>
+ -->
+
+
+    </form>
+    </aside>
+    <section>
+        <article id="current-weather">
+        <p id=chooseLocation style = "text-align: center";> Choose a location to view the weather.</p>
+        <div class="styleTop>"
+                current weather
+                 <span id="weather-image-container"></span>
+                <h2 id = "h2inputText"></h2> <!--search name -->
+                <p id = "Area"></p>  <!-- Area-->
+                <p id = "Region"></p> <!--Region-->
+                <p id = "Country"></p> <!-- Country-->
+                <p id = "CurrentTemp"></p> <!--Currently feel like-->        
+                <p id = "Sunshine"></p> <!--Chance of Sunshine-->
+                <p id = "Rain"></p> <!--Chance of Rain -->
+                <p id = "Snow"></p> <!--Chance of Snow-->
+             </article>
+        </div>
+    </section>
+<section class="">
+  <aside id="upcoming-weather">
+            <!-- This aside has three article elements that will have upcoming weather but it starts empty. 
+            
+            Put this is jv so that i doesn't rrender until submit is pressed. -->
+    <div class="grid-container">
+        <div class="threeInOne">
+        <article id="today">
+                <!-- <b>Today</b> -->
+                <ul></ul>
+            </article>
+        </div>
+        <div class="threeInOne">
+        <article id="tomorrow">
+                <!-- <b>Tomorrow</b>-->
+                 <ul></ul>
+            </article>
+           </div>
+        <div class="threeInOne"> 
+        <article id="asatte">
+            <ul></ul>
+        <!-- <b>Day After Tomorrow</b> -->
+            </article>
+            </div>
+    </div>
+        </aside>
+
+</section>
+ <aside class="previous" id="search-history">
+    <!-- Ths aside will contain weather history -->
+         <h4>Previous Searches</h4>
+         <section>
+            <ul id="search-history"></ul>
+                    <p id="noSearches">No previous searches.</
+            </section>
+        </aside>
+    </main>
+</body>
+</html>
+
+    

@@ -1,0 +1,85 @@
+body {
+    background-color: #e0fae0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: auto;
+    
+    grid-template-areas: 
+    "header header header"
+    "temperature-widget main weather-history"
+  
+}
+
+.header{
+    background-color: #158915;
+    color: snow;
+    text-align: center;
+
+    grid-area: header;
+    padding-bottom: 5%;
+    padding: left 0;
+}
+
+
+#temperature-widget {
+    grid-area: temperature-widget;
+}
+
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template: 1fr 1fr;
+}
+
+
+#weather-history {
+    grid-area: weather-history;
+}
+
+
+#search-history {
+    list-style-type: none;
+}
+
+#search-history li:hover {
+    background-color: #f2f2f2;
+}
+
+.hidden{
+    display:none
+}
+
+
+
+/* 
+section.main {
+    background-color: lightcyan;
+    grid-area: main;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    font-size: smaller ;
+    text-align: center  ;
+
+}
+
+.previous {
+    background-color: lightblue;
+    grid-area: previous;
+}
+
+.aside {
+    background-color: lightblue;
+    grid-area: aside;
+}
+
+.tempConversionWidget {
+   font-size: sm;
+   display:none
+}
+     */
