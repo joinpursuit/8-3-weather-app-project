@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" href="./style.css"/>
-    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="./style2.css"/>
+    <script defer src="./main2.js"></script>
 </head>
 <body>
     <header class="header">
         <h1>Weather App</h1>
         <form class="form">
             <label for="location">Pick a Location</label>
-            <input type="text" name="location" placeholder=""/>
+            <input type="text" id="location" name="location" placeholder=""/>
             <input type="submit" value="Get Weather"/>
         </form>
     </header>
 
-<aside class = "tempConversionWidget">
-    
+    <main class="main"> 
+    <aside class = "tempConversionWidget" id="temperature-widget">
     <h3>Temperature Converter</h3> 
       <!-- or should the h3 be in the form? -->
     <form id="tempconvform" name="tempconvform" >
@@ -83,17 +83,11 @@
 
 
     </form>
-</aside>
-
-<!-- see comments for code deleted for now -->
-
-
-<main class="main"> 
-    <section class="main">
+    </aside>
+    <section>
+        <article id="current-weather">
         <p id=chooseLocation style = "text-align: center";> Choose a location to view the weather.</p>
         <div class="styleTop>"
-            <article></article>
-            <article class="chosen" class="top-section">
                 current weather
                  <span id="weather-image-container"></span>
                 <h2 id = "h2inputText"></h2> <!--search name -->
@@ -108,7 +102,7 @@
         </div>
     </section>
 <section class="">
-  <aside>
+  <aside id="upcoming-weather">
             <!-- This aside has three article elements that will have upcoming weather but it starts empty. 
             
             Put this is jv so that i doesn't rrender until submit is pressed. -->
@@ -133,35 +127,18 @@
             </div>
     </div>
         </aside>
-    </main>
+
 </section>
- <aside class="previous">
+ <aside class="previous" id="search-history">
     <!-- Ths aside will contain weather history -->
-        <section>
-            <h4>Previous Searches</h4>
-                <ul>
-                    <p id="noSearches">No previous searches.</p>
-                </ul>
+         <h4>Previous Searches</h4>
+         <section>
+            <ul id="search-history"></ul>
+                    <p id="noSearches">No previous searches.</
             </section>
         </aside>
-
+    </main>
 </body>
 </html>
 
-   <!-- 
-I didn't end up using the following:
-
- 
-    I thought this would be cool but it doesn't really work and it is hard to read. so I am commenting it out.
-    <p>Type a value in the Celsius field to convert the value to Fahrenheit:</p>
-    <label for="celsius">Celsius</label>
-    <input id="inputCelsius" type="number" placeholder="Celsius" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
-    </p>
-    <p>Fahrenheit: <span id="outputFahrenheit"></span></p>
-
-    <p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
-        <label for="fahrenheit">Fahrenheit</label>
-        <input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
-        oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
-    </p>
-            <p>Celsius: <span id="outputCelsius"></span></p>  -->
+    

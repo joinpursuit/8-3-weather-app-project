@@ -1,0 +1,73 @@
+
+still need to
+/* 
+add event listener/s
+get the previous searches in the  aside
+make the toeday/tomorrow/day after tomorrow work
+fix the temperatire conversion part
+*/
+
+
+<main class="main">
+    <p id = "pInitial" style = "text-align: center;">Choose a location to view the weather.</p>
+    <div class = "styleTop">
+        <article class="top-section"> 
+            <!-- current weather -->
+     <!--        <span id="weather-image-container"></span>
+    <!--         <h2 id = "h2inputText"></h2> <!--search name -->
+    <!--         <p id = "Area"></p>  <!-- Area -->
+   <!--          <p id = "Region"></p> <!--Region -->
+   <!--          <p id = "Country"></p> <!-- Country-->
+      <!--       <p id = "CurrentTemp"></p> <!--Currently feel like -->
+ <!--            <p id = "Sunshine"></p> <!--Chance of Sunshine-->
+ <!--            <p id = "Rain"></p> <!--Chance of Rain -->
+  <!--           <p id = "Snow"></p> <!--Chance of Snow -->
+ <!--        </article>
+
+
+/*
+From Jose C.
+  const article = document.querySelectorAll("article")
+  const ul=document.createElement("ul")
+
+  From Paola
+  const locationInput = document.querySelector("input")
+
+  From Evan
+  let city = event.target.location.value; 
+*/
+
+
+Harold suggested doing this without the "magic numbers"
+/*
+function tempConversion (type, temp) {
+    if (type === CELCIUS) {
+        return ((temp - sc.DEGREE_DIFFERENCE) * sc.FAHRENHEIT_TO_CELSIUS_RATIO).toFixed(2); 
+    } else if (type === sc.FAHRENHEIT) {
+        return (temp *   sc.CELCIUS_TO_FAHRENHEIT_RATIO)+sc.DEGREE_DIFFERENCE; }}
+*/
+
+Should I be using textContent instead of innerText?
+
+
+DID NOT USE:
+    // const chosen=document.querySelector(".chosen")
+    // chosen.textContent=\`Currently:\`
+    // chosen.after(\`Feels Like \${weather.current_condition[0].FeelsLikeC}*C\`);
+    // console.log("This is chosen", chosen)
+
+
+
+//I am taking out the next line for now but not sure where I got it so i may need it later.
+// let current =document.getElementById('current').remove()
+
+
+Your presentation is very thorough!  You have so many parts!
+
+I don't understand about the two APIs. If the search is coming from Edamame, is Tasty just for the first set of pictures?  
+
+I cannot see the whole logo on my screen.
+
+I love the idea to link to a grocery list for a future update.
+
+Did they tell you to point out all the deficiencies? If not, I think you can tighten the presentation. 
